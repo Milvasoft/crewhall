@@ -1,0 +1,170 @@
+{
+  "encrypted": false,
+  "folders": [
+    { "id": "f0a1c0de-0000-4000-8000-000000000001", "name": "Bankacılık" },
+    { "id": "f0a1c0de-0000-4000-8000-000000000002", "name": "Sosyal medya" }
+  ],
+  "collections": [
+    {
+      "id": "c011ec70-0000-4000-8000-000000000001",
+      "organizationId": "0e0e0e0e-0000-4000-8000-000000000001",
+      "name": "Sunucular",
+      "externalId": null
+    }
+  ],
+  "items": [
+    {
+      "id": "1a000000-0000-4000-8000-000000000001",
+      "organizationId": null,
+      "folderId": null,
+      "type": 1,
+      "reprompt": 0,
+      "name": "Docker Hub",
+      "notes": "Yalnız organizasyon yönetimi için.",
+      "favorite": true,
+      "fields": [
+        { "name": "Organizasyon", "value": "crewhall (Team)", "type": 0, "linkedId": null },
+        { "name": "Kurtarma kodu", "value": "ABCD-EFGH-IJKL", "type": 1, "linkedId": null },
+        { "name": "2FA açık", "value": "true", "type": 2, "linkedId": null },
+        { "name": null, "value": null, "type": 3, "linkedId": 100 }
+      ],
+      "login": {
+        "uris": [
+          { "match": null, "uri": "https://hub.docker.com" },
+          { "match": null, "uri": "https://login.docker.com" }
+        ],
+        "username": "crewhall",
+        "password": "T7#qWm2!vR9pLx4$Kd8z",
+        "totp": "otpauth://totp/Docker:crewhall?secret=JBSWY3DPEHPK3PXP&issuer=Docker",
+        "fido2Credentials": []
+      },
+      "collectionIds": null,
+      "passwordHistory": [
+        { "lastUsedDate": "2026-09-03T10:00:00.000Z", "password": "old-password-1" }
+      ],
+      "revisionDate": "2026-09-03T10:00:00.000Z",
+      "creationDate": "2025-01-10T08:30:00.000Z",
+      "deletedDate": null
+    },
+    {
+      "id": "1a000000-0000-4000-8000-000000000002",
+      "organizationId": null,
+      "folderId": "f0a1c0de-0000-4000-8000-000000000001",
+      "type": 3,
+      "reprompt": 0,
+      "name": "Garanti BBVA kartı",
+      "notes": null,
+      "favorite": false,
+      "card": {
+        "cardholderName": "AHMET B KOSEN",
+        "brand": "Visa",
+        "number": "4111111111111111",
+        "expMonth": "13",
+        "expYear": "2027",
+        "code": "123"
+      },
+      "collectionIds": null,
+      "revisionDate": "2026-01-01T00:00:00.000Z",
+      "creationDate": "2026-01-01T00:00:00.000Z",
+      "deletedDate": null
+    },
+    {
+      "id": "1a000000-0000-4000-8000-000000000003",
+      "organizationId": "0e0e0e0e-0000-4000-8000-000000000001",
+      "folderId": null,
+      "type": 2,
+      "reprompt": 0,
+      "name": "Seq API key",
+      "notes": "seq_9fJ2kLm3QzX7",
+      "favorite": false,
+      "secureNote": { "type": 0 },
+      "collectionIds": ["c011ec70-0000-4000-8000-000000000001"],
+      "revisionDate": "2026-02-02T00:00:00.000Z",
+      "creationDate": "2026-02-02T00:00:00.000Z",
+      "deletedDate": null
+    },
+    {
+      "id": "1a000000-0000-4000-8000-000000000004",
+      "organizationId": null,
+      "folderId": "f0a1c0de-0000-4000-8000-000000000002",
+      "type": 4,
+      "reprompt": 0,
+      "name": "Kimlik",
+      "notes": null,
+      "favorite": false,
+      "identity": {
+        "title": "Mr",
+        "firstName": "Ahmet",
+        "middleName": "Buğra",
+        "lastName": "Kösen",
+        "address1": "Örnek Sok. 1",
+        "city": "İstanbul",
+        "country": "TR",
+        "email": "bugra@example.com",
+        "ssn": "12345678901",
+        "passportNumber": "U1234567",
+        "licenseNumber": null
+      },
+      "collectionIds": null,
+      "revisionDate": "2026-03-03T00:00:00.000Z",
+      "creationDate": "2026-03-03T00:00:00.000Z",
+      "deletedDate": null
+    },
+    {
+      "id": "1a000000-0000-4000-8000-000000000005",
+      "organizationId": null,
+      "folderId": null,
+      "type": 1,
+      "reprompt": 0,
+      "name": "Google Play Console",
+      "notes": null,
+      "favorite": false,
+      "login": {
+        "uris": [],
+        "username": "dev@example.com",
+        "password": "pw",
+        "totp": null,
+        "fido2Credentials": [{ "credentialId": "x" }]
+      },
+      "attachments": [{ "id": "a1", "fileName": "backup.zip" }],
+      "collectionIds": null,
+      "revisionDate": "2026-04-04T00:00:00.000Z",
+      "creationDate": "2026-04-04T00:00:00.000Z",
+      "deletedDate": null
+    },
+    {
+      "id": "1a000000-0000-4000-8000-000000000006",
+      "organizationId": null,
+      "folderId": null,
+      "type": 5,
+      "reprompt": 0,
+      "name": "milva-01 root SSH key",
+      "notes": null,
+      "favorite": false,
+      "sshKey": {
+        "privateKey": "-----BEGIN OPENSSH PRIVATE KEY-----\nabc\n-----END OPENSSH PRIVATE KEY-----",
+        "publicKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK3v root@milva-01",
+        "keyFingerprint": "SHA256:q8FzR2mJ0wVx7c4KpL9sEoT1yNbH3aUd6gQe5iWkZr0"
+      },
+      "collectionIds": null,
+      "revisionDate": "2026-05-05T00:00:00.000Z",
+      "creationDate": "2026-05-05T00:00:00.000Z",
+      "deletedDate": null
+    },
+    {
+      "id": "1a000000-0000-4000-8000-000000000007",
+      "organizationId": null,
+      "folderId": null,
+      "type": 1,
+      "reprompt": 0,
+      "name": "Heroku (eski)",
+      "notes": null,
+      "favorite": false,
+      "login": { "uris": [], "username": "x", "password": "y", "totp": null },
+      "collectionIds": null,
+      "revisionDate": "2026-05-05T00:00:00.000Z",
+      "creationDate": "2026-05-05T00:00:00.000Z",
+      "deletedDate": "2026-06-01T00:00:00.000Z"
+    }
+  ]
+}

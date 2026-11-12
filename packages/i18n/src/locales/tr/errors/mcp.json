@@ -1,0 +1,16 @@
+{
+  "mcp_disabled": "Yöneticin bu kurumda MCP erişimini kapattı.",
+  "mcp_guests_not_allowed": "Kurum politikası misafirlerin MCP istemcisi bağlamasına izin vermiyor.",
+  "mcp_tokens_disabled": "Kurum politikası kişisel erişim token'larını kapattı.",
+  "mcp_reauth_required": "Bu işlem için kimliğini yeniden doğrulaman gerekiyor (passkey ya da şifre).",
+  "mcp_password_invalid": "Şifre yanlış.",
+  "mcp_consent_invalid": "Bağlantı isteği geçersiz. İstemciden yeniden bağlanmayı dene.",
+  "mcp_client_pending": "Yöneticin bu istemciyi henüz onaylamadı.",
+  "mcp_client_blocked": "Bu istemci kurumda engellendi.",
+  "mcp_scope_not_allowed": "Kurum politikası bu izni vermiyor.",
+  "mcp_expiry_not_allowed": "Seçtiğin süre kurum politikasındaki en uzun süreyi aşıyor.",
+  "mcp_approval_closed": "Bu istek artık karar beklemiyor.",
+  "mcp_undo_unavailable": "Bu çağrı geri alınamaz ya da geri alma süresi doldu.",
+  "mcp_undo_stale": "Hedef o arada başkası tarafından değiştirildi; sürüm geçmişinden geri dön.",
+  "token_scope": "Bu token bu işlem için yetkili değil. Gereken kapsamla yeni bir token oluştur; hesap, güvenlik ve kasa işlemleri token ile yapılamaz."
+}

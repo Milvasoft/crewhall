@@ -1,0 +1,75 @@
+{
+  "cron-viewer": {
+    "name": "Cron Viewer",
+    "description": "Explain cron expressions in plain English and preview upcoming run times locally.",
+    "keywords": "schedule, scheduled job, cron expression, crontab, quartz, hangfire",
+    "expression": "Cron expression",
+    "dialect": "Cron dialect",
+    "empty": "Enter a cron expression to see its schedule.",
+    "fieldCount": "{count, plural, one {# field} other {# fields}}",
+    "unixHint": "Unix: minute, hour, day-of-month, month, day-of-week.",
+    "quartzHint": "Quartz: leading seconds field, ? in day-of-month or day-of-week.",
+    "presets": {
+      "every5": "Every 5 minutes",
+      "hourly": "Hourly",
+      "daily9": "Daily at 09:00",
+      "weekdays830": "Weekdays 08:30",
+      "firstOfMonth": "First of month"
+    },
+    "nextRuns": "Next executions",
+    "noRuns": "Upcoming runs are unavailable for this expression.",
+    "noRunsQuartz": "Upcoming runs are unavailable for this expression in Quartz dialect.",
+    "notes": {
+      "alreadyQuartz": "Already 6 or 7 fields; treated as Quartz-style.",
+      "bothDays": "Quartz can't specify both day-of-month and day-of-week; review manually.",
+      "hangfire": "Hangfire uses standard Unix cron; unchanged. 6-field (seconds) also supported."
+    }
+  },
+  "datetime-playground": {
+    "name": "DateTime Playground",
+    "description": "Explore dates: add/subtract, ISO week, day-of-year, leap year and diffs, locally.",
+    "keywords": "date, time, week number, leap year, date difference, add days, calendar",
+    "base": "Base date",
+    "addSubtract": "Add / subtract",
+    "compareWith": "Compare with",
+    "withOffset": "(base + offset)",
+    "invalidBase": "Invalid base date.",
+    "difference": "Difference: compare minus result",
+    "units": {
+      "years": "Years",
+      "months": "Months",
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds"
+    },
+    "info": {
+      "local": "Local",
+      "unixSeconds": "Unix (s)",
+      "dayOfWeek": "Day of week",
+      "dayOfYear": "Day of year",
+      "isoWeek": "ISO week",
+      "quarter": "Quarter",
+      "quarterValue": "Q{n}",
+      "daysInMonth": "Days in month",
+      "leapYear": "Leap year",
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
+  "timestamp": {
+    "name": "Timestamp & Time Zone Converter",
+    "description": "Convert Unix timestamps and dates across UTC, local and world time zones, locally.",
+    "keywords": "timestamp, time zone, date convert, unix, epoch, utc",
+    "placeholder": "Unix timestamp or date string…",
+    "inputLabel": "Timestamp or date",
+    "now": "Now",
+    "invalid": "Could not interpret that as a time.",
+    "unixSeconds": "Unix (seconds)",
+    "unixMillis": "Unix (milliseconds)",
+    "local": "Local",
+    "relative": "Relative",
+    "timeZones": "Time zones",
+    "help": "Enter a Unix timestamp (seconds or milliseconds) or a date string, or press <b>Now</b>."
+  }
+}

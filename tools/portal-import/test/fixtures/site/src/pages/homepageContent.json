@@ -1,0 +1,94 @@
+{
+  "hero": {
+    "en": {
+      "title": "Welcome",
+      "version": "Version 2.0.0",
+      "description": "Acme docs."
+    },
+    "tr": {
+      "title": "Hoş geldiniz",
+      "version": "Versiyon 2.0.0",
+      "description": "Acme dokümanları."
+    }
+  },
+  "whoWeAre": {
+    "en": {
+      "title": "Who We Are",
+      "description": "A team."
+    },
+    "tr": {
+      "title": "Biz Kimiz",
+      "description": "Bir ekip."
+    }
+  },
+  "card": {
+    "en": {
+      "title": "Features",
+      "image": "/img/logo.svg",
+      "features": [
+        "Fast",
+        "Small"
+      ]
+    },
+    "tr": {
+      "title": "Özellikler",
+      "image": "/img/logo.svg",
+      "features": [
+        "Hızlı",
+        "Küçük"
+      ]
+    }
+  },
+  "techs": {
+    "en": {
+      "title": "TECH",
+      "description": "Stack."
+    },
+    "tr": {
+      "title": "TEKNOLOJİ",
+      "description": "Yığın."
+    },
+    "eyeImage": "/img/logo.svg",
+    "floatingImages": [
+      "/img/social.png",
+      "/img/missing.png"
+    ]
+  },
+  "community": {
+    "en": {
+      "title": "Community",
+      "description": "Join."
+    },
+    "tr": {
+      "title": "Topluluk",
+      "description": "Katılın."
+    },
+    "backgroundImage": "/img/social.png"
+  },
+  "openSource": {
+    "en": {
+      "title": "Projects",
+      "description": "Ours."
+    },
+    "tr": {
+      "title": "Projeler",
+      "description": "Bizimkiler."
+    },
+    "projects": [
+      {
+        "name": "acme-lib",
+        "image": "/img/logo.svg",
+        "description": "A library.",
+        "githubUrl": "https://github.com/acme/lib",
+        "badges": [
+          {
+            "type": "license",
+            "url": "https://github.com/acme/lib/blob/main/LICENSE",
+            "badgeUrl": "https://img.shields.io/badge/license-MIT-blue.svg",
+            "alt": "License"
+          }
+        ]
+      }
+    ]
+  }
+}

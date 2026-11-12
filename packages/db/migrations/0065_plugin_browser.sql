@@ -1,0 +1,1 @@
+ALTER TABLE "plugin_installations" ADD COLUMN "browser" jsonb DEFAULT '[]'::jsonb NOT NULL;

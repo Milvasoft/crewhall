@@ -1,0 +1,8 @@
+{
+  "delivery_not_configured": "Seçilen gönderim yolu henüz ayarlanmadı. Yönetim › Bildirim gönderimi sayfasındaki alanları doldur.",
+  "delivery_no_device": "Bu hesapla kayıtlı bir mobil cihaz yok. Önce mobil uygulamada oturum aç.",
+  "delivery_unauthorized": "Gönderim sağlayıcısı kimlik bilgilerini kabul etmedi. Anahtarı ya da şifreyi kontrol et.",
+  "delivery_rate_limited": "Gönderim sağlayıcısı istek sınırına ulaştı. Biraz sonra yeniden dene.",
+  "delivery_rejected": "Gönderim sağlayıcısı bu iletiyi kabul etmedi.",
+  "delivery_provider_error": "Gönderim sağlayıcısına ulaşılamadı. Biraz sonra yeniden dene."
+}

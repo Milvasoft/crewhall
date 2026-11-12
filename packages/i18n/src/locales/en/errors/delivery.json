@@ -1,0 +1,8 @@
+{
+  "delivery_not_configured": "The selected delivery method is not set up yet. Fill in the fields under Administration › Notification delivery.",
+  "delivery_no_device": "No mobile device is registered with this account. Sign in to the mobile app first.",
+  "delivery_unauthorized": "The delivery provider did not accept the credentials. Check the key or password.",
+  "delivery_rate_limited": "The delivery provider's rate limit was reached. Try again shortly.",
+  "delivery_rejected": "The delivery provider did not accept this message.",
+  "delivery_provider_error": "The delivery provider could not be reached. Try again shortly."
+}

@@ -1,0 +1,33 @@
+{
+  "sql-formatter": {
+    "name": "SQL biçimlendirici",
+    "description": "SQL'i birçok lehçe için biçimlendir ve güzelleştir, anahtar kelime büyüklüğünü seç, tamamen yerelde.",
+    "keywords": "sql, biçimlendir, güzelleştir, düzenle, sorgu, postgres, mysql, tsql",
+    "dialect": "Lehçe",
+    "standardSql": "Standart SQL",
+    "keywordCase": "Anahtar kelimeler",
+    "case": {
+      "upper": "BÜYÜK HARF",
+      "lower": "küçük harf",
+      "preserve": "Olduğu gibi"
+    },
+    "formatted": "Biçimlendirilmiş",
+    "placeholder": "SQL yapıştır…"
+  },
+  "sql-parameterizer": {
+    "name": "SQL parametreleyici",
+    "description": "SQL sorgusundaki satır içi değerleri parametreyle değiştir ve değerlerini çıkar, yerelde.",
+    "keywords": "sql, parametre, parametrele, hazır sorgu, prepared, yer tutucu, enjeksiyon",
+    "style": "Biçim",
+    "positional": "konumsal",
+    "query": "Parametreli sorgu",
+    "params": "Parametreler ({count})"
+  },
+  "sql-to-json": {
+    "name": "SQL'den JSON'a",
+    "description": "SQL INSERT ifadelerini JSON satırlarına çevir, tarayıcında yerelde ayrıştırılır.",
+    "keywords": "sql, json, insert, dönüştür, çevir, satır",
+    "inputLabel": "SQL (INSERT ifadeleri)",
+    "noInserts": "INSERT ifadesi bulunamadı."
+  }
+}

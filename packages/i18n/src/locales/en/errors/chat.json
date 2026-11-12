@@ -1,0 +1,22 @@
+{
+  "chat_archived": "This conversation is archived; new messages can't be sent.",
+  "chat_group_full": "A group conversation can have at most 50 people. Link it to a space for larger teams.",
+  "chat_pin_limit": "The pin limit is reached. Unpin something first.",
+  "chat_mention_all_confirm": "@all notifies everyone in this conversation. Confirm before sending.",
+  "chat_message_not_editable": "You can't change this message.",
+  "chat_attachment_removed": "The file was removed.",
+  "webhook_key_invalid": "The webhook key is invalid.",
+  "webhook_signature_invalid": "The service signature could not be verified. Check the secret in the integration.",
+  "webhook_disabled": "This webhook is turned off.",
+  "webhook_payload_invalid": "The webhook body was not recognised. Send text, card or Google Chat cardsV2.",
+  "webhook_payload_too_large": "A webhook body can be at most 32 KB.",
+  "ws_ticket_invalid": "The real-time connection ticket is invalid or expired.",
+  "chat_delete_not_allowed": "Only the conversation owner or an org admin can delete this chat for everyone; direct and space chats cannot be deleted for everyone.",
+  "chat_delete_disabled": "Your administrator turned off deleting chats for everyone.",
+  "chat_invalid_reaction": "Only a single emoji can be added as a reaction.",
+  "chat_invalid_emoji": "The channel icon must be a single emoji.",
+  "gif_disabled": "GIF search is turned off in this organization.",
+  "gif_provider_error": "The GIF service can't be reached right now.",
+  "gif_busy": "GIF search is busy right now, try again in a little while.",
+  "chat_ref_no_access": "You don't have access to this item, or it can't be sent to this chat."
+}

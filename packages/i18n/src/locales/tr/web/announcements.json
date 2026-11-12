@@ -1,0 +1,133 @@
+{
+  "title": "Duyurular",
+  "subtitle": "Kurum içi duyurular ve haberler",
+  "unreadOnly": "Yalnız okunmamışlar",
+  "new": "Duyuru yaz",
+  "empty": "Henüz duyuru yok",
+  "emptyUnread": "Okunmamış duyuru yok",
+  "emptyWriter": "İlk duyuruyu yazdığında herkese bildirim ve e-posta gider.",
+  "important": "Önemli",
+  "ackPending": "Onay bekliyor",
+  "readCount": "{count} / {total} kişi okudu",
+  "ackCount": "{count} / {total} kişi onayladı",
+  "unread": "Okunmadı",
+  "unreadCount": "{count, plural, one {# okunmamış duyuru} other {# okunmamış duyuru}}",
+  "unknownAuthor": "Silinmiş kullanıcı",
+  "notFound": "Bu duyuru bulunamadı ya da silindi",
+  "actions": "Duyuru işlemleri",
+  "edit": "Düzenle",
+  "pin": "Önemli olarak sabitle",
+  "unpin": "Sabitlemeyi kaldır",
+  "delete": "Sil",
+  "edited": "düzenlendi",
+  "ack": "Okudum",
+  "acked": "Okudum dedin · {when}",
+  "ackFor": "{title} için okudum de",
+  "deleteTitle": "Duyuru silinsin mi?",
+  "deleteBody": "\"{title}\" herkesten kaldırılır, okundu bilgisi de silinir. Geri alınamaz.",
+  "seeAll": "Tümü",
+  "toast": {
+    "published": "Duyuru yayınlandı, herkese bildirim gitti",
+    "saved": "Duyuru kaydedildi",
+    "deleted": "Duyuru silindi",
+    "pinned": "Duyuru sabitlendi",
+    "unpinned": "Sabitleme kaldırıldı",
+    "acked": "Okuduğunu onayladın"
+  },
+  "dialog": {
+    "title": "Duyuru yaz",
+    "editTitle": "Duyuruyu düzenle",
+    "hint": "Kurumdaki herkes görür; misafirler görmez.",
+    "titleLabel": "Başlık",
+    "titlePlaceholder": "Kısa ve açık bir başlık",
+    "bodyLabel": "Metin",
+    "bodyPlaceholder": "Duyurunun metni. Paragrafları boş satırla ayır; linkler tıklanabilir olur.",
+    "pinned": "Önemli: akışın ve ana sayfanın en üstünde sabit kalsın",
+    "requiresAck": "Okuyanlardan \"Okudum\" onayı iste",
+    "notifyHint": "Yayınlayınca herkese bildirim, push ve e-posta gider (kişinin bildirim ayarlarına göre).",
+    "save": "Kaydet",
+    "publish": "Yayınla"
+  },
+  "readers": {
+    "title": "Okuyanlar",
+    "unread": "Okumayanlar",
+    "notAcked": "Onaylamayanlar",
+    "read": "Okuyanlar",
+    "none": "Bu listede kimse yok."
+  },
+  "notifications": {
+    "published": "{actor} duyuru yayınladı: {title}",
+    "kudos": "{actor} sana teşekkür etti"
+  },
+  "kudos": {
+    "title": "Teşekkür duvarı",
+    "subtitle": "Ekip arkadaşlarına teşekkür et, kutlamaları kaçırma",
+    "send": "Teşekkür et",
+    "thank": "Teşekkür et",
+    "delete": "Kartı geri al",
+    "cardLabel": "{from} → {to} teşekkür kartı",
+    "empty": "Henüz teşekkür kartı yok",
+    "emptyHint": "İlk kartı sen gönder: bir rozet seç, istersen birkaç söz ekle.",
+    "noneForPerson": "Henüz teşekkür kartı almadı.",
+    "toast": {
+      "sent": "{name} kişisine teşekkür kartı gönderildi",
+      "deleted": "Kart geri alındı"
+    },
+    "badges": {
+      "teamwork": "Takım ruhu",
+      "helping": "Yardım eli",
+      "idea": "Parlak fikir",
+      "customer": "Müşteri dostu",
+      "quality": "Kaliteli iş",
+      "extraMile": "Fazlasını yaptı"
+    },
+    "dialog": {
+      "title": "Teşekkür kartı gönder",
+      "hint": "Kart duvarda ve kişinin profilinde görünür, kişiye bildirim gider.",
+      "to": "Kime",
+      "changePerson": "Kişiyi değiştir",
+      "search": "Kişi ara",
+      "badge": "Rozet",
+      "message": "Mesaj (isteğe bağlı)",
+      "messagePlaceholder": "Neye teşekkür ediyorsun?",
+      "send": "Gönder"
+    },
+    "celebrations": {
+      "title": "Kutlamalar",
+      "today": "Bugün",
+      "upcoming": "Yaklaşanlar",
+      "none": "Önümüzdeki iki haftada doğum günü ya da iş yıldönümü yok.",
+      "birthday": "Doğum günü",
+      "anniversary": "{years}. iş yılı"
+    },
+    "settings": {
+      "open": "Ayarlar",
+      "title": "Teşekkür duvarı ayarları",
+      "hint": "Rozetler ve kutlama mesajlarının gideceği kanal.",
+      "badges": "Rozetler",
+      "badgeEmoji": "Rozet emojisi",
+      "newBadge": "Yeni rozet adı",
+      "add": "Ekle",
+      "channel": "Kutlama kanalı",
+      "channelHint": "Doğum günleri ve iş yıldönümleri her sabah 09.00'dan sonra bu kanala yazılır.",
+      "noChannel": "Kanal yok (gönderilmez)",
+      "post": {
+        "birthdays": "Doğum günlerini paylaş",
+        "anniversaries": "İş yıldönümlerini paylaş",
+        "kudos": "Teşekkür kartlarını da paylaş"
+      },
+      "badgeName": "{name} rozetinin adı",
+      "badgeActive": "{name} rozeti kullanımda",
+      "active": "Kullanımda"
+    },
+    "profile": {
+      "received": "Aldığı teşekkürler",
+      "birthday": "Doğum günü",
+      "birthDay": "Gün",
+      "birthMonth": "Ay",
+      "showBirthday": "Doğum günümü göster",
+      "showBirthdayHint": "Açıkken ekip arkadaşların doğum gününü görür ve kutlama kanalında anılır. Yıl saklanmaz.",
+      "startedOn": "İşe başlama tarihi"
+    }
+  }
+}

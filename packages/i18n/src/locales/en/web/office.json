@@ -1,0 +1,54 @@
+{
+  "untitled": {
+    "document": "Untitled document",
+    "spreadsheet": "Untitled spreadsheet",
+    "presentation": "Untitled presentation"
+  },
+  "new": {
+    "document": "Document",
+    "spreadsheet": "Spreadsheet",
+    "presentation": "Presentation",
+    "creating": "Creating…"
+  },
+  "open": {
+    "edit": "Edit",
+    "view": "Open in Office",
+    "editInOffice": "Edit in Office",
+    "hint": "Open this file in Crewhall Office and edit it together."
+  },
+  "editor": {
+    "title": "{name} · Office",
+    "back": "Back to Drive",
+    "loading": "Opening the document…",
+    "readOnly": "Read-only",
+    "unavailable": "The document server cannot be reached. Try again in a moment or tell your admin.",
+    "retry": "Try again",
+    "savedToDrive": "Every change you save becomes a new version in Drive."
+  },
+  "admin": {
+    "title": "Office (document server)",
+    "hint": "Word, Excel and PowerPoint files open and are co-edited inside Drive through a separate document server (Euro-Office, ONLYOFFICE Docs or a WOPI server).",
+    "enabled": "Turn on Office editing",
+    "active": "Working",
+    "inactive": "Off",
+    "serverUrl": "Server address",
+    "serverUrlHint": "Public address the browser loads the editor from, e.g. https://office.example.com",
+    "internalUrl": "Internal address (optional)",
+    "internalUrlHint": "When the Crewhall server reaches the document server at another address, e.g. http://office on the Docker network",
+    "save": "Save",
+    "saved": "Office settings saved",
+    "test": "Test the connection",
+    "testOk": "The connection works. Editable: {types}",
+    "testFail": "The server could not be read: {error}",
+    "lastTest": "Last test: {when}",
+    "none": "none",
+    "serverType": "Server type",
+    "types": {
+      "onlyoffice": "Euro-Office / ONLYOFFICE",
+      "wopi": "WOPI server"
+    },
+    "jwtSecret": "JWT secret",
+    "jwtSecretHint": "The document server's JWT_SECRET; written only, never shown again.",
+    "jwtSecretSet": "Saved (ends in {hint}). Type a new one to change it."
+  }
+}

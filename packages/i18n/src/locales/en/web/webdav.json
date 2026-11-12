@@ -1,0 +1,54 @@
+{
+  "nav": "Connect Drive",
+  "title": "Connect Drive to your computer",
+  "subtitle": "With WebDAV, Drive opens like a folder in Finder, Windows Explorer or rclone. Drag and drop files and edit them in place; changes show up for everyone right away.",
+  "address": {
+    "title": "Connection details",
+    "server": "Server address",
+    "serverHint": "Your spaces appear as top-level folders under this address.",
+    "user": "User name",
+    "userHint": "Your e-mail address. The server ignores the user name; the token in the password identifies you.",
+    "password": "Password",
+    "passwordValue": "Your personal API token (starts with mhp_)",
+    "passwordHint": "Reading needs the \"Read and search\" scope; writing and deleting files needs \"Write Drive\". You can limit the token to the spaces you choose.",
+    "createToken": "Create token",
+    "tokensOff": "Personal tokens are turned off in your organization. Ask an admin to turn them on under Administration › MCP and API to use WebDAV."
+  },
+  "clients": {
+    "title": "Steps for your app",
+    "label": "Client",
+    "mac": "macOS",
+    "windows": "Windows",
+    "linux": "Linux",
+    "rclone": "rclone"
+  },
+  "mac": {
+    "step1": "In Finder choose Go › Connect to Server (⌘K).",
+    "step2": "Paste the server address and click Connect.",
+    "step3": "Choose \"Registered User\", enter your e-mail as the name and your token as the password. You can save it in the keychain.",
+    "note": "Finder's ._ and .DS_Store files are not written to Drive."
+  },
+  "windows": {
+    "step1": "In File Explorer choose This PC › Map network drive.",
+    "step2": "Enter the server address as the folder and tick \"Connect using different credentials\".",
+    "step3": "Enter your e-mail as the user name and your token as the password. You can also connect from the command line:",
+    "noteHttps": "Windows sends the password over https only; the address must start with https.",
+    "noteSize": "By default the Windows WebDAV client refuses files over 50 MB. Raise the limit in the registry (WebClient › FileSizeLimitInBytes) or use rclone for large files."
+  },
+  "linux": {
+    "step1": "In Files (GNOME) go to Other Locations and enter the address below under Connect to Server.",
+    "step2": "Enter your e-mail as the user name and your token as the password. In KDE Dolphin use the same address with webdavs://."
+  },
+  "rclone": {
+    "step1": "Set up the remote once (rclone obscures the password itself):",
+    "step2": "Then list, sync or mount it as a folder:"
+  },
+  "notes": {
+    "title": "Good to know",
+    "spaces": "Every space you belong to is a top-level folder, your personal space among them.",
+    "types": "Only folders and files show up over WebDAV. Pages, boards and drawings stay in the web app.",
+    "versions": "Saving an existing file adds a new version; older versions stay in the Versions panel in Drive.",
+    "trash": "Files and folders you delete go to the trash and can be restored from there.",
+    "rights": "You only see files you have access to, and cannot write where you are a viewer."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "extends": "@crewhall/config/tsconfig/library.json",
+  "compilerOptions": {
+    // @crewhall/plugin-sdk (manifest schemas) uses Web APIs such as URL and TextEncoder.
+    "lib": ["ES2023", "DOM"]
+  },
+  "include": ["src"]
+}

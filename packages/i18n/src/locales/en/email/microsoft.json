@@ -1,0 +1,38 @@
+{
+  "save": {
+    "from": "From",
+    "date": "Date",
+    "original": "Original message",
+    "outlook": "Saved from Outlook",
+    "teams": "Saved from Teams"
+  },
+  "folders": {
+    "attachments": "Outlook attachments"
+  },
+  "outlook": {
+    "description": "Turn attachments into Crewhall Drive links and save mail to Crewhall.",
+    "group": "Crewhall",
+    "save": "Save to Crewhall",
+    "saveTip": "Saves this mail as a Crewhall page, board card or chat message.",
+    "share": "Crewhall link",
+    "shareTip": "Turns attachments into Crewhall Drive links or adds an upload link."
+  },
+  "teams": {
+    "shortDescription": "Share Crewhall files and pages in Teams.",
+    "fullDescription": "Share Crewhall files, pages and boards in Teams chats, save a message as a Crewhall page, board card or chat message, and add pages and boards as tabs.",
+    "search": "Search Crewhall",
+    "searchHint": "File, page or board name",
+    "save": "Save to Crewhall",
+    "saveDescription": "Saves this message to Crewhall.",
+    "connect": "Connect your Crewhall account",
+    "open": "Open",
+    "noResults": "No results",
+    "types": {
+      "folder": "Folder",
+      "file": "File",
+      "page": "Page",
+      "board": "Board",
+      "drawing": "Drawing"
+    }
+  }
+}

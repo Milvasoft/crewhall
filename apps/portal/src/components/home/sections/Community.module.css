@@ -1,0 +1,113 @@
+.community {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 100svh;
+  padding: calc(var(--navbar) + 2svh) 4vw 6svh;
+  box-sizing: border-box;
+}
+
+/* the illustration carries its own orange band (from 33.7% of its height); copy sits on it */
+.scene {
+  position: relative;
+  width: min(1500px, 100%, calc((100svh - var(--navbar) - 10svh) * 2.434));
+  aspect-ratio: 1872 / 769;
+}
+
+.community:not([data-art]) .scene {
+  aspect-ratio: auto;
+  padding: 48px;
+  border-radius: 32px;
+  background: var(--brand-grad);
+}
+
+.art {
+  position: absolute;
+  inset: 0;
+  transform-origin: 20% 80%;
+}
+
+.artImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.copy {
+  position: absolute;
+  left: 43%;
+  right: 5%;
+  top: 33.7%;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+
+.community:not([data-art]) .copy {
+  position: static;
+}
+
+.title,
+.text {
+  color: #fff;
+}
+
+.title {
+  font-size: clamp(1.6rem, 2.6vw, 3rem);
+}
+
+.text {
+  margin-top: 16px;
+  font-size: clamp(0.92rem, 1.05vw, 1.15rem);
+  line-height: 1.6;
+}
+
+@media (max-width: 1000px) {
+  .copy {
+    left: 38%;
+    right: 4%;
+  }
+  .text {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 768px) {
+  .community {
+    padding: calc(var(--navbar) - 6px) 16px 4svh;
+  }
+  .scene {
+    width: 100%;
+    aspect-ratio: auto;
+  }
+  .art {
+    position: relative;
+    aspect-ratio: 1872 / 769;
+  }
+  .copy {
+    position: relative;
+    inset: auto;
+    margin-top: -12px;
+    padding: 4px 20px 24px;
+    border-radius: 0 0 20px 20px;
+    background: var(--brand-grad);
+  }
+  .text {
+    font-size: 0.92rem;
+  }
+}
+
+/* phones: plain flow at the height of the content (no pinned stage) */
+@media (max-width: 768px) {
+  .community {
+    height: auto;
+    min-height: 0;
+    padding: 48px 16px;
+  }
+}

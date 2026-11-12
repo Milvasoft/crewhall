@@ -1,0 +1,282 @@
+{
+  "code-formatter": {
+    "name": "Kod biçimlendirici",
+    "description": "JavaScript, TypeScript, CSS, SCSS, HTML, JSON, YAML ve Markdown kodunu Prettier ile yerelde biçimlendir.",
+    "keywords": "biçimlendir, güzelleştir, girinti, kod düzenle, prettier",
+    "language": "Dil",
+    "formatted": "Biçimlendirilmiş",
+    "failed": "Biçimlendirilemedi."
+  },
+  "color-converter": {
+    "name": "Renk dönüştürücü",
+    "description": "Renkleri hex, rgb(a) ve hsl(a) arasında canlı önizlemeyle yerelde dönüştür.",
+    "keywords": "renk, renk kodu, renk seçici, hex, rgb, hsl",
+    "picker": "Renk seçici",
+    "preview": "Renk önizlemesi",
+    "empty": "Bir renk gir.",
+    "unrecognized": "Renk tanınmadı. #hex, rgb() ya da hsl() dene.",
+    "invalid": "Geçersiz renk."
+  },
+  "config-validator": {
+    "name": "Yapılandırma doğrulayıcı",
+    "description": "YAML, Docker Compose ve Kubernetes manifestlerini yapı ve sık yapılan hatalar açısından yerelde doğrula.",
+    "keywords": "yapılandırma, doğrula, ayar dosyası, manifest, yaml, docker compose, kubernetes, k8s",
+    "config": "Yapılandırma",
+    "valid": "Geçerli",
+    "errorCount": "{count, plural, one {# hata} other {# hata}}",
+    "noIssues": "Sorun bulunamadı.",
+    "issues": {
+      "empty": "Girdi boş.",
+      "invalidYaml": "Geçersiz YAML: {error}",
+      "topLevelMapping": "Üst düzey belge bir eşleme (mapping) olmalı.",
+      "missingServices": "Üst düzeyde `services:` eşlemesi yok.",
+      "serviceMapping": "\"{name}\" servisi bir eşleme olmalı.",
+      "serviceNoSource": "\"{name}\" servisinde ne `image` ne de `build` var.",
+      "versionObsolete": "Üst düzey `version` alanı Compose belirtiminde artık kullanılmıyor.",
+      "docMapping": "Belge bir eşleme olmalı.",
+      "docMappingN": "Belge {n}: bir eşleme olmalı.",
+      "missingField": "`{name}` alanı eksik.",
+      "missingFieldN": "Belge {n}: `{name}` alanı eksik."
+    }
+  },
+  "device-information": {
+    "name": "Cihaz bilgisi",
+    "description": "Tarayıcının neleri paylaştığını gör: ekran, görüntü alanı, platform, diller ve daha fazlası; hepsi yerelde.",
+    "keywords": "cihaz, ekran çözünürlüğü, tarayıcı, görüntü alanı, piksel oranı, donanım",
+    "fields": {
+      "screen": "Ekran çözünürlüğü",
+      "availableScreen": "Kullanılabilir ekran",
+      "viewport": "Görüntü alanı",
+      "pixelRatio": "Piksel oranı",
+      "colorDepth": "Renk derinliği",
+      "orientation": "Yön",
+      "platform": "İşletim platformu",
+      "languages": "Diller",
+      "cpuCores": "İşlemci çekirdekleri",
+      "deviceMemory": "Cihaz belleği",
+      "online": "Çevrimiçi",
+      "cookies": "Çerezler açık",
+      "timeZone": "Saat dilimi",
+      "userAgent": "User-Agent dizgesi"
+    },
+    "values": {
+      "unknown": "bilinmiyor",
+      "unavailable": "kullanılamıyor",
+      "yes": "evet",
+      "no": "hayır"
+    },
+    "bits": "{bits} bit"
+  },
+  "email-normalizer": {
+    "name": "E-posta normalleştirici",
+    "description": "E-posta adreslerini kanonik biçime indir (Gmail noktaları ve +etiketler), yinelenenleri yerelde bul.",
+    "keywords": "e-posta, eposta, mail, gmail, yinelenen, kopya kayıt, normalleştir, kanonik",
+    "address": "E-posta adresi",
+    "normalized": "Normalleştirilmiş",
+    "invalid": "Geçerli bir e-posta adresi gir.",
+    "help": "Gmail noktaları ve <code>+</code> sonrasını yok sayar; diğer sağlayıcılar genelde yalnız <code>+</code> etiketini yok sayar. Bunu yinelenen kayıtları bulmak için kullan, adresin e-posta alıp almadığını doğrulamak için değil."
+  },
+  "html-wysiwyg-editor": {
+    "name": "HTML WYSIWYG düzenleyici",
+    "description": "Araç çubuğuyla zengin metin yaz, temiz HTML al; hepsi yerelde.",
+    "keywords": "zengin metin, metin düzenleyici, html düzenleyici, biçimlendirme, wysiwyg",
+    "editor": "Düzenleyici",
+    "toolbar": {
+      "bold": "Kalın",
+      "italic": "İtalik",
+      "underline": "Altı çizili",
+      "heading1": "Başlık 1",
+      "heading2": "Başlık 2",
+      "paragraph": "Paragraf",
+      "bulleted": "Madde işaretli liste",
+      "numbered": "Numaralı liste",
+      "link": "Bağlantı ekle",
+      "clear": "Biçimi kaldır"
+    },
+    "listLabel": "Liste",
+    "linkLabel": "Bağlantı",
+    "linkPrompt": "Bağlantı adresi",
+    "linkApply": "Bağlantı ekle",
+    "linkCancel": "Vazgeç",
+    "sample": {
+      "title": "Zengin metin düzenleyici",
+      "text": "Buraya {first} yaz ve {second} kopyala.",
+      "bold": "zengin metin",
+      "italic": "temiz HTML'i",
+      "item1": "Madde işaretli",
+      "item2": "Listeler"
+    }
+  },
+  "http-mime": {
+    "name": "HTTP durum kodu ve MIME sorgulama",
+    "description": "HTTP durum kodlarını ve MIME türlerini hızlı aramayla bul; tamamı yerel başvuru.",
+    "keywords": "durum kodu, içerik türü, dosya uzantısı, hata kodu, http, mime, content-type, 404",
+    "tabHttp": "HTTP durumları",
+    "tabMime": "MIME türleri",
+    "search": "Ara",
+    "searchHttp": "Kod ya da metin ara…",
+    "searchMime": "Uzantı ya da tür ara…",
+    "noMatches": "Eşleşme yok.",
+    "statuses": {
+      "100": "İstek alındı, devam et.",
+      "101": "Sunucu protokol değiştiriyor.",
+      "200": "Standart başarılı yanıt.",
+      "201": "Kaynak oluşturuldu.",
+      "202": "İşlenmek üzere kabul edildi.",
+      "204": "Başarılı, gövde dönmedi.",
+      "206": "Aralık isteği karşılandı.",
+      "301": "Kaynak kalıcı olarak taşındı.",
+      "302": "Geçici yönlendirme.",
+      "304": "Önbellekteki sürüm hâlâ geçerli.",
+      "307": "Yönlendirme, metot korunur.",
+      "308": "Kalıcı yönlendirme, metot korunur.",
+      "400": "Bozuk ya da geçersiz istek.",
+      "401": "Kimlik doğrulama gerekli.",
+      "403": "Kimlik doğrulandı ama izin yok.",
+      "404": "Kaynak yok.",
+      "405": "HTTP metodu desteklenmiyor.",
+      "409": "İstek mevcut durumla çakışıyor.",
+      "410": "Kaynak kalıcı olarak kaldırıldı.",
+      "415": "Gövde biçimi desteklenmiyor.",
+      "418": "RFC 2324 şakası.",
+      "422": "Anlamsal doğrulama başarısız.",
+      "429": "İstek sınırı aşıldı.",
+      "500": "Genel sunucu hatası.",
+      "501": "Sunucu bunu desteklemiyor.",
+      "502": "Üst sunucudan geçersiz yanıt.",
+      "503": "Sunucu aşırı yüklü ya da kapalı.",
+      "504": "Üst sunucu zaman aşımına uğradı."
+    }
+  },
+  "keycode-info": {
+    "name": "Tuş kodu bilgisi",
+    "description": "Bir tuşa bas; JavaScript event.key, code, keyCode ve değiştirici tuşları yerelde gör.",
+    "keywords": "tuş, klavye, tuş kodu, kısayol, keycode, keydown, event.key",
+    "prompt": "Bir tuşa bas (sayfa etkin olmalı)…",
+    "location": "Konum",
+    "modifiers": "Değiştiriciler",
+    "none": "yok",
+    "locations": {
+      "standard": "Standart",
+      "left": "Sol",
+      "right": "Sağ",
+      "numpad": "Sayısal tuş takımı"
+    }
+  },
+  "meta-tag-generator": {
+    "name": "Meta etiket üretici",
+    "description": "Birkaç alandan SEO, OpenGraph ve Twitter meta etiketleri üret; hepsi yerelde.",
+    "keywords": "meta etiket, etiket, sosyal paylaşım, önizleme, seo, opengraph, og, twitter card",
+    "fieldsTitle": "Alanlar",
+    "metaTags": "Meta etiketleri",
+    "fields": {
+      "title": "Başlık",
+      "description": "Açıklama",
+      "url": "Sayfa URL'si",
+      "image": "Görsel URL'si",
+      "siteName": "Site adı",
+      "type": "OG türü",
+      "twitterSite": "Twitter @site hesabı",
+      "themeColor": "Tema rengi",
+      "keywords": "Anahtar kelimeler"
+    }
+  },
+  "openapi": {
+    "name": "OpenAPI görüntüleyici",
+    "description": "Bir OpenAPI/Swagger belirtimini (JSON ya da YAML) incele ve şemalarından C# modelleri üret; hepsi yerelde.",
+    "keywords": "belirtim, şema, model, api, openapi, swagger, c#",
+    "editorLabel": "OpenAPI / Swagger (JSON ya da YAML)",
+    "overview": "Genel bakış",
+    "csharp": "C# modelleri",
+    "summary": "OpenAPI {value} · {count, plural, one {# işlem} other {# işlem}} · {total, plural, one {# şema} other {# şema}}",
+    "untitled": "Adsız API",
+    "noSchemas": "Üretilecek bileşen şeması yok.",
+    "notSpec": "Geçerli bir JSON/YAML belirtimi değil.",
+    "invalid": "Geçersiz belirtim."
+  },
+  "query-string": {
+    "name": "Sorgu dizgesi oluşturucu",
+    "description": "JSON parametrelerinden URL sorgu dizgesi oluştur, bir sorgu dizgesini de JSON'a geri çevir; hepsi yerelde.",
+    "keywords": "sorgu, sorgu dizgesi, url parametreleri, parametre, query string, querystring",
+    "queryString": "Sorgu dizgesi",
+    "notObject": "Parametreleri bir JSON nesnesi olarak ver."
+  },
+  "safelink-decoder": {
+    "name": "SafeLink çözücü",
+    "description": "Outlook SafeLinks ve benzeri yönlendirme adreslerini açıp gerçek hedefi yerelde göster.",
+    "keywords": "yönlendirme, bağlantı çöz, güvenli bağlantı, gerçek adres, safelink, outlook",
+    "wrapped": "Sarılmış bağlantı",
+    "destination": "Hedef",
+    "warning": "Çözmek yalnızca bağlantının nereye gittiğini gösterir. Açmadan önce hedefin güvenilir olup olmadığına her zaman kendin karar ver.",
+    "errors": {
+      "empty": "Sarılmış bir bağlantı yapıştır.",
+      "notUrl": "Bu bir URL'ye benzemiyor.",
+      "notFound": "Sarılmış URL bulunamadı (`url=` gibi bir parametre bekleniyordu).",
+      "failed": "Çözülemedi."
+    }
+  },
+  "slugify-string": {
+    "name": "Slug oluşturucu",
+    "description": "Metni aksanları ve noktalama işaretlerini atarak temiz, URL-güvenli bir slug'a çevir; hepsi yerelde.",
+    "keywords": "kısa ad, kalıcı bağlantı, aksan, url, slug, slugify, permalink, seo",
+    "separator": "Ayraç",
+    "hyphen": "- (tire)",
+    "underscore": "_ (alt çizgi)",
+    "dot": ". (nokta)",
+    "lowercase": "Küçük harf"
+  },
+  "url-encode": {
+    "name": "URL kodla / çöz",
+    "description": "Metni ve URL'leri yüzde kodlamasıyla kodla ya da çöz; bileşen ya da bütün olarak, tamamen yerelde.",
+    "keywords": "kodla, çöz, yüzde kodlama, url, uri, encode, decode, escape, querystring",
+    "encode": "Kodla",
+    "decode": "Çöz",
+    "scope": "Kapsam",
+    "component": "Bileşen (encodeURIComponent)",
+    "full": "Tam URL (encodeURI)",
+    "encoded": "Kodlanmış",
+    "malformed": "Geçersiz yüzde kodlaması.",
+    "failed": "İşlem başarısız."
+  },
+  "url-parser": {
+    "name": "URL ayrıştırıcı",
+    "description": "Bir URL'yi protokol, ana makine, yol, sorgu parametreleri ve parçaya ayır; hepsi yerelde.",
+    "keywords": "ayrıştır, sorgu, parametre, ana makine, yol, url, uri, query, host",
+    "fields": {
+      "protocol": "Protokol",
+      "username": "Kullanıcı adı",
+      "password": "Parola",
+      "hostname": "Ana makine",
+      "port": "Port numarası",
+      "origin": "Köken",
+      "pathname": "Yol",
+      "hash": "Parça"
+    },
+    "components": "Bileşenler",
+    "details": "Ayrıntılar",
+    "queryParams": "Sorgu parametreleri ({count})",
+    "noParams": "Sorgu parametresi yok.",
+    "copyJson": "JSON'u kopyala",
+    "invalid": "Geçersiz URL."
+  },
+  "user-agent-parser": {
+    "name": "User-Agent ayrıştırıcı",
+    "description": "Bir User-Agent dizgesini tarayıcı, motor, işletim sistemi ve cihaz olarak ayır; hepsi yerelde.",
+    "keywords": "tarayıcı, işletim sistemi, cihaz, ayrıştır, user agent, ua",
+    "placeholder": "Bir User-Agent dizgesi yapıştır…",
+    "useMine": "Benim tarayıcımı kullan",
+    "fields": {
+      "browser": "Tarayıcı",
+      "engine": "Motor",
+      "os": "İşletim sistemi",
+      "device": "Cihaz",
+      "deviceType": "Cihaz türü",
+      "cpu": "İşlemci mimarisi"
+    },
+    "values": {
+      "unknown": "Bilinmiyor",
+      "desktopUnknown": "Masaüstü / bilinmiyor",
+      "desktop": "masaüstü"
+    }
+  }
+}

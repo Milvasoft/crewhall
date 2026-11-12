@@ -1,0 +1,12 @@
+{
+  "integration_disabled": "This integration is off. It can be turned on in Admin › Integrations.",
+  "microsoft_app_missing": "The Microsoft app registration is missing. Add it in Admin › Integrations › Microsoft.",
+  "microsoft_graph_failed": "Microsoft could not be reached or refused the request. Try again in a moment.",
+  "microsoft_permission_missing": "The Microsoft app registration lacks a required permission.",
+  "mount_unreachable": "The external storage could not be reached.",
+  "mount_read_only": "This external storage is read-only.",
+  "mount_item_not_found": "The file or folder was not found in the external storage.",
+  "upload_request_closed": "This upload link has expired or was closed.",
+  "teams_link_invalid": "The Teams link code is invalid or expired.",
+  "sso_blocked_by_policy": "Your organization's access rules (conditional access) blocked this sign-in. Ask your IT team."
+}

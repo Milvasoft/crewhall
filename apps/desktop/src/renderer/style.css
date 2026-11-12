@@ -1,0 +1,561 @@
+/* The app's own pages. Tokens follow 16-Tasarim-Sistemi: graphite, yellow accent, Nunito. */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 200 1000;
+  src: url('./fonts/nunito-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 200 1000;
+  src: url('./fonts/nunito-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --bg: #f7f7f6;
+  --surface: #ffffff;
+  --text: #141516;
+  --muted: #6b6e72;
+  --line: #e4e4e2;
+  --accent: #fbc419;
+  --on-accent: #141516;
+  --danger: #d4383e;
+  --ok: #118478;
+  --radius: 10px;
+  --t-fast: 120ms;
+  --t-base: 180ms;
+  --t-panel: 240ms;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0f0f;
+    --surface: #151617;
+    --text: #f2f2f1;
+    --muted: #9a9da1;
+    --line: #2a2c2e;
+    --danger: #ff6b70;
+    --ok: #3cc6b2;
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font:
+    14px/1.5 'Nunito',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+#root {
+  min-height: 100%;
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+h2 {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+p {
+  margin: 0 0 12px;
+}
+.muted {
+  color: var(--muted);
+}
+.small {
+  font-size: 12px;
+}
+.error {
+  color: var(--danger);
+  min-height: 21px;
+}
+
+button {
+  font: inherit;
+  font-weight: 700;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  padding: 8px 14px;
+  cursor: pointer;
+  transition:
+    background-color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+button:hover:not(:disabled) {
+  border-color: var(--muted);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+button.link {
+  border: 0;
+  background: none;
+  padding: 4px 0;
+  color: var(--muted);
+  text-decoration: underline;
+}
+button.danger {
+  color: var(--danger);
+}
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+input[type='text'] {
+  width: 100%;
+  font: inherit;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color var(--t-fast) var(--ease);
+}
+label.field {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.spread {
+  justify-content: space-between;
+}
+.end {
+  justify-content: flex-end;
+}
+.label {
+  font-weight: 700;
+}
+.stack > * + * {
+  margin-top: 12px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+/* ---- setup and offline ---- */
+.center {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+}
+.product-logo {
+  height: 28px;
+  margin-bottom: 28px;
+}
+.org {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.org img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: var(--bg);
+}
+.org .name {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* ---- settings ---- */
+.settings {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  min-height: 100vh;
+}
+.tabs {
+  position: relative;
+  border-right: 1px solid var(--line);
+  padding: 20px 10px;
+  background: var(--surface);
+}
+.tabs button {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: none;
+  margin-bottom: 2px;
+}
+.tabs button:active:not(:disabled) {
+  transform: none;
+}
+/* One highlight for the tab list: it slides to the chosen tab. */
+.tab-pill {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  right: 10px;
+  border-radius: var(--radius);
+  background: var(--bg);
+  transition:
+    transform var(--t-panel) var(--ease),
+    height var(--t-panel) var(--ease);
+}
+.panel {
+  padding: 24px 28px;
+  overflow: auto;
+}
+.setting {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.send {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+}
+.send ul {
+  margin: 0;
+  padding-left: 18px;
+  overflow-wrap: anywhere;
+}
+.setting .row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.setting .error {
+  margin: 6px 0 0;
+}
+.shortcut {
+  min-width: 132px;
+  font-variant-numeric: tabular-nums;
+}
+.shortcut.recording {
+  outline: 2px solid var(--accent);
+}
+.switch {
+  appearance: none;
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  background: var(--line);
+  position: relative;
+  cursor: pointer;
+  flex: none;
+  margin-top: 2px;
+  transition: background-color var(--t-base) var(--ease);
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--surface);
+  transition: transform var(--t-base) var(--ease);
+}
+.switch:checked {
+  background: var(--ok);
+}
+.switch:checked::after {
+  transform: translateX(18px);
+}
+
+.pair .path {
+  font-weight: 800;
+  word-break: break-all;
+}
+.pair .local {
+  color: var(--muted);
+  font-size: 12px;
+  word-break: break-all;
+}
+.state {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--bg);
+}
+.state.error,
+.state.confirm {
+  color: var(--danger);
+}
+.state.idle {
+  color: var(--ok);
+}
+/* Syncing: a soft breathing dot before the label. */
+.state.syncing::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  vertical-align: 1px;
+  animation: breathe 1.2s ease-in-out infinite;
+}
+@keyframes breathe {
+  50% {
+    opacity: 0.35;
+    transform: scale(0.75);
+  }
+}
+.progress {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+.progress > i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+}
+details {
+  font-size: 12px;
+  color: var(--muted);
+}
+details ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+}
+
+.list {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  max-height: 280px;
+  overflow: auto;
+}
+.list button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--surface);
+}
+.list button:hover:not(:disabled) {
+  background: var(--bg);
+}
+.list button:active:not(:disabled) {
+  transform: none;
+}
+.list button:last-child {
+  border-bottom: 0;
+}
+.crumbs {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---- screen picker ---- */
+.picker {
+  padding: 20px;
+}
+.sources {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.source {
+  padding: 6px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+}
+.source img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  background: #000;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+.source {
+  border-width: 2px;
+  transition:
+    border-color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease),
+    box-shadow var(--t-base) var(--ease);
+}
+.source:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 0.08);
+}
+.source[aria-pressed='true'] {
+  border-color: var(--accent);
+}
+.source span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- remote control ---- */
+.dialog {
+  padding: 22px 24px;
+}
+html.overlay,
+html.overlay body {
+  background: transparent;
+  overflow: hidden;
+}
+.control-band {
+  margin: 4px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 8px 8px 16px;
+  border-radius: 999px;
+  background: #141516;
+  color: #fff;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.35);
+  -webkit-app-region: drag;
+}
+.control-band .band-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.control-band strong {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.control-band .band-text span {
+  font-size: 11px;
+  color: #b8bbbf;
+}
+.control-band .live {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f38424;
+  flex: none;
+  animation: breathe 1.2s ease-in-out infinite;
+}
+.control-band .stop {
+  -webkit-app-region: no-drag;
+  background: #fbc419;
+  border-color: #fbc419;
+  color: #141516;
+  border-radius: 999px;
+  padding: 6px 16px;
+}
+.control-frame {
+  position: fixed;
+  inset: 0;
+  border: 4px solid #f38424;
+  pointer-events: none;
+}
+
+/* The OS asks for less motion: no transitions, no animations (JS animations check it too). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ---- loading (crewhall-brand Lottie loader) ---- */
+.loader {
+  flex: none;
+}
+.loader.large {
+  width: 96px;
+  height: 96px;
+}
+.loader.small {
+  width: 22px;
+  height: 22px;
+}
+.loader img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.loading {
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  -webkit-app-region: drag;
+  user-select: none;
+}
+.loading .loader {
+  margin-bottom: 14px;
+}
+.loading .name {
+  font-size: 16px;
+  font-weight: 800;
+}

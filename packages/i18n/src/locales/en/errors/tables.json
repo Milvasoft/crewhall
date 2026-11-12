@@ -1,0 +1,9 @@
+{
+  "table_limit_reached": "A table limit was reached (rows, fields, views or tables).",
+  "table_field_invalid": "The field settings are invalid, or the field or table they point to is gone.",
+  "table_value_invalid": "This value does not fit the field type.",
+  "table_primary_field": "The primary field cannot be deleted; make another field primary first.",
+  "table_last_view": "The last view of a table cannot be deleted.",
+  "table_formula_invalid": "The formula could not be read. Write field names in curly braces and check the parentheses.",
+  "table_import_invalid": "The file could not be read. Choose a CSV or Excel file with a header row."
+}

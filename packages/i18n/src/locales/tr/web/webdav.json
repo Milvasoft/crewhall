@@ -1,0 +1,54 @@
+{
+  "nav": "Drive'ı bağla",
+  "title": "Drive'ı bilgisayarına bağla",
+  "subtitle": "WebDAV ile Drive'ı Finder'da, Windows Gezgini'nde ya da rclone ile bir klasör gibi aç. Dosyaları sürükleyip bırak, yerinde düzenle; değişiklik hemen herkese görünür.",
+  "address": {
+    "title": "Bağlantı bilgileri",
+    "server": "Sunucu adresi",
+    "serverHint": "Space'lerin bu adresin altında kök klasör olarak görünür.",
+    "user": "Kullanıcı adı",
+    "userHint": "E-posta adresin. Sunucu kullanıcı adına bakmaz; parola olan token seni tanır.",
+    "password": "Parola",
+    "passwordValue": "Kişisel API token'ın (mhp_ ile başlar)",
+    "passwordHint": "Okumak için \"Okuma ve arama\", dosya yazmak ve silmek için \"Drive yaz\" kapsamı gerekir. Token'ı yalnız istediğin space'lerle sınırlayabilirsin.",
+    "createToken": "Token oluştur",
+    "tokensOff": "Kurumunda kişisel token'lar kapalı. WebDAV için yöneticinden Yönetim › MCP ve API altında kişisel token'ları açmasını iste."
+  },
+  "clients": {
+    "title": "Uygulamana göre adımlar",
+    "label": "İstemci",
+    "mac": "macOS",
+    "windows": "Windows",
+    "linux": "Linux",
+    "rclone": "rclone"
+  },
+  "mac": {
+    "step1": "Finder'da Git › Sunucuya Bağlan'ı seç (⌘K).",
+    "step2": "Sunucu adresini yapıştır ve Bağlan'a bas.",
+    "step3": "\"Kayıtlı kullanıcı\"yı seç, kullanıcı adına e-postanı, parolaya token'ını yaz. İstersen anahtar zincirine kaydet.",
+    "note": "Finder'ın ._ ve .DS_Store dosyaları Drive'a yazılmaz."
+  },
+  "windows": {
+    "step1": "Dosya Gezgini'nde Bu bilgisayar › Ağ sürücüsüne bağlan'ı seç.",
+    "step2": "Klasör alanına sunucu adresini yaz, \"Farklı kimlik bilgileri kullanarak bağlan\"ı işaretle.",
+    "step3": "Kullanıcı adına e-postanı, parolaya token'ını yaz. Komut satırından da bağlanabilirsin:",
+    "noteHttps": "Windows parolayı yalnız https bağlantısında gönderir; adres https ile başlamalıdır.",
+    "noteSize": "Windows'un WebDAV istemcisi varsayılan olarak 50 MB'tan büyük dosyaları reddeder. Sınırı kayıt defterinde (WebClient › FileSizeLimitInBytes) yükseltebilir ya da büyük dosyalar için rclone kullanabilirsin."
+  },
+  "linux": {
+    "step1": "Dosyalar'da (GNOME) Diğer Konumlar › Sunucuya bağlan alanına aşağıdaki adresi yaz.",
+    "step2": "Kullanıcı adına e-postanı, parolaya token'ını yaz. KDE Dolphin'de aynı adresi webdavs:// ile kullan."
+  },
+  "rclone": {
+    "step1": "Uzak bağlantıyı bir kez tanımla (rclone parolayı kendisi gizler):",
+    "step2": "Sonra listele, eşitle ya da klasör olarak bağla:"
+  },
+  "notes": {
+    "title": "Bilmen gerekenler",
+    "spaces": "Üye olduğun her space bir kök klasördür; kişisel space'in de aralarında.",
+    "types": "WebDAV'da yalnız klasörler ve dosyalar görünür. Sayfalar, panolar ve çizimler web uygulamasında kalır.",
+    "versions": "Var olan bir dosyayı kaydetmek yeni bir sürüm ekler; eski sürümler Drive'daki Sürümler panelinde durur.",
+    "trash": "Sildiğin dosya ve klasörler çöp kutusuna gider ve oradan geri alınabilir.",
+    "rights": "Yalnız yetkin olan dosyaları görürsün; izleyici olduğun yerde yazamazsın."
+  }
+}

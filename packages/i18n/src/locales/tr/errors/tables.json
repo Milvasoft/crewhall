@@ -1,0 +1,9 @@
+{
+  "table_limit_reached": "Tablo sınırına ulaşıldı (satır, alan, görünüm ya da tablo sayısı).",
+  "table_field_invalid": "Alan ayarları geçersiz ya da başvurduğu alan veya tablo yok.",
+  "table_value_invalid": "Bu değer alanın türüne uymuyor.",
+  "table_primary_field": "Birincil alan silinemez; önce başka bir alanı birincil yap.",
+  "table_last_view": "Tablonun son görünümü silinemez.",
+  "table_formula_invalid": "Formül anlaşılamadı. Alan adlarını süslü parantez içinde yaz ve parantezleri kontrol et.",
+  "table_import_invalid": "Dosya okunamadı. Başlık satırı olan bir CSV ya da Excel dosyası seç."
+}

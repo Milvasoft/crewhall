@@ -1,0 +1,388 @@
+{
+  "ascii-table": {
+    "name": "ASCII Table",
+    "description": "Browse the full ASCII table with decimal, hex, octal and binary codes, locally.",
+    "keywords": "ascii, table, chart, character, code, decimal, octal, binary, control, reference",
+    "filterPlaceholder": "Filter by code, char, name… (e.g. 65, 0x41, ESC)",
+    "noMatches": "No matching characters.",
+    "colChar": "Char",
+    "colBinary": "Binary",
+    "colName": "Name",
+    "colDescription": "Description",
+    "footer": "{count} characters · codes 0 to 127. Non-printable control codes show their mnemonic.",
+    "charDesc": "Character \"{text}\"",
+    "control": {
+      "nul": "Null",
+      "soh": "Start of Heading",
+      "stx": "Start of Text",
+      "etx": "End of Text",
+      "eot": "End of Transmission",
+      "enq": "Enquiry",
+      "ack": "Acknowledge",
+      "bel": "Bell",
+      "bs": "Backspace",
+      "ht": "Horizontal Tab",
+      "lf": "Line Feed",
+      "vt": "Vertical Tab",
+      "ff": "Form Feed",
+      "cr": "Carriage Return",
+      "so": "Shift Out",
+      "si": "Shift In",
+      "dle": "Data Link Escape",
+      "dc1": "Device Control 1 (XON)",
+      "dc2": "Device Control 2",
+      "dc3": "Device Control 3 (XOFF)",
+      "dc4": "Device Control 4",
+      "nak": "Negative Acknowledge",
+      "syn": "Synchronous Idle",
+      "etb": "End of Transmission Block",
+      "can": "Cancel",
+      "em": "End of Medium",
+      "sub": "Substitute",
+      "esc": "Escape",
+      "fs": "File Separator",
+      "gs": "Group Separator",
+      "rs": "Record Separator",
+      "us": "Unit Separator",
+      "sp": "Space",
+      "del": "Delete"
+    }
+  },
+  "benchmark-builder": {
+    "name": "Benchmark Builder",
+    "description": "Compare timing samples across suites by mean and variance, then export the results, locally.",
+    "keywords": "benchmark, performance, timing, measure, mean, variance, compare",
+    "suiteName": "Suite {n}",
+    "removeMeasure": "Remove measure",
+    "addMeasure": "+ Measure",
+    "deleteSuite": "Delete",
+    "addSuite": "+ Add suite",
+    "unit": "Unit",
+    "colSuite": "Suite",
+    "colSamples": "Samples",
+    "colMean": "Mean",
+    "colVariance": "Variance",
+    "copyMarkdown": "Copy markdown table",
+    "copyBullets": "Copy bullet list"
+  },
+  "chmod-calculator": {
+    "name": "Chmod Calculator",
+    "description": "Toggle Unix read/write/execute bits and get the octal and symbolic chmod, locally.",
+    "keywords": "chmod, permissions, file mode, unix, linux, octal, symbolic",
+    "who": "Who",
+    "bits": {
+      "read": "Read",
+      "write": "Write",
+      "execute": "Execute"
+    },
+    "scopes": {
+      "owner": "Owner",
+      "group": "Group",
+      "other": "Other"
+    },
+    "octal": "Octal",
+    "symbolic": "Symbolic",
+    "command": "Command"
+  },
+  "chronometer": {
+    "name": "Chronometer",
+    "description": "A simple stopwatch with laps, running locally in your browser.",
+    "keywords": "chronometer, stopwatch, timer, lap, time, clock",
+    "start": "Start",
+    "stop": "Stop",
+    "lap": "Lap",
+    "lapN": "Lap {n}"
+  },
+  "data-size": {
+    "name": "Data Size Converter",
+    "description": "Convert between bytes, KB/MB/GB/TB, binary KiB/MiB/GiB and bits, locally.",
+    "keywords": "data size, bytes, file size, unit, convert, megabyte, gigabyte",
+    "value": "Value",
+    "fromUnit": "From unit",
+    "bestFit": "Best fit:",
+    "invalid": "Enter a valid number.",
+    "groups": {
+      "bits": "Bits",
+      "decimal": "Decimal (SI, ×1000)",
+      "binary": "Binary (IEC, ×1024)"
+    }
+  },
+  "docker-run-to-compose": {
+    "name": "Docker Run to Compose",
+    "description": "Convert a docker run command into a docker-compose service definition, locally.",
+    "keywords": "docker, compose, docker-compose, container, yaml, convert",
+    "inputLabel": "docker run command",
+    "noImage": "No image found. Expected e.g. docker run nginx"
+  },
+  "eta-calculator": {
+    "name": "ETA Calculator",
+    "description": "Estimate how long a task takes and when it finishes from a measured rate, locally.",
+    "keywords": "eta, estimated time, finish time, remaining time, rate, progress",
+    "total": "Amount of items to process",
+    "processed": "Processed",
+    "inEvery": "in every",
+    "span": "Span",
+    "units": {
+      "second": "seconds",
+      "minute": "minutes",
+      "hour": "hours",
+      "day": "days"
+    },
+    "duration": {
+      "days": "{count, plural, one {# day} other {# days}}",
+      "hours": "{count, plural, one {# hour} other {# hours}}",
+      "minutes": "{count, plural, one {# minute} other {# minutes}}",
+      "seconds": "{count, plural, one {# second} other {# seconds}}"
+    },
+    "rateError": "The consumption rate must be greater than zero.",
+    "totalDuration": "Total duration",
+    "willFinish": "It will finish"
+  },
+  "git-memo": {
+    "name": "Git Cheatsheet",
+    "description": "A searchable memo of the git commands you keep forgetting, locally.",
+    "keywords": "git, commands, cheatsheet, memo, version control, branch, commit",
+    "searchPlaceholder": "Search commands… (e.g. stash, undo, rebase)",
+    "noMatches": "No commands match \"{q}\".",
+    "groups": {
+      "setup": "Setup & config",
+      "staging": "Staging & committing",
+      "branches": "Branches",
+      "remotes": "Remotes & syncing",
+      "history": "History & undo"
+    },
+    "commands": {
+      "configName": "Set your name.",
+      "configEmail": "Set your email.",
+      "init": "Create a new repository.",
+      "clone": "Clone a remote repository.",
+      "status": "Show working-tree status.",
+      "add": "Stage changes.",
+      "addPatch": "Stage changes hunk by hunk.",
+      "commit": "Commit staged changes.",
+      "amend": "Rewrite the last commit.",
+      "restore": "Discard working changes.",
+      "unstage": "Unstage a file.",
+      "branch": "List branches.",
+      "switchCreate": "Create and switch to a branch.",
+      "switch": "Switch branches.",
+      "merge": "Merge a branch into the current one.",
+      "branchDelete": "Delete a merged branch.",
+      "rebase": "Reapply commits onto another base.",
+      "remotes": "List remotes.",
+      "fetch": "Download objects without merging.",
+      "pull": "Fetch and merge from the remote.",
+      "push": "Upload commits to the remote.",
+      "pushUpstream": "Push and set upstream.",
+      "log": "Compact, visual history.",
+      "diff": "Show unstaged changes.",
+      "diffStaged": "Show staged changes.",
+      "resetSoft": "Undo the last commit, keep changes staged.",
+      "resetHard": "Reset everything to a ref (destructive).",
+      "revert": "Create a commit that undoes another.",
+      "stash": "Shelve changes for later.",
+      "stashPop": "Restore shelved changes.",
+      "cherryPick": "Apply a specific commit.",
+      "reflog": "See where HEAD has been (recover lost commits)."
+    }
+  },
+  "math-evaluator": {
+    "name": "Math Evaluator",
+    "description": "Evaluate math expressions with functions and constants, locally (no eval).",
+    "keywords": "math, calculator, expression, formula, evaluate, function",
+    "expression": "Expression",
+    "invalid": "Invalid expression.",
+    "functions": "Functions: {items}.",
+    "constants": "Constants: {items}."
+  },
+  "number-base": {
+    "name": "Number Base Converter",
+    "description": "Convert integers between hex, decimal, binary, octal and any base (2 to 36), locally.",
+    "keywords": "number base, radix, binary, decimal, octal, hexadecimal, hex, convert",
+    "number": "Number",
+    "inputBase": "Input base",
+    "invalid": "Invalid number.",
+    "customBase": "Custom base",
+    "rowLabel": "{name} (base {n})",
+    "baseN": "Base {n}",
+    "bases": {
+      "b2": "Binary",
+      "b8": "Octal",
+      "b10": "Decimal",
+      "b16": "Hex"
+    }
+  },
+  "percentage-calculator": {
+    "name": "Percentage Calculator",
+    "description": "Percent of a value, what-percent-of, and percentage change, all in one, locally.",
+    "keywords": "percentage, percent, ratio, percent change, increase, decrease",
+    "whatIs": "What is",
+    "percentOf": "% of",
+    "isWhatPercentOf": "is what % of",
+    "changeFrom": "Change from",
+    "to": "to"
+  },
+  "regex-tester": {
+    "name": "Regex Tester",
+    "description": "Test JavaScript regular expressions against sample text with live matches, groups and replace.",
+    "keywords": "regex, regular expression, pattern, match, replace, test",
+    "cheatsheetTitle": "Cheatsheet",
+    "hideCheatsheet": "Hide cheatsheet",
+    "appendToPattern": "Append to pattern",
+    "patternPlaceholder": "pattern",
+    "patternLabel": "Regex pattern",
+    "engine": "Regex engine",
+    "dotnetApprox": ".NET (approx)",
+    "flags": {
+      "g": "global",
+      "i": "ignore case",
+      "m": "multiline",
+      "s": "dotall",
+      "u": "unicode"
+    },
+    "matchCount": "{count, plural, one {# match} other {# matches}}",
+    "testString": "Test string",
+    "matchPreview": "Match preview",
+    "noMatches": "No matches.",
+    "tabs": {
+      "replace": "Replace",
+      "list": "List",
+      "details": "Details",
+      "explain": "Explain"
+    },
+    "replacement": "Replacement",
+    "replaceHelp": "Use <group></group> / <named></named> for groups, <dollar></dollar> for a literal $.",
+    "copyAll": "Copy all",
+    "matchN": "Match {n}",
+    "noGroups": "No capture groups.",
+    "explainEmpty": "Enter a pattern to explain it.",
+    "cheatsheet": {
+      "classes": {
+        "title": "Character classes",
+        "any": "any character except newline",
+        "wordDigitSpace": "word, digit, whitespace",
+        "notWordDigitSpace": "not word, digit, whitespace",
+        "anyOf": "any of a, b, or c",
+        "noneOf": "not a, b, or c",
+        "range": "character between a & g"
+      },
+      "anchors": {
+        "title": "Anchors",
+        "startEnd": "start / end of the string",
+        "boundary": "word, not-word boundary"
+      },
+      "escaped": {
+        "title": "Escaped characters",
+        "special": "escaped special characters",
+        "whitespace": "tab, linefeed, carriage return"
+      },
+      "groups": {
+        "title": "Groups & Lookaround",
+        "capture": "capture group",
+        "backreference": "backreference to group #1",
+        "nonCapturing": "non-capturing group",
+        "lookahead": "positive lookahead",
+        "negativeLookahead": "negative lookahead"
+      },
+      "quantifiers": {
+        "title": "Quantifiers & Alternation",
+        "counts": "0 or more, 1 or more, 0 or 1",
+        "exact": "exactly five, two or more",
+        "between": "between one & three",
+        "lazy": "match as few as possible",
+        "alternation": "match ab or cd"
+      }
+    }
+  },
+  "roman-numeral-converter": {
+    "name": "Roman Numeral Converter",
+    "description": "Convert between integers (1 to 3999) and Roman numerals, locally.",
+    "keywords": "roman, numeral, number, convert, converter, latin, arabic",
+    "number": "Number ({min} to {max})",
+    "roman": "Roman numeral",
+    "invalidNumber": "Invalid number.",
+    "invalidNumeral": "Invalid numeral."
+  },
+  "smart-paste": {
+    "name": "Smart Paste",
+    "description": "Paste anything, it detects the format (JWT, JSON, SQL, XML…) and sends it to the right tool.",
+    "keywords": "paste, detect, recognize, format, auto, clipboard",
+    "inputLabel": "Paste anything",
+    "placeholder": "Paste a JWT, JSON, SQL, XML, a URL, a timestamp…",
+    "empty": "Paste something above and it'll be identified automatically, then jump straight to the right tool.",
+    "unknown": "Couldn't recognize the format, treat it as plain text:",
+    "detected": "Detected: {label}",
+    "alsoLooksLike": "Also looks like: {label}",
+    "types": {
+      "image": {
+        "label": "Base64 image / data URI",
+        "note": "An inline image."
+      },
+      "jwt": {
+        "note": "A JSON Web Token (header.payload.signature)."
+      },
+      "uuid": {
+        "note": "A universally unique identifier."
+      },
+      "timestamp": {
+        "label": "Unix timestamp",
+        "note": "An epoch time in seconds or milliseconds."
+      },
+      "url": {
+        "note": "A web address."
+      },
+      "connectionString": {
+        "label": "Connection string",
+        "note": "An ADO.NET-style connection string."
+      },
+      "json": {
+        "note": "Valid JSON."
+      },
+      "html": {
+        "note": "HTML markup."
+      },
+      "xml": {
+        "note": "XML markup."
+      },
+      "sql": {
+        "note": "A SQL statement."
+      },
+      "csv": {
+        "note": "Comma-separated values."
+      },
+      "cron": {
+        "label": "Cron expression",
+        "note": "A cron schedule."
+      },
+      "yaml": {
+        "note": "A YAML document."
+      },
+      "base64": {
+        "note": "Base64-encoded data."
+      }
+    }
+  },
+  "temperature-converter": {
+    "name": "Temperature Converter",
+    "description": "Convert temperatures between Celsius, Fahrenheit, Kelvin and Rankine, locally.",
+    "keywords": "temperature, degrees, celsius, fahrenheit, kelvin, rankine, convert",
+    "value": "Value",
+    "from": "From",
+    "invalid": "Enter a number.",
+    "units": {
+      "c": "Celsius",
+      "f": "Fahrenheit",
+      "k": "Kelvin",
+      "r": "Rankine"
+    }
+  },
+  "unicode-inspector": {
+    "name": "ASCII / Unicode Inspector",
+    "description": "Inspect each character: code point, UTF-8/UTF-16 bytes and HTML entity, locally.",
+    "keywords": "unicode, ascii, character, code point, utf-8, utf-16, html entity, emoji",
+    "colChar": "Ch",
+    "colCode": "Code",
+    "colEntity": "Entity",
+    "empty": "Type some text to inspect."
+  }
+}

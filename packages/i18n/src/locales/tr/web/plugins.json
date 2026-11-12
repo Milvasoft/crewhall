@@ -1,0 +1,108 @@
+{
+  "nav": "Eklentiler",
+  "risk": {
+    "official": "Resmî",
+    "verified": "İncelendi",
+    "unofficial": "Gayriresmî"
+  },
+  "riskHint": {
+    "official": "Crewhall ekibinin eklentisi.",
+    "verified": "Pazar yerinde incelendi ve imzalandı.",
+    "unofficial": "Bağlandığı hizmetin izin vermediği bir yolla çalışır. Riskleri aşağıda."
+  },
+  "admin": {
+    "title": "Eklentiler",
+    "subtitle": "Merkezi pazar yerinden imzalı eklentiler. Crewhall eklenti kodu çalıştırmaz; eklenti kendi sunucusundan, izin verdiğin sınırlarla çalışır.",
+    "installed": "Kurulu",
+    "catalog": "Pazar yeri",
+    "search": "Eklenti ara",
+    "empty": "Pazar yerinde eşleşen eklenti yok.",
+    "noneInstalled": "Henüz kurulu eklenti yok.",
+    "catalogError": "Pazar yerine ulaşılamadı.",
+    "publisher": "{name} · sürüm {version}",
+    "install": "Kur",
+    "installTitle": "{name} kurulsun mu?",
+    "installHint": "Eklenti kendi sunucusunda çalışır ({origin}). Bir kişi adına çalışırken o kişinin yetkisini aşamaz; aşağıdaki izinlerle sınırlıdır.",
+    "permissions": "İstediği izinler",
+    "noPermissions": "İzin istemiyor.",
+    "entry": "Crewhall'da görüneceği yerler",
+    "entryPoints": {
+      "tabs": "{count, plural, one {# sekme} other {# sekme}}",
+      "cards": "{count, plural, one {# ana sayfa kartı} other {# ana sayfa kartı}}",
+      "commands": "{count, plural, one {# sohbet komutu} other {# sohbet komutu}}",
+      "tools": "{count, plural, one {# asistan aracı} other {# asistan aracı}}",
+      "events": "{count, plural, one {# olay aboneliği} other {# olay aboneliği}}"
+    },
+    "approve": "İzinleri onayla ve kur",
+    "installedToast": "{name} kuruldu",
+    "update": "{version} sürümüne güncelle",
+    "updateNeeds": "Yeni sürüm ek izin istiyor. İşaretlediklerin verilir; işaretlemediklerin verilmez, eklenti onlarsız çalışır.",
+    "updateApprove": "İzinleri onayla ve güncelle",
+    "updated": "{name} güncellendi",
+    "active": "Açık",
+    "disabled": "Kapalı",
+    "toggle": "{name} eklentisi açık",
+    "uninstall": "Kaldır",
+    "uninstallConfirm": "{name} kaldırılsın mı? Eklentinin sunucusuna kurulumun kaldırıldığı bildirilir; sekmeleri, kartları ve komutları kaybolur.",
+    "removed": "{name} kaldırıldı",
+    "installedBy": "{name} kurdu · {date}",
+    "withheld": "İstendi, verilmedi",
+    "partialHint": "İşaretini kaldırdığın izinler verilmez. Eklentiye neyin verildiği bildirilir; bazı özellikleri çalışmayabilir.",
+    "approvePartial": "Seçili izinlerle kur",
+    "editPermissions": "İzinler",
+    "permissionsTitle": "{name} izinleri",
+    "permissionsHint": "Eklentinin istediği izinlerden hangilerini verdiğini seç. Değişiklik eklentiye bildirilir, yeni oturum jetonları buna uyar.",
+    "permissionsSaved": "{name} izinleri kaydedildi",
+    "byRef": "ID ya da bağlantıyla kur",
+    "byRefTitle": "ID ya da bağlantıyla kur",
+    "byRefHint": "Katalogda görünmeyen (listelenmemiş ya da kuruma özel) eklentiler için: yayıncının verdiği eklenti kimliğini ya da pazar yerinin kurulum bağlantısını yapıştır.",
+    "byRefLabel": "Eklenti kimliği ya da bağlantısı",
+    "byRefFind": "Bul",
+    "alreadyInstalled": "{name} zaten kurulu",
+    "selfHosted": "Kendi sunucunda",
+    "selfOriginAt": "Sunucu: {origin}",
+    "installHintSelf": "Bu eklenti kurumun kendi sunucusunda çalışır. Crewhall sunucunun imzalı manifesti sunduğunu doğrular ve yalnız bu adresle konuşur.",
+    "selfOrigin": "Kurumun sunucu adresi",
+    "selfOriginHint": "https ile başlayan, yolsuz adres. Sunucu /.well-known/crewhall-plugin.json adresinde pazar yerinin imzaladığı manifesti, kendi adresiyle sunmalı.",
+    "browser": "Tarayıcı yetenekleri",
+    "browserHint": "Eklentinin sekme ve kartları yalnız işaretlediklerini isteyebilir; kişi yine tarayıcının kendi onayını verir."
+  },
+  "frame": {
+    "title": "{name} eklentisi",
+    "loading": "Eklenti açılıyor…",
+    "notFound": "Bu eklenti kurulu değil ya da kapalı."
+  },
+  "chat": {
+    "tabs": "Eklentiler"
+  },
+  "home": {
+    "cards": "Eklentiler"
+  },
+  "browser": {
+    "microphone": "Mikrofon",
+    "camera": "Kamera",
+    "geolocation": "Konum",
+    "clipboard-write": "Panoya kopyalama"
+  },
+  "offline": {
+    "title": "{name} arka planda çalışsın mı?",
+    "body": "{name}, sen ekranda değilken de sana verilen yetkiler ve eklentinin izinleri içinde senin adına işlem yapar: panoları eşitler, kartları günceller. Yaptıkları senin adınla ve eklentinin rozetiyle görünür. İstediğin zaman Bildirim ayarları › Eklentiler'den kapatabilirsin.",
+    "allow": "İzin ver",
+    "deny": "Vazgeç",
+    "setting": "Arka planda benim adıma çalışsın"
+  },
+  "prefs": {
+    "open": "Bu eklentinin ayarları",
+    "hint": "Bildirimlerin nereye geleceği ve eklentinin mobilde görünüp görünmeyeceği. Hesabına kaydedilir.",
+    "showOnMobile": "Mobilde göster",
+    "showOnMobileOf": "{name} mobilde görünsün",
+    "channelsOf": "{name} bildirim kanalları",
+    "channels": {
+      "bell": "Bildirim merkezi",
+      "desktop": "Masaüstü",
+      "push": "Telefon"
+    },
+    "noNotifications": "Bildirim göndermiyor.",
+    "pinTab": "Sol menüye ekle: {tab}"
+  }
+}

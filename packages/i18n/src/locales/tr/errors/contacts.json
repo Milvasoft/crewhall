@@ -1,0 +1,8 @@
+{
+  "directory_field_synced": "Bu alan kurum dizininden (AD/LDAP ya da Google Workspace) gelir; orada değiştirilir.",
+  "directory_manager_cycle": "Bu yönetici seçimi şemada döngü oluşturur.",
+  "contacts_vcard_invalid": "Dosya vCard (.vcf) değil ya da içinde kişi yok.",
+  "directory_csv_invalid": "CSV dosyasında e-posta sütunu ya da satır yok.",
+  "directory_person_unknown": "Bu e-postayla kurumda etkin bir kişi yok.",
+  "contacts_account_unavailable": "Bu hesabın rehberi eşitlenmiyor. Takvim ayarlarından hesabı kontrol et."
+}

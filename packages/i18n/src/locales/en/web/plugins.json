@@ -1,0 +1,108 @@
+{
+  "nav": "Plugins",
+  "risk": {
+    "official": "Official",
+    "verified": "Reviewed",
+    "unofficial": "Unofficial"
+  },
+  "riskHint": {
+    "official": "Made by the Crewhall team.",
+    "verified": "Reviewed and signed on the marketplace.",
+    "unofficial": "Works in a way the connected service does not allow. Risks below."
+  },
+  "admin": {
+    "title": "Plugins",
+    "subtitle": "Signed plugins from the central marketplace. Crewhall never runs plugin code; a plugin runs on its own server, within the limits you approve.",
+    "installed": "Installed",
+    "catalog": "Marketplace",
+    "search": "Search plugins",
+    "empty": "No plugin on the marketplace matches.",
+    "noneInstalled": "No plugins installed yet.",
+    "catalogError": "The marketplace could not be reached.",
+    "publisher": "{name} · version {version}",
+    "install": "Install",
+    "installTitle": "Install {name}?",
+    "installHint": "The plugin runs on its own server ({origin}). Acting for a person it never goes beyond what they may do; it is limited to the permissions below.",
+    "permissions": "Permissions it asks for",
+    "noPermissions": "Asks for no permissions.",
+    "entry": "Where it shows up in Crewhall",
+    "entryPoints": {
+      "tabs": "{count, plural, one {# tab} other {# tabs}}",
+      "cards": "{count, plural, one {# home card} other {# home cards}}",
+      "commands": "{count, plural, one {# chat command} other {# chat commands}}",
+      "tools": "{count, plural, one {# assistant tool} other {# assistant tools}}",
+      "events": "{count, plural, one {# event subscription} other {# event subscriptions}}"
+    },
+    "approve": "Approve permissions and install",
+    "installedToast": "{name} installed",
+    "update": "Update to {version}",
+    "updateNeeds": "The new version asks for more permissions. The ticked ones are granted; the rest are not, and the plugin works without them.",
+    "updateApprove": "Approve permissions and update",
+    "updated": "{name} updated",
+    "active": "On",
+    "disabled": "Off",
+    "toggle": "{name} plugin on",
+    "uninstall": "Remove",
+    "uninstallConfirm": "Remove {name}? Its server is told the installation was removed; its tabs, cards and commands disappear.",
+    "removed": "{name} removed",
+    "installedBy": "Installed by {name} · {date}",
+    "withheld": "Asked for, not granted",
+    "partialHint": "Unticked permissions are not granted. The plugin is told what it was granted; some of its features may not work.",
+    "approvePartial": "Install with the selected permissions",
+    "editPermissions": "Permissions",
+    "permissionsTitle": "{name} permissions",
+    "permissionsHint": "Choose which of the permissions the plugin asks for are granted. The plugin is told, and new session tokens follow it.",
+    "permissionsSaved": "{name} permissions saved",
+    "byRef": "Install by ID or link",
+    "byRefTitle": "Install by ID or link",
+    "byRefHint": "For plugins not in the catalog (unlisted or private to your organization): paste the plugin id the publisher gave you or the marketplace's install link.",
+    "byRefLabel": "Plugin id or link",
+    "byRefFind": "Find",
+    "alreadyInstalled": "{name} is already installed",
+    "selfHosted": "Self-hosted",
+    "selfOriginAt": "Server: {origin}",
+    "installHintSelf": "This plugin runs on your organization's own server. Crewhall checks that the server serves the signed manifest and talks only to that address.",
+    "selfOrigin": "Your organization's server address",
+    "selfOriginHint": "An https address without a path. The server must serve the manifest the marketplace signed, with its own address, at /.well-known/crewhall-plugin.json.",
+    "browser": "Browser features",
+    "browserHint": "The plugin's tabs and cards may ask only for the ticked ones; the person still answers the browser's own prompt."
+  },
+  "frame": {
+    "title": "{name} plugin",
+    "loading": "Opening the plugin…",
+    "notFound": "This plugin is not installed or is turned off."
+  },
+  "chat": {
+    "tabs": "Plugins"
+  },
+  "home": {
+    "cards": "Plugins"
+  },
+  "browser": {
+    "microphone": "Microphone",
+    "camera": "Camera",
+    "geolocation": "Location",
+    "clipboard-write": "Copy to clipboard"
+  },
+  "offline": {
+    "title": "Let {name} work in the background?",
+    "body": "{name} will act for you while you are away, within your own rights and the plugin's permissions: syncing boards and updating cards. What it does appears under your name with the plugin's badge. You can turn it off any time in Notification settings › Plugins.",
+    "allow": "Allow",
+    "deny": "Cancel",
+    "setting": "Work for me in the background"
+  },
+  "prefs": {
+    "open": "Settings for this plugin",
+    "hint": "Where its notifications reach you and whether it shows in the mobile app. Saved to your account.",
+    "showOnMobile": "Show on mobile",
+    "showOnMobileOf": "Show {name} on mobile",
+    "channelsOf": "{name} notification channels",
+    "channels": {
+      "bell": "Notification centre",
+      "desktop": "Desktop",
+      "push": "Phone"
+    },
+    "noNotifications": "Sends no notifications.",
+    "pinTab": "Add to the left menu: {tab}"
+  }
+}

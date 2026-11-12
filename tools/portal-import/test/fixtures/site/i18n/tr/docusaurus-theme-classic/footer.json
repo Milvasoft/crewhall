@@ -1,0 +1,6 @@
+{
+  "link.title.Docs": { "message": "Dokümanlar" },
+  "link.title.More": { "message": "Daha fazla" },
+  "link.item.label.Intro": { "message": "Giriş" },
+  "copyright": { "message": "Telif © 2023 Acme" }
+}

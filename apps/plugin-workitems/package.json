@@ -1,0 +1,39 @@
+{
+  "name": "@crewhall/plugin-workitems",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Crewhall plugins: two-way sync between boards and Azure DevOps work items (with Pipelines and Library) or Jira issues",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "validate": "tsx ../../packages/plugin-sdk/src/cli.ts validate manifest.json && tsx ../../packages/plugin-sdk/src/cli.ts validate manifest.jira.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@fontsource-variable/nunito": "^5.3.0",
+    "@crewhall/api-client": "workspace:*",
+    "@crewhall/plugin-sdk": "workspace:*",
+    "@crewhall/shared": "workspace:*",
+    "@hono/node-server": "^2.1.5",
+    "esbuild": "^0.25.12",
+    "hono": "^4.13.13",
+    "pg": "^8.23.1",
+    "tsx": "^4.23.15",
+    "undici": "^7.16.0",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@crewhall/config": "workspace:*",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.5",
+    "@types/pg": "^8.15.5",
+    "eslint": "^10.13.0",
+    "jose": "6.2.12",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.71.2",
+    "vitest": "^5.0.5"
+  }
+}

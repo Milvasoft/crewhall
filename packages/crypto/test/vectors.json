@@ -1,0 +1,362 @@
+{
+  "protocol": "crewhall/vault/v1",
+  "info": {
+    "kek": "crewhall/vault/v1/kek",
+    "auth": "crewhall/vault/v1/auth",
+    "recoveryKek": "crewhall/vault/v1/recovery-kek",
+    "recoveryAuth": "crewhall/vault/v1/recovery-auth",
+    "unlockKek": "crewhall/vault/v1/unlock-kek",
+    "unlockAuth": "crewhall/vault/v1/unlock-auth",
+    "seal": "crewhall/vault/v1/seal",
+    "settings": "crewhall/vault/v1/settings",
+    "fingerprint": "crewhall/vault/v1/fingerprint",
+    "recoveryChecksum": "crewhall/vault/v1/recovery-checksum"
+  },
+  "encoding": "hex for raw bytes, base64 (standard, padded) for wire values",
+  "argon2id": [
+    {
+      "password": "correct horse battery staple",
+      "kdf": {
+        "alg": "argon2id",
+        "m": 65536,
+        "t": 3,
+        "p": 4,
+        "salt": "NokqC5ALGfUO/t5Q0Q8/7w=="
+      },
+      "masterKey": "e4e86c613df02456b6840c73e44590b8a068b43572ffaae5bd4b49efa93260d3",
+      "kek": "47f099af5148da3210e161bc39e3b3a64987adbb4cdbbb3719826c6744fcb502",
+      "verifier": "85bdbfa72bedecabee8af92827ad810632071e75593bf492c3a396fea85f7ce4",
+      "verifierHash": "305df998c80c0753bb29701ee4ef4b95b5c5f316654e44f89c8231e8605c6b64"
+    },
+    {
+      "password": "Çok-güçlü şifre İı 🔐",
+      "kdf": {
+        "alg": "argon2id",
+        "m": 32768,
+        "t": 2,
+        "p": 1,
+        "salt": "QNEh557BdcIpu4tL7VqvGA=="
+      },
+      "masterKey": "ee8cf02e57027790c8bc8f3d466db31a7789a89cc0d5a78c9f5ac3744e3dec0d",
+      "kek": "2fa4ec2b19a60d01e65ef6a9aecc55a4a9590776f064ed7c247692708f0b0b09",
+      "verifier": "64c1464e2cb8d4aac23ceab1835a3c440f48dbdc4515262bef3a4721f09c4acb",
+      "verifierHash": "4f5576a523d0d39e3db9dbbd3efbeb45ae871b09ebaadd84db1d76577846166b"
+    }
+  ],
+  "recovery": [
+    {
+      "key": "8c585378513f5f7a2e1456ee54042605fdb890392becefadd2ab180fd02fb341",
+      "formatted": "RRMF G6CR H5PX ULQU K3XF IBBG AX63 REBZ FPWO 7LOS VMMA 7UBP WNA4 R6EH",
+      "kek": "71df4453d84a7f5a8ecc87adfbeaf5cf7069fb9bc8aab945399fb08dd0a97f92",
+      "verifier": "f935134e65423ef741069af8bdbdb8f0656cdbfc7683b155544b0b7a7f38f37c"
+    }
+  ],
+  "unlockSecrets": [
+    {
+      "secret": "6218b7bbbd22e0b7ab011e227ab666a3901a018ac8ecd44a97a160c47d84013b",
+      "kek": "15d177dfdcf8817b3d593cc387ef484561f4ab59a46e0951872e06f2086b8e1e",
+      "verifier": "dc07f65b3065a8be8fa398b6a7593a06d0ee9800343c31bce64ae211888cf286"
+    }
+  ],
+  "x25519": [
+    {
+      "name": "alice",
+      "privateKey": "2bd806c97f0e00af1a1fc3328fa763a9269723c8db8fac4f93af71db186d6e90",
+      "publicKey": "2e8b2883c27b391359d7d0c15d00815a6693290a38dd8eba341cc07ddaa8ed4d",
+      "fingerprint": "eb30e05de0daa7ad2b752224d2e1bedb1edb457962af214dfa75b4114f075ab3",
+      "short": "eb30 e05d e0da a7ad"
+    },
+    {
+      "name": "bob",
+      "privateKey": "81b637d8fcd2c6da6359e6963113a1170de795e4b725b84d1e0b4cfd9ec58ce9",
+      "publicKey": "c0b126b5aa134b84e64625256b8de8973787612b1f3839d2c60526d2114e886d",
+      "fingerprint": "626b52e700e57f4997c2a80af18c2d164ddd0e2812a531290ac4b0eee8b20dce",
+      "short": "626b 52e7 00e5 7f49"
+    }
+  ],
+  "privateKeyWraps": [
+    {
+      "userId": "0192a1b2-c3d4-7e5f-8a9b-0c1d2e3f4a5b",
+      "method": "password",
+      "kek": "9a59f8bf31b524c59fe1db2be602ccee2fb2005b9e1deb03d8f104e9f2265ab8",
+      "nonce": "7512f47e9009e2d8c707d0ef",
+      "privateKey": "2bd806c97f0e00af1a1fc3328fa763a9269723c8db8fac4f93af71db186d6e90",
+      "context": "crewhall/vault/v1/private-key|0192a1b2-c3d4-7e5f-8a9b-0c1d2e3f4a5b|password",
+      "wrapped": "AXUS9H6QCeLYxwfQ7+1QAKpYIODBrk76ftlxGifwg9cmg2HbEnusahf7joa95FdAXvsk2L5TPrFkURkmXQ=="
+    },
+    {
+      "userId": "0192a1b2-c3d4-7e5f-8a9b-0c1d2e3f4a5b",
+      "method": "recovery",
+      "kek": "0681f75c761c040a97c1b5ac6095a7aca26ea13ce01d91465397979987698212",
+      "nonce": "d103ffa72a61376c3628c6c8",
+      "privateKey": "2bd806c97f0e00af1a1fc3328fa763a9269723c8db8fac4f93af71db186d6e90",
+      "context": "crewhall/vault/v1/private-key|0192a1b2-c3d4-7e5f-8a9b-0c1d2e3f4a5b|recovery",
+      "wrapped": "AdED/6cqYTdsNijGyII/rVSzz3Ftc7S7hnU0DimVO5J+x1HTFlfm3L42JozVq9Hgem9dXdbc9A7jhliisA=="
+    },
+    {
+      "userId": "0192a1b2-c3d4-7e5f-8a9b-0c1d2e3f4a5b",
+      "method": "passkey_prf",
+      "kek": "88179f46d682ae46da425f2a8e0a6b0a8a076ed27962466c0c5ecfa3403322c9",
+      "nonce": "bcb35a89a36e76068f48afc5",
+      "privateKey": "2bd806c97f0e00af1a1fc3328fa763a9269723c8db8fac4f93af71db186d6e90",
+      "context": "crewhall/vault/v1/private-key|0192a1b2-c3d4-7e5f-8a9b-0c1d2e3f4a5b|passkey_prf",
+      "wrapped": "AbyzWomjbnYGj0ivxTqmTYdDagIqEYpV+a9AKkVdvjSdKR4+nS3EfIc4VjKRrOTizysGCEyV4M1J7ycHhg=="
+    }
+  ],
+  "vaultKeyWraps": [
+    {
+      "vaultId": "0192a1b2-c3d4-7e5f-8a9b-111111111111",
+      "keyVersion": 1,
+      "userId": "0192a1b2-c3d4-7e5f-8a9b-0c1d2e3f4a5b",
+      "vaultKey": "cff9f06c60825cc4ca0c1304e16323583e8c1a6ca0dd53187eb127eaff6a7db5",
+      "recipientPrivateKey": "81b637d8fcd2c6da6359e6963113a1170de795e4b725b84d1e0b4cfd9ec58ce9",
+      "recipientPublicKey": "c0b126b5aa134b84e64625256b8de8973787612b1f3839d2c60526d2114e886d",
+      "ephemeralPrivateKey": "043ad24dd0c358de032a77f49a613efa17f8ee1153de979ed0e89f4cc737000f",
+      "nonce": "677fd7d1ada817aa9bcdd90f",
+      "context": "crewhall/vault/v1/vault-key|0192a1b2-c3d4-7e5f-8a9b-111111111111|1|0192a1b2-c3d4-7e5f-8a9b-0c1d2e3f4a5b",
+      "wrapped": "ASXqc1uWthb44PYiHqUgNBf4BepTXkjxyJ8w9rSXVQxmZ3/X0a2oF6qbzdkPkUhzOBaS2MiXSYDfoE3qbIRXJBFL1UZVYEORmgs64a+eWjGFwp9JjyQTTV8HBT4J"
+    },
+    {
+      "vaultId": "0192a1b2-c3d4-7e5f-8a9b-111111111111",
+      "keyVersion": 2,
+      "userId": "0192a1b2-c3d4-7e5f-8a9b-0c1d2e3f4a5b",
+      "vaultKey": "cff9f06c60825cc4ca0c1304e16323583e8c1a6ca0dd53187eb127eaff6a7db5",
+      "recipientPrivateKey": "81b637d8fcd2c6da6359e6963113a1170de795e4b725b84d1e0b4cfd9ec58ce9",
+      "recipientPublicKey": "c0b126b5aa134b84e64625256b8de8973787612b1f3839d2c60526d2114e886d",
+      "ephemeralPrivateKey": "e5849fbfeb36e469acaa5ccba0dcdb197891b78dc25a88ef59707b06c8a36d99",
+      "nonce": "3c8e1476fdc09485c7d3dac5",
+      "context": "crewhall/vault/v1/vault-key|0192a1b2-c3d4-7e5f-8a9b-111111111111|2|0192a1b2-c3d4-7e5f-8a9b-0c1d2e3f4a5b",
+      "wrapped": "ASlCVNhaZpuBCDj7zD8muoEL1GnudriRrKrBmORGy/JQPI4Udv3AlIXH09rF8qTJieHNMXnv2dNglFResXhsGLmmB61fAVDZNOKLBdNZbV9rag2+YlvsiAiwMvxw"
+    }
+  ],
+  "items": [
+    {
+      "vaultId": "0192a1b2-c3d4-7e5f-8a9b-111111111111",
+      "itemId": "0192a1b2-c3d4-7e5f-8a9b-222222222222",
+      "revision": 1,
+      "keyVersion": 1,
+      "type": "login",
+      "vaultKey": "cff9f06c60825cc4ca0c1304e16323583e8c1a6ca0dd53187eb127eaff6a7db5",
+      "itemKey": "a0162685f1145b552d3825f3738c79a4bee73de247c0fa82e5db52b658db6c38",
+      "nonce": "e1832c7af3e34ab9c9eefc29",
+      "wrapNonce": "d01b7282a9ea6e2797e9d9c2",
+      "itemContext": "crewhall/vault/v1/item|0192a1b2-c3d4-7e5f-8a9b-111111111111|0192a1b2-c3d4-7e5f-8a9b-222222222222|1|login",
+      "itemKeyContext": "crewhall/vault/v1/item-key|0192a1b2-c3d4-7e5f-8a9b-111111111111|0192a1b2-c3d4-7e5f-8a9b-222222222222|1|1",
+      "plaintext": "{\"v\":1,\"type\":\"login\",\"name\":\"Docker Hub\",\"favorite\":true,\"notes\":\"Yalnız organizasyon yönetimi için.\",\"tags\":[],\"env\":null,\"fields\":[{\"id\":\"f1\",\"type\":\"hidden\",\"label\":\"Kurtarma kodu\",\"value\":\"ABCD-EFGH\"}],\"attachments\":[],\"passwordHistory\":[],\"importWarnings\":[],\"username\":\"crewhall\",\"password\":\"T7#qWm2!vR9pLx4$Kd8z\",\"totp\":\"otpauth://totp/Docker:crewhall?secret=JBSWY3DPEHPK3PXP&issuer=Docker\",\"uris\":[\"https://hub.docker.com\"]}",
+      "encrypted": {
+        "ciphertext": "1pLpwaz5SMvM5EIHjO3RBrSSoVWsRjRrfnJJuHlarQe3dXmIqnCOLa2tzUZXM5cJtw+A0+/tFQlWXeqqaINSSGQKQ1Eg8EDTElkvHuWRcl1aONXUs+oCJeQ8UvIgVp/olJOwheypEFws3OGx/19eJ5FFvw2eX9bagDMIkD2tGGr9znVcP+39cr0kJ8e31SNhWbe+OZZpF7yrZGemAbXilVFwTWKZey346lHO1zmSb83On7fje5Hbj2yo4HQonW0j/PKZX/5CZl5mJ7NKsYrFQ9ZA4IcBTmBdNJG2PsDJ8pAYrGNloJZ3DQa3zHp6X6bE+ykFfNXoo0XW9cQBs8UHxiyZlfSzvgh7zE54CJHFu/c3+UXW/fq5HfReLoNqeFYEAAtqNz5Je7mFA1o5F427yMP75rdPTJedeY2l/+9u6iCqLWbO5KkY0kYJdguvYoPK9ZO3XT0LOpHYxN4/DUsL2eSK3+xFlZGobvFn6ylw93/UgSEX/P6ntzIQyLqc7mvQx9R0I4c+/aj6rnjs7zUn114Tq6PwmmFXYOZ8jTtHTjLf0clmWNzCuYocsbB3gli7I7qlp8qsj0HqV56c0ZACWelsq/c=",
+        "nonce": "4YMsevPjSrnJ7vwp",
+        "itemKeyWrapped": "AdAbcoKp6m4nl+nZwmUi15Tr3c0ZKknnIcaxgCGgV9gAzkethvl1hk86scGKZ8uDHtv68CH/9DXec2PKXw=="
+      }
+    },
+    {
+      "vaultId": "0192a1b2-c3d4-7e5f-8a9b-111111111111",
+      "itemId": "0192a1b2-c3d4-7e5f-8a9b-222222222222",
+      "revision": 2,
+      "keyVersion": 1,
+      "type": "note",
+      "vaultKey": "cff9f06c60825cc4ca0c1304e16323583e8c1a6ca0dd53187eb127eaff6a7db5",
+      "itemKey": "88b66f28ae85861cbd50a321ede0db39dbb2403993d2e6ec60d64cb82818d962",
+      "nonce": "ae777fa26b6d3499519a72f0",
+      "wrapNonce": "030ed9d75003acd0269b9d2d",
+      "itemContext": "crewhall/vault/v1/item|0192a1b2-c3d4-7e5f-8a9b-111111111111|0192a1b2-c3d4-7e5f-8a9b-222222222222|2|note",
+      "itemKeyContext": "crewhall/vault/v1/item-key|0192a1b2-c3d4-7e5f-8a9b-111111111111|0192a1b2-c3d4-7e5f-8a9b-222222222222|2|1",
+      "plaintext": "{\"v\":1,\"type\":\"note\",\"name\":\"Ofis Wi-Fi\",\"favorite\":false,\"notes\":\"SSID: ofis · şifre: güneş-çiçek-42\",\"tags\":[],\"env\":null,\"fields\":[],\"attachments\":[],\"passwordHistory\":[],\"importWarnings\":[]}",
+      "encrypted": {
+        "ciphertext": "qA1PsCVyVEY5BZMCeL/GGTMGTTdrh2WijQIpVJqNu8zvbY0A4USVvha5ff2BPLl8U1y9KjE/4J//nwp4GT2UtCTNCghD/q8xN0K/aMagPqxRQuS28WXHi8d79faDcV54xdy6AsQ5xuCx1eyAgZkvupnMSCFx+i8XYuEpW1RkB7lNuT97+7wRQZ1tkR5NbXb5wKEuzIr5jYb2bid7tvYSUDamMuxyaoOHHUfgDsEd+gMMW1ad4Ych8imhzIrm6C6Sh0Sh0xKEAaNNAPDrCZ1O5ToOvUN4jPhn",
+        "nonce": "rnd/omttNJlRmnLw",
+        "itemKeyWrapped": "AQMO2ddQA6zQJpudLU31dYabZML8/3BHQYGS7XAkxF4wbUXT8/Zd644J1h7et3diofO0WAw/Xj0yo8Wbyg=="
+      }
+    }
+  ],
+  "attachments": [
+    {
+      "attachmentId": "0192a1b2-c3d4-7e5f-8a9b-333333333333",
+      "size": 0,
+      "dataLabel": "file:0",
+      "fileKey": "a0cc538968c3de95e887314617b79289de0f999e78c8f7eef949463a96055b52",
+      "noncePrefix": "506bbcea6c23acf2",
+      "encryptedSize": 25,
+      "encryptedSha256": "2ed102924b90fd7969ae8ad62555df46b1365d978cf57900bad6f2bd6c2339b4"
+    },
+    {
+      "attachmentId": "0192a1b2-c3d4-7e5f-8a9b-333333333333",
+      "size": 13,
+      "dataLabel": "file:13",
+      "fileKey": "a0cc538968c3de95e887314617b79289de0f999e78c8f7eef949463a96055b52",
+      "noncePrefix": "5aa178d7882c9c0c",
+      "encryptedSize": 38,
+      "encryptedSha256": "cb90df8ff00ef82b0cc4b470ec5dcaafc879d419785de604a6947f69ee0cfa27"
+    },
+    {
+      "attachmentId": "0192a1b2-c3d4-7e5f-8a9b-333333333333",
+      "size": 1048576,
+      "dataLabel": "file:1048576",
+      "fileKey": "a0cc538968c3de95e887314617b79289de0f999e78c8f7eef949463a96055b52",
+      "noncePrefix": "9b677d499c2a23ea",
+      "encryptedSize": 1048601,
+      "encryptedSha256": "60f20e9f95959ecfc08b4ec4f34aee083c77baa816422e2c66a0fe19abfd619d"
+    },
+    {
+      "attachmentId": "0192a1b2-c3d4-7e5f-8a9b-333333333333",
+      "size": 1048581,
+      "dataLabel": "file:1048581",
+      "fileKey": "a0cc538968c3de95e887314617b79289de0f999e78c8f7eef949463a96055b52",
+      "noncePrefix": "53cab68fd0e02c9f",
+      "encryptedSize": 1048622,
+      "encryptedSha256": "a29e796775ea59ea426ab5e61a98a2477a544d93c04fcee9641d1bc85974d0d8"
+    }
+  ],
+  "totp": [
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
+      "algorithm": "SHA1",
+      "digits": 8,
+      "period": 30,
+      "time": 59,
+      "code": "94287082"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
+      "algorithm": "SHA1",
+      "digits": 8,
+      "period": 30,
+      "time": 1111111109,
+      "code": "07081804"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
+      "algorithm": "SHA1",
+      "digits": 8,
+      "period": 30,
+      "time": 1111111111,
+      "code": "14050471"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
+      "algorithm": "SHA1",
+      "digits": 8,
+      "period": 30,
+      "time": 1234567890,
+      "code": "89005924"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
+      "algorithm": "SHA1",
+      "digits": 8,
+      "period": 30,
+      "time": 2000000000,
+      "code": "69279037"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
+      "algorithm": "SHA1",
+      "digits": 8,
+      "period": 30,
+      "time": 20000000000,
+      "code": "65353130"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZA",
+      "algorithm": "SHA256",
+      "digits": 8,
+      "period": 30,
+      "time": 59,
+      "code": "46119246"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZA",
+      "algorithm": "SHA256",
+      "digits": 8,
+      "period": 30,
+      "time": 1111111109,
+      "code": "68084774"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZA",
+      "algorithm": "SHA256",
+      "digits": 8,
+      "period": 30,
+      "time": 1111111111,
+      "code": "67062674"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZA",
+      "algorithm": "SHA256",
+      "digits": 8,
+      "period": 30,
+      "time": 1234567890,
+      "code": "91819424"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZA",
+      "algorithm": "SHA256",
+      "digits": 8,
+      "period": 30,
+      "time": 2000000000,
+      "code": "90698825"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZA",
+      "algorithm": "SHA256",
+      "digits": 8,
+      "period": 30,
+      "time": 20000000000,
+      "code": "77737706"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNA",
+      "algorithm": "SHA512",
+      "digits": 8,
+      "period": 30,
+      "time": 59,
+      "code": "90693936"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNA",
+      "algorithm": "SHA512",
+      "digits": 8,
+      "period": 30,
+      "time": 1111111109,
+      "code": "25091201"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNA",
+      "algorithm": "SHA512",
+      "digits": 8,
+      "period": 30,
+      "time": 1111111111,
+      "code": "99943326"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNA",
+      "algorithm": "SHA512",
+      "digits": 8,
+      "period": 30,
+      "time": 1234567890,
+      "code": "93441116"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNA",
+      "algorithm": "SHA512",
+      "digits": 8,
+      "period": 30,
+      "time": 2000000000,
+      "code": "38618901"
+    },
+    {
+      "secretBase32": "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQGEZDGNA",
+      "algorithm": "SHA512",
+      "digits": 8,
+      "period": 30,
+      "time": 20000000000,
+      "code": "47863826"
+    }
+  ],
+  "ssh": {
+    "seed": "40735b4d6c6e7f45e2f0f4611f8e2d1a950aeeacd4ea11e82497943365320df7",
+    "comment": "root@milva-01",
+    "publicKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAlB0rp+MHKoZqOssk/m6YhcCJOV83e1pFVJV1+mdAwX root@milva-01",
+    "fingerprint": "SHA256:Ac8eKGfQlk6YmshHPjaz88lFmi3U8wa48LgJ2Fhx6GQ"
+  }
+}

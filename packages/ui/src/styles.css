@@ -1,0 +1,486 @@
+/*
+ * Crewhall Tailwind 4 preset. Apps import it after tailwindcss:
+ *   @import 'tailwindcss';
+ *   @import '@crewhall/ui/styles.css';
+ * Token values mirror src/tokens.ts (kit v1). The org theme overrides them at runtime
+ * (applyOrgTheme injects a later <style> with the same variable names).
+ */
+@source './';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+@custom-variant compact (&:where([data-density='compact'], [data-density='compact'] *));
+/* Soft keyboard is open (useVisualViewportVars): fixed bottom bars step aside. */
+@custom-variant keyboard (&:where([data-keyboard='open'] *));
+
+:root {
+  --bg: #f7f7f6;
+  --bg2: #efefed;
+  --surface: #ffffff;
+  --line: rgba(11, 11, 11, 0.08);
+  --line2: rgba(11, 11, 11, 0.14);
+  --fg: #0b0b0b;
+  --fg2: #5f5f5f;
+  --fg3: #9a9a98;
+  --accent: #f9c31a;
+  --accentFg: #0b0b0b;
+  --accentText: #8c6500;
+  --accent10: rgba(249, 195, 26, 0.18);
+  --danger: #dc3b3b;
+  --success: #15803d;
+  --warning: #c2620f;
+  --info: #0e7490;
+  --glass: rgba(255, 255, 255, 0.74);
+  --glassLine: rgba(11, 11, 11, 0.07);
+  --capsule: rgba(11, 11, 11, 0.07);
+  --scrim: rgba(0, 0, 0, 0.38);
+  --shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
+  --shSm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --chDot: #118478;
+  --s1: #3b82f6;
+  --s2: #14b8a6;
+  --s3: #ec4899;
+  --s4: #8b5cf6;
+  --s5: #84cc16;
+  --s6: #8a8a88;
+  --radius-scale: 1;
+  --t-fast: 120ms;
+  --t-base: 180ms;
+  --t-panel: 240ms;
+  --ease-out-std: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --nv-h: 32px;
+  --row-pad: 9px;
+}
+
+[data-theme='dark'] {
+  --bg: #0e0f0f;
+  --bg2: #1d1e1f;
+  --surface: #151617;
+  --line: rgba(255, 255, 255, 0.08);
+  --line2: rgba(255, 255, 255, 0.16);
+  --fg: #f5f5f5;
+  --fg2: #a5a6a6;
+  --fg3: #6d6e6e;
+  --accent: #fbc419;
+  --accentFg: #0b0b0b;
+  --accentText: #fbc419;
+  --accent10: rgba(251, 196, 25, 0.14);
+  --danger: #ff6369;
+  --success: #3dd68c;
+  --warning: #f38424;
+  --info: #38bdf8;
+  --glass: rgba(32, 33, 34, 0.64);
+  --glassLine: rgba(255, 255, 255, 0.12);
+  --capsule: rgba(255, 255, 255, 0.12);
+  --scrim: rgba(0, 0, 0, 0.55);
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+  --shSm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --chDot: #3cc6b2;
+  --s1: #60a5fa;
+  --s2: #2dd4bf;
+  --s3: #f472b6;
+  --s4: #a78bfa;
+  --s5: #a3e635;
+  --s6: #a5a6a6;
+}
+
+[data-density='compact'] {
+  --nv-h: 28px;
+  --row-pad: 6px;
+}
+
+/*
+ * Desktop app: the row of the window's own buttons (0 in a browser). Nothing of ours with a close
+ * control starts above it, so an X of ours never sits beside the window's X.
+ */
+:root {
+  --window-bar: env(titlebar-area-height, 0px);
+}
+/* Fills that row on top of a full-window view; the view's own bar starts under it. */
+[data-desktop-band] {
+  flex-shrink: 0;
+  height: max(0px, calc(var(--window-bar) - var(--desktop-strip, 0px)));
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-white: #ffffff;
+  --color-black: #0b0b0b;
+  --color-graphite: #141516;
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg2);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-line2: var(--line2);
+  --color-fg: var(--fg);
+  --color-fg2: var(--fg2);
+  --color-fg3: var(--fg3);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accentFg);
+  --color-accent-text: var(--accentText);
+  --color-accent10: var(--accent10);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-glass: var(--glass);
+  --color-glass-line: var(--glassLine);
+  --color-capsule: var(--capsule);
+  --color-scrim: var(--scrim);
+  --color-ch-dot: var(--chDot);
+  --color-s1: var(--s1);
+  --color-s2: var(--s2);
+  --color-s3: var(--s3);
+  --color-s4: var(--s4);
+  --color-s5: var(--s5);
+  --color-s6: var(--s6);
+
+  --font-sans: 'Nunito Variable', Nunito, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+
+  --text-hero: 52px;
+  --text-hero--line-height: 52px;
+  --text-hero--letter-spacing: -0.035em;
+  --text-large: 34px;
+  --text-large--line-height: 40px;
+  --text-large--letter-spacing: -0.025em;
+  --text-title: 24px;
+  --text-title--line-height: 30px;
+  --text-title--letter-spacing: -0.015em;
+  --text-wtitle: 22px;
+  --text-wtitle--line-height: 28px;
+  --text-wtitle--letter-spacing: -0.015em;
+  --text-h: 20px;
+  --text-h--line-height: 26px;
+  --text-h--letter-spacing: -0.01em;
+  --text-sub: 16px;
+  --text-sub--line-height: 22px;
+  --text-num: 26px;
+  --text-num--line-height: 30px;
+  --text-num--letter-spacing: -0.02em;
+  --text-body: 15px;
+  --text-body--line-height: 21px;
+  --text-btn: 14.5px;
+  --text-btn--line-height: 18px;
+  --text-sm: 14px;
+  --text-sm--line-height: 20px;
+  --text-nav: 13.5px;
+  --text-nav--line-height: 18px;
+  --text-cap: 13px;
+  --text-cap--line-height: 18px;
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+  --text-tag: 11.5px;
+  --text-tag--line-height: 14px;
+  --text-micro: 11px;
+  --text-micro--line-height: 14px;
+
+  --radius-xs: calc(6px * var(--radius-scale));
+  --radius-sm: calc(8px * var(--radius-scale));
+  --radius-md: calc(10px * var(--radius-scale));
+  --radius-lg: calc(12px * var(--radius-scale));
+  --radius-xl: calc(14px * var(--radius-scale));
+  --radius-2xl: calc(16px * var(--radius-scale));
+  --radius-3xl: calc(18px * var(--radius-scale));
+  --radius-4xl: calc(20px * var(--radius-scale));
+
+  --shadow-sm: var(--shSm);
+  --shadow-overlay: var(--shadow);
+  --shadow-line: inset 0 0 0 1px var(--line);
+  --shadow-line2: inset 0 0 0 1px var(--line2);
+
+  --ease-std: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Motion (doc 16 §motion): short, transform/opacity only. Keyframes are below. */
+  --animate-fade-in: ch-fade-in var(--t-base) var(--ease-out-std) both;
+  --animate-fade-out: ch-fade-out var(--t-fast) ease-in both;
+  --animate-pop-in: ch-pop-in var(--t-base) var(--ease-out-std) both;
+  --animate-pop-out: ch-pop-out var(--t-fast) ease-in both;
+  --animate-dialog-in: ch-dialog-in var(--t-panel) var(--ease-out-std) both;
+  --animate-dialog-out: ch-dialog-out var(--t-fast) ease-in both;
+  --animate-rise-in: ch-rise-in var(--t-panel) var(--ease-out-std) both;
+  --animate-slide-in-right: ch-slide-in-right var(--t-panel) var(--ease-out-std) both;
+  --animate-slide-out-right: ch-slide-out-right var(--t-base) ease-in both;
+  --animate-drawer-in-left: ch-drawer-in-left var(--t-panel) var(--ease-out-std) both;
+  --animate-drawer-out-left: ch-drawer-out-left var(--t-base) ease-in both;
+  --animate-sheet-in: ch-sheet-in var(--t-panel) var(--ease-out-std) both;
+  --animate-sheet-out: ch-sheet-out var(--t-base) ease-in both;
+  --animate-pop: ch-pop 260ms var(--ease-out-std) both;
+  --animate-bump: ch-bump 260ms var(--ease-out-std);
+  --animate-ring: ch-ring 700ms ease-in-out;
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Focus ring is neutral (fg), never accent: doc 16 §9.3. */
+  :focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--bg),
+      0 0 0 4px var(--fg);
+  }
+  ::selection {
+    background: var(--accent10);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0ms !important;
+      animation-duration: 0ms !important;
+      animation-delay: 0ms !important;
+    }
+  }
+  [data-motion='reduced'] *,
+  [data-motion='reduced'] *::before,
+  [data-motion='reduced'] *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+    animation-delay: 0ms !important;
+  }
+}
+
+@utility eyebrow {
+  font-size: 11.5px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--fg3);
+}
+
+@utility tn {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes crewhall-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes crewhall-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/*
+ * Motion keyframes. Enter animations only state where they start from, so the element ends
+ * in its own styles. Popper surfaces set --ch-dx / --ch-dy by side so they slide out of the
+ * trigger. Reduced motion (OS setting or data-motion='reduced') zeroes durations above.
+ */
+@keyframes ch-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes ch-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes ch-pop-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--ch-dx, 0), var(--ch-dy, 0)) scale(0.96);
+  }
+}
+
+@keyframes ch-pop-out {
+  to {
+    opacity: 0;
+    transform: translate(var(--ch-dx, 0), var(--ch-dy, 0)) scale(0.97);
+  }
+}
+
+@keyframes ch-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+}
+
+@keyframes ch-dialog-out {
+  to {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+}
+
+@keyframes ch-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes ch-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+}
+
+@keyframes ch-slide-out-right {
+  to {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+}
+
+@keyframes ch-drawer-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes ch-drawer-out-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes ch-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes ch-sheet-out {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes ch-indicator-in {
+  from {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+}
+
+@keyframes ch-tab-in {
+  from {
+    opacity: 0;
+    transform: scaleX(0.4);
+  }
+}
+
+@keyframes ch-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+}
+
+/* Same as ch-pop: alternating names restarts the animation on an element that stays. */
+@keyframes ch-pop-alt {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+}
+
+@keyframes ch-bump {
+  40% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes ch-ring {
+  15% {
+    rotate: 14deg;
+  }
+  30% {
+    rotate: -12deg;
+  }
+  45% {
+    rotate: 8deg;
+  }
+  60% {
+    rotate: -5deg;
+  }
+  75% {
+    rotate: 2deg;
+  }
+}
+
+/* Skeleton: hidden for 180 ms (quick loads never flash it), then fades in and pulses. */
+@utility skeleton {
+  animation:
+    ch-fade-in 160ms ease-out 180ms both,
+    crewhall-pulse 1.6s ease-in-out 340ms infinite;
+}
+
+/* Stagger: the first children of a list rise in one after another (enter only). */
+@utility stagger-in {
+  & > * {
+    animation: ch-rise-in var(--t-panel) var(--ease-out-std) both;
+  }
+  & > :nth-child(2) {
+    animation-delay: 30ms;
+  }
+  & > :nth-child(3) {
+    animation-delay: 60ms;
+  }
+  & > :nth-child(4) {
+    animation-delay: 90ms;
+  }
+  & > :nth-child(5) {
+    animation-delay: 120ms;
+  }
+  & > :nth-child(6) {
+    animation-delay: 150ms;
+  }
+  & > :nth-child(n + 7) {
+    animation-delay: 180ms;
+  }
+}
+
+/* Popper surfaces (menus, popovers, tooltips): slide 4px out of the side they open on. */
+@utility popper-motion {
+  animation: ch-pop-in var(--t-base) var(--ease-out-std) both;
+  &[data-side='bottom'] {
+    --ch-dy: -4px;
+  }
+  &[data-side='top'] {
+    --ch-dy: 4px;
+  }
+  &[data-side='left'] {
+    --ch-dx: 4px;
+  }
+  &[data-side='right'] {
+    --ch-dx: -4px;
+  }
+  &[data-state='closed'] {
+    animation: ch-pop-out var(--t-fast) ease-in both;
+  }
+}
+
+/* Press feedback for buttons and chips: a 3% squeeze, back on release. */
+@utility press {
+  transition-property: background-color, box-shadow, opacity, filter, color, scale;
+  transition-duration: var(--t-fast);
+  transition-timing-function: var(--ease-out-std);
+  &:active:not(:disabled, [aria-disabled='true']) {
+    scale: 0.97;
+  }
+}

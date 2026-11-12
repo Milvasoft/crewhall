@@ -1,0 +1,10 @@
+{
+  "automation_trigger_unknown": "This trigger is unknown or not available yet.",
+  "automation_action_unknown": "This action is unknown.",
+  "automation_config_invalid": "The rule has a missing or invalid setting.",
+  "automation_target_invalid": "You cannot reach the chosen board, chat, form, folder or person with this rule.",
+  "automation_limit_reached": "This space reached its rule limit.",
+  "automation_webhook_blocked": "Requests cannot be sent to this address (local or reserved address).",
+  "automation_webhook_failed": "The webhook address did not answer with success.",
+  "automation_owner_inactive": "The rule's owner is no longer in the organization."
+}

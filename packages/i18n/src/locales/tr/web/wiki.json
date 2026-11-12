@@ -1,0 +1,302 @@
+{
+  "untitled": "Başlıksız",
+  "nav": {
+    "search": "Sayfalarda ara",
+    "recent": "Son açılanlar",
+    "favorites": "Favoriler",
+    "pages": "Sayfalar",
+    "loading": "Yükleniyor…",
+    "empty": "Henüz sayfa yok",
+    "newPage": "Yeni sayfa",
+    "templates": "Şablonlar",
+    "trash": "Çöp",
+    "expand": "{name} sayfasını aç",
+    "collapse": "{name} sayfasını kapat",
+    "addChild": "{name} altına sayfa ekle"
+  },
+  "tree": {
+    "openNewTab": "Yeni sekmede aç",
+    "addChild": "Alt sayfa ekle",
+    "noCreate": "Bu alanda sayfa ekleme yetkin yok"
+  },
+  "home": {
+    "title": "Sayfalar",
+    "import": "İçe aktar",
+    "templates": "Şablonla başla",
+    "recent": "Son değişenler",
+    "emptyTitle": "Bu space'te henüz sayfa yok",
+    "emptyBody": "Ekibinin bilgisini tek yerde topla: boş bir sayfa aç, bir şablonla başla ya da Markdown dosyalarını içe aktar."
+  },
+  "page": {
+    "title": "Sayfa başlığı",
+    "share": "Paylaş",
+    "menu": "Sayfa menüsü",
+    "edited": "{name} düzenledi · {when}",
+    "reading": "{minutes} dk okuma",
+    "comments": "{count, plural, one {# yorum} other {# yorum}}",
+    "addIcon": "İkon ekle",
+    "addCover": "Kapak ekle",
+    "addComment": "Yorum ekle",
+    "changeIcon": "İkonu değiştir",
+    "removeIcon": "İkonu kaldır",
+    "coverPick": "Kapak: {name}",
+    "coverRemove": "Kapağı kaldır",
+    "lockedBanner": "Sayfa kilitli. Kazara değişikliği önlemek için yazma kapalı.",
+    "unlock": "Kilidi aç",
+    "inTrash": "Bu sayfa çöpte. Geri yüklemek için Drive'daki çöp kutusunu kullan.",
+    "collabDenied": "Ortak düzenleme sunucusu bu sayfayı açmana izin vermedi. Sayfayı yenile.",
+    "startTemplate": "Şablonla başla",
+    "startImport": "İçe aktar (Markdown)",
+    "startBlank": "Boş devam et",
+    "children": "Alt sayfalar",
+    "copyName": "{name} (kopya)",
+    "trashed": "Sayfa çöpe taşındı.",
+    "presence": "Sayfada {count} kişi daha var",
+    "hideDone": "Tamamlananları gizle ({count})",
+    "showDone": "Tamamlananları göster ({count})"
+  },
+  "status": {
+    "connecting": "Bağlanıyor",
+    "saving": "Kaydediliyor",
+    "saved": "Kaydedildi",
+    "offline": "Çevrimdışı · {count, plural, =0 {değişiklikler bu cihazda} other {# değişiklik bu cihazda}}",
+    "readOnly": "Salt okunur",
+    "denied": "Erişim yok",
+    "local": "Yerel önizleme"
+  },
+  "editor": {
+    "label": "Sayfa içeriği",
+    "placeholder": "Yazmaya başla ya da komutlar için / yaz…",
+    "comment": "Yorum",
+    "embedPick": "Gömülecek öğeyi seç",
+    "embedInsert": "Göm",
+    "videoPick": "Oynatılacak videoyu seç",
+    "embedLoading": "Yükleniyor…",
+    "embedNoAccess": "Erişim yok",
+    "embedDeleted": "Silinmiş öğe",
+    "embedOpen": "Aç",
+    "embedType": {
+      "file": "Dosya",
+      "folder": "Klasör",
+      "page": "Sayfa",
+      "board": "Pano",
+      "drawing": "Çizim"
+    },
+    "imagesFolder": "Sayfa görselleri",
+    "attachmentsFolder": "Sayfa ekleri"
+  },
+  "slash": {
+    "none": "Sonuç yok",
+    "navigate": "gezin",
+    "insert": "ekle",
+    "close": "kapat",
+    "embed": "Gömülü öğe",
+    "embedDesc": "Drive dosyası, pano ya da çizimi sayfaya göm",
+    "subpage": "Alt sayfa",
+    "subpageDesc": "Bu sayfanın altında yeni sayfa aç ve linkle",
+    "pageLink": "Sayfa linki",
+    "pageLinkDesc": "Başka bir sayfaya link ver ([[)",
+    "toc": "İçindekiler",
+    "tocDesc": "Sayfanın başlıklarını burada listeler",
+    "tableEmbed": "Bağlı tablo",
+    "tableEmbedDesc": "Tablolar modülünden bir tabloyu sayfada canlı göster"
+  },
+  "mention": {
+    "title": "Bahset",
+    "people": "Kişiler",
+    "pages": "Sayfalar ve düğümler",
+    "dates": "Tarih",
+    "today": "Bugün",
+    "tomorrow": "Yarın",
+    "nextWeek": "Haftaya",
+    "noAccess": "Erişimi yok · okuyamaz"
+  },
+  "menu": {
+    "fullWidth": "Tam genişlik",
+    "smallText": "Küçük metin",
+    "lock": "Sayfayı kilitle",
+    "unlock": "Kilidi aç",
+    "favorite": "Favorilere ekle",
+    "unfavorite": "Favorilerden çıkar",
+    "copyLink": "Linki kopyala",
+    "linkCopied": "Link kopyalandı.",
+    "duplicate": "Çoğalt",
+    "move": "Taşı…",
+    "saveTemplate": "Şablon olarak kaydet",
+    "history": "Sürüm geçmişi",
+    "import": "İçe aktar…",
+    "export": "Dışa aktar",
+    "trash": "Çöpe taşı",
+    "follow": "Takip et: değişince bildir",
+    "unfollow": "Takibi bırak",
+    "followDescendants": "Alt sayfaları da takip et",
+    "followingDescendants": "Alt sayfalarıyla takip ediliyor, bırakmak için tıkla",
+    "toPortal": "Portal'a gönder"
+  },
+  "comments": {
+    "title": "Yorumlar",
+    "open": "Açık {count}",
+    "resolved": "Çözülen {count}",
+    "general": "Sayfa geneli",
+    "first": "Yorumunu yaz, @ ile birini ekle",
+    "newGeneral": "Sayfaya yorum yaz…",
+    "reply": "Yanıtla… @ ile birini ekle",
+    "replyButton": "Yanıtla",
+    "resolve": "Çözüldü",
+    "reopen": "Yeniden aç",
+    "send": "Gönder",
+    "delete": "Yorumu sil",
+    "edited": "düzenlendi",
+    "unknown": "Silinmiş kişi",
+    "noneOpen": "Açık yorum yok. Metni seçip Yorum'a bas.",
+    "noneResolved": "Çözülen yorum yok."
+  },
+  "versions": {
+    "title": "Sürüm geçmişi",
+    "current": "Şu anki sürüm",
+    "today": "Bugün",
+    "yesterday": "Dün",
+    "created": "{name} · sayfa oluşturuldu",
+    "restoredFrom": "Sürüm {version} geri yüklendi",
+    "nameCurrent": "Şu anki sürümü adlandır",
+    "labelPlaceholder": "ör. 1.4 yayın öncesi",
+    "save": "Sürüm kaydet",
+    "saved": "Sürüm kaydedildi.",
+    "readOnlyChanges": "Salt okunur · önceki sürüme göre {count, plural, =0 {değişiklik yok} other {# değişiklik}}",
+    "readOnlyFirst": "Salt okunur · ilk sürüm",
+    "highlight": "Değişiklikleri vurgula",
+    "added": "eklenen",
+    "removed": "silinen",
+    "copy": "Kopya oluştur",
+    "restore": "Bu sürüme geri dön",
+    "restored": "Sayfa bu sürüme döndü; önceki hâli de sürüm olarak saklandı.",
+    "restoredLive": "Sayfa bir önceki sürüme döndürüldü.",
+    "source": {
+      "web": "Web",
+      "mobile": "Mobil",
+      "mcp": "Claude ile",
+      "api": "API"
+    }
+  },
+  "backlinks": {
+    "title": "Bu sayfaya bağlananlar · {count}",
+    "none": "Henüz bu sayfaya bağlanan yok.",
+    "kind": {
+      "link": "bağlantı",
+      "mention": "bahsetme",
+      "embed": "gömme"
+    }
+  },
+  "templates": {
+    "title": "Şablonlar",
+    "hint": "Şablonun içeriği kopyalanır, bağı kalmaz; «tarih» ve «yazar» doldurulur.",
+    "all": "Tümü",
+    "builtin": "Kurum",
+    "space": "Space",
+    "personal": "Kişisel",
+    "search": "Şablon ara",
+    "none": "Bu süzgeçte şablon yok.",
+    "meta": "{scope} · {blocks} blok",
+    "use": "Bu şablonu kullan",
+    "saveTitle": "Şablon olarak kaydet",
+    "name": "Şablon adı",
+    "description": "Açıklama",
+    "saved": "Şablon kaydedildi.",
+    "scope": {
+      "builtin": "Kurum şablonu",
+      "space": "Space şablonu",
+      "personal": "Kişisel şablon"
+    }
+  },
+  "import": {
+    "title": "İçe aktar",
+    "hint": "Markdown ya da Word dosyaları, bir klasör ya da dışa aktarma paketi: klasörler sayfa ağacına dönüşür, görseller de gelir.",
+    "files": "Dosyalar ya da paket",
+    "filesHint": ".md, .docx ya da Outline / Notion / Confluence (HTML) dışa aktarma paketi (.zip)",
+    "folder": "Klasör",
+    "folderHint": "Outline, Notion ya da Confluence dışa aktarımının açılmış hâli; görseller de gelir",
+    "done": "{count, plural, one {# sayfa içe aktarıldı.} other {# sayfa içe aktarıldı.}}",
+    "warning": {
+      "empty": "boş dosya, atlandı",
+      "too_large": "çok büyük, atlandı",
+      "duplicate": "aynı yol iki kez, atlandı",
+      "unreadable": "dosya okunamadı, atlandı",
+      "too_many": "bir seferde en çok 200 sayfa aktarılır, atlandı",
+      "missing_attachment": "ek pakette bulunamadı: {target}",
+      "attachment_failed": "ek yüklenemedi: {target}"
+    },
+    "attachments": "{count, plural, one {# görsel ya da ek Drive'a yüklendi.} other {# görsel ya da ek Drive'a yüklendi.}}",
+    "attachmentsFolder": "İçe aktarılan ekler"
+  },
+  "search": {
+    "title": "Arama",
+    "placeholder": "Sayfalarda ve yorumlarda ara",
+    "allSpaces": "Tüm space'ler",
+    "last90": "Son 90 gün",
+    "inComments": "Yorumlarda da ara",
+    "count": "{count, plural, one {# sonuç} other {# sonuç}}",
+    "hint": "Başlıklar, blok içerikleri, kapalı toggle'lar, kod blokları ve yorumlar taranır.",
+    "none": "\"{q}\" için sonuç yok.",
+    "matched": {
+      "title": "başlık",
+      "body": "içerik",
+      "comment": "yorum"
+    }
+  },
+  "export": {
+    "title": "Dışa aktar",
+    "hint": "{name} sayfasını indirilebilir bir dosyaya çevir. Görseller ve ekler de gelir.",
+    "format": "Biçim",
+    "formats": {
+      "pdf": "PDF",
+      "docx": "Word (.docx)",
+      "html": "HTML",
+      "md": "Markdown (.md)"
+    },
+    "formatHints": {
+      "pdf": "Yazdırmaya ve paylaşmaya hazır",
+      "docx": "Word'de düzenlemek için",
+      "html": "Tek dosya, görseller gömülü",
+      "md": "Görseller ekler klasöründe"
+    },
+    "children": "Alt sayfaları da dahil et",
+    "childrenHint": "Tek ZIP dosyası; sayfalar arasındaki linkler dosyalar arasında da çalışır.",
+    "start": "Dışa aktar",
+    "running": "Hazırlanıyor…",
+    "runningHint": "Bitince indirme başlar. Pencereyi kapatırsan hazır olduğunda bildirim gelir.",
+    "downloading": "{fileName} indiriliyor.",
+    "skipped": "Şu ekler eklenmedi (çok büyük ya da okunamadı): {names}",
+    "failed": "Dışa aktarılamadı. Biraz sonra yeniden dene."
+  },
+  "lists": {
+    "recentEmpty": "Henüz sayfa açmadın",
+    "recentEmptyBody": "Açtığın ve düzenlediğin sayfalar burada gün gün listelenir.",
+    "favoritesEmpty": "Henüz favori sayfan yok",
+    "favoritesEmptyBody": "Sayfa başlığındaki ☆ ile ya da ağaçta sağ tıklayıp Favorilere ekle diyerek sayfaları buraya topla."
+  },
+  "outline": {
+    "label": "İçindekiler"
+  },
+  "tableEmbed": {
+    "pick": "Bağlanacak tabloyu seç",
+    "pickBody": "Tablo sayfada canlı görünür; satırlar tablonun kendisinde düzenlenir.",
+    "none": "Bu space'te henüz tablo yok",
+    "goTables": "Tablolar'a git",
+    "empty": "Bu görünümde satır yok.",
+    "more": "{count} satır daha"
+  },
+  "portal": {
+    "title": "Portal'a gönder",
+    "hint": "«{name}» portalda taslak doküman olur. Aynı sürüm ve dile yeniden göndermek o taslağı günceller; yayın Portal'da yapılır.",
+    "noSites": "Kurumda portal sitesi yok.",
+    "site": "Site",
+    "version": "Sürüm",
+    "language": "Dil",
+    "note": "Sayfadaki görseller portal medyasına kopyalanır, iç bağlantılar düz metin olur. Bahsetmeler ve gömülü öğeler yayında görünmez.",
+    "send": "Taslak olarak gönder",
+    "created": "«{name}» portala taslak olarak gönderildi",
+    "updated": "«{name}» portal taslağı güncellendi",
+    "imagesSkipped": "{count} görsel okunamadığı için aktarılmadı",
+    "open": "Aç"
+  }
+}

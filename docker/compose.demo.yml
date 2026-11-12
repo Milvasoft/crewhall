@@ -1,0 +1,17 @@
+# Live demo: every hour the data goes back to the Milvasoft sample (docs/demo.md).
+# Never on a real install: the reset empties the database and the bucket.
+#   docker compose -f docker/compose.yml -f docker/compose.demo.yml --env-file docker/.env up -d
+services:
+  backend:
+    environment:
+      DEMO_MODE: 'true'
+      # Visitors type any address; nothing is mailed from the demo.
+      SMTP_URL: ''
+      # Shared channels test (kararlar.md 2026-10-29): after every reset federation is set up
+      # again with these peers, and their channel invites are accepted at once.
+      DEMO_FEDERATION_PEERS: ${DEMO_FEDERATION_PEERS:-}
+      FEDERATION_AUTO_ACCEPT_DOMAINS: ${FEDERATION_AUTO_ACCEPT_DOMAINS:-}
+  worker:
+    environment:
+      SMTP_URL: ''
+      FEDERATION_AUTO_ACCEPT_DOMAINS: ${FEDERATION_AUTO_ACCEPT_DOMAINS:-}

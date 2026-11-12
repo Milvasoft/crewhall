@@ -1,0 +1,4 @@
+{
+  "share": "{name} seninle paylaşıldı: {url}",
+  "shareWithNote": "{note}\n\n{name}: {url}"
+}

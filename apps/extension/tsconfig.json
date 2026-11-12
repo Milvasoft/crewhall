@@ -1,0 +1,9 @@
+{
+  "extends": "@crewhall/config/tsconfig/react.json",
+  "compilerOptions": {
+    "types": ["chrome", "node", "vite/client"],
+    "resolveJsonModule": true,
+    "noEmit": true
+  },
+  "include": ["src", "test", "*.ts"]
+}

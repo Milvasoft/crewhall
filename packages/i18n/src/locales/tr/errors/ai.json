@@ -1,0 +1,11 @@
+{
+  "ai_disabled": "Yapay zekâ yardımı bu kurumda kapalı. Yöneticine sor.",
+  "ai_not_configured": "Yapay zekâ henüz ayarlanmadı. Yönetici bir model ve API anahtarı girmeli.",
+  "ai_quota_exceeded": "Bu ayki yapay zekâ kotası doldu. Kota ay başında yenilenir.",
+  "ai_provider_error": "Yapay zekâ modeline ulaşılamadı. Biraz sonra yeniden dene.",
+  "ai_refused": "Model bu isteği yanıtlamadı. Metni değiştirip yeniden dene.",
+  "ai_run_not_found": "Bu yapay zekâ sonucu bulunamadı ya da zaten kaydedildi.",
+  "ai_transcription_not_configured": "Konuşma tanıma sunucusu ayarlanmadı. Yöneticine sor.",
+  "ai_recording_not_ready": "Kayıt henüz hazır değil. Biraz sonra yeniden dene.",
+  "ai_action_unverified": "İşlem uygulandı ama sonucu doğrulanamadı. Hedefi kontrol et."
+}

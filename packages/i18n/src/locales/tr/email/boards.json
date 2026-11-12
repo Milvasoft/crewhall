@@ -1,0 +1,29 @@
+{
+  "attachmentsFolder": "{board} · Ekler",
+  "untitledDrawing": "Başlıksız çizim",
+  "templates": {
+    "empty": { "columns": ["Yapılacak", "Yapılıyor", "Bitti"], "labels": [] },
+    "sprint": {
+      "columns": ["Sırada", "Yapılıyor", "Test", "Bitti"],
+      "labels": ["Backend", "Web", "Mobil"]
+    },
+    "roadmap": {
+      "columns": ["Fikir", "Sırada", "Yapılıyor", "İncelemede", "Bitti"],
+      "labels": ["Backend", "Altyapı", "UI", "Güvenlik", "Entegrasyon"]
+    },
+    "bugs": {
+      "columns": ["Yeni", "Doğrulandı", "Düzeltiliyor", "Kapandı"],
+      "labels": ["Mobil", "Web", "API"]
+    }
+  },
+  "sprintName": "Sprint 1",
+  "notifications": {
+    "assigned": "{actor} seni {key} kartına atadı: {title}",
+    "comment": "{actor} {key} kartına yorum yazdı: {excerpt}",
+    "due_soon": "{key} kartının son tarihi yaklaşıyor: {title}"
+  },
+  "system": {
+    "created": "{actor} kartı oluşturdu",
+    "moved": "{actor} kartı {from} → {to} sütununa taşıdı"
+  }
+}

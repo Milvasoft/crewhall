@@ -1,0 +1,79 @@
+{
+  "nav": "Statistics",
+  "title": "Statistics",
+  "updated": "Last updated {time}",
+  "never": "No summary yet. Statistics update every hour; update now to see them right away.",
+  "refresh": "Update now",
+  "range": "Range",
+  "days": "{count} days",
+  "source": "Figures come from the hourly summary; raw events are not scanned. Days are in UTC; per-person activity is kept for 60 days.",
+  "tile": {
+    "dau": "Active today",
+    "wau": "Last 7 days",
+    "mau": "Last 30 days",
+    "ofMembers": "{pct}% of {members} members",
+    "storage": "Storage",
+    "quota": "Quota {size}",
+    "noQuota": "No quota limit"
+  },
+  "active": {
+    "title": "Active users",
+    "dau": "Daily",
+    "wau": "Weekly",
+    "mau": "Monthly"
+  },
+  "storage": {
+    "title": "Total storage",
+    "empty": "No measurements in this range."
+  },
+  "modules": {
+    "title": "Module usage",
+    "hint": "Average people per day in the range, and the total number of actions",
+    "module": "Module",
+    "avg": "Daily avg.",
+    "peak": "Peak",
+    "actions": "Total actions",
+    "actionsHint": "How many changes were made in the range: sending, editing, deleting, uploading."
+  },
+  "area": {
+    "drive": "Drive",
+    "quick": "Quick access",
+    "chat": "Chat",
+    "meet": "Meetings",
+    "wiki": "Pages",
+    "boards": "Boards",
+    "drawings": "Drawings",
+    "vault": "Vault",
+    "portal": "Portal",
+    "mcp": "MCP and API",
+    "core": "General",
+    "ai": "AI",
+    "calendar": "Calendar",
+    "forms": "Forms",
+    "contacts": "Contacts",
+    "mail": "Mail",
+    "automations": "Automations",
+    "tools": "Tools",
+    "tables": "Tables",
+    "office": "Office"
+  },
+  "spaces": {
+    "title": "Growing spaces",
+    "space": "Space",
+    "size": "Size",
+    "growth": "Growth",
+    "items": "Items",
+    "empty": "No space grew in this range."
+  },
+  "users": {
+    "title": "People using the most storage",
+    "person": "Person",
+    "size": "Uploaded",
+    "empty": "No files uploaded yet."
+  },
+  "view": {
+    "table": "Show as table",
+    "chart": "Show as chart",
+    "day": "Day"
+  }
+}

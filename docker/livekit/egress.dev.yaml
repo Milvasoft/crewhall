@@ -1,0 +1,9 @@
+# LiveKit egress for local recording tests (profile "meet-rec", 2-4 GB RAM: it runs Chrome).
+# The api tells egress to upload straight to SeaweedFS (MEET_EGRESS_S3_ENDPOINT=http://seaweedfs:8333).
+api_key: crewhall-dev
+api_secret: crewhall-dev-livekit-secret-0123456789abcdef
+ws_url: ws://livekit:7880
+redis:
+  address: valkey:6379
+health_port: 8080
+log_level: info

@@ -1,0 +1,30 @@
+{
+  "appName": "Crewhall",
+  "actions": {
+    "save": "Kaydet",
+    "cancel": "Vazgeç",
+    "delete": "Sil",
+    "close": "Kapat",
+    "continue": "Devam",
+    "back": "Geri",
+    "retry": "Tekrar dene"
+  },
+  "roles": {
+    "org": {
+      "owner": "Sahip",
+      "admin": "Yönetici",
+      "member": "Üye",
+      "guest": "Misafir"
+    },
+    "space": {
+      "owner": "Sahip",
+      "admin": "Yönetici",
+      "editor": "Düzenleyen",
+      "viewer": "İzleyen"
+    }
+  },
+  "quick": {
+    "todoTitle": "Yapılacaklar",
+    "groupTitle": "Linkler"
+  }
+}

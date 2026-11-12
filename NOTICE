@@ -1,0 +1,12 @@
+Crewhall
+Copyright (c) 2026 Milvasoft
+
+Licensed under the Apache License 2.0 with the Commons Clause License Condition
+v1.0. See the LICENSE file. In short, the Commons Clause means the Apache License
+does not grant the right to Sell the Software: to provide it to third parties, for
+a fee or other consideration (including fees for hosting or consulting/support
+services related to the Software), as a product or service whose value derives,
+entirely or substantially, from the functionality of the Software.
+
+This product includes third-party software, data and assets. Their notices are in
+THIRD_PARTY_NOTICES.md and apps/web/src/features/tools/THIRD_PARTY.md.

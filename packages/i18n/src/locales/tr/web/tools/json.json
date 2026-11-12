@@ -1,0 +1,78 @@
+{
+  "json-csv": {
+    "name": "JSON ↔ CSV dönüştür",
+    "description": "JSON nesne dizisini CSV'ye çevir, CSV'yi yeniden JSON'a ayrıştır; tamamen yerelde.",
+    "keywords": "json, csv, dönüştür, tablo, elektronik tablo, excel"
+  },
+  "json-diff": {
+    "name": "JSON karşılaştır",
+    "description": "İki JSON belgesini yapısal olarak karşılaştır; eklenen, silinen ve değişen değerleri yerelde gör.",
+    "keywords": "json, diff, karşılaştır, fark, değişiklik, yama",
+    "changes": "Değişiklikler",
+    "identical": "İki belge yapısal olarak aynı."
+  },
+  "json-schema": {
+    "name": "JSON şeması",
+    "description": "Örnek JSON'dan JSON Schema üret ya da JSON'u bir şemaya göre doğrula; tamamen yerelde.",
+    "keywords": "json, şema, schema, üret, doğrula, ajv, draft-07, doğrulayıcı",
+    "invalidJson": "Geçersiz JSON",
+    "generate": "Üret",
+    "validate": "Doğrula",
+    "data": "JSON verisi",
+    "valid": "Geçerli, veri şemaya uyuyor.",
+    "errorCount": "{count} hata"
+  },
+  "json-string": {
+    "name": "JSON ↔ dize",
+    "description": "JSON'u kodda kullanmak için kaçışlı bir dize değişmezine çevir ya da dizeyi yeniden JSON'a ayrıştır; tamamen yerelde.",
+    "keywords": "json, dize, string, stringify, kaçış, kaçışı kaldır, ayrıştır, küçült, kod",
+    "string": "Dize"
+  },
+  "json-viewer": {
+    "name": "JSON görüntüleyici ve güzelleştirici",
+    "description": "JSON'u yerelde biçimlendir, küçült, sırala ve doğrula; hatanın yerini tam olarak gör.",
+    "keywords": "json, güzelleştir, biçimlendir, düzenle, küçült, doğrula, görüntüle, ağaç",
+    "beautify": "Güzelleştir",
+    "indent": "Girinti",
+    "spaces": "{count} boşluk",
+    "sortKeys": "Anahtarları sırala",
+    "formatted": "Biçimli",
+    "tree": "Ağaç",
+    "stats": {
+      "objects": "{count} nesne",
+      "arrays": "{count} dizi",
+      "keys": "{count} anahtar",
+      "depth": "derinlik {n}"
+    },
+    "placeholder": "JSON yapıştır…",
+    "treeEmpty": "Ağacı görmek için geçerli bir JSON gir.",
+    "errorAt": "{error} (satır {n}, sütun {column})",
+    "copyPath": "Yolu kopyala: {path}",
+    "pathButton": "yol",
+    "copyValue": "Değeri kopyala",
+    "valueButton": "değer",
+    "searchPlaceholder": "Anahtar ve değerlerde ara…",
+    "searchLabel": "JSON içinde ara",
+    "expandAll": "Tümünü aç"
+  },
+  "json-xml": {
+    "name": "JSON ↔ XML dönüştür",
+    "description": "JSON'u XML'e, XML'i yeniden JSON'a çevir; iki yönde de yerelde.",
+    "keywords": "json, xml, dönüştür, soap, ayrıştır"
+  },
+  "json-yaml": {
+    "name": "JSON ↔ YAML dönüştür",
+    "description": "JSON'u YAML'a, YAML'ı yeniden JSON'a çevir; iki yönde de yerelde.",
+    "keywords": "json, yaml, yml, dönüştür, yapılandırma, ayar"
+  },
+  "jsonpath": {
+    "name": "JSONPath deneyici",
+    "description": "Bir JSON belgesinde JSONPath sorguları çalıştır ve eşleşmeleri yerelde incele.",
+    "keywords": "json, jsonpath, sorgu, yol, filtre, xpath, seç",
+    "invalid": "Geçersiz sorgu",
+    "queryLabel": "JSONPath sorgusu",
+    "matchCount": "{count} eşleşme",
+    "matches": "Eşleşmeler",
+    "paths": "Yollar"
+  }
+}

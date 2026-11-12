@@ -1,0 +1,241 @@
+{
+  "attachmentsFolder": "{table} · Ekler",
+  "importedSheet": "İçe aktarılan tablo",
+  "defaultView": "Tablo",
+  "formTable": "{form} · Yanıtlar",
+  "formRespondent": "Yanıtlayan",
+  "formSubmitted": "Gönderilme",
+  "templates": {
+    "empty": {
+      "fields": {
+        "name": "Ad",
+        "notes": "Notlar",
+        "status": "Durum"
+      },
+      "choices": {
+        "todo": "Yapılacak",
+        "doing": "Yapılıyor",
+        "done": "Bitti"
+      },
+      "views": {
+        "grid": "Tablo"
+      },
+      "rows": []
+    },
+    "crm": {
+      "fields": {
+        "name": "Şirket",
+        "contact": "İlgili kişi",
+        "email": "E-posta",
+        "phone": "Telefon",
+        "stage": "Aşama",
+        "value": "Tutar",
+        "owner": "Sorumlu",
+        "next": "Sonraki adım",
+        "notes": "Notlar"
+      },
+      "choices": {
+        "lead": "Aday",
+        "contacted": "Görüşüldü",
+        "proposal": "Teklif",
+        "won": "Kazanıldı",
+        "lost": "Kaybedildi"
+      },
+      "views": {
+        "grid": "Tüm müşteriler",
+        "kanban": "Satış hunisi",
+        "calendar": "Takip takvimi"
+      },
+      "rows": [
+        {
+          "name": "Örnek Lojistik A.Ş.",
+          "contact": "Deniz Kaya",
+          "email": "deniz@ornek-lojistik.com",
+          "stage": "proposal",
+          "value": 120000,
+          "notes": "Depo takibi için teklif gönderildi."
+        },
+        {
+          "name": "Mavi Yazılım",
+          "contact": "Ece Aydın",
+          "email": "ece@maviyazilim.com",
+          "stage": "contacted",
+          "value": 45000
+        },
+        {
+          "name": "Kuzey Enerji",
+          "contact": "Murat Demir",
+          "stage": "lead"
+        }
+      ]
+    },
+    "inventory": {
+      "fields": {
+        "name": "Ürün",
+        "sku": "Stok kodu",
+        "category": "Kategori",
+        "quantity": "Adet",
+        "min": "En az stok",
+        "unitPrice": "Birim fiyat",
+        "total": "Toplam değer",
+        "status": "Stok durumu",
+        "location": "Konum",
+        "photo": "Görsel"
+      },
+      "choices": {
+        "hardware": "Donanım",
+        "supplies": "Sarf malzemesi",
+        "office": "Ofis"
+      },
+      "formulaReorder": "Sipariş ver",
+      "formulaEnough": "Yeterli",
+      "views": {
+        "grid": "Tüm ürünler",
+        "gallery": "Galeri",
+        "low": "Azalan stok"
+      },
+      "rows": [
+        {
+          "name": "USB-C şarj aleti",
+          "sku": "SRJ-065",
+          "category": "hardware",
+          "quantity": 4,
+          "min": 10,
+          "unitPrice": 650,
+          "location": "Depo A"
+        },
+        {
+          "name": "A4 kâğıt (koli)",
+          "sku": "KGT-A4",
+          "category": "supplies",
+          "quantity": 25,
+          "min": 8,
+          "unitPrice": 420,
+          "location": "Depo B"
+        },
+        {
+          "name": "Toplantı masası kamerası",
+          "sku": "KAM-4K",
+          "category": "office",
+          "quantity": 2,
+          "min": 1,
+          "unitPrice": 7800,
+          "location": "3. kat"
+        }
+      ]
+    },
+    "hiring": {
+      "fields": {
+        "name": "Aday",
+        "role": "Pozisyon",
+        "stage": "Aşama",
+        "email": "E-posta",
+        "phone": "Telefon",
+        "cv": "Özgeçmiş",
+        "rating": "Değerlendirme",
+        "interviewer": "Görüşmeci",
+        "interview": "Görüşme",
+        "source": "Kaynak"
+      },
+      "choices": {
+        "engineering": "Yazılım",
+        "design": "Tasarım",
+        "sales": "Satış",
+        "applied": "Başvuru",
+        "screen": "Ön görüşme",
+        "technical": "Teknik mülakat",
+        "offer": "Teklif",
+        "hired": "İşe alındı",
+        "rejected": "Reddedildi",
+        "linkedin": "LinkedIn",
+        "referral": "Referans",
+        "careers": "Kariyer sitesi"
+      },
+      "views": {
+        "kanban": "Süreç",
+        "grid": "Tüm adaylar",
+        "calendar": "Görüşmeler"
+      },
+      "rows": [
+        {
+          "name": "Zeynep Arslan",
+          "role": "engineering",
+          "stage": "technical",
+          "email": "zeynep@example.com",
+          "rating": 4,
+          "source": "referral"
+        },
+        {
+          "name": "Can Yılmaz",
+          "role": "design",
+          "stage": "screen",
+          "source": "linkedin"
+        },
+        {
+          "name": "Elif Şahin",
+          "role": "sales",
+          "stage": "applied",
+          "source": "careers"
+        }
+      ]
+    },
+    "assets": {
+      "fields": {
+        "name": "Demirbaş",
+        "tag": "Demirbaş no",
+        "type": "Tür",
+        "assignee": "Zimmetli kişi",
+        "purchased": "Alış tarihi",
+        "price": "Alış bedeli",
+        "warranty": "Garanti bitişi",
+        "status": "Durum",
+        "serial": "Seri no",
+        "age": "Yaş (ay)"
+      },
+      "choices": {
+        "laptop": "Dizüstü",
+        "monitor": "Monitör",
+        "phone": "Telefon",
+        "furniture": "Mobilya",
+        "inUse": "Kullanımda",
+        "stored": "Depoda",
+        "broken": "Arızalı",
+        "retired": "Hurda"
+      },
+      "views": {
+        "grid": "Tüm demirbaşlar",
+        "byStatus": "Duruma göre",
+        "timeline": "Garanti süreleri"
+      },
+      "rows": [
+        {
+          "name": "MacBook Pro 14",
+          "tag": "DMB-0001",
+          "type": "laptop",
+          "purchased": "2025-03-12",
+          "price": 72000,
+          "warranty": "2027-03-12",
+          "status": "inUse",
+          "serial": "C02XK1"
+        },
+        {
+          "name": "Dell 27\" monitör",
+          "tag": "DMB-0002",
+          "type": "monitor",
+          "purchased": "2024-09-01",
+          "price": 9800,
+          "warranty": "2026-09-01",
+          "status": "stored"
+        },
+        {
+          "name": "Ergonomik koltuk",
+          "tag": "DMB-0003",
+          "type": "furniture",
+          "purchased": "2023-05-20",
+          "price": 6500,
+          "status": "inUse"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1019 @@
+{
+  "list": {
+    "title": "Sohbet",
+    "newChat": "Yeni sohbet",
+    "search": "Sohbetlerde ara",
+    "filters": "Sohbet süzgeçleri",
+    "filter": {
+      "unread": "Okunmamış",
+      "direct": "Birebir",
+      "group": "Gruplar",
+      "space": "Space",
+      "meeting": "Toplantılar",
+      "archive": "Arşiv"
+    },
+    "pinned": "Sabitlenenler",
+    "recent": "Son sohbetler",
+    "empty": "Henüz sohbet yok. Kalem düğmesiyle yeni bir sohbet başlat.",
+    "noMatch": "Bu süzgece uyan sohbet yok.",
+    "draft": "Taslak · henüz mesaj yok",
+    "noMessages": "Henüz mesaj yok",
+    "attachment": "Dosya",
+    "you": "Sen",
+    "mentions": "{count} okunmamış bahsetme",
+    "unread": "{count} okunmamış mesaj"
+  },
+  "time": {
+    "today": "Bugün",
+    "yesterday": "Dün"
+  },
+  "home": {
+    "title": "Bir sohbet seç",
+    "body": "Soldaki listeden bir sohbet aç ya da yeni bir sohbet başlat."
+  },
+  "notFound": {
+    "title": "Sohbet bulunamadı",
+    "body": "Sohbet silinmiş, arşivlenmiş ya da artık üyesi değilsin.",
+    "back": "Sohbetlere dön"
+  },
+  "header": {
+    "spaceMembers": "{space} space'i · {count, plural, one {# üye} other {# üye}}",
+    "alertSpace": "{space} · alarm sohbeti · {count, plural, one {# üye} other {# üye}}",
+    "members": "{count, plural, one {# üye} other {# üye}}",
+    "meeting": "Toplantı sohbeti · {count, plural, one {# katılımcı} other {# katılımcı}}",
+    "localTime": "yerel saat {time}",
+    "menu": "Sohbet menüsü",
+    "archived": "Arşivlendi"
+  },
+  "tabs": {
+    "label": "Sohbet sekmeleri",
+    "chat": "Sohbet",
+    "files": "Dosyalar",
+    "pinned": "Sabitlenenler"
+  },
+  "menu": {
+    "pin": "Sabitle",
+    "unpin": "Sabitlemeyi kaldır",
+    "markUnread": "Okunmadı olarak işaretle",
+    "notify": "Bildirimler: {level}",
+    "mute": "Sessize al",
+    "unmute": "Sessizi kaldır",
+    "mute1h": "1 saat",
+    "muteTomorrow": "Yarın sabaha kadar",
+    "muteWeek": "1 hafta",
+    "members": "Üyeler · {count}",
+    "addPeople": "Kişi ekle",
+    "webhooks": "Uygulamalar ve webhook'lar",
+    "nameGroup": "Gruba ad ver",
+    "rename": "Yeniden adlandır",
+    "linkSpace": "Space'e bağla",
+    "archive": "Herkes için arşivle",
+    "unarchive": "Herkes için arşivden çıkar",
+    "leave": "Sohbetten ayrıl",
+    "archiveMine": "Arşivle",
+    "unarchiveMine": "Arşivden çıkar",
+    "clear": "Benim için sil",
+    "deleteAll": "Herkes için sil"
+  },
+  "notify": {
+    "all": "Tümü",
+    "critical": "Yalnız kritik",
+    "mentions": "Yalnız bahsetmeler",
+    "none": "Hiçbiri"
+  },
+  "presence": {
+    "online": "Çevrimiçi",
+    "away": "Uzakta",
+    "busy": "Meşgul",
+    "dnd": "Rahatsız etmeyin",
+    "offline": "Çevrimdışı",
+    "autoMeeting": "Toplantıda · otomatik",
+    "autoScreen": "Sunuyor · otomatik",
+    "lastSeen": "son görülme {time}",
+    "until": "{time} saatine kadar"
+  },
+  "person": {
+    "guest": "Misafir",
+    "localTime": "Yerel saat {time} · {city}",
+    "sameTime": "seninle aynı",
+    "timeDiff": "{hours} saat fark",
+    "sharedSpaces": "Ortak space'ler",
+    "message": "Mesaj",
+    "profile": "Profil"
+  },
+  "pane": {
+    "messages": "Mesajlar",
+    "loadingOlder": "Eski mesajlar yükleniyor…",
+    "newMessages": "Yeni mesajlar",
+    "seen": "Görüldü",
+    "seenAt": "Görüldü {time}",
+    "jumpLatest": "Son mesajlara git",
+    "dropFiles": "Dosyaları buraya bırak, mesaja eklensin"
+  },
+  "typing": {
+    "one": "{name} yazıyor…",
+    "two": "{first} ve {second} yazıyor…",
+    "many": "{count} kişi yazıyor…"
+  },
+  "message": {
+    "guest": "Misafir",
+    "reply": "Yanıtla",
+    "forward": "İlet",
+    "copy": "Kopyala",
+    "copyLink": "Bağlantıyı kopyala",
+    "pin": "Sabitle",
+    "unpin": "Sabitlemeyi kaldır",
+    "markUnread": "Okunmadı olarak işaretle",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "more": "Diğer eylemler",
+    "deleted": "Bu mesaj silindi",
+    "edited": "(düzenlendi)",
+    "bot": "BOT",
+    "automation": "Otomasyon",
+    "copied": "Mesaj kopyalandı",
+    "linkCopied": "Bağlantı kopyalandı",
+    "copyCode": "Kodu kopyala",
+    "codeCopied": "Kod kopyalandı",
+    "pinnedHint": "Sabitlenmiş mesaj",
+    "pinnedToast": "Mesaj sabitlendi",
+    "unpinnedToast": "Sabitleme kaldırıldı",
+    "info": "Mesaj bilgisi"
+  },
+  "system": {
+    "created": "{actor} sohbeti oluşturdu, {people} eklendi",
+    "renamed": "{actor} sohbeti yeniden adlandırdı: {name}",
+    "members_added": "{actor} sohbete {people} ekledi",
+    "member_removed": "{actor}, {people} kişisini sohbetten çıkardı",
+    "member_left": "{actor} sohbetten ayrıldı",
+    "linked_space": "{actor} sohbeti bir space'e bağladı",
+    "message_pinned": "{actor} bir mesajı sabitledi",
+    "webhook_added": "{actor} gelen webhook ekledi: {name}",
+    "archived": "{actor} sohbeti arşivledi",
+    "unarchived": "{actor} sohbeti arşivden çıkardı",
+    "createdAlone": "{actor} sohbeti oluşturdu",
+    "meeting_started": "{actor} toplantı başlattı",
+    "meeting_startedAlone": "Toplantı başladı",
+    "meeting_ended": "Toplantı bitti · {minutes, plural, one {# dakika} other {# dakika}}",
+    "recording_started": "{actor} kaydı başlattı",
+    "recording_ready": "Toplantı kaydı hazır · Drive › Toplantı kayıtları",
+    "call_missed": "Cevapsız sesli arama · {actor}",
+    "call_missedVideo": "Cevapsız görüntülü arama · {actor}",
+    "call_declined": "Reddedilen sesli arama · {actor}",
+    "call_declinedVideo": "Reddedilen görüntülü arama · {actor}",
+    "call_busy": "Reddedilen sesli arama · {actor} · Meşgul",
+    "call_busyVideo": "Reddedilen görüntülü arama · {actor} · Meşgul",
+    "call_ended": "Sesli arama · {duration} · {people}",
+    "call_endedVideo": "Görüntülü arama · {duration} · {people}"
+  },
+  "severity": {
+    "critical": "Kritik",
+    "warning": "Uyarı",
+    "success": "Başarılı",
+    "info": "Bilgi"
+  },
+  "attachment": {
+    "open": "{name} dosyasını aç",
+    "download": "{name} dosyasını indir",
+    "removed": "Dosya kaldırıldı"
+  },
+  "reactions": {
+    "picker": "Tepki seç",
+    "add": "{emoji} tepkisi ver",
+    "who": "{emoji} {names}"
+  },
+  "mention": {
+    "title": "Bu sohbetteki kişiler",
+    "all": "@herkes",
+    "here": "@burada",
+    "allName": "herkes",
+    "unknown": "Biri",
+    "allHint": "Bu sohbetteki {count} kişiye bildirim gider",
+    "move": "seç",
+    "pick": "ekle",
+    "close": "kapat",
+    "confirmTitle": "@herkes bildirimi gönderilsin mi?",
+    "confirmBody": "Bu mesaj sohbetteki {count} kişinin hepsine bildirim gönderir, sohbeti sessize almış olsalar bile.",
+    "confirmSend": "Gönder"
+  },
+  "composer": {
+    "placeholder": "{name} sohbetine mesaj yaz",
+    "send": "Gönder",
+    "save": "Kaydet",
+    "emoji": "Emoji ekle",
+    "attach": "Dosya ekle",
+    "editing": "Mesajı düzenliyorsun",
+    "replyingTo": "{name} kişisine yanıt",
+    "cancel": "Vazgeç",
+    "removeFile": "{name} dosyasını çıkar",
+    "offline": "Çevrimdışısın: yazdıkların sırada bekler, bağlanınca gönderilir.",
+    "archived": "Bu sohbet arşivlendi; yeni mesaj yazılamaz.",
+    "readOnly": "Bu sohbete yazma yetkin yok.",
+    "tooManyFiles": "Bir mesaja en çok {max} dosya eklenebilir.",
+    "tooLong": "Mesaj en çok {max} karakter olabilir."
+  },
+  "pending": {
+    "waiting": "Gönderilmeyi bekliyor",
+    "failed": "Gönderilemedi",
+    "retry": "Tekrar dene",
+    "discard": "Sil",
+    "confirmSend": "Onayla ve gönder",
+    "uploadStalled": "Yükleme yarıda kaldı · {done} / {total}"
+  },
+  "connection": {
+    "lost": "Bağlantı koptu.",
+    "connecting": "Yeniden bağlanılıyor…",
+    "retryIn": "Yeniden bağlanılıyor… {attempt}. deneme · {seconds} sn sonra",
+    "retryNow": "Şimdi dene"
+  },
+  "starter": {
+    "direct": "Bu sohbet yalnız ikinizindir. Paylaştığın dosyalar Drive'da Kişisel › Chat ekleri altında durur.",
+    "space": "{space} space'indeki herkes bu sohbeti görür. Ekler space'in Ekler klasörüne düşer.",
+    "group": "Gruba eklenen kişiler, ekleme sırasında seçilen geçmişi görür.",
+    "hello": "Merhaba",
+    "welcome": "Hoş geldin {name}!"
+  },
+  "files": {
+    "filter": {
+      "all": "Tümü",
+      "docs": "Belgeler",
+      "media": "Medya",
+      "code": "Kod"
+    },
+    "search": "Dosyalarda ara",
+    "openInDrive": "Drive'da aç",
+    "cols": {
+      "name": "Ad",
+      "by": "Paylaşan",
+      "date": "Tarih",
+      "size": "Boyut"
+    },
+    "goTo": "Mesaja git",
+    "empty": "Henüz dosya yok",
+    "emptyHint": "Sohbette paylaşılan dosyalar burada ve Drive'daki Ekler klasöründe görünür.",
+    "total": "{count, plural, one {# dosya} other {# dosya}} · {size}"
+  },
+  "pinned": {
+    "count": "{count} sabit mesaj · en çok 50",
+    "search": "Sabitlenenlerde ara",
+    "show": "Sohbette göster",
+    "empty": "Sabitlenmiş mesaj yok",
+    "emptyHint": "Bir mesajın menüsünden Sabitle'yi seçince burada listelenir.",
+    "by": "Sabitleyen: {name} · {date}"
+  },
+  "new": {
+    "title": "Yeni sohbet",
+    "to": "Kime:",
+    "toPlaceholder": "Ad ya da e-posta yaz",
+    "people": "Kişiler",
+    "spaces": "Space'ler",
+    "goSpace": "Space sohbetine git · {count} üye",
+    "remove": "{name} kişisini çıkar",
+    "groupName": "Grup adı (isteğe bağlı)",
+    "spaceName": "Sohbet adı",
+    "linkSpace": "Space'e bağla",
+    "noSpace": "Yok",
+    "pickHint": "Bir kişi seçersen birebir sohbet, iki ya da daha fazla kişi seçersen grup olur.",
+    "directSummary": "Birebir sohbet · varsa mevcut sohbet açılır",
+    "groupSummary": "{count} kişi seçildi · grup sohbeti",
+    "spaceSummary": "Space sohbeti: space'e katılan herkes bu sohbete de girer.",
+    "openExisting": "Mevcut sohbete git",
+    "firstMessageHint": "İlk mesajı gönderdiğinde sohbet oluşur ve herkesin listesine düşer.",
+    "firstMessage": "İlk mesajı yaz",
+    "open": "Sohbeti aç"
+  },
+  "dialogs": {
+    "rename": {
+      "title": "Sohbeti yeniden adlandır",
+      "groupTitle": "Gruba ad ver",
+      "name": "Ad",
+      "hint": "Ad herkes için değişir ve sohbete bir sistem satırı düşer. Ad verilmezse üyelerin adları görünür.",
+      "clear": "Adı kaldır"
+    },
+    "people": {
+      "search": "Kişi ara",
+      "none": "Eşleşen kişi yok"
+    },
+    "add": {
+      "title": "Kişi ekle",
+      "subtitle": "{name} · şu an {count} üye",
+      "history": "Sohbet geçmişi",
+      "historyOptions": {
+        "none": "Geçmişi paylaşma",
+        "days7": "Son 7 günü paylaş",
+        "days30": "Son 30 günü paylaş",
+        "all": "Tüm geçmişi paylaş"
+      },
+      "historyHints": {
+        "none": "Yalnız eklendiği andan sonraki mesajları görür.",
+        "days7": "Son bir haftanın mesajları ve dosyaları.",
+        "days30": "Son bir ayın mesajları ve dosyaları.",
+        "all": "Sohbetin başından bu yana her şey."
+      },
+      "systemLine": "Ekleme sohbete sistem satırı olarak düşer. Adı olmayan grubun görünen adı yeni üyeyle değişir.",
+      "submit": "{count, plural, =0 {Ekle} other {# kişiyi ekle}}"
+    },
+    "members": {
+      "title": "Üyeler · {count}",
+      "you": "(sen)",
+      "remove": "Çıkar"
+    },
+    "link": {
+      "title": "Space'e bağla",
+      "hint": "Grup bir space sohbetine dönüşür: üyelik space'ten gelir, geçmiş ve ekler korunur.",
+      "none": "Yönetici olduğun bir space yok.",
+      "submit": "Bağla"
+    },
+    "leave": {
+      "title": "{name} sohbetinden ayrıl",
+      "body": "Sohbet listenden kalkar; yeniden eklenene kadar mesajları görmezsin.",
+      "submit": "Ayrıl"
+    },
+    "delete": {
+      "title": "Mesaj silinsin mi?",
+      "body": "Mesaj herkes için silinir ve yerinde \"Bu mesaj silindi\" yazar.",
+      "others": "{name} kişisinin mesajı herkes için silinir. Bu işlemi space yöneticisi olarak yapıyorsun.",
+      "files": "{count, plural, one {Ekteki dosya} other {Ekteki # dosya}} Drive'da çöp kutusuna taşınır."
+    },
+    "forward": {
+      "title": "Mesajı ilet",
+      "text": "{name} yazmıştı: {text}"
+    },
+    "clear": {
+      "title": "{name} sohbeti senin için silinsin mi?",
+      "body": "Sohbet listenden kalkar ve şimdiye kadarki mesajlar yalnız senden gizlenir; diğer kişiler görmeye devam eder. Yeni bir mesaj gelince sohbet boş olarak geri döner.",
+      "submit": "Benim için sil"
+    },
+    "deleteAll": {
+      "title": "{name} herkes için silinsin mi?",
+      "body": "Bütün mesajlar ve ekler herkesten silinir; ekler Drive çöp kutusuna gider ve süresi dolunca kalıcı olarak kalkar. Bu işlem geri alınamaz ve denetim kaydına yazılır.",
+      "confirm": "Onaylamak için sohbetin adını yaz",
+      "submit": "Herkes için sil"
+    }
+  },
+  "hooks": {
+    "title": "Uygulamalar ve webhook'lar",
+    "hint": "Bu sohbete dışarıdan mesaj gönderen uygulamalar. Her webhook kendi gizli URL'siyle yazar.",
+    "add": "Gelen webhook ekle",
+    "list": "Gelen webhook'lar · {count}",
+    "empty": "Henüz webhook yok.",
+    "lastUsed": "Son mesaj {time} · son 24 saatte {count} istek",
+    "neverUsed": "Henüz istek gelmedi",
+    "health": {
+      "active": "Etkin",
+      "limited": "Sınırda",
+      "muted": "Sessizde",
+      "failing": "Hatalı",
+      "disabled": "Kapalı"
+    },
+    "log": "Teslim günlüğü",
+    "edit": "Düzenle",
+    "mute": "Sessize al 1 sa",
+    "unmute": "Sessizi kaldır",
+    "regenerate": "URL'yi yeniden üret",
+    "regenerated": "Yeni URL üretildi; eski URL artık çalışmaz.",
+    "enable": "Aç",
+    "disable": "Kapat",
+    "limitedHint": "Son bir saatte dakikada {limit} istek sınırı aşıldı; fazlası 429 ile reddedildi, uygulama Retry-After'a göre yeniden denemeli.",
+    "failingHint": "Son istekler 4xx ile reddedildi. Nedeni için teslim günlüğüne bak.",
+    "googleTitle": "Google Chat'ten mi geçiyorsun?",
+    "googleBody": "Uygulamada yalnız webhook URL'sini değiştir. Google Chat'in text ve cardsV2 biçimi olduğu gibi kabul edilir.",
+    "createHint": "Webhook, {name} sohbetine bot olarak yazar.",
+    "name": "Ad",
+    "nameHint": "Mesajlarda bot adı olarak görünür.",
+    "namePlaceholder": "Ör. Grafana",
+    "create": "Oluştur",
+    "created": "Oluşturuldu",
+    "url": "Webhook URL'si",
+    "urlHint": "Gizli anahtar URL'nin parçasıdır; tam halini yalnız şimdi görebilirsin.",
+    "show": "Göster",
+    "copy": "URL'yi kopyala",
+    "copied": "Kopyalandı",
+    "copyExample": "Örneği kopyala",
+    "examples": {
+      "curl": "Crewhall biçimi",
+      "google": "Google Chat uyumlu"
+    },
+    "sample": {
+      "text": "Deploy bitti",
+      "title": "api 1.4.0 yayında",
+      "label": "Hata"
+    },
+    "limits": "Dakikada 60 istek, gövde en çok 32 KB. Fazlası 429 ya da 413 ile reddedilir.",
+    "done": "Tamam",
+    "logTitle": "{name} · teslim günlüğü",
+    "logHint": "Son 7 günün istekleri. Hatalı satıra tıklayınca neden ve gövdenin ilgili kısmı görünür; gizli anahtar kaydedilmez.",
+    "logEmpty": "Son 7 günde istek yok.",
+    "cols": {
+      "time": "Zaman",
+      "status": "Durum",
+      "size": "Boyut",
+      "latency": "Süre"
+    },
+    "ms": "{ms} ms",
+    "ip": "Kaynak IP: {ip}",
+    "codes": {
+      "400": "Gövde doğrulanamadı",
+      "413": "Gövde 32 KB'tan büyük",
+      "429": "Dakika başı sınır aşıldı",
+      "5xx": "Bizim tarafımızda hata; uygulama yeniden denemeli"
+    },
+    "integrations": {
+      "add": "Entegrasyon ekle",
+      "hint": "GitHub, Azure DevOps ya da Jira olaylarını {name} sohbetine kart olarak getirir. İmza her istekte doğrulanır.",
+      "service": "Servis",
+      "events": "Hangi olaylar gelsin?",
+      "via": "{service} entegrasyonu",
+      "secret": "Gizli anahtar",
+      "secretHint": "Yalnız şimdi gösterilir. Servisin webhook ayarına yapıştır.",
+      "copySecret": "Gizli anahtarı kopyala",
+      "setupTitle": "{service} tarafında",
+      "setup": {
+        "github": "Depo › Settings › Webhooks › Add webhook.\nPayload URL: yukarıdaki adres. Content type: application/json.\nSecret: gizli anahtar. Olaylar: \"Let me select individual events\" ile buradaki seçimler.",
+        "azure_devops": "Proje ayarları › Service hooks › Web Hooks.\nURL: yukarıdaki adres. Basic authentication: kullanıcı adı herhangi bir şey, parola gizli anahtar.\nHer olay türü için ayrı abonelik ekle.",
+        "jira": "Jira ayarları › System › WebHooks › Create a WebHook.\nURL: yukarıdaki adres. Secret: gizli anahtar.\nOlaylar: Issue created/updated/deleted ve Comment created."
+      },
+      "event": {
+        "push": "Push (commit gönderme)",
+        "pull_request": "Pull request açıldı, birleştirildi, kapatıldı, inceleme istendi",
+        "issues": "Konu açıldı, kapatıldı",
+        "issue_comment": "Konu ve PR yorumları",
+        "workflow_run": "Actions iş akışı bitti (başarılı ya da hatalı)",
+        "release": "Sürüm yayınlandı",
+        "git_push": "Kod gönderildi (push)",
+        "git_pullrequest_created": "Pull request oluşturuldu",
+        "git_pullrequest_updated": "Pull request güncellendi",
+        "git_pullrequest_merged": "Pull request birleştirildi",
+        "build_complete": "Derleme bitti",
+        "ms_vss-release_deployment-completed-event": "Dağıtım tamamlandı",
+        "workitem_created": "İş öğesi oluşturuldu",
+        "workitem_updated": "İş öğesi güncellendi",
+        "workitem_commented": "İş öğesine yorum yapıldı",
+        "jira_issue_created": "İş oluşturuldu",
+        "jira_issue_updated": "İş güncellendi",
+        "jira_issue_deleted": "İş silindi",
+        "comment_created": "Yorum yapıldı"
+      }
+    }
+  },
+  "search": {
+    "label": "Mesajlarda ara",
+    "placeholder": "Mesajlarda ara · from:ad ile kişiye göre süz",
+    "chats": "Sohbetler · {count}",
+    "people": "Kişiler",
+    "noPeople": "\"{q}\" ile eşleşen kişi yok",
+    "from": "Kimden",
+    "fromWho": "Kimden: {name}",
+    "anyone": "Herkes",
+    "inChat": "Sohbet",
+    "allChats": "Tüm sohbetler",
+    "hasFile": "Dosya içerenler",
+    "date": "Tarih",
+    "anyTime": "Her zaman",
+    "lastDays": "Son {days} gün",
+    "clear": "Süzgeçleri temizle",
+    "start": "Mesajlarda ara",
+    "startHint": "Yalnız erişebildiğin sohbetlerin sana açık geçmişi aranır.",
+    "none": "\"{q}\" için sonuç yok",
+    "noneHint": "Başka bir kelime dene ya da süzgeçleri kaldır.",
+    "results": "\"{q}\" için {count, plural, one {# mesaj} other {# mesaj}}",
+    "show": "Sohbette göster"
+  },
+  "notifications": {
+    "chat": {
+      "mention": "{actor} senden bahsetti · {conversationTitle}",
+      "direct": "{actor} sana mesaj gönderdi",
+      "reply": "{actor} mesajına yanıt verdi · {conversationTitle}",
+      "message": "{conversationTitle} sohbetinde yeni mesaj",
+      "alert": "{webhookName} · {conversationTitle}",
+      "webhook_failing": "{webhookName} webhook'u hata veriyor · {conversationTitle}",
+      "reminder": "Hatırlatma",
+      "scheduled_failed": "Zamanlanmış mesajın gönderilemedi · {conversationTitle}"
+    },
+    "drive": {
+      "shared": "{actor} {nodeName} öğesini seninle paylaştı"
+    },
+    "space": {
+      "added": "{actor} seni {spaceName} space'ine ekledi"
+    },
+    "link": {
+      "down": "{linkTitle} erişilemiyor",
+      "up": "{linkTitle} tekrar çalışıyor"
+    },
+    "meet": {
+      "invited": "{actor} seni toplantıya davet etti · {title}",
+      "recording_ready": "{title} toplantısının kaydı hazır",
+      "call_missed": "{actor} seni aradı · cevapsız",
+      "updated": "{actor} toplantıyı değiştirdi · {title}",
+      "cancelled": "{actor} toplantıyı iptal etti · {title}",
+      "ring_declined": "{actor} toplantıya katılamadı · {title}",
+      "ring_unanswered": "{actor} çağrına cevap vermedi · {title}"
+    },
+    "page": {
+      "mention": "{actor}, {name} sayfasında senden bahsetti",
+      "comment_mention": "{actor}, {name} sayfasındaki bir yorumda senden bahsetti",
+      "comment_reply": "{count, plural, one {{actor}, {name} sayfasındaki yorumuna yanıt verdi} other {{name} sayfasındaki yorumuna # yeni yanıt}}",
+      "restored": "{actor}, {name} sayfasını eski bir sürüme döndürdü",
+      "export_ready": "{name} dışa aktarıldı · {fileName}",
+      "updated": "{actor}, {name} sayfasını güncelledi"
+    },
+    "approval": {
+      "requested": "{client} onayını bekliyor · {title}"
+    },
+    "generic": "Yeni bildirim",
+    "snooze": {
+      "label": "Ertele",
+      "hour": "1 saat",
+      "tomorrow": "Yarın sabah",
+      "week": "Gelecek hafta"
+    },
+    "more": "{count} bildirim",
+    "snoozedUntil": "ertelendi, {time} geri gelir",
+    "markRead": "Okundu say",
+    "markUnread": "Okunmadı",
+    "restore": "Geri al",
+    "dismiss": "Kaldır",
+    "bellUnread": "Bildirimler, {count} okunmamış",
+    "readAll": "Tümünü okundu say",
+    "seeAll": "Tümünü gör",
+    "box": {
+      "inbox": "Gelen",
+      "snoozed": "Ertelenenler",
+      "dismissed": "Kaldırılanlar"
+    },
+    "source": "Kaynak",
+    "sources": {
+      "chat": "Chat",
+      "pages": "Sayfalar",
+      "boards": "Panolar",
+      "meetings": "Toplantılar",
+      "drive": "Drive",
+      "vault": "Kasa",
+      "alerts": "Webhook ve linkler",
+      "account": "Hesap",
+      "announcements": "Duyurular"
+    },
+    "settings": "Bildirim ayarları",
+    "subtitle": "Tüm modüllerden · 90 gün saklanır",
+    "unreadOnly": "Yalnız okunmamışlar",
+    "tabs": {
+      "all": "Tümü",
+      "mentions": "Bahsetmeler",
+      "assigned": "Atananlar",
+      "alerts": "Alarmlar"
+    },
+    "selected": "{count} seçili",
+    "clearSelection": "Seçimi temizle",
+    "empty": {
+      "inbox": "Bahsetmeler, paylaşımlar ve atamalar burada görünür.",
+      "snoozed": "Ertelenen bildirim yok. Ertelenen bildirim seçilen zamanda okunmamış olarak geri gelir.",
+      "dismissed": "Kaldırılan bildirim yok."
+    },
+    "retention": "Bildirimler 90 gün saklanır.",
+    "bulk": "Toplu işlemler",
+    "plugin": {
+      "notification": "{plugin} · {title}"
+    }
+  },
+  "status": {
+    "title": "Durumunu ayarla",
+    "emoji": "Emoji seç",
+    "placeholder": "Ne yapıyorsun?",
+    "message": "Durum mesajı",
+    "clearMessage": "Mesajı temizle",
+    "clearAfter": "Mesajı temizle",
+    "clears": {
+      "30m": "30 dk",
+      "1h": "1 saat",
+      "4h": "4 saat",
+      "today": "Bugün",
+      "week": "Bu hafta",
+      "never": "Temizleme"
+    },
+    "suggestions": "Öneriler",
+    "suggest": {
+      "meeting": "Toplantıdayım",
+      "focus": "Odaklanıyorum",
+      "home": "Evden çalışıyorum",
+      "leave": "İzindeyim"
+    },
+    "visibility": "Görünürlük",
+    "visibilities": {
+      "online": "Çevrimiçi",
+      "busy": "Meşgul",
+      "dnd": "Rahatsız etme",
+      "away": "Uzakta görün",
+      "invisible": "Görünmez"
+    },
+    "hints": {
+      "busy": "Bildirimler susar, mesajlar okunmamış kalır",
+      "dnd": "Yalnız aramalar ve kritik alarmlar gelir",
+      "invisible": "Çevrimdışı görünürsün, her şeyi kullanmaya devam edersin"
+    },
+    "autoMeeting": "Toplantıdayken otomatik \"Toplantıda\"",
+    "autoMeetingHint": "Takvimdeki toplantılar ve görüşmeler sırasında Meşgul, ekran paylaşırken Sunuyor (rahatsız etmeyin gibi) görünürsün",
+    "lasts": "Süre",
+    "durations": {
+      "30m": "30 dk",
+      "1h": "1 saat",
+      "4h": "4 saat",
+      "today": "Bugün sonuna kadar",
+      "week": "Bu hafta sonuna kadar",
+      "never": "Ben değiştirene kadar"
+    }
+  },
+  "profile": {
+    "people": "Kişiler",
+    "notFound": "Kişi bulunamadı",
+    "email": "E-posta",
+    "details": "Bilgiler",
+    "since": "Kurumda",
+    "timezone": "Saat dilimi",
+    "sharedSpaces": "Ortak space'ler",
+    "noSpaces": "Ortak space yok.",
+    "sharedChats": "Ortak sohbetler · {count}",
+    "noChats": "Ortak sohbet yok."
+  },
+  "prefs": {
+    "title": "Bildirim ayarları",
+    "hint": "Her tür için hangi kanaldan haber alacağını seç. Kilitli kutular kapatılamaz.",
+    "category": "Bildirim",
+    "channels": {
+      "inApp": "Uygulama",
+      "desktop": "Masaüstü",
+      "push": "Push",
+      "email": "E-posta"
+    },
+    "lockedNote": "Kilitli kutular güvenlik için kapatılamaz.",
+    "pageSubtitle": "Her bildirim türü için zil, masaüstü, telefon ve e-posta özeti ayrı ayrı açılıp kapatılır.",
+    "openPage": "Tüm ayarlar",
+    "sections": {
+      "chat": "Sohbet",
+      "meet": "Toplantı, arama ve takvim",
+      "work": "İş",
+      "org": "Kurum ve entegrasyonlar",
+      "security": "Güvenlik"
+    },
+    "groups": {
+      "chat_direct": {
+        "title": "Birebir mesajlar",
+        "hint": "Sana doğrudan yazıldığında"
+      },
+      "chat_mention": {
+        "title": "Bahsetmeler",
+        "hint": "@adın, @kanal ya da @burada geçtiğinde"
+      },
+      "chat_reply": {
+        "title": "Yanıtlar",
+        "hint": "Mesajına ya da takip ettiğin bir başlığa yanıt geldiğinde"
+      },
+      "chat_messages": {
+        "title": "Grup ve kanal mesajları",
+        "hint": "Üyesi olduğun grup ve space sohbetleri"
+      },
+      "chat_alerts": {
+        "title": "Kritik alarmlar",
+        "hint": "Alarm sohbetlerindeki kritik mesajlar; sessiz saatleri deler"
+      },
+      "chat_reminders": {
+        "title": "Hatırlatıcılar",
+        "hint": "Kendine kurduğun hatırlatıcılar ve gönderilemeyen planlı mesajlar"
+      },
+      "calls": {
+        "title": "Aramalar",
+        "hint": "Gelen ve cevapsız aramalar"
+      },
+      "meetings": {
+        "title": "Toplantılar",
+        "hint": "Davet, değişiklik, iptal ve kayıtlar"
+      },
+      "calendar": {
+        "title": "Takvim",
+        "hint": "Etkinlik davetleri, yanıtlar ve hatırlatmalar"
+      },
+      "mail": {
+        "title": "Posta",
+        "hint": "Yeni e-posta ve sana atanan paylaşılan kutu mesajları"
+      },
+      "boards": {
+        "title": "Panolar",
+        "hint": "Atanan kartlar, yorumlar ve yaklaşan son tarihler"
+      },
+      "pages": {
+        "title": "Sayfalar",
+        "hint": "Sayfa ve yorumlarda bahsetmeler, yanıtlar, dışa aktarma"
+      },
+      "drive": {
+        "title": "Drive ve paylaşımlar",
+        "hint": "Seninle paylaşılan dosyalar ve space'e eklenme"
+      },
+      "approvals": {
+        "title": "Onay istekleri",
+        "hint": "Yapay zekâ, MCP ya da eklentilerin onayını bekleyen işlemleri"
+      },
+      "announcements": {
+        "title": "Duyurular ve kudos",
+        "hint": "Kurum duyuruları ve sana gelen teşekkürler"
+      },
+      "forms": {
+        "title": "Formlar",
+        "hint": "Formlarına gelen yanıtlar"
+      },
+      "automations": {
+        "title": "Otomasyonlar",
+        "hint": "Otomasyon bildirimleri ve durdurulan kurallar"
+      },
+      "integrations": {
+        "title": "Bağlantılar ve webhook'lar",
+        "hint": "Çöken ya da düzelen linkler, hata veren webhook'lar"
+      },
+      "vault": {
+        "title": "Kasa",
+        "hint": "Kasa erişimi ve yeni cihazlar"
+      },
+      "security": {
+        "title": "Hesap güvenliği",
+        "hint": "Yeni oturum, 2FA ve şifre değişiklikleri"
+      },
+      "portal": {
+        "title": "Portal",
+        "hint": "Yayımlanamayan portal sayfaları"
+      },
+      "plugins": {
+        "title": "Eklentiler",
+        "hint": "Tüm eklentiler; her birini aşağıda ayrıca susturabilirsin"
+      }
+    },
+    "categories": {
+      "mention": "Bahsetmeler",
+      "direct_reply": "Birebir mesaj ve yanıtlar",
+      "conversation_message": "Grup ve space sohbeti mesajları",
+      "alert": "Alarm sohbetindeki kritik mesajlar",
+      "share": "Paylaşımlar ve space'e eklenme",
+      "boards": "Panolar: atama, yorum, son tarih",
+      "meetings": "Toplantılar: başladı, davet, kayıt",
+      "links": "Link çöktü ya da düzeldi",
+      "vault": "Kasa: erişim ve yeni cihaz",
+      "security": "Güvenlik: yeni oturum, 2FA, şifre",
+      "portal": "Portal yayını başarısız",
+      "announcements": "Kurum duyuruları"
+    },
+    "digest": "E-posta özeti",
+    "digests": {
+      "off": "Kapalı",
+      "hourly": "Saatlik",
+      "daily": "Günlük"
+    },
+    "quiet": "Sessiz saatler",
+    "quietFrom": "Başlangıç",
+    "quietTo": "Bitiş",
+    "sound": "Mesaj sesi",
+    "soundHint": "Başka sohbetteyken ya da sekme arka plandayken kısa bir ses çalar. Bahsetme ve birebir mesajın sesi daha belirgindir. Sessize alınan sohbetlerde, rahatsız etmeyin ve sessiz saatlerde çalmaz. Bu tarayıcıya kaydedilir.",
+    "soundTry": "Dinle",
+    "timezone": "Saat dilimi",
+    "noTimezone": "Seçilmedi",
+    "useBrowserZone": "{zone} kullan",
+    "plugins": {
+      "title": "Eklentiler",
+      "hint": "Gördüğün eklentiler. Bildirim gönderebilenler için her kanalı ayrı aç ya da kapat (ör. WhatsApp yalnız masaüstünde, telefona hiç gelmesin). Ayarlar hesabına kaydedilir, her cihazda geçerlidir."
+    },
+    "alertPlugins": "Eklenti bildirimleri de bu satıra bağlıdır; eklenti başına ayar Eklentiler bölümünde."
+  },
+  "disabled": {
+    "title": "Chat bu kurumda kapalı",
+    "body": "Kurum yöneticisi sohbet modülünü kapattı. Açılınca sohbetlerin olduğu gibi geri gelir.",
+    "home": "Ana sayfaya dön"
+  },
+  "archive": {
+    "archived": "Sohbet arşivlendi",
+    "unarchived": "Sohbet arşivden çıkarıldı",
+    "cleared": "Sohbet senin için silindi",
+    "deleted": "Sohbet herkes için silindi"
+  },
+  "admin": {
+    "deleteForEveryone": "Sohbetleri herkes için silme",
+    "deleteForEveryoneHint": "Açıkken grup sahibi ve kurum yöneticileri bir sohbeti mesajları ve ekleriyle birlikte herkes için silebilir. Birebir ve space sohbetleri hiçbir durumda herkes için silinmez."
+  },
+  "commands": {
+    "title": "Komutlar",
+    "meet": {
+      "hint": "Bu sohbette görüntülü arama ya da toplantı başlatır",
+      "usage": "/meet · /meet sesli"
+    },
+    "remind": {
+      "hint": "Sana hatırlatma kurar",
+      "usage": "/remind 15dk toplantı · /remind yarın 9:00 rapor"
+    },
+    "poll": {
+      "hint": "Anket açar; herkes oy verir, sonuç canlı görünür",
+      "usage": "/poll Soru? | Seçenek 1 | Seçenek 2"
+    },
+    "me": {
+      "hint": "Eylem mesajı olarak gönderir",
+      "usage": "/me kahve almaya gitti"
+    },
+    "whisper": {
+      "hint": "Yalnız seçtiğin kişinin göreceği mesaj",
+      "usage": "/whisper @kişi mesaj"
+    },
+    "voiceWord": "sesli",
+    "remindSet": "Hatırlatma kuruldu: {when}",
+    "remindDefault": "Hatırlatma",
+    "undo": "Geri al",
+    "remindInvalid": "Zamanı anlayamadım. Örnek: /remind 15dk toplantı ya da /remind yarın 9:00 rapor",
+    "whisperNeedsPerson": "Fısıltı için bir kişi seç: /whisper @kişi mesaj",
+    "whisperDirect": "Birebir sohbette fısıltıya gerek yok; mesaj zaten yalnız ikinizin.",
+    "meetUnavailable": "Bu sohbette toplantı başlatılamaz.",
+    "emptyText": "Komuttan sonra bir metin yaz.",
+    "move": "seç",
+    "pick": "kullan",
+    "close": "kapat",
+    "zamanla": {
+      "hint": "Mesajı daha sonra gönderir",
+      "usage": "/zamanla yarın 9:00 mesaj · /zamanla 30dk mesaj"
+    },
+    "gif": {
+      "hint": "GIPHY'den GIF arar ve gönderir",
+      "usage": "/gif kedi · /gif tebrikler"
+    }
+  },
+  "whisper": {
+    "to": "Fısıltı · yalnız {name} görüyor",
+    "toYou": "Fısıltı · yalnız sen görüyorsun",
+    "composing": "{name} kişisine fısıldıyorsun"
+  },
+  "poll": {
+    "label": "Anket",
+    "voters": "{count, plural, one {# kişi oy verdi} other {# kişi oy verdi}}",
+    "multiple": "Birden çok seçilebilir",
+    "closed": "Anket kapandı",
+    "close": "Anketi kapat",
+    "closedToast": "Anket kapatıldı",
+    "retract": "Oyumu geri al",
+    "votedBy": "Oy verenler: {names}",
+    "dialogTitle": "Anket aç",
+    "dialogHint": "Soruyu ve en az iki seçeneği yaz. Herkes oy verir, sonuç canlı görünür.",
+    "question": "Soru",
+    "questionPlaceholder": "Ne soralım?",
+    "option": "Seçenek {n}",
+    "addOption": "Seçenek ekle",
+    "removeOption": "Seçenek {n} kaldır",
+    "allowMultiple": "Birden çok seçeneğe izin ver",
+    "create": "Anketi gönder"
+  },
+  "schedule": {
+    "later": "Daha sonra gönder",
+    "tomorrow": "Yarın 09:00",
+    "monday": "Pazartesi 09:00",
+    "custom": "Özel tarih ve saat…",
+    "text": "Mesaj",
+    "date": "Tarih",
+    "time": "Saat",
+    "zone": "Saat dilimi: {zone}",
+    "past": "Geçmiş bir zaman seçildi.",
+    "submit": "Zamanla",
+    "scheduled": "Mesaj zamanlandı: {when}",
+    "uploading": "Dosyalar yüklenince zamanlayabilirsin.",
+    "count": "{count, plural, one {# zamanlanmış mesaj} other {# zamanlanmış mesaj}}",
+    "list": "Zamanlanmış mesajlar",
+    "files": "{count, plural, one {# dosya} other {# dosya}}",
+    "edit": "Düzenle",
+    "sendNow": "Şimdi gönder",
+    "delete": "Sil",
+    "sent": "Mesaj gönderildi",
+    "deleted": "Zamanlanmış mesaj silindi",
+    "saved": "Zamanlanmış mesaj kaydedildi",
+    "editTitle": "Zamanlanmış mesajı düzenle"
+  },
+  "emoji": {
+    "label": "Emoji simgesi",
+    "hint": "Sohbet listesinde, başlıkta ve bildirimlerde adın yanında görünür.",
+    "pick": "Emoji seç",
+    "change": "Emoji: {emoji}, değiştir",
+    "remove": "Kaldır"
+  },
+  "gif": {
+    "button": "GIF gönder",
+    "picker": "GIF seç",
+    "search": "GIPHY'de ara",
+    "empty": "Sonuç yok",
+    "results": "GIF sonuçları",
+    "untitled": "GIF",
+    "attribution": "Powered by GIPHY",
+    "open": "{title} GIF'ini büyüt",
+    "play": "{title} GIF'ini oynat",
+    "off": "GIF bu kurumda kapalı.",
+    "admin": {
+      "title": "GIF (GIPHY)",
+      "hint": "Sohbette GIF aramak ve göndermek için kurumunuzun GIPHY API anahtarı. Anahtar şifreli saklanır, geri gösterilmez.",
+      "active": "Etkin",
+      "inactive": "Kapalı",
+      "enabled": "Sohbette GIF'leri aç",
+      "key": "GIPHY API anahtarı",
+      "keySet": "Anahtar kayıtlı ({key}). Değiştirmek için yenisini yaz.",
+      "keyMissing": "Anahtar yok; developers.giphy.com'dan alınır.",
+      "saveKey": "Anahtarı kaydet",
+      "removeKey": "Anahtarı kaldır",
+      "rating": "İçerik derecesi",
+      "lang": "Dil",
+      "ratings": {
+        "g": "G · herkese uygun",
+        "pg": "PG",
+        "pg-13": "PG-13",
+        "r": "R"
+      },
+      "test": "Test et",
+      "testOk": "Bağlantı çalışıyor: {count} trend GIF geldi.",
+      "testFailed": "Bağlantı kurulamadı ({error}).",
+      "saved": "GIF ayarları kaydedildi",
+      "terms": "GIF'ler GIPHY'nin sunucularından yüklenir; arama sonuçları kısa süre önbelleğe alınır, görseller saklanmaz.",
+      "tier": "Anahtar türü",
+      "tiers": {
+        "beta": "Beta (saatte ~100 istek)",
+        "production": "Production (saatlik sınır yok)"
+      },
+      "usageLabel": "Bu saatteki GIPHY kullanımı",
+      "usage": "Bu saat {count} / {total} GIPHY isteği kullanıldı, {n} kaldı. Önbellekten gelen sonuçlar sayılmaz.",
+      "usageUnlimited": "Bu saat {count} GIPHY isteği; production anahtarında saatlik sınır yok."
+    },
+    "minQuery": "Aramak için en az 2 harf yaz; şimdilik trend GIF'ler."
+  },
+  "info": {
+    "title": "Mesaj bilgisi",
+    "summary": "{count} / {total} kişi gördü",
+    "seen": "Gördü",
+    "notSeen": "Henüz görmedi",
+    "unknownTime": "zamanı bilinmiyor",
+    "directSeen": "Gördü · {when}",
+    "directNotSeen": "Henüz görmedi."
+  },
+  "emojiPicker": {
+    "search": "Emoji ara",
+    "tone": "Ten rengi",
+    "groups": "Kategoriler",
+    "empty": "Eşleşen emoji yok.",
+    "tones": {
+      "0": "Varsayılan",
+      "1": "Açık",
+      "2": "Orta açık",
+      "3": "Orta",
+      "4": "Orta koyu",
+      "5": "Koyu"
+    },
+    "group": {
+      "0": "Yüzler ve duygular",
+      "1": "İnsanlar ve vücut",
+      "3": "Hayvanlar ve doğa",
+      "4": "Yiyecek ve içecek",
+      "5": "Seyahat ve yerler",
+      "6": "Etkinlikler",
+      "7": "Nesneler",
+      "8": "Semboller",
+      "9": "Bayraklar",
+      "recent": "Son kullanılanlar"
+    }
+  },
+  "cardActions": {
+    "claim": "Ben bakıyorum",
+    "release": "Bırak",
+    "claimedBy": "{name} bakıyor",
+    "claimedByMe": "Sen bakıyorsun",
+    "toBoard": "Panoda iş aç",
+    "toBoardHint": "Kartın başlığı, alanları ve bağlantısı işin açıklamasına yazılır.",
+    "title": "Başlık",
+    "space": "Space",
+    "board": "Pano",
+    "noBoard": "Bu space'te pano yok",
+    "column": "Sütun",
+    "assignee": "Atanan",
+    "nobody": "Kimse",
+    "create": "İşi aç",
+    "created": "\"{title}\" panoda açıldı"
+  },
+  "refs": {
+    "pickerTitle": "Öğe ekle",
+    "searching": "Aranıyor…",
+    "none": "Eşleşen öğe yok. Yalnız görebildiklerin listelenir.",
+    "attached": "Eklenen öğeler",
+    "remove": "{name} öğesini çıkar",
+    "add": "Drive, sayfa ya da pano öğesi ekle",
+    "tooMany": "Bir mesaja en çok {max} öğe eklenebilir.",
+    "noAccess": "Bu öğeye erişimin yok",
+    "deleted": "Bu öğe silinmiş",
+    "sendToChat": "Sohbete gönder",
+    "sendHint": "Herkese açık bağlantı oluşturulmaz. Açan kişi yalnız kendi izniyle görür.",
+    "sendSearch": "Sohbet ya da kişi ara",
+    "sendTargets": "Sohbetler ve kişiler",
+    "sendNote": "Not ekle (isteğe bağlı)",
+    "sendNone": "Eşleşen sohbet ya da kişi yok.",
+    "sent": "{name} sohbetine gönderildi",
+    "types": {
+      "folder": "Klasör",
+      "file": "Dosya",
+      "page": "Sayfa",
+      "board": "Pano",
+      "drawing": "Çizim",
+      "card": "Kart"
+    }
+  }
+}

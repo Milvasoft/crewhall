@@ -1,0 +1,75 @@
+{
+  "cron-viewer": {
+    "name": "Cron görüntüleyici",
+    "description": "Cron ifadelerini sade bir dille açıkla ve sonraki çalışma zamanlarını yerelde önizle.",
+    "keywords": "zamanlama, zamanlanmış görev, cron ifadesi, crontab, quartz, hangfire",
+    "expression": "Cron ifadesi",
+    "dialect": "Cron sözdizimi",
+    "empty": "Zamanlamasını görmek için bir cron ifadesi gir.",
+    "fieldCount": "{count, plural, one {# alan} other {# alan}}",
+    "unixHint": "Unix: dakika, saat, ayın günü, ay, haftanın günü.",
+    "quartzHint": "Quartz: başta saniye alanı var; ayın günü ya da haftanın günü alanında ? kullanılır.",
+    "presets": {
+      "every5": "5 dakikada bir",
+      "hourly": "Saat başı",
+      "daily9": "Her gün 09:00",
+      "weekdays830": "Hafta içi 08:30",
+      "firstOfMonth": "Her ayın ilk günü"
+    },
+    "nextRuns": "Sonraki çalışmalar",
+    "noRuns": "Bu ifade için sonraki çalışmalar hesaplanamıyor.",
+    "noRunsQuartz": "Bu ifade için Quartz sözdiziminde sonraki çalışmalar hesaplanamıyor.",
+    "notes": {
+      "alreadyQuartz": "Zaten 6 ya da 7 alanlı; Quartz biçimi olarak ele alındı.",
+      "bothDays": "Quartz'ta ayın günü ve haftanın günü birlikte verilemez; elle gözden geçir.",
+      "hangfire": "Hangfire standart Unix cron kullanır; ifade değişmedi. 6 alanlı (saniyeli) ifadeler de desteklenir."
+    }
+  },
+  "datetime-playground": {
+    "name": "Tarih ve saat deneme alanı",
+    "description": "Tarihlerle çalış: ekle ya da çıkar, ISO hafta, yılın günü, artık yıl ve farklar; hepsi yerelde.",
+    "keywords": "tarih, saat, hafta numarası, artık yıl, tarih farkı, gün ekle, takvim",
+    "base": "Başlangıç tarihi",
+    "addSubtract": "Ekle / çıkar",
+    "compareWith": "Karşılaştırılacak tarih",
+    "withOffset": "(tarih + ekleme)",
+    "invalidBase": "Başlangıç tarihi geçersiz.",
+    "difference": "Fark: karşılaştırılan tarih eksi sonuç",
+    "units": {
+      "years": "Yıl",
+      "months": "Ay",
+      "days": "Gün",
+      "hours": "Saat",
+      "minutes": "Dakika",
+      "seconds": "Saniye"
+    },
+    "info": {
+      "local": "Yerel",
+      "unixSeconds": "Unix (sn)",
+      "dayOfWeek": "Haftanın günü",
+      "dayOfYear": "Yılın günü",
+      "isoWeek": "ISO hafta",
+      "quarter": "Çeyrek",
+      "quarterValue": "{n}. çeyrek",
+      "daysInMonth": "Aydaki gün sayısı",
+      "leapYear": "Artık yıl",
+      "yes": "Evet",
+      "no": "Hayır"
+    }
+  },
+  "timestamp": {
+    "name": "Zaman damgası ve saat dilimi dönüştürücü",
+    "description": "Unix zaman damgalarını ve tarihleri UTC, yerel ve dünya saat dilimleri arasında yerelde dönüştür.",
+    "keywords": "zaman damgası, saat dilimi, tarih dönüştür, unix, epoch, utc",
+    "placeholder": "Unix zaman damgası ya da tarih…",
+    "inputLabel": "Zaman damgası ya da tarih",
+    "now": "Şimdi",
+    "invalid": "Bu bir zaman olarak yorumlanamadı.",
+    "unixSeconds": "Unix (saniye)",
+    "unixMillis": "Unix (milisaniye)",
+    "local": "Yerel",
+    "relative": "Göreli",
+    "timeZones": "Saat dilimleri",
+    "help": "Bir Unix zaman damgası (saniye ya da milisaniye) ya da bir tarih gir, ya da <b>Şimdi</b> düğmesine bas."
+  }
+}

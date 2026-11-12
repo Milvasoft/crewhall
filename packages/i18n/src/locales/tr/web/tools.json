@@ -1,0 +1,145 @@
+{
+  "title": "Araçlar",
+  "home": {
+    "subtitle": "Geliştirici araçları; hepsi tarayıcında çalışır, veri sunucuya gitmez.",
+    "search": "Araç ara",
+    "favorites": "Favoriler",
+    "recent": "Son kullanılanlar",
+    "all": "Tüm araçlar",
+    "popular": "Sık kullanılanlar",
+    "noResults": "\"{q}\" için araç bulunamadı.",
+    "count": "{count, plural, one {# araç} other {# araç}}",
+    "noFavorites": "Bir aracın yıldızına basınca burada görünür."
+  },
+  "nav": {
+    "home": "Tüm araçlar",
+    "categories": "Kategoriler",
+    "favorites": "Favoriler",
+    "recent": "Son kullanılanlar"
+  },
+  "categories": {
+    "json": {
+      "name": "JSON",
+      "description": "JSON'u incele, dönüştür ve doğrula."
+    },
+    "dotnet": {
+      "name": ".NET",
+      "description": "C#, yapılandırma ve .NET işleri."
+    },
+    "encoding": {
+      "name": "Kodlama",
+      "description": "Base64, URL ve diğer kodlamalar."
+    },
+    "security": {
+      "name": "Güvenlik",
+      "description": "Jetonlar, özetler, anahtarlar ve üreticiler."
+    },
+    "text": {
+      "name": "Metin",
+      "description": "Metni karşılaştır, dönüştür ve incele."
+    },
+    "devutils": {
+      "name": "Geliştirici araçları",
+      "description": "Regex, cron, kimlikler ve günlük yardımcılar."
+    },
+    "sql": {
+      "name": "SQL",
+      "description": "SQL'i biçimlendir ve dönüştür."
+    },
+    "datetime": {
+      "name": "Tarih ve saat",
+      "description": "Zaman damgaları, cron ve dönüşümler."
+    },
+    "data": {
+      "name": "Veri",
+      "description": "CSV, örnek veri ve tablo araçları."
+    },
+    "images": {
+      "name": "Görseller",
+      "description": "Sıkıştır, kodla ve görsel üret."
+    },
+    "network": {
+      "name": "Ağ",
+      "description": "IP adresleri, alt ağlar ve MAC sorguları."
+    },
+    "web": {
+      "name": "Web",
+      "description": "URL'ler, sorgu dizgeleri ve ön yüz yardımcıları."
+    }
+  },
+  "common": {
+    "input": "Girdi",
+    "output": "Çıktı",
+    "text": "Metin",
+    "result": "Sonuç",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "clear": "Temizle",
+    "sample": "Örnek",
+    "swap": "Yer değiştir",
+    "download": "İndir",
+    "upload": "Dosya seç",
+    "generate": "Üret",
+    "reset": "Sıfırla",
+    "format": "Biçimlendir",
+    "minify": "Küçült",
+    "convert": "Dönüştür",
+    "options": "Seçenekler",
+    "error": "Hata",
+    "loading": "Araç yükleniyor…",
+    "expand": "Genişlet",
+    "collapse": "Daralt",
+    "expandPanel": "Paneli genişlet",
+    "collapsePanel": "Paneli daralt",
+    "dropImage": "Görseli buraya bırak ya da seçmek için tıkla",
+    "crashed": "Bu araç çöktü",
+    "crashedHint": "Girdiyi değiştirip yeniden dene. Sorun sürerse sayfayı yenile.",
+    "retry": "Yeniden dene",
+    "favoriteAdd": "Favorilere ekle",
+    "favoriteRemove": "Favorilerden çıkar",
+    "breadcrumb": "Gezinti",
+    "execution": {
+      "local": "Yerel",
+      "localDetail": "Tarayıcında çalışır; girdi cihazından çıkmaz.",
+      "server": "Sunucu",
+      "serverDetail": "Bu işlem sunucuda yapılır.",
+      "hybrid": "Karma",
+      "hybridDetail": "Çoğunlukla yerel çalışır, isteğe bağlı olarak sunucuyu kullanabilir."
+    },
+    "expandNamed": "{name} panelini genişlet"
+  },
+  "send": {
+    "menu": "Gönder",
+    "toTool": "Başka araca",
+    "toChat": "Sohbete",
+    "toPage": "Yeni sayfa olarak",
+    "toDrive": "Drive'a kaydet",
+    "chatTitle": "Sohbete gönder",
+    "chatSearch": "Sohbet ara",
+    "chatSend": "Gönder",
+    "chatSent": "{name} sohbetine gönderildi",
+    "pageTitle": "Yeni sayfa olarak kaydet",
+    "pageName": "Sayfa adı",
+    "pageSpace": "Space",
+    "pageCreate": "Sayfayı oluştur",
+    "pageCreated": "Sayfa oluşturuldu",
+    "driveTitle": "Drive'a kaydet",
+    "driveName": "Dosya adı",
+    "driveSave": "Buraya kaydet",
+    "driveSaved": "{name} Drive'a kaydedildi",
+    "empty": "Gönderilecek çıktı yok.",
+    "none": "Sonuç yok.",
+    "tooLong": "Çıktı sohbet mesajı için uzun (en çok {max} karakter); Drive'a kaydetmeyi dene."
+  },
+  "open": {
+    "fromDrive": "Araçta aç",
+    "pick": "Araç seç",
+    "loading": "Dosya yükleniyor…",
+    "failed": "Dosya açılamadı.",
+    "fromFile": "{name} dosyasından"
+  },
+  "palette": {
+    "group": "Araçlar",
+    "open": "{name} aracını aç"
+  }
+}

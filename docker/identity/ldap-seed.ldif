@@ -1,0 +1,45 @@
+# Test directory: base dc=crewhall,dc=test, admin cn=admin,dc=crewhall,dc=test / ldap-admin-secret.
+dn: ou=people,dc=crewhall,dc=test
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=crewhall,dc=test
+objectClass: organizationalUnit
+ou: groups
+
+dn: uid=ayse,ou=people,dc=crewhall,dc=test
+objectClass: inetOrgPerson
+uid: ayse
+cn: Ayse Yilmaz
+sn: Yilmaz
+displayName: Ayse Yilmaz
+mail: ayse@crewhall.test
+userPassword: ayse-dir-pass-1
+
+dn: uid=mert,ou=people,dc=crewhall,dc=test
+objectClass: inetOrgPerson
+uid: mert
+cn: Mert Kaya
+sn: Kaya
+displayName: Mert Kaya
+mail: mert@crewhall.test
+userPassword: mert-dir-pass-1
+
+dn: uid=deniz,ou=people,dc=crewhall,dc=test
+objectClass: inetOrgPerson
+uid: deniz
+cn: Deniz Ak
+sn: Ak
+displayName: Deniz Ak
+mail: deniz@crewhall.test
+userPassword: deniz-dir-pass-1
+
+dn: cn=developers,ou=groups,dc=crewhall,dc=test
+objectClass: groupOfNames
+cn: developers
+member: uid=ayse,ou=people,dc=crewhall,dc=test
+
+dn: cn=it-admins,ou=groups,dc=crewhall,dc=test
+objectClass: groupOfNames
+cn: it-admins
+member: uid=mert,ou=people,dc=crewhall,dc=test

@@ -1,0 +1,6 @@
+docs/
+pnpm-lock.yaml
+dist/
+.next/
+.expo/
+packages/shared/contract-snapshot.json

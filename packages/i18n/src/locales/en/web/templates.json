@@ -1,0 +1,51 @@
+{
+  "title": "Template gallery",
+  "hint": "Start from a ready page, board or a whole space. Templates your organisation and team saved are here too.",
+  "filters": "Template filters",
+  "source": "Source",
+  "kinds": {
+    "all": "All",
+    "page": "Page",
+    "board": "Board",
+    "space": "Space"
+  },
+  "scopes": {
+    "all": "Everything",
+    "builtin": "Built-in",
+    "org": "Organisation",
+    "space": "Space",
+    "personal": "Personal"
+  },
+  "search": "Search templates",
+  "none": "No templates with this filter.",
+  "emptySpace": "Empty space",
+  "blocks": "{count, plural, one {# block} other {# blocks}}",
+  "cards": "{count, plural, one {# starter card} other {# starter cards}}",
+  "placeholders": "«date» and «author» are filled in",
+  "use": "Use this template",
+  "useSpace": "Add to this space",
+  "skipped": "Parts of switched-off modules were skipped: {modules}",
+  "delete": "Delete the {name} template",
+  "saveSpace": "Save this space as a template",
+  "saveTitle": {
+    "page": "Save page as template",
+    "board": "Save board as template",
+    "space": "Save space as template"
+  },
+  "saveHint": {
+    "page": "The page's current content becomes the template. Using it makes a copy, not linked to this page.",
+    "board": "Columns, labels, fields and card titles become the template. People, dates and comments are left out.",
+    "space": "The space's page tree (up to 50 pages) and boards (up to 10) become the template. Files and permissions are left out."
+  },
+  "name": "Template name",
+  "description": "Short description",
+  "scope": "Who can use it",
+  "save": "Save",
+  "saved": "Template {name} saved.",
+  "newSpace": {
+    "label": "Template",
+    "none": "Start empty",
+    "hint": "The template's pages and boards are added when the space is created."
+  },
+  "fromGallery": "Choose from the template gallery"
+}

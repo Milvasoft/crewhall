@@ -1,0 +1,132 @@
+# Local infrastructure for development: Postgres, S3 (SeaweedFS) and a mail catcher.
+# The api itself runs on the host: `pnpm --filter @crewhall/backend dev`.
+# Postgres is published on 5433 so it does not clash with a locally installed Postgres.
+#   docker compose -f docker/compose.dev.yml up -d
+name: crewhall-dev
+
+services:
+  postgres:
+    # Official image: contrib extensions (ltree, pg_trgm, citext) and ICU collations included.
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-crewhall}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-crewhall}
+      POSTGRES_DB: ${POSTGRES_DB:-crewhall}
+    ports:
+      - '${POSTGRES_PORT:-5433}:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-crewhall} -d ${POSTGRES_DB:-crewhall}']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  seaweedfs:
+    # Apache-2.0. Single-process master + volume + filer + S3 gateway.
+    image: chrislusf/seaweedfs:4.48
+    restart: unless-stopped
+    command: >
+      server -dir=/data -ip.bind=0.0.0.0 -volume.max=0 -master.volumeSizeLimitMB=1024
+      -s3 -s3.port=8333 -s3.config=/etc/seaweedfs/s3.json
+    ports:
+      - '${S3_PORT:-8333}:8333'
+    volumes:
+      - seaweedfs-data:/data
+      - ./seaweedfs/s3.dev.json:/etc/seaweedfs/s3.json:ro
+
+  mailpit:
+    # MIT. Catches every e-mail the api sends; UI on http://localhost:8025
+    image: axllent/mailpit:v1.31
+    restart: unless-stopped
+    ports:
+      - '${SMTP_PORT:-1025}:1025'
+      - '${MAILPIT_UI_PORT:-8025}:8025'
+
+  # ---- Meet (design doc 17 §11) ---------------------------------------------------------
+  # docker compose -f docker/compose.dev.yml --profile meet up -d        LiveKit (+ valkey)
+  # docker compose -f docker/compose.dev.yml --profile meet-rec up -d    + egress (recording)
+  livekit:
+    # Apache-2.0. Signalling 7880, ICE/TCP 7881, media UDP 50000-50100.
+    image: livekit/livekit-server:v1.9.1
+    profiles: ['meet', 'meet-rec']
+    restart: unless-stopped
+    command: ['--config', '/etc/livekit.yaml']
+    environment:
+      # Address announced to clients: 127.0.0.1 for this machine; your LAN IP for phones and egress.
+      NODE_IP: ${LIVEKIT_NODE_IP:-127.0.0.1}
+    configs:
+      - source: livekit
+        target: /etc/livekit.yaml
+    ports:
+      - '${LIVEKIT_PORT:-7880}:7880'
+      - '7881:7881'
+      - '50000-50100:50000-50100/udp'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    depends_on:
+      - valkey
+
+  valkey:
+    # BSD-3. LiveKit and egress coordinate through it; not published on the host.
+    image: valkey/valkey:8-alpine
+    profiles: ['meet', 'meet-rec']
+    restart: unless-stopped
+
+  egress:
+    # Apache-2.0 (the image bundles GStreamer, LGPL, as a separate program). Runs Chrome: 2-4 GB RAM.
+    image: livekit/egress:v1.9.0
+    profiles: ['meet-rec']
+    restart: unless-stopped
+    environment:
+      EGRESS_CONFIG_FILE: /etc/egress.yaml
+    volumes:
+      - ./livekit/egress.dev.yaml:/etc/egress.yaml:ro
+    cap_add:
+      - SYS_ADMIN
+    depends_on:
+      - livekit
+
+configs:
+  livekit:
+    # Inline so the webhook URL can follow the api port (MEET_WEBHOOK_URL in docker/.env).
+    content: |
+      port: 7880
+      rtc:
+        tcp_port: 7881
+        port_range_start: 50000
+        port_range_end: 50100
+        use_external_ip: false
+        # Bandwidth estimation per subscriber; a link that cannot carry video pauses it and keeps
+        # the audio instead of freezing everything.
+        congestion_control:
+          enabled: true
+          allow_pause: true
+      keys:
+        crewhall-dev: crewhall-dev-livekit-secret-0123456789abcdef
+      redis:
+        address: valkey:6379
+      room:
+        empty_timeout: 300
+        departure_timeout: 120
+        # Per room; ${LIVEKIT_MAX_PARTICIPANTS} raises it for large all-hands.
+        max_participants: ${LIVEKIT_MAX_PARTICIPANTS:-100}
+        # Screen share sends VP9 (SVC) with a VP8 backup; AV1 and H.264 for clients that ask.
+        enabled_codecs:
+          - mime: audio/opus
+          - mime: audio/red
+          - mime: video/vp8
+          - mime: video/h264
+          - mime: video/vp9
+          - mime: video/av1
+      webhook:
+        api_key: crewhall-dev
+        urls:
+          - ${MEET_WEBHOOK_URL:-http://host.docker.internal:3000/api/meet/livekit/webhook}
+      logging:
+        level: info
+
+volumes:
+  postgres-data:
+  seaweedfs-data:

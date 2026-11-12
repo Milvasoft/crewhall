@@ -1,0 +1,51 @@
+{
+  "appsettings-env": {
+    "name": "appsettings.json ↔ ortam değişkenleri",
+    "description": ".NET appsettings.json dosyasını Docker, Kubernetes ve CI için ortam değişkenlerine çevir ya da tersini yap.",
+    "keywords": "ortam değişkenleri, yapılandırma, ayarlar, env, docker, kubernetes, bağlantı dizesi, çift alt çizgi",
+    "failed": "Dönüştürülemedi.",
+    "format": "Biçim",
+    "formats": {
+      "doubleUnderscore": "Çift alt çizgi (__)",
+      "colon": ".NET yapılandırması (:)"
+    },
+    "envVars": "Ortam değişkenleri",
+    "jsonPlaceholder": "appsettings.json içeriğini yapıştır…",
+    "envPlaceholder": "KEY__SUBKEY=value satırlarını yapıştır…"
+  },
+  "connection-string": {
+    "name": "Bağlantı dizesi çözümleyici",
+    "description": "ADO.NET ya da veritabanı bağlantı dizesini anahtar-değer çiftlerine ayır ya da geri birleştir, yerelde.",
+    "keywords": "bağlantı dizesi, veritabanı, çözümle, ayrıştır, ado.net, sql",
+    "connectionString": "Bağlantı dizesi"
+  },
+  "csharp-to-json": {
+    "name": "C# ↔ JSON",
+    "description": "C# sınıflarından örnek JSON üret (esnek mod) ya da JSON'dan C# DTO'ları oluştur.",
+    "keywords": "sınıf, model, dto, poco, kayıt, record, serileştir, üret",
+    "failed": "Dönüştürülemedi.",
+    "sampleValues": "Örnek değerler",
+    "looseMode": "Esnek mod",
+    "useRecords": "record kullan"
+  },
+  "csharp-typescript": {
+    "name": "C# ↔ TypeScript",
+    "description": "C# modellerinden TypeScript arayüzleri, TypeScript'ten C# sınıfları üret, yerelde.",
+    "keywords": "arayüz, interface, model, dto, dönüştür, ön yüz"
+  },
+  "escape": {
+    "name": "Kaçış karakterleri (escape / unescape)",
+    "description": "Metni C# dizesi, JSON, regex, URL ve HTML için kaçışla ya da kaçışı geri al, yerelde.",
+    "keywords": "kaçış, kaçış karakteri, ters eğik çizgi, html varlıkları, dize",
+    "escape": "Kaçışla",
+    "unescape": "Kaçışı kaldır",
+    "target": "Hedef",
+    "targets": {
+      "csharp": "C# dizesi",
+      "json": "JSON dizesi",
+      "regex": "Düzenli ifade (regex)",
+      "url": "URL",
+      "html": "HTML"
+    }
+  }
+}

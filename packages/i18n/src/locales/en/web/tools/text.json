@@ -1,0 +1,182 @@
+{
+  "ascii-text-drawer": {
+    "name": "ASCII Art Text",
+    "description": "Turn text into ASCII-art banners with a choice of figlet fonts, locally.",
+    "keywords": "ascii, art, figlet, banner, big text, font, drawer",
+    "yourText": "Your text",
+    "font": "Font",
+    "width": "Width",
+    "renderFailed": "Render failed."
+  },
+  "case-converter": {
+    "name": "Case Converter",
+    "description": "Convert text between camelCase, snake_case, kebab-case, PascalCase and more, locally.",
+    "keywords": "case, camel, snake, kebab, pascal, title, constant, upper, lower, slug",
+    "modes": {
+      "title": "Title Case",
+      "sentence": "Sentence case",
+      "lower": "lower case",
+      "upper": "UPPER CASE"
+    }
+  },
+  "emoji-picker": {
+    "name": "Emoji Picker",
+    "description": "Search emojis by name and copy the character, or its code points, locally.",
+    "keywords": "emoji, smiley, icon, copy, unicode",
+    "searchPlaceholder": "Search emojis… (e.g. rocket, heart, smile)",
+    "allGroups": "All groups",
+    "matches": "{count, plural, one {# match} other {# matches}}",
+    "showing": " · showing {limit}",
+    "copiedChar": "Copied {value} to clipboard.",
+    "noMatch": "No emojis match “{q}”.",
+    "groups": {
+      "smileys": "Smileys & Emotion",
+      "people": "People & Body",
+      "animals": "Animals & Nature",
+      "food": "Food & Drink",
+      "travel": "Travel & Places",
+      "activities": "Activities",
+      "objects": "Objects",
+      "symbols": "Symbols",
+      "flags": "Flags",
+      "other": "Other"
+    }
+  },
+  "html-markdown": {
+    "name": "HTML → Markdown",
+    "description": "Convert HTML into clean Markdown, locally in your browser.",
+    "keywords": "html, markdown, md, convert"
+  },
+  "list-converter": {
+    "name": "List Converter",
+    "description": "Sort, dedupe, trim, re-case and wrap a list of lines, then join them, locally.",
+    "keywords": "list, lines, sort, dedupe, unique, trim, join, split",
+    "trim": "Trim",
+    "removeEmpty": "Remove empty",
+    "dedupe": "Dedupe",
+    "reverse": "Reverse",
+    "sort": "Sort",
+    "sortNone": "None",
+    "sortNumeric": "Numeric",
+    "sortLength": "By length",
+    "case": "Case",
+    "caseKeep": "Keep",
+    "caseLower": "lower",
+    "caseUpper": "UPPER",
+    "prefix": "Prefix",
+    "suffix": "Suffix",
+    "joinWith": "Join with",
+    "sepNewline": "New line",
+    "sepComma": "Comma",
+    "sepSpace": "Space",
+    "sepPipe": "Pipe",
+    "stats": "{total} lines · {count} unique"
+  },
+  "lorem-ipsum": {
+    "name": "Lorem Ipsum Generator",
+    "description": "Generate placeholder text, words, sentences or paragraphs, locally.",
+    "keywords": "lorem, ipsum, placeholder, dummy text, filler, paragraph",
+    "count": "Count",
+    "units": {
+      "words": "Words",
+      "sentences": "Sentences",
+      "paragraphs": "Paragraphs"
+    },
+    "startWithLorem": "Start with “Lorem ipsum”"
+  },
+  "markdown-viewer": {
+    "name": "Markdown Viewer",
+    "description": "Write Markdown and preview sanitized HTML side by side, rendered locally and safely.",
+    "keywords": "markdown, md, preview, html, render, readme, gfm",
+    "starter": "# Untitled\n\nStart writing **Markdown**. Use the toolbar above, manage several files on the\nleft, and export from the top-right.\n",
+    "untitledFile": "untitled.md",
+    "untitledNumbered": "untitled-{n}.md",
+    "toolbar": {
+      "bold": "Bold",
+      "italic": "Italic",
+      "strike": "Strikethrough",
+      "inlineCode": "Inline code",
+      "h1": "Heading 1",
+      "h2": "Heading 2",
+      "h3": "Heading 3",
+      "bullets": "Bulleted list",
+      "numbered": "Numbered list",
+      "quote": "Quote",
+      "codeBlock": "Code block",
+      "link": "Link"
+    },
+    "preview": "Preview",
+    "collapsePreview": "Collapse preview",
+    "files": "Files",
+    "showFiles": "Show files",
+    "hideFiles": "Hide files",
+    "newFile": "New file",
+    "openFile": "Open a .md file",
+    "renameHint": "{name} (double-click to rename)",
+    "delete": "Delete",
+    "copyFormatted": "Copy (formatted)",
+    "copyHtml": "Copy HTML",
+    "copyMarkdown": "Copy Markdown",
+    "export": "Export",
+    "exportPdfSoon": "PDF (.pdf), coming soon"
+  },
+  "numeronym-generator": {
+    "name": "Numeronym Generator",
+    "description": "Shorten words like “internationalization” to numeronyms like “i18n”, locally.",
+    "keywords": "numeronym, abbreviation, i18n, l10n, a11y, shorten"
+  },
+  "string-length": {
+    "name": "String Length & Stats",
+    "description": "Count characters, words, lines and UTF-8 bytes in text, computed locally.",
+    "keywords": "length, character count, word count, lines, bytes, counter, stats",
+    "placeholder": "Type or paste text…",
+    "example": "The quick brown fox jumps over the lazy dog.\nSecond line, with émojis 😀.",
+    "fields": {
+      "characters": "Characters",
+      "charactersNoSpaces": "No spaces",
+      "words": "Words",
+      "lines": "Lines",
+      "sentences": "Sentences",
+      "bytes": "UTF-8 bytes",
+      "utf16": "UTF-16 units"
+    }
+  },
+  "string-obfuscator": {
+    "name": "String Obfuscator",
+    "description": "Mask the middle of a string (secrets, emails, tokens) keeping a few visible chars, locally.",
+    "keywords": "mask, hide, obfuscate, secret, token, email, redact",
+    "keepFirst": "Keep first",
+    "keepLast": "Keep last",
+    "maskChar": "Mask char",
+    "keepSpaces": "Keep spaces"
+  },
+  "text-compare": {
+    "name": "Text Compare",
+    "description": "Diff two blocks of text side by side, locally, with whitespace and case options.",
+    "keywords": "diff, compare, difference, text, lines",
+    "ignoreWhitespace": "Ignore whitespace",
+    "ignoreCase": "Ignore case",
+    "trim": "Trim lines",
+    "added": "{count} added",
+    "removed": "{count} removed",
+    "changed": "{count} changed",
+    "original": "Original",
+    "modified": "Changed",
+    "diff": "Diff"
+  },
+  "text-to-nato": {
+    "name": "Text to NATO Alphabet",
+    "description": "Spell text using the NATO phonetic alphabet (Alfa, Bravo, Charlie…), locally.",
+    "keywords": "nato, phonetic, alphabet, spelling, alfa bravo",
+    "onePerLine": "One per line"
+  },
+  "text-to-unicode": {
+    "name": "Text to Unicode",
+    "description": "Convert text to Unicode escapes (\\uXXXX, U+, HTML entities) and back, locally.",
+    "keywords": "unicode, escape, code point, u+, html entity, decode",
+    "textToUnicode": "Text → Unicode",
+    "unicodeToText": "Unicode → Text",
+    "formatLabel": "Format",
+    "escapes": "Unicode escapes"
+  }
+}

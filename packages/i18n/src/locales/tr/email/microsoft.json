@@ -1,0 +1,38 @@
+{
+  "save": {
+    "from": "Kimden",
+    "date": "Tarih",
+    "original": "Özgün ileti",
+    "outlook": "Outlook'tan kaydedildi",
+    "teams": "Teams'ten kaydedildi"
+  },
+  "folders": {
+    "attachments": "Outlook ekleri"
+  },
+  "outlook": {
+    "description": "Ekleri Crewhall Drive linkine çevirin, e-postaları Crewhall'a kaydedin.",
+    "group": "Crewhall",
+    "save": "Crewhall'a kaydet",
+    "saveTip": "Bu e-postayı Crewhall sayfası, pano kartı ya da sohbet mesajı olarak kaydeder.",
+    "share": "Crewhall linki",
+    "shareTip": "Ekleri Crewhall Drive linkine çevirir ya da dosya yükleme linki ekler."
+  },
+  "teams": {
+    "shortDescription": "Crewhall dosyalarını ve sayfalarını Teams'te paylaşın.",
+    "fullDescription": "Crewhall dosyalarını, sayfalarını ve panolarını Teams sohbetlerinde paylaşın, bir mesajı Crewhall sayfası, pano kartı ya da sohbet mesajı olarak kaydedin, sayfa ve panoları sekme olarak ekleyin.",
+    "search": "Crewhall'da ara",
+    "searchHint": "Dosya, sayfa ya da pano adı",
+    "save": "Crewhall'a kaydet",
+    "saveDescription": "Bu mesajı Crewhall'a kaydeder.",
+    "connect": "Crewhall hesabını bağla",
+    "open": "Aç",
+    "noResults": "Sonuç yok",
+    "types": {
+      "folder": "Klasör",
+      "file": "Dosya",
+      "page": "Sayfa",
+      "board": "Pano",
+      "drawing": "Çizim"
+    }
+  }
+}

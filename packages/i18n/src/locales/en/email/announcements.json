@@ -1,0 +1,26 @@
+{
+  "subject": "{orgName} announcement: {title}",
+  "byAuthor": "{author} · {orgName} announcement",
+  "byOrg": "{orgName} announcement",
+  "ackNeeded": "You are asked to confirm that you have read this announcement.",
+  "cta": "Open the announcement",
+  "ackCta": "Open and confirm",
+  "footerWhy": "You received this e-mail for new announcements in the {orgName} workspace.",
+  "footerManage": "You can turn announcement e-mails off under My account › Notifications.",
+  "celebrate": {
+    "botName": "Celebrations",
+    "birthday": "🎂 Happy birthday {names}! 🎉",
+    "anniversaryOne": "🎉 {name} completes their first year with us today. Here is to many more!",
+    "anniversary": "🎉 {name} completes {years} years with us today. Here is to many more!",
+    "kudos": "{emoji} {from} → {to} · {badge}",
+    "kudosWithMessage": "{emoji} {from} → {to} · {badge}\n“{message}”",
+    "badges": {
+      "teamwork": "Team spirit",
+      "helping": "Helping hand",
+      "idea": "Bright idea",
+      "customer": "Customer hero",
+      "quality": "Quality work",
+      "extraMile": "Went the extra mile"
+    }
+  }
+}

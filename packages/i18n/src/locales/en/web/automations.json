@@ -1,0 +1,281 @@
+{
+  "title": "Automations",
+  "untitled": "New rule",
+  "nav": {
+    "rules": "Rules",
+    "none": "No rules in this space.",
+    "new": "New rule"
+  },
+  "home": {
+    "title": "{space} automations",
+    "intro": "No-code \"when this happens, do that\" rules: when an event happens, conditions are checked and actions run in order.",
+    "empty": "No rules yet",
+    "emptyBody": "E.g. post to chat when a card moves to Done, turn form answers into cards, tell n8n when a PDF is uploaded.",
+    "noAccess": "You cannot see the rules",
+    "noAccessBody": "Space editors see automations; space admins change them.",
+    "stopped": "Stopped after errors",
+    "neverRan": "Has not run yet",
+    "toggle": "Turn {name} on or off"
+  },
+  "notFound": {
+    "title": "Rule not found",
+    "body": "The rule may have been deleted, or you cannot see it."
+  },
+  "editor": {
+    "name": "Rule name",
+    "enabled": "On",
+    "when": "When",
+    "if": "Only if (optional)",
+    "then": "Do this",
+    "trigger": "Trigger",
+    "choose": "Choose",
+    "any": "Any",
+    "anyFolder": "Anywhere in the space",
+    "anyField": "Any field",
+    "tableValuesHint": "Empty fields are not written. Choices match by label, people by email or name; values that do not fit are skipped.",
+    "valueVariable": "Value · {name}",
+    "soon": "coming soon",
+    "moduleOff": "module off",
+    "noConditions": "No conditions: actions run every time the trigger fires.",
+    "field": "Field",
+    "op": "Condition",
+    "value": "Value",
+    "addCondition": "Add a condition",
+    "removeCondition": "Remove the condition",
+    "addAction": "Add an action",
+    "removeAction": "Remove the {name} action",
+    "moveUp": "Move up",
+    "templateHint": "Use \"Add a variable\" to put a value from the event.",
+    "insertVariable": "Insert {name}",
+    "create": "Create rule",
+    "created": "Rule created",
+    "save": "Save",
+    "savedState": "Saved",
+    "saved": "Rule saved",
+    "test": "Try now",
+    "testStarted": "Ran with a sample event; see the history",
+    "delete": "Delete rule",
+    "deleteTitle": "Delete “{name}”?",
+    "deleteBody": "The rule and its run history are deleted for good.",
+    "deleted": "Rule deleted",
+    "tabs": "Rule pages",
+    "tabRule": "Rule",
+    "tabRuns": "History ({count})",
+    "stoppedNotice": "This rule was stopped after {count} failed runs in a row. Fix the problem and save it again with \"On\".",
+    "webhooks": "Webhook details",
+    "hookUrl": "Incoming webhook address",
+    "hookHint": "Every request that posts JSON here triggers the rule; body fields are read as body.field. At most 60 requests a minute.",
+    "signingSecret": "Signing secret",
+    "signingHint": "Outgoing requests are signed with the X-Crewhall-Signature header (sha256 HMAC); the receiver checks it with this secret.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "regenerate": "Renew",
+    "addVariable": "Add a variable",
+    "answerVariable": "Answer · {name}",
+    "stepVariable": "Result of step {count} ({name})",
+    "members": "{count, plural, one {# person} other {# people}}"
+  },
+  "ops": {
+    "equals": "equals",
+    "not_equals": "does not equal",
+    "contains": "contains",
+    "not_contains": "does not contain",
+    "gt": "is greater than",
+    "lt": "is less than",
+    "exists": "is set",
+    "not_exists": "is empty"
+  },
+  "status": {
+    "queued": "Queued",
+    "running": "Running",
+    "succeeded": "Succeeded",
+    "failed": "Failed",
+    "skipped": "Skipped"
+  },
+  "runs": {
+    "emptyTitle": "Has not run yet",
+    "emptyBody": "Each run shows here, when the trigger fires or with \"Try now\".",
+    "test": "Test",
+    "ms": "{count} ms",
+    "event": "Event data",
+    "more": "Older runs",
+    "select": "Select the run from {date}",
+    "download": "Download as JSON"
+  },
+  "runErrors": {
+    "rule_disabled": "Did not run because the rule is off.",
+    "module_disabled": "Did not run because automations are off in the organization.",
+    "automation_owner_inactive": "The rule's owner left the organization; an admin needs to save the rule again.",
+    "step_failed": "A step failed."
+  },
+  "triggers": {
+    "tables.row_created": {
+      "name": "Row added to a table",
+      "desc": "When a row is added to the chosen table (by hand, from a form, by import or by another rule)."
+    },
+    "tables.row_updated": {
+      "name": "Table row changed",
+      "desc": "When a value of a row in the chosen table changes; with a field chosen, only when that field changes."
+    },
+    "boards.card_moved": {
+      "name": "Card moved",
+      "desc": "When a card on the chosen board moves to another column."
+    },
+    "forms.response_submitted": {
+      "name": "Form answered",
+      "desc": "Each time the chosen form gets an answer. Answers are read as answers.field_id."
+    },
+    "drive.file_uploaded": {
+      "name": "File uploaded",
+      "desc": "When a file or a new version is uploaded to the space (or the chosen folder)."
+    },
+    "webhook.received": {
+      "name": "Webhook received",
+      "desc": "When a request comes to the rule's own address (CI, monitoring, n8n…)."
+    },
+    "calendar.event_upcoming": {
+      "name": "Event coming up",
+      "desc": "When an event of the space calendar is the chosen time away (every occurrence of a recurring event)."
+    }
+  },
+  "actions": {
+    "tables.create_row": {
+      "name": "Add a table row",
+      "desc": "Adds a row to the chosen table with fields filled from templates."
+    },
+    "tables.update_row": {
+      "name": "Update a table row",
+      "desc": "Updates the chosen fields of the row with the given id from templates."
+    },
+    "chat.post": {
+      "name": "Post to chat",
+      "desc": "Posts a message to the chosen chat in the rule's name."
+    },
+    "boards.create_card": {
+      "name": "Open a card",
+      "desc": "Opens a new card in a column of the chosen board."
+    },
+    "notify.users": {
+      "name": "Send a notification",
+      "desc": "The chosen people get a notification."
+    },
+    "webhook.send": {
+      "name": "Send a webhook",
+      "desc": "Sends the event as signed JSON to an outside address."
+    },
+    "ai.step": {
+      "name": "AI step",
+      "desc": "Gives the instruction with the event to the organization's model; later steps can use the answer as this step's text output."
+    }
+  },
+  "fields": {
+    "tableId": "Table",
+    "fieldId": "When this field changes",
+    "values": "Field values",
+    "rowId": "Row id",
+    "boardId": "Board",
+    "fromColumnId": "From column",
+    "toColumnId": "To column",
+    "columnId": "Column",
+    "formId": "Form",
+    "folderId": "Folder",
+    "extensions": "Extensions (e.g. pdf, docx)",
+    "minutesBefore": "Minutes before",
+    "conversationId": "Chat",
+    "text": "Message",
+    "title": "Card title",
+    "description": "Description",
+    "userIds": "People",
+    "url": "Address",
+    "prompt": "Instruction for the AI"
+  },
+  "notifications": {
+    "notify": "{name}: {text}",
+    "disabled": "{name} failed {count} times in a row and was stopped"
+  },
+  "board": {
+    "intro": "Rules that start from this board. Rules are built on the space's Automations page: post to chat, notify people or call a webhook when a card moves.",
+    "none": "No rules for this board yet.",
+    "open": "Open automations",
+    "off": "Automations are off in this organization."
+  },
+  "conversationTypes": {
+    "direct": "Direct",
+    "group": "Group",
+    "space": "Space chat",
+    "meeting": "Meeting",
+    "alert": "Alert",
+    "card": "Card chat"
+  },
+  "variables": {
+    "table": {
+      "name": "Table name"
+    },
+    "row": {
+      "id": "Row id",
+      "title": "Row title",
+      "url": "Row link"
+    },
+    "values": "All values (Field: value)",
+    "before": "Previous values (Field: value)",
+    "changed": "Changed fields",
+    "card": {
+      "ref": "Card key",
+      "title": "Card title",
+      "url": "Card link"
+    },
+    "board": {
+      "name": "Board name"
+    },
+    "from": {
+      "name": "Previous column"
+    },
+    "to": {
+      "name": "New column",
+      "done": "Is the done column"
+    },
+    "actor": {
+      "name": "Done by"
+    },
+    "form": {
+      "title": "Form name",
+      "url": "Form link"
+    },
+    "response": {
+      "url": "Answer link"
+    },
+    "respondent": {
+      "name": "Respondent"
+    },
+    "answers": "All answers (Question: answer)",
+    "file": {
+      "name": "File name",
+      "mime": "File type",
+      "size": "File size",
+      "version": "Version",
+      "url": "File link"
+    },
+    "folder": {
+      "name": "Folder name"
+    },
+    "body": "Incoming data",
+    "contentType": "Content type",
+    "event": {
+      "title": "Event title",
+      "startsAt": "Starts at",
+      "url": "Event link"
+    },
+    "minutesBefore": "Minutes before"
+  },
+  "menu": {
+    "open": "Open",
+    "runs": "Run history",
+    "pause": "Pause",
+    "resume": "Turn on",
+    "paused": "Rule paused",
+    "resumed": "Rule turned on",
+    "saving": "Saving…",
+    "rename": "Rename",
+    "renamed": "Rule renamed"
+  }
+}

@@ -1,0 +1,239 @@
+#!/usr/bin/env bash
+# crewhall: backup, restore and update for a Docker Compose (or Dokploy) install.
+# Usage and decisions: tools/crewhall/README.md. Run from the directory that holds docker/,
+# or point at the files with --compose-file / --env-file.
+#
+# The database and S3 work runs inside the backend image (`node dist/crewhall.js`), which
+# has pg_dump, the S3 credentials and the internal network; this script only drives
+# Docker Compose around it. Backups live in the `backups` volume (/backups).
+set -euo pipefail
+
+COMPOSE_FILE="${CREWHALL_COMPOSE_FILE:-docker/compose.yml}"
+ENV_FILE="${CREWHALL_ENV_FILE:-docker/.env}"
+PROJECT="${CREWHALL_PROJECT:-}"
+HEALTH_TIMEOUT="${CREWHALL_HEALTH_TIMEOUT:-300}"
+DOCKER="${CREWHALL_DOCKER:-docker}"
+ROLLBACK_TAG="crewhall-rollback"
+PROFILES=()
+YES=false
+
+die() { echo "crewhall: $*" >&2; exit 1; }
+say() { echo "==> $*" >&2; }
+
+usage() {
+  cat >&2 <<'EOF'
+Kullanım: crewhall [seçenekler] <komut>
+
+Komutlar:
+  backup [--with-config]        Veritabanı + dosyalar (+ şifreli .env) yedeği alır
+  list                          Yedekleri listeler
+  restore <id> [--with-config]  Yedeği geri yükler (servisler kısa süre durur)
+  export <id> > dosya.tar       Yedeği tek dosya olarak dışarı verir (başka sunucuya taşımak için)
+  import < dosya.tar            Dışarıdan gelen yedeği içeri alır
+  prune --keep <n>              Elle ve gece alınan yedeklerden en yeni n tanesini tutar
+  update [sürüm] [--build]      Önce yedek alır, günceller; sorun olursa geri döner
+  voip-test --email <e-posta>   iPhone'a APNs üzerinden deneme araması (CallKit); --end <id> bitirir
+
+Seçenekler:
+  --compose-file <yol>   (varsayılan docker/compose.yml)
+  --env-file <yol>       (varsayılan docker/.env)
+  --project <ad>         Compose proje adı (Dokploy: uygulamanın appName değeri)
+  --profile <ad>         Ek profil (portal, meet); birden çok kez verilebilir
+  --yes                  Onay sormadan devam et
+EOF
+  exit "${1:-1}"
+}
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --compose-file) COMPOSE_FILE="$2"; shift 2 ;;
+    --env-file) ENV_FILE="$2"; shift 2 ;;
+    --project) PROJECT="$2"; shift 2 ;;
+    --profile) PROFILES+=(--profile "$2"); shift 2 ;;
+    --yes|-y) YES=true; shift ;;
+    -h|--help) usage 0 ;;
+    *) break ;;
+  esac
+done
+[ $# -gt 0 ] || usage
+CMD="$1"; shift
+
+[ -f "$COMPOSE_FILE" ] || die "compose dosyası yok: $COMPOSE_FILE"
+[ -f "$ENV_FILE" ] || die "env dosyası yok: $ENV_FILE"
+
+dc() {
+  local args=(compose -f "$COMPOSE_FILE" --env-file "$ENV_FILE")
+  [ -n "$PROJECT" ] && args+=(-p "$PROJECT")
+  "$DOCKER" "${args[@]}" ${PROFILES[@]+"${PROFILES[@]}"} "$@"
+}
+
+# One-off backend container running the ops CLI; extra `docker compose run` flags first.
+ops() {
+  local flags=()
+  while [ $# -gt 0 ] && [ "$1" != "--" ]; do flags+=("$1"); shift; done
+  [ "${1:-}" = "--" ] && shift
+  dc run --rm -T ${flags[@]+"${flags[@]}"} backend node dist/crewhall.js "$@"
+}
+
+abspath() { (cd "$(dirname "$1")" && printf '%s/%s\n' "$(pwd)" "$(basename "$1")"); }
+
+env_get() { sed -n "s/^$1=//p" "$ENV_FILE" | tail -n 1; }
+
+env_set() {
+  if grep -q "^$1=" "$ENV_FILE"; then
+    sed -i.tmp "s|^$1=.*|$1=$2|" "$ENV_FILE" && rm -f "$ENV_FILE.tmp"
+  else
+    printf '%s=%s\n' "$1" "$2" >> "$ENV_FILE"
+  fi
+}
+
+confirm() {
+  $YES && return 0
+  printf '%s [e/H] ' "$1" >&2
+  read -r answer
+  case "$answer" in e|E|evet|y|Y|yes) return 0 ;; *) die "vazgeçildi" ;; esac
+}
+
+# Waits until the backend container reports healthy; fails on timeout or a dead container.
+wait_healthy() {
+  local deadline=$(( $(date +%s) + HEALTH_TIMEOUT )) id status
+  while :; do
+    id="$(dc ps -q backend 2>/dev/null | head -n 1)"
+    if [ -n "$id" ]; then
+      status="$("$DOCKER" inspect -f '{{if .State.Health}}{{.State.Health.Status}}{{else}}{{.State.Status}}{{end}}' "$id" 2>/dev/null || echo unknown)"
+      case "$status" in
+        healthy) return 0 ;;
+        unhealthy|exited|dead) say "backend durumu: $status"; return 1 ;;
+      esac
+    fi
+    [ "$(date +%s)" -ge "$deadline" ] && { say "backend $HEALTH_TIMEOUT sn içinde sağlıklı olmadı"; return 1; }
+    sleep 3
+  done
+}
+
+APP_SERVICES=(backend worker collab)
+
+# The passphrase reaches the container by name only, never on a command line.
+require_passphrase() {
+  [ -n "${CREWHALL_BACKUP_PASSPHRASE:-}" ] || die "--with-config için CREWHALL_BACKUP_PASSPHRASE ortam değişkeni gerekli"
+}
+
+cmd_backup() {
+  local trigger=manual note="" with_config=false
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --with-config) with_config=true; shift ;;
+      --trigger) trigger="$2"; shift 2 ;;
+      --note) note="$2"; shift 2 ;;
+      *) die "bilinmeyen seçenek: $1" ;;
+    esac
+  done
+  local flags=() args=(backup --trigger "$trigger" --print-id)
+  [ -n "$note" ] && args+=(--note "$note")
+  if $with_config; then
+    require_passphrase
+    flags=(-v "$(abspath "$ENV_FILE"):/run/crewhall.env:ro" -e CREWHALL_BACKUP_PASSPHRASE)
+    args+=(--config /run/crewhall.env)
+  fi
+  ops ${flags[@]+"${flags[@]}"} -- "${args[@]}"
+}
+
+cmd_restore() {
+  local id="${1:-}" with_config=false
+  [ -n "$id" ] || die "restore için yedek kimliği gerekli (crewhall list)"
+  shift
+  [ "${1:-}" = "--with-config" ] && with_config=true
+  confirm "Mevcut veritabanı ve dosyalar '$id' yedeğiyle değiştirilecek. Devam edilsin mi?"
+  if $with_config; then
+    require_passphrase
+    local out="$ENV_FILE.restored"
+    ops -e CREWHALL_BACKUP_PASSPHRASE -- config "$id" > "$out"
+    chmod 600 "$out"
+    say "Yapılandırma $out dosyasına yazıldı; kontrol edip $ENV_FILE yerine koyun."
+  fi
+  say "Uygulama servisleri durduruluyor"
+  dc stop "${APP_SERVICES[@]}"
+  ops -- restore "$id" --yes
+  say "Servisler başlatılıyor"
+  dc up -d
+  wait_healthy || die "geri yükleme bitti ama backend sağlıklı değil: dc logs backend"
+  say "Geri yükleme tamam: $id"
+}
+
+image_refs() {
+  local registry
+  registry="$(env_get CREWHALL_REGISTRY)"
+  dc config --images | grep "^${registry:-crewhall}/" | sort -u
+}
+
+cmd_update() {
+  local target="latest" build=false
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --build) build=true; shift ;;
+      -*) die "bilinmeyen seçenek: $1" ;;
+      *) target="$1"; shift ;;
+    esac
+  done
+  local current
+  current="$(env_get CREWHALL_VERSION)"
+  current="${current:-latest}"
+  say "Güncelleme: $current -> $target"
+
+  # 1) Keep the running images under a fixed tag: "latest" moves with the pull.
+  local refs=() ref
+  mapfile -t refs < <(image_refs)
+  [ ${#refs[@]} -gt 0 ] || die "imaj listesi alınamadı"
+  for ref in "${refs[@]}"; do
+    "$DOCKER" image tag "$ref" "${ref%:*}:$ROLLBACK_TAG"
+  done
+
+  # 2) Backup with the current version before anything changes.
+  say "Güncelleme öncesi yedek alınıyor"
+  local snapshot
+  snapshot="$(CREWHALL_VERSION="$ROLLBACK_TAG" cmd_backup --trigger update --note "$current -> $target" | tail -n 1)"
+  [ -n "$snapshot" ] || die "yedek alınamadı; güncelleme yapılmadı"
+  say "Yedek: $snapshot"
+
+  # 3) New images, then the new version.
+  if $build; then
+    CREWHALL_VERSION="$target" dc build
+  else
+    CREWHALL_VERSION="$target" dc pull || die "yeni imajlar çekilemedi; hiçbir şey değişmedi"
+  fi
+  cp "$ENV_FILE" "$ENV_FILE.before-update"
+  env_set CREWHALL_VERSION "$target"
+  say "Yeni sürüm başlatılıyor (migration'lar açılışta çalışır)"
+  if dc up -d && wait_healthy; then
+    rm -f "$ENV_FILE.before-update"
+    say "Güncelleme tamam: $target (yedek $snapshot)"
+    return 0
+  fi
+
+  # 4) Roll back: old images under their old tag, old .env, database and files from the backup.
+  say "Güncelleme başarısız; geri dönülüyor"
+  dc logs --tail 50 backend >&2 || true
+  dc stop "${APP_SERVICES[@]}" || true
+  for ref in "${refs[@]}"; do
+    "$DOCKER" image tag "${ref%:*}:$ROLLBACK_TAG" "$ref"
+  done
+  mv "$ENV_FILE.before-update" "$ENV_FILE"
+  ops -- restore "$snapshot" --yes
+  dc up -d
+  if wait_healthy; then
+    die "güncelleme geri alındı; $current sürümü ve $snapshot yedeği yeniden çalışıyor"
+  fi
+  die "geri dönüş de sağlıklı açılmadı; 'crewhall restore $snapshot' ile elle deneyin"
+}
+
+case "$CMD" in
+  backup) cmd_backup "$@" ;;
+  list) ops -- list ;;
+  restore) cmd_restore "$@" ;;
+  export) [ -n "${1:-}" ] || die "export için yedek kimliği gerekli"; ops -- export "$1" ;;
+  import) ops -- import ;;
+  prune) ops -- prune "$@" ;;
+  voip-test) ops -- voip-test "$@" ;;
+  update) cmd_update "$@" ;;
+  *) usage ;;
+esac

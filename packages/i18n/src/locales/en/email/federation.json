@@ -1,0 +1,4 @@
+{
+  "share": "{name} was shared with you: {url}",
+  "shareWithNote": "{note}\n\n{name}: {url}"
+}

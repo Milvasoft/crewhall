@@ -1,0 +1,12 @@
+{
+  "federation_disabled": "Federation is turned off for this organization.",
+  "federation_domain_not_allowed": "This domain is not allowed to federate.",
+  "federation_domain_self": "You cannot add your own organization as a peer.",
+  "federation_peer_unreachable": "The other installation could not be reached. Check the address and that federation is on there.",
+  "federation_peer_not_active": "Federation with this installation is not active yet; both sides need to add each other.",
+  "federation_user_not_found": "Nobody has this address on the other installation.",
+  "federation_signature_invalid": "The request signature could not be verified.",
+  "federation_not_allowed": "This cannot be done in a federated conversation.",
+  "federation_shared_channels_disabled": "Shared channels are turned off in this organization or the other one.",
+  "federation_share_closed": "This invite is no longer open (answered, expired or withdrawn)."
+}

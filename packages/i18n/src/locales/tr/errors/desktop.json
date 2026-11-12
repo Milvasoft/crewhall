@@ -1,0 +1,8 @@
+{
+  "desktop_storage_missing": "Bu sunucuda S3 depolama ayarlı değil; masaüstü sürümü yüklenemez.",
+  "desktop_file_invalid": "Dosya adı ya da uzantısı bu platform için uygun değil.",
+  "desktop_file_missing": "Dosya depoda bulunamadı. Önce dosyayı yükle.",
+  "desktop_version_invalid": "Sürüm numarası geçersiz (ör. 0.2.5).",
+  "desktop_release_in_use": "Bu dosya yayındaki sürüme ait; değiştirilemez ya da silinemez.",
+  "desktop_served_from_folder": "Bu platformun sürümleri sunucudaki klasörden sunuluyor; buradan yayımlanamaz."
+}

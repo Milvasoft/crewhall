@@ -1,0 +1,559 @@
+/*
+ * Scene 1: the brand lockup. The card's bite is a circle (centre 1.2376 × card width, radius
+ * 0.4385 × width, from the card shape); the mark sits concentric in it with a thin gap, so the
+ * lockup is laid out in units of the card width (--cw).
+ *
+ * Layers: elements moved by the scroll engine (…Cam, …Out, …Tilt) wrap the elements that play
+ * the load intro with CSS animations, so the two never fight over a transform.
+ */
+
+.hero {
+  --cw: min(44vw, calc((100svh - 170px) * 1.1274));
+  --ch: calc(var(--cw) / 1.1274);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 520px;
+  overflow: hidden;
+  background: var(--page);
+}
+
+/* Circuit traces: drawn in along their own 45° direction, then a slow, deep layer */
+.circuitCam {
+  position: absolute;
+  top: 0;
+  right: -6vw;
+  width: 66vw;
+  transform-origin: 70% 35%;
+  pointer-events: none;
+}
+
+.circuitTilt {
+  position: relative;
+  width: 100%;
+}
+
+.circuit {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: brightness(1.9);
+  opacity: 0.75;
+  animation: circuitIn 2.2s cubic-bezier(0.65, 0, 0.35, 1) 0.05s both;
+}
+
+:global([data-theme='light']) .circuit {
+  filter: invert(1);
+  opacity: 0.4;
+}
+
+/* current running along the traces: orange light seen only through the circuit itself */
+.current {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  -webkit-mask: var(--circuit) center / 100% 100% no-repeat;
+  mask: var(--circuit) center / 100% 100% no-repeat;
+  animation: circuitIn 2.2s cubic-bezier(0.65, 0, 0.35, 1) 0.05s both;
+}
+
+.pulse {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 46%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    #ffd28a,
+    var(--brand-2) 30%,
+    rgba(217, 123, 53, 0.6) 55%,
+    transparent
+  );
+  animation: pulseRun 7s cubic-bezier(0.45, 0, 0.55, 1) 1.2s infinite both;
+}
+
+.pulseLate {
+  width: 30%;
+  animation-delay: 4.6s;
+  animation-duration: 8.5s;
+}
+
+@keyframes pulseRun {
+  from {
+    transform: translate(210%, -60%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    transform: translate(-60%, 160%);
+    opacity: 0;
+  }
+}
+
+@keyframes circuitIn {
+  from {
+    clip-path: polygon(100% 0, 100% 0, 100% 0);
+  }
+  to {
+    clip-path: polygon(100% 0, 100% 320%, -220% 0);
+  }
+}
+
+/* Vertical wordmark: the content image as a mask, painted with the page's ink and a brand sweep */
+.wordmarkCam {
+  position: absolute;
+  right: 3.2vw;
+  top: calc(50% - 36svh + 30px);
+  height: 72svh;
+  aspect-ratio: 290 / 1080;
+  pointer-events: none;
+}
+
+.wordmark {
+  width: 100%;
+  height: 100%;
+  -webkit-mask: var(--wordmark) center / contain no-repeat;
+  mask: var(--wordmark) center / contain no-repeat;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--fg) 12%, transparent) 0%,
+    color-mix(in srgb, var(--fg) 12%, transparent) 38%,
+    var(--brand) 48%,
+    var(--brand-2) 52%,
+    color-mix(in srgb, var(--fg) 12%, transparent) 62%,
+    color-mix(in srgb, var(--fg) 12%, transparent) 100%
+  );
+  background-size: 100% 320%;
+  background-position: 0 calc(100% - var(--sweep, 0) * 140%);
+  animation: wordmarkIn 1.6s var(--ease-out) 0.6s both;
+}
+
+@keyframes wordmarkIn {
+  from {
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(12%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+}
+
+/* The camera: one box the size of the stage, scaled about its top-left corner by the engine */
+.camera {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+}
+
+.lockup {
+  position: absolute;
+  left: max(5vw, 24px);
+  top: calc(50% + 40px - var(--ch) / 2);
+  width: calc(var(--cw) * 1.66);
+  height: var(--ch);
+}
+
+.card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--cw);
+  height: var(--ch);
+  animation: cardIn 1.35s var(--ease-out) 0.1s both;
+}
+
+.card:not([data-shape]) {
+  border-radius: 40px;
+  background: var(--brand-grad);
+}
+
+@keyframes cardIn {
+  from {
+    clip-path: inset(0 100% 0 0 round 40px);
+    transform: translateX(-8vw);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 0);
+    transform: none;
+  }
+}
+
+.cardShape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.copy {
+  position: absolute;
+  left: 9%;
+  top: 0;
+  bottom: 0;
+  width: 66%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+
+:global([data-theme='light']) .copy {
+  color: #1d1d1d;
+}
+
+.title {
+  margin: 0 0 calc(var(--cw) * 0.035);
+  font-size: calc(var(--cw) * 0.088);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: inherit;
+}
+
+.lineMask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+
+.lineOut {
+  display: block;
+  transform: translateY(calc(var(--out, 0) * -118%));
+}
+
+.lineIn {
+  display: block;
+  transform-origin: 0 100%;
+  animation: lineIn 1.1s var(--ease-out) both;
+  animation-delay: calc(0.45s + var(--i, 0) * 0.12s);
+}
+
+@keyframes lineIn {
+  from {
+    transform: translateY(115%) rotate(5deg);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.badgeOut {
+  margin-bottom: calc(var(--cw) * 0.04);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #4a90a4;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  animation: badgeIn 0.7s var(--ease-spring) 0.95s both;
+}
+
+:global([data-theme='light']) .badge {
+  background: #3d7a8c;
+}
+
+@keyframes badgeIn {
+  from {
+    transform: translateY(14px) scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.description {
+  margin: 0;
+  max-width: 34em;
+  font-size: clamp(0.85rem, calc(var(--cw) * 0.026), 1.08rem);
+  line-height: 1.5;
+  color: inherit;
+  animation: fadeUp 0.9s var(--ease-out) 1.05s both;
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 0.95;
+  }
+}
+
+/* The mark, nested in the card's bite */
+.markSlot {
+  position: absolute;
+  left: calc(var(--cw) * 0.8276);
+  top: calc(var(--cw) * 0.0308);
+  width: calc(var(--cw) * 0.82);
+  aspect-ratio: 1;
+}
+
+.markTilt {
+  width: 100%;
+  height: 100%;
+}
+
+.mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: markIn 1.7s var(--ease-spring) 0.3s both;
+}
+
+@keyframes markIn {
+  from {
+    transform: rotate(-80deg) scale(0.35);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* The mark landing on the orange field at the end of the push */
+.echo {
+  --size: min(34vmin, 300px);
+  position: absolute;
+  left: calc(50% - var(--size) / 2);
+  top: calc(50% - var(--size) / 2);
+  width: var(--size);
+  height: var(--size);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.echoImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 48px rgba(90, 40, 0, 0.35));
+}
+
+.wordmarkH {
+  display: none;
+}
+
+/* Scroll cue */
+.cueOut {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 26px;
+  pointer-events: none;
+}
+
+.cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--fg);
+  pointer-events: none;
+  animation: cueIn 1s ease 1.8s both;
+}
+
+@keyframes cueIn {
+  from {
+    opacity: 0;
+  }
+}
+
+.cueLabel {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  padding-left: 0.32em;
+}
+
+.cueTrack {
+  position: relative;
+  width: 1px;
+  height: 46px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--fg) 18%, transparent);
+}
+
+.cueDot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 16px;
+  background: var(--brand);
+  animation: cueRun 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes cueRun {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(300%);
+  }
+}
+
+/* ≤ 1400: tighter lockup */
+@media (max-width: 1400px) {
+  .hero {
+    --cw: min(45vw, calc((100svh - 170px) * 1.1274));
+  }
+  .wordmarkCam {
+    right: 2vw;
+    height: 62svh;
+    top: calc(50% - 31svh + 30px);
+  }
+}
+
+/* ≤ 1000: the mark runs off the right edge; no vertical wordmark */
+@media (max-width: 1000px) {
+  .hero {
+    --cw: min(60vw, calc((100svh - 220px) * 1.1274));
+  }
+  .lockup {
+    left: 32px;
+  }
+  .wordmarkCam {
+    display: none;
+  }
+  .circuitCam {
+    width: 90vw;
+  }
+}
+
+/*
+ * ≤ 768 (phones): plain flow, no pinned camera. The lockup stands upright: the card is turned a
+ * quarter so its bite faces up, and the mark sits in it from above (same geometry, in units of
+ * the turned card's width: 934 wide, 1053 tall, bite centre 464.5 across and 250.2 above it).
+ * Everything fits the width, nothing is cropped; the wordmark follows below.
+ */
+@media (max-width: 768px) {
+  .hero {
+    --pw: min(calc(100vw - 40px), 400px);
+    --u: calc(var(--pw) / 934);
+    height: auto;
+    min-height: 0;
+    padding: calc(var(--navbar) + 8px) 20px 44px;
+    box-sizing: border-box;
+  }
+  .camera {
+    position: relative;
+    inset: auto;
+  }
+  .lockup {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: var(--pw);
+    height: auto;
+    margin: 0 auto;
+  }
+  .lockup[data-mark] {
+    padding-top: calc(var(--u) * 682.2);
+  }
+  .card {
+    position: relative;
+    width: var(--pw);
+    height: calc(var(--u) * 1053);
+  }
+  .card:not([data-shape]) {
+    height: auto;
+    min-height: calc(var(--u) * 900);
+    border-radius: 32px;
+  }
+  .cardShape {
+    inset: auto;
+    left: 50%;
+    top: 50%;
+    width: calc(var(--u) * 1053);
+    height: var(--pw);
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+  .copy {
+    left: 9%;
+    right: 9%;
+    width: auto;
+    top: calc(var(--u) * 250);
+    bottom: calc(var(--u) * 40);
+  }
+  .card:not([data-shape]) .copy {
+    position: relative;
+    inset: auto;
+    padding: 40px 9%;
+  }
+  .markSlot {
+    left: calc(var(--u) * 32.5);
+    top: 0;
+    width: calc(var(--u) * 864);
+  }
+  .title {
+    margin-bottom: 14px;
+    font-size: clamp(1.6rem, 8vw, 2.3rem);
+  }
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .badgeOut {
+    margin-bottom: 14px;
+  }
+  .wordmarkH {
+    display: block;
+    position: relative;
+    width: min(46vw, 190px);
+    height: auto;
+    margin: 26px auto 0;
+    opacity: 0.9;
+    animation: fadeUp 1s var(--ease-out) 1.2s both;
+  }
+  :global([data-theme='dark']) .wordmarkH {
+    filter: invert(1) hue-rotate(180deg);
+  }
+  .circuitCam {
+    width: 160vw;
+    right: -50vw;
+  }
+  .echo,
+  .cueOut {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .current {
+    display: none;
+  }
+  .hero *,
+  .hero *::before {
+    animation: none !important;
+  }
+  .cueOut {
+    display: none;
+  }
+}

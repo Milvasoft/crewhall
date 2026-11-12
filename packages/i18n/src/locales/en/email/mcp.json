@@ -1,0 +1,56 @@
+{
+  "newConnection": {
+    "subject": "{orgName}: new MCP connection · {client}",
+    "title": "New MCP connection",
+    "intro": "Hi {name}, {client} can now access your {orgName} account on your behalf.",
+    "adminIntro": "{person} ({email}) connected a new MCP client to {orgName}: {client}.",
+    "client": "Client",
+    "redirect": "Redirect address",
+    "scopes": "Scopes",
+    "spaces": "Spaces",
+    "allSpaces": "All spaces",
+    "expires": "Valid until",
+    "never": "No expiry",
+    "when": "Time",
+    "ip": "IP address",
+    "cta": "Manage connection",
+    "notMe": "If you did not set this up, disconnect it now: My account › MCP and API › Disconnect. A disconnected client loses access within 30 seconds.",
+    "vault": "The vault is always closed to MCP."
+  },
+  "approval": {
+    "subject": "{client} needs your approval: {title}",
+    "title": "{client} needs your approval",
+    "intro": "{client} wants to do this on your behalf: {title}.",
+    "items": "Items",
+    "expires": "The request expires at {time}.",
+    "cta": "Review",
+    "note": "You approve exactly what you see, confirmed with a passkey or password. The client's note is unverified text."
+  },
+  "scopeNames": {
+    "hub:read": "Read and search",
+    "pages:write": "Write pages",
+    "quick:write": "Write quick access",
+    "drive:write": "Write Drive",
+    "boards:write": "Write boards",
+    "chat:send": "Send chat messages",
+    "portal:draft": "Portal drafts",
+    "portal:publish": "Publish to portal",
+    "meetings:write": "Schedule meetings",
+    "calendar:write": "Write calendars",
+    "contacts:write": "Write contacts",
+    "tables:write": "Write tables"
+  },
+  "openapi": {
+    "title": "Crewhall REST API",
+    "description": "HTTP access to the organization's Crewhall workspace. Every endpoint is generated from the contract table; the schemas are the zod schemas the server validates with.\n\n**Authentication:** send a personal token created under My account › MCP and API in the `Authorization: Bearer mhp_…` header. A token acts with its owner's permissions, limited to the scopes and spaces you picked; account, security and vault endpoints are never open to tokens.\n\n**Errors** come back as `{ code, message, details? }`. **Pagination** uses cursors: send `cursor` and `limit`, the response is `{ items, nextCursor }`. Writing endpoints accept an `Idempotency-Key` header.",
+    "public": "No session needed.",
+    "tokenScope": "With a personal token, needs the `{scope}` scope.",
+    "noToken": "Session only; not available with personal tokens.",
+    "idempotency": "A repeated request with the same key returns the first response (24 hours).",
+    "ok": "Success",
+    "error": "Error (`code` matches the i18n key `errors.<code>`)",
+    "personalToken": "Personal access token (starts with `mhp_`); accepted only where the description names a scope.",
+    "sessionCookie": "Web session cookie (prefixed `__Secure-` over HTTPS).",
+    "sessionToken": "The mobile app's session token (better-auth bearer)."
+  }
+}

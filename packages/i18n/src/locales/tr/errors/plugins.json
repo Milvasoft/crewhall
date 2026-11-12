@@ -1,0 +1,21 @@
+{
+  "plugin_not_found": "Eklenti ya da bu sürümü bulunamadı.",
+  "plugin_signature_invalid": "Eklenti paketinin imzası doğrulanamadı; kurulmadı.",
+  "plugin_api_level": "Bu eklenti sürümü bu Crewhall sürümüyle uyumlu değil.",
+  "plugin_not_for_installation": "Bu eklenti yalnız başka kurumlar için yayınlanmış.",
+  "plugin_permissions_mismatch": "Yalnız eklentinin istediği izinler verilebilir.",
+  "plugin_permissions_changed": "Yeni sürüm ek izin istiyor; izinleri onaylaman gerekiyor.",
+  "plugin_unreachable": "Eklentinin sunucusuna ulaşılamadı.",
+  "plugin_disabled": "Bu eklenti kurumda kapalı.",
+  "plugin_offline_not_granted": "Bu kişi eklentiye arka planda çalışma izni vermemiş.",
+  "plugin_already_installed": "Bu eklenti zaten kurulu.",
+  "marketplace_unreachable": "Eklenti pazarına ulaşılamadı. Biraz sonra yeniden dene.",
+  "plugin_link_invalid": "Bu bir eklenti kimliği ya da bu pazar yerinin kurulum bağlantısı değil.",
+  "plugin_hosting_changed": "Bu sürüm barındırma biçimini değiştiriyor; eklentiyi kaldırıp yeniden kur.",
+  "plugin_self_origin_required": "Bu eklenti kurumun kendi sunucusunda çalışır; sunucunun https adresini gir.",
+  "plugin_self_origin_invalid": "Sunucu adresi https ile başlayan, yolsuz bir adres olmalı (ör. https://wa.kurum.com).",
+  "plugin_self_unreachable": "Kendi sunucundaki eklentiye ulaşılamadı ya da /.well-known/crewhall-plugin.json okunamadı.",
+  "plugin_self_manifest_mismatch": "Sunucundaki manifest pazar yerinin imzaladığıyla aynı değil (kimlik, sürüm, izinler ya da içerik).",
+  "plugin_user_not_linked": "Eklenti bu kişiye bildirim gönderemez: kişi eklentiyi henüz açmadı.",
+  "plugin_url_invalid": "Bildirim bağlantısı eklentinin kendi sekmelerinden birine gitmeli."
+}

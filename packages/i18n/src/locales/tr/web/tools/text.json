@@ -1,0 +1,182 @@
+{
+  "ascii-text-drawer": {
+    "name": "ASCII sanat yazısı",
+    "description": "Metni figlet yazı tipleriyle ASCII sanat afişine çevir, tamamen yerelde.",
+    "keywords": "ascii, sanat, figlet, afiş, büyük yazı, yazı tipi, banner",
+    "yourText": "Metnin",
+    "font": "Yazı tipi",
+    "width": "Genişlik",
+    "renderFailed": "Çizilemedi."
+  },
+  "case-converter": {
+    "name": "Harf biçimi dönüştürücü",
+    "description": "Metni camelCase, snake_case, kebab-case, PascalCase ve diğer biçimler arasında çevir, yerelde.",
+    "keywords": "harf, büyük harf, küçük harf, camel, snake, kebab, pascal, başlık, sabit, slug",
+    "modes": {
+      "title": "Başlık Biçimi",
+      "sentence": "Cümle biçimi",
+      "lower": "küçük harf",
+      "upper": "BÜYÜK HARF"
+    }
+  },
+  "emoji-picker": {
+    "name": "Emoji seçici",
+    "description": "Emojileri adıyla ara, karakteri ya da kod noktalarını kopyala, yerelde.",
+    "keywords": "emoji, ifade, simge, surat, kopyala, unicode",
+    "searchPlaceholder": "Emoji ara… (İngilizce ad: rocket, heart, smile)",
+    "allGroups": "Tüm gruplar",
+    "matches": "{count, plural, one {# eşleşme} other {# eşleşme}}",
+    "showing": " · ilk {limit} tanesi gösteriliyor",
+    "copiedChar": "{value} panoya kopyalandı.",
+    "noMatch": "“{q}” ile eşleşen emoji yok.",
+    "groups": {
+      "smileys": "Yüzler ve duygular",
+      "people": "İnsanlar ve vücut",
+      "animals": "Hayvanlar ve doğa",
+      "food": "Yiyecek ve içecek",
+      "travel": "Seyahat ve yerler",
+      "activities": "Etkinlikler",
+      "objects": "Nesneler",
+      "symbols": "Semboller",
+      "flags": "Bayraklar",
+      "other": "Diğer"
+    }
+  },
+  "html-markdown": {
+    "name": "HTML'den Markdown'a",
+    "description": "HTML'i temiz Markdown'a çevir, tarayıcında yerelde.",
+    "keywords": "html, markdown, md, dönüştür, çevir"
+  },
+  "list-converter": {
+    "name": "Liste dönüştürücü",
+    "description": "Satır listesini sırala, tekrarları at, kırp, harf biçimini değiştir, sar ve birleştir; yerelde.",
+    "keywords": "liste, satır, sırala, tekrar, benzersiz, kırp, birleştir, ayır",
+    "trim": "Kırp",
+    "removeEmpty": "Boşları at",
+    "dedupe": "Tekrarları at",
+    "reverse": "Ters çevir",
+    "sort": "Sırala",
+    "sortNone": "Yok",
+    "sortNumeric": "Sayısal",
+    "sortLength": "Uzunluğa göre",
+    "case": "Harf",
+    "caseKeep": "Koru",
+    "caseLower": "küçük",
+    "caseUpper": "BÜYÜK",
+    "prefix": "Ön ek",
+    "suffix": "Son ek",
+    "joinWith": "Birleştirme",
+    "sepNewline": "Yeni satır",
+    "sepComma": "Virgül",
+    "sepSpace": "Boşluk",
+    "sepPipe": "Dikey çizgi",
+    "stats": "{total} satır · {count} benzersiz"
+  },
+  "lorem-ipsum": {
+    "name": "Lorem ipsum üretici",
+    "description": "Yer tutucu metin üret: kelime, cümle ya da paragraf, yerelde.",
+    "keywords": "lorem, ipsum, yer tutucu, sahte metin, doldurma metni, paragraf",
+    "count": "Adet",
+    "units": {
+      "words": "Kelime",
+      "sentences": "Cümle",
+      "paragraphs": "Paragraf"
+    },
+    "startWithLorem": "“Lorem ipsum” ile başla"
+  },
+  "markdown-viewer": {
+    "name": "Markdown görüntüleyici",
+    "description": "Markdown yaz, temizlenmiş HTML önizlemesini yan yana gör; yerelde ve güvenle işlenir.",
+    "keywords": "markdown, md, önizleme, html, readme, gfm, belge, yazı",
+    "starter": "# Adsız\n\n**Markdown** yazmaya başla. Üstteki araç çubuğunu kullan, soldan birden çok dosya yönet,\nsağ üstten dışa aktar.\n",
+    "untitledFile": "adsiz.md",
+    "untitledNumbered": "adsiz-{n}.md",
+    "toolbar": {
+      "bold": "Kalın",
+      "italic": "İtalik",
+      "strike": "Üstü çizili",
+      "inlineCode": "Satır içi kod",
+      "h1": "Başlık 1",
+      "h2": "Başlık 2",
+      "h3": "Başlık 3",
+      "bullets": "Madde listesi",
+      "numbered": "Numaralı liste",
+      "quote": "Alıntı",
+      "codeBlock": "Kod bloğu",
+      "link": "Bağlantı"
+    },
+    "preview": "Önizleme",
+    "collapsePreview": "Önizlemeyi daralt",
+    "files": "Dosyalar",
+    "showFiles": "Dosyaları göster",
+    "hideFiles": "Dosyaları gizle",
+    "newFile": "Yeni dosya",
+    "openFile": "Bir .md dosyası aç",
+    "renameHint": "{name} (yeniden adlandırmak için çift tıkla)",
+    "delete": "Sil",
+    "copyFormatted": "Biçimli kopyala",
+    "copyHtml": "HTML olarak kopyala",
+    "copyMarkdown": "Markdown olarak kopyala",
+    "export": "Dışa aktar",
+    "exportPdfSoon": "PDF (.pdf), yakında"
+  },
+  "numeronym-generator": {
+    "name": "Numeronim üretici",
+    "description": "“internationalization” gibi kelimeleri “i18n” gibi numeronimlere kısalt, yerelde.",
+    "keywords": "numeronim, kısaltma, i18n, l10n, a11y, kısalt"
+  },
+  "string-length": {
+    "name": "Metin uzunluğu ve istatistik",
+    "description": "Metindeki karakter, kelime, satır ve UTF-8 bayt sayısını yerelde hesapla.",
+    "keywords": "uzunluk, karakter sayısı, kelime sayısı, satır, bayt, sayaç, istatistik",
+    "placeholder": "Metni yaz ya da yapıştır…",
+    "example": "Pijamalı hasta yağız şoföre çabucak güvendi.\nİkinci satır, emojiyle 😀.",
+    "fields": {
+      "characters": "Karakter",
+      "charactersNoSpaces": "Boşluksuz",
+      "words": "Kelime",
+      "lines": "Satır",
+      "sentences": "Cümle",
+      "bytes": "UTF-8 bayt",
+      "utf16": "UTF-16 birim"
+    }
+  },
+  "string-obfuscator": {
+    "name": "Metin maskeleyici",
+    "description": "Bir metnin ortasını maskele (sırlar, e-postalar, jetonlar), birkaç karakter görünür kalsın; yerelde.",
+    "keywords": "maskele, gizle, karart, sır, jeton, e-posta, sansür",
+    "keepFirst": "Baştan koru",
+    "keepLast": "Sondan koru",
+    "maskChar": "Maske karakteri",
+    "keepSpaces": "Boşlukları koru"
+  },
+  "text-compare": {
+    "name": "Metin karşılaştır",
+    "description": "İki metin bloğunu yan yana karşılaştır; boşluk ve harf seçenekleriyle, yerelde.",
+    "keywords": "fark, diff, karşılaştır, kıyasla, metin, satır",
+    "ignoreWhitespace": "Boşlukları yok say",
+    "ignoreCase": "Harf farkını yok say",
+    "trim": "Satırları kırp",
+    "added": "{count} eklendi",
+    "removed": "{count} silindi",
+    "changed": "{count} değişti",
+    "original": "Özgün",
+    "modified": "Değişmiş",
+    "diff": "Fark"
+  },
+  "text-to-nato": {
+    "name": "Metinden NATO alfabesine",
+    "description": "Metni NATO fonetik alfabesiyle hecele (Alfa, Bravo, Charlie…), yerelde.",
+    "keywords": "nato, fonetik, alfabe, kodlama alfabesi, heceleme, alfa bravo",
+    "onePerLine": "Her satıra bir"
+  },
+  "text-to-unicode": {
+    "name": "Metinden Unicode'a",
+    "description": "Metni Unicode kaçış dizilerine (\\uXXXX, U+, HTML varlıkları) çevir ve geri al, yerelde.",
+    "keywords": "unicode, kaçış, escape, kod noktası, u+, html varlık, çöz",
+    "textToUnicode": "Metin → Unicode",
+    "unicodeToText": "Unicode → metin",
+    "formatLabel": "Biçim",
+    "escapes": "Unicode kaçış dizileri"
+  }
+}

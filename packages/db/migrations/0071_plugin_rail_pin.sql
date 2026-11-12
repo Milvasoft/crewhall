@@ -1,0 +1,1 @@
+ALTER TABLE "plugin_notification_prefs" ADD COLUMN "pinned_tabs" jsonb DEFAULT '[]'::jsonb NOT NULL;

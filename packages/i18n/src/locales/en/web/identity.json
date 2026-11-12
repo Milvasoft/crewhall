@@ -1,0 +1,702 @@
+{
+  "common": {
+    "add": "Add",
+    "copy": "Copy",
+    "copied": "Copied to clipboard",
+    "show": "Show",
+    "hide": "Hide",
+    "removeItem": "Remove {name}",
+    "unsavedTitle": "Unsaved changes",
+    "leave": "Leave"
+  },
+  "nav": {
+    "group": "Security",
+    "security": "Security",
+    "sso": "SSO apps",
+    "systemGroup": "System",
+    "integrations": "Integrations",
+    "backups": "Backups",
+    "compliance": "Compliance"
+  },
+  "modules": {
+    "title": "Modules",
+    "subtitle": "A disabled module disappears from the rail and mobile, and its endpoints stop answering.",
+    "core": "Drive and quick access",
+    "coreHint": "Core modules are always on.",
+    "items": {
+      "chat": {
+        "name": "Chat",
+        "desc": "Channels, direct messages and chat attachments"
+      },
+      "meet": {
+        "name": "Meetings",
+        "desc": "Video meetings and voice calls (LiveKit)"
+      },
+      "wiki": {
+        "name": "Pages",
+        "desc": "Wiki pages attached to spaces"
+      },
+      "boards": {
+        "name": "Boards",
+        "desc": "Task boards and cards"
+      },
+      "drawings": {
+        "name": "Drawings",
+        "desc": "Whiteboard drawings and diagrams; drawing cards on boards use it too"
+      },
+      "vault": {
+        "name": "Vault",
+        "desc": "Zero-knowledge vault for passwords and secrets"
+      },
+      "portal": {
+        "name": "Portal",
+        "desc": "The org's public site and its content management"
+      },
+      "mcp": {
+        "name": "MCP and API",
+        "desc": "AI clients, personal access tokens and approvals"
+      },
+      "forms": {
+        "name": "Forms and surveys",
+        "desc": "Form builder, public links and results"
+      },
+      "calendar": {
+        "name": "Calendar",
+        "desc": "Personal, team and space calendars, invitations and CalDAV"
+      },
+      "contacts": {
+        "name": "Directory",
+        "desc": "Org directory, org chart, external contacts and CardDAV"
+      },
+      "tables": {
+        "name": "Tables",
+        "desc": "Space tables: field types, grid, kanban, calendar, gallery and timeline views, CSV/Excel"
+      },
+      "automations": {
+        "name": "Automations",
+        "desc": "No-code when-this-then-that rules, incoming and outgoing webhooks"
+      },
+      "ai": {
+        "name": "AI",
+        "desc": "Writing help in the editor and chat summaries"
+      },
+      "mail": {
+        "name": "Mail",
+        "desc": "E-mail client for the organization's mail server over IMAP/SMTP"
+      },
+      "tools": {
+        "name": "Tools",
+        "desc": "Developer tools: JSON, encoding, security, text, network and more; all run in the browser."
+      },
+      "office": {
+        "name": "Office",
+        "desc": "Open and co-edit Word, Excel and PowerPoint files inside Drive"
+      }
+    }
+  },
+  "disabled": {
+    "title": "This module is turned off in your organization",
+    "body": "An admin turned off {module}. Ask your admin if you need it.",
+    "bodyGeneric": "An admin turned off this section.",
+    "home": "Back to home",
+    "admin": "Manage modules"
+  },
+  "login": {
+    "ssoWith": "Sign in with {name}",
+    "domainSso": "This domain signs in with {name}.",
+    "continueWith": "Continue with {name}",
+    "modeLabel": "Sign-in method",
+    "modeEmail": "With e-mail",
+    "modeDirectory": "Directory account",
+    "directoryHint": "Your user name or e-mail; the password is your directory password.",
+    "emergency": "Emergency sign-in (org owner)",
+    "emergencyHint": "Password sign-in is turned off by policy. This path is open to the org owner only."
+  },
+  "reauth": {
+    "title": "Verify it's you",
+    "body": "Verify again to change security settings. The check stays valid for 10 minutes.",
+    "password": "Password",
+    "confirm": "Verify"
+  },
+  "security": {
+    "title": "Security",
+    "subtitle": "Sign-in, session and password policies · applied to all members",
+    "auth": "Authentication",
+    "require2fa": "Require two-step verification",
+    "enrolled": "{count}/{total} members set it up",
+    "pendingPeople": "{count, plural, one {{name} pending} other {{name} pending (# people)}}",
+    "passkey": "Sign in with a passkey",
+    "passkeyHint": "A passkey covers both the password and 2FA",
+    "rememberDevice": "\"Remember this device for 30 days\"",
+    "rememberDeviceHint": "Skip the 2FA code on trusted devices",
+    "adminsAlways": "Org owners and admins always need 2FA, even when the policy is off.",
+    "passwordPolicy": "Password policy",
+    "localLogin": "Password sign-in",
+    "localLoginHint": "When off, members use SSO or the directory; the org owner keeps a password",
+    "minLength": "Minimum length",
+    "minLengthHint": "No character class rules",
+    "chars": "{count} characters",
+    "breachCheck": "Breached password check",
+    "breachCheckHint": "k-anonymity, the password never leaves the server",
+    "session": "Session",
+    "sessionHours": "Session length",
+    "sessionHoursHint": "Then a new sign-in is required",
+    "rememberDays": "\"Keep me signed in\" length",
+    "rememberDaysHint": "When off, the option is not shown on the sign-in screen",
+    "hours": "{count, plural, one {# hour} other {# hours}}",
+    "days": "{count, plural, one {# day} other {# days}}",
+    "off": "Off",
+    "lockout": "Failed sign-in lock",
+    "lockoutHint": "Consecutive locks double in length",
+    "lockoutValue": "{count} attempts · {n} min",
+    "ipTitle": "IP allowlist",
+    "ipOff": "Off",
+    "ipAdmin": "Admin area",
+    "ipAll": "All sign-ins",
+    "ipHint": {
+      "off": "The list is saved but not enforced.",
+      "admin": "Admin screens are reachable from these addresses only.",
+      "all": "Every signed-in request is accepted from these addresses only."
+    },
+    "ipEmpty": "No ranges yet.",
+    "ipCidr": "Address or CIDR",
+    "ipLabel": "Label",
+    "ipLabelHint": "Office, VPN…",
+    "ipRemove": "Remove {ip}",
+    "ipCovered": "Your IP is listed",
+    "ipNotCovered": "Your IP is not listed",
+    "ipUnknown": "Your current IP address could not be determined.",
+    "ipAdd": "Add range",
+    "ipAddMine": "Add my IP",
+    "ipMine": "My address"
+  },
+  "scopes": {
+    "openid": {
+      "title": "Your identity",
+      "body": "The app recognizes you by your account in this organization.",
+      "short": "required"
+    },
+    "profile": {
+      "title": "Profile",
+      "body": "Your name and profile photo.",
+      "short": "name, avatar"
+    },
+    "email": {
+      "title": "E-mail address",
+      "body": "Your verified e-mail address.",
+      "short": "e-mail"
+    },
+    "groups": {
+      "title": "Spaces and roles",
+      "body": "The spaces you belong to and your role in the organization.",
+      "short": "spaces"
+    },
+    "offline_access": {
+      "title": "Access while you are away",
+      "body": "The app can renew its session while you are away.",
+      "short": "refresh"
+    }
+  },
+  "sso": {
+    "title": "SSO apps",
+    "subtitle": "Apps people sign in to with their org account · OpenID Connect",
+    "add": "Add app",
+    "issuer": "Issuer",
+    "discovery": "Discovery",
+    "signingKey": "Signing key",
+    "rotatedAgo": "{count, plural, =0 {rotated today} one {rotated # day ago} other {rotated # days ago}}",
+    "noKey": "No key yet",
+    "rotateKey": "Rotate key",
+    "rotateKeyTitle": "Rotate the signing key?",
+    "rotateKeyBody": "New tokens are signed with the new key. The old key stays in JWKS until its tokens expire, so connected apps keep working.",
+    "keyRotatedToast": "Signing key rotated",
+    "cols": {
+      "app": "App",
+      "clientId": "Client ID",
+      "type": "Type",
+      "access": "Access",
+      "lastLogin": "Last sign-in",
+      "status": "Status"
+    },
+    "types": {
+      "web": "Web",
+      "spa": "SPA",
+      "native": "Mobile / desktop"
+    },
+    "typeShort": {
+      "web": "Web · confidential",
+      "spa": "SPA · PKCE",
+      "native": "Native · PKCE"
+    },
+    "typeLong": {
+      "web": "Web app · confidential client",
+      "spa": "Single-page app · public client",
+      "native": "Mobile or desktop app · public client"
+    },
+    "typeHint": {
+      "web": "Server-side app; a client secret is issued.",
+      "spa": "Runs in the browser; no secret, PKCE required.",
+      "native": "Mobile or desktop app; no secret, PKCE required."
+    },
+    "accessAll": "All members",
+    "accessSpace": "Members of {name}",
+    "status": {
+      "active": "Active",
+      "disabled": "Disabled",
+      "expiring": "{count, plural, one {Secret expires in # day} other {Secret expires in # days}}",
+      "expired": "Secret expired"
+    },
+    "guestsTag": "Guests",
+    "neverUsed": "No sign-ins yet",
+    "actions": "Actions for {name}",
+    "edit": "Edit",
+    "rotateSecret": "Renew secret",
+    "disable": "Disable",
+    "enable": "Enable",
+    "delete": "Delete",
+    "enabledToast": "App enabled",
+    "disabledToast": "App disabled; open sessions end at their next refresh",
+    "deletedToast": "App deleted",
+    "deleteTitle": "Delete {name}?",
+    "deleteBody": "Signing in to this app with the org account stops right away. This cannot be undone.",
+    "rotateTitle": "Issue a new secret for {name}?",
+    "rotateBody": "The old secret stops working immediately. You need to enter the new value in the app.",
+    "emptyTitle": "No SSO apps yet",
+    "emptyBody": "Add an app people sign in to with their org account as an OpenID Connect client.",
+    "skipConsent": "Skip the consent screen for internal apps",
+    "skipConsentHint": "People are not asked \"wants to access your profile\"",
+    "guests": "Guests may use SSO",
+    "guestsHint": "Also enabled per app",
+    "loginsTitle": "Last 7 days",
+    "loginsAside": "SSO sign-ins",
+    "noLogins": "No sign-ins yet.",
+    "addTitle": "New SSO app",
+    "editTitle": "Edit {name}",
+    "formHint": "Redirect URIs must match exactly; no wildcards, http only for localhost.",
+    "create": "Create",
+    "addUri": "Add URI",
+    "months": "{count} months",
+    "scopeRequired": "required",
+    "fields": {
+      "name": "Name",
+      "type": "Type",
+      "homepage": "Homepage",
+      "logo": "Logo URL",
+      "redirectUris": "Redirect URIs",
+      "postLogout": "Post-logout URIs",
+      "scopes": "Scopes",
+      "access": "Who can sign in",
+      "guests": "Guests",
+      "guestsHint": "The org setting must be on too",
+      "skipConsent": "Internal app",
+      "skipConsentHint": "No consent screen",
+      "secretMonths": "Secret lifetime",
+      "clientId": "Client ID",
+      "clientSecret": "Client secret"
+    },
+    "uriProblem": {
+      "empty": "The address is empty.",
+      "wildcard": "Wildcards are not allowed.",
+      "invalid": "Not a valid absolute URL.",
+      "http": "http is accepted for localhost only.",
+      "fragment": "The address cannot contain a # fragment."
+    },
+    "createdSub": "{type} · created just now",
+    "rotatedSub": "{type} · secret renewed",
+    "secretOnceTitle": "The client secret is shown only now.",
+    "secretOnceBody": "It cannot be viewed after closing, only renewed.",
+    "publicClient": "This is a public client: no secret, PKCE required.",
+    "secretValid": "Valid until {date}",
+    "audited": "Written to the audit log",
+    "copiedClose": "I copied it, close"
+  },
+  "idp": {
+    "pageTitle": "Integrations",
+    "pageSubtitle": "Services connected to your organization",
+    "pageSummary": "{count} connected · {n} errors",
+    "sectionTitle": "Identity providers",
+    "sectionHint": "Sign in with SSO (OpenID Connect, SAML 2.0) and Active Directory / LDAP",
+    "add": "Add",
+    "emptyTitle": "No identity providers yet",
+    "emptyBody": "Connect Keycloak, Microsoft Entra ID, Google Workspace or Active Directory so people sign in with their org account.",
+    "presets": {
+      "keycloak": "Keycloak",
+      "entra": "Microsoft Entra ID",
+      "google": "Google Workspace",
+      "okta": "Okta",
+      "oidc": "Generic OIDC",
+      "saml": "SAML 2.0",
+      "active_directory": "Active Directory",
+      "openldap": "OpenLDAP"
+    },
+    "kinds": {
+      "oidc": "OpenID Connect",
+      "saml": "SAML 2.0",
+      "ldap": "LDAP directory"
+    },
+    "status": {
+      "connected": "Connected",
+      "error": "Error",
+      "off": "Off",
+      "untested": "Not tested"
+    },
+    "lastTest": "Last test {when}",
+    "linkedUsers": "Linked people",
+    "people": "{count, plural, one {# person} other {# people}}",
+    "lastLogin": "Last sign-in",
+    "lastSync": "Last sync",
+    "syncShort": "{count} checked, {n} suspended",
+    "never": "Not yet",
+    "domains": "Domains",
+    "noDomains": "None",
+    "enforced": "SSO required",
+    "test": "Test",
+    "testOk": "Connection works",
+    "testFailed": "Connection failed",
+    "settings": "Settings",
+    "back": "Integrations",
+    "newTitle": "New connection: {name}",
+    "delete": "Delete",
+    "deleted": "Identity provider deleted",
+    "deleteTitle": "Delete {name}?",
+    "deleteBody": "Linked accounts stay; from now on they sign in with a local password or another provider.",
+    "general": "General",
+    "connection": "Connection",
+    "accounts": "Accounts",
+    "mappings": "Role mapping",
+    "mappingsHint": "Groups are applied only when the account is created.",
+    "mappingsHintSync": "Groups are applied again on every sign-in and directory sync. The highest role wins; org owner can never come from a directory.",
+    "noMappings": "No mappings: new accounts get the default role.",
+    "mapGroup": "Group",
+    "mapOrgRole": "Org role",
+    "mapSpace": "Space",
+    "mapSpaceRole": "Space role",
+    "mapKeep": "Keep",
+    "mapNoSpace": "No space",
+    "mapUnknownSpace": "Unknown space",
+    "mapRemove": "Remove mapping",
+    "mapAdd": "Add mapping",
+    "badDomain": "Not a valid domain.",
+    "missing": "Fill in the required fields.",
+    "saveFirst": "After saving, the addresses to give your IdP admin appear here.",
+    "secretStored": "Stored",
+    "secretChange": "Change",
+    "secretHint": "Secret values are never shown again; they can only be replaced.",
+    "seconds": "{count} s",
+    "fields": {
+      "name": "Display name",
+      "nameHint": "Shown on the \"Sign in with …\" button",
+      "enabled": "Enabled",
+      "enabledHint": "When off, nobody can sign in this way",
+      "domains": "E-mail domains",
+      "domainsHint": "People of these domains use this provider",
+      "enforceSso": "Require SSO",
+      "enforceSsoHint": "Password sign-in is refused for these domains, except the org owner",
+      "issuer": "Issuer URL",
+      "issuerHint": "Discovery URL: issuer + /.well-known/openid-configuration",
+      "clientId": "Client ID",
+      "clientSecret": "Client secret",
+      "scopes": "Scopes",
+      "groupsClaim": "Groups claim",
+      "groupsClaimHint": "Keycloak and Entra: groups",
+      "prompt": "Prompt sent to the IdP",
+      "endSession": "Sign out of the IdP too",
+      "endSessionHint": "Signing out of Crewhall also signs out of the IdP",
+      "entryPoint": "SSO URL (HTTP-Redirect)",
+      "idpIssuer": "IdP entity ID",
+      "idpCert": "IdP signing certificate",
+      "idpCertHint": "PEM or base64; separate several with a blank line",
+      "emailAttribute": "E-mail attribute",
+      "nameAttribute": "Name attribute",
+      "groupsAttribute": "Groups attribute",
+      "logoutUrl": "Single logout URL (SLO)",
+      "url": "Server URL",
+      "urlHint": "ldaps://host:636 recommended; use StartTLS with ldap://",
+      "bindDn": "Service account (bind DN)",
+      "bindDnHint": "Empty means anonymous bind",
+      "bindPassword": "Service account password",
+      "baseDn": "Search base (base DN)",
+      "userFilter": "User filter",
+      "userFilterHint": "'{username}' is replaced with the typed name",
+      "uidAttribute": "Stable ID attribute",
+      "uidAttributeHint": "AD: objectGUID, OpenLDAP: entryUUID",
+      "useMemberOf": "Read groups from memberOf",
+      "useMemberOfHint": "When off, a separate group search runs",
+      "groupBaseDn": "Group search base",
+      "groupFilter": "Group filter",
+      "groupFilterHint": "'{dn}' and '{username}' are replaced",
+      "groupNameAttribute": "Group name attribute",
+      "activeDirectory": "Active Directory",
+      "activeDirectoryHint": "Disabled accounts (userAccountControl) cannot sign in",
+      "startTls": "StartTLS",
+      "startTlsHint": "Encrypts an ldap:// connection",
+      "tlsVerify": "Verify certificate",
+      "tlsVerifyHint": "Turn off for testing only",
+      "caCert": "Internal CA certificate",
+      "caCertHint": "Empty uses the system trust store",
+      "timeout": "Timeout",
+      "jit": "Create account on first sign-in",
+      "jitHint": "When off, only invited people can sign in",
+      "defaultRole": "Default role",
+      "defaultRoleHint": "New accounts that match no mapping",
+      "linkExisting": "Link an account with the same e-mail",
+      "linkExistingHint": "Only when the IdP reports the e-mail as verified",
+      "trustMfa": "Trust the IdP's MFA",
+      "trustMfaHint": "Local 2FA is skipped when the IdP reports MFA",
+      "syncEnabled": "Hourly directory sync",
+      "syncEnabledHint": "People removed or disabled in the directory are suspended",
+      "syncRoles": "Apply on every sign-in"
+    },
+    "prompt": {
+      "none": "None",
+      "login": "login · password every time",
+      "select_account": "select_account · pick an account",
+      "consent": "consent · consent screen"
+    },
+    "forAdmin": "For the IdP admin",
+    "adminHint": {
+      "oidc": "Create a client at the identity provider and register this redirect URI.",
+      "saml": "Create a SAML app at the IdP; enter the metadata URL or the values below."
+    },
+    "callback": {
+      "oidc": "Redirect URI",
+      "saml": "ACS URL"
+    },
+    "ldapAdminHint": "Give the service account read access under the search base. Passwords are not stored in Crewhall; the directory is asked on every sign-in.",
+    "spEntityId": "SP entity ID",
+    "spMetadata": "SP metadata URL",
+    "testTitle": "Test connection",
+    "testHint": {
+      "oidc": "Fetches discovery and keys; nobody signs in. Unsaved values are tested too.",
+      "saml": "Checks the metadata and certificate; nobody signs in.",
+      "ldap": "Connects, binds with the service account and searches. Type a user name to see their groups and resulting role."
+    },
+    "testUser": "User name (optional)",
+    "testUserHint": "sAMAccountName, uid or e-mail",
+    "testRun": "Test connection",
+    "stepOk": "Passed",
+    "stepFailed": "Failed",
+    "ms": "{ms} ms",
+    "steps": {
+      "discovery": "Discovery",
+      "jwks": "Signing keys (JWKS)",
+      "metadata": "Metadata",
+      "certificate": "Certificate",
+      "connect": "Connect to server",
+      "starttls": "StartTLS",
+      "tls": "TLS",
+      "bind": "Bind with service account",
+      "search": "Search",
+      "user": "User",
+      "groups": "Groups",
+      "endpoints": "Endpoints"
+    },
+    "noEmail": "No e-mail",
+    "dirDisabled": "Disabled in directory",
+    "noGroups": "No groups",
+    "resultRole": "Org role",
+    "resultSpaces": "Spaces",
+    "noAccess": "No access",
+    "syncTitle": "Directory sync",
+    "syncHourly": "Runs every hour",
+    "syncOff": "Automatic sync is off",
+    "lastSyncAt": "last {when}",
+    "syncFailed": "The last sync failed.",
+    "syncNow": "Sync now",
+    "synced": "Directory synced",
+    "sync": {
+      "checked": "checked",
+      "updated": "updated",
+      "suspended": "suspended",
+      "reactivated": "reactivated"
+    },
+    "linkedTitle": "Linked accounts",
+    "noLinked": "No linked accounts yet",
+    "cols": {
+      "person": "Person",
+      "status": "Status",
+      "lastLogin": "Last sign-in"
+    },
+    "dirStatus": {
+      "active": "Active in directory",
+      "disabled": "Disabled in directory",
+      "missing": "Not in directory"
+    },
+    "memberStatus": {
+      "active": "Active",
+      "invited": "Invited",
+      "suspended": "Suspended"
+    },
+    "groupCount": "{count, plural, one {# group} other {# groups}}"
+  },
+  "consent": {
+    "title": "{client} wants to sign you in with your {org} account",
+    "redirect": "Returns to",
+    "change": "Other account",
+    "what": "{client} will get",
+    "required": "required",
+    "noPassword": "{client} never sees your password; you sign in here with your org account.",
+    "allow": "Allow",
+    "deny": "Deny",
+    "footer": "You sign in under your organization's security policy.",
+    "returning": "Returning to {client}…",
+    "invalidTitle": "Invalid sign-in request",
+    "deniedTitle": "You don't have access to this app"
+  },
+  "backups": {
+    "title": "Backups",
+    "subtitle": "Nightly backup of the database and files; the same backups as the crewhall tool on the server",
+    "unavailable": "The server has no writable backup folder (CREWHALL_BACKUP_DIR). In a Docker Compose install the backups volume must be mounted.",
+    "toolsOutdated": "The backup tool is older than the database server: client {client}, server {server}. Backups cannot run with it; update the Crewhall image on the server.",
+    "toolsMissing": "The backup tool (pg_dump) cannot be run; the database server is {server}. Backups cannot run.",
+    "schedule": "Nightly backup",
+    "enabled": "Nightly backup",
+    "enabledHint": "Every night at the set time the database and files are backed up",
+    "time": "Time",
+    "timezone": "Time zone",
+    "keep": "Nightly backups kept",
+    "keepHint": "Older ones and files only they use are deleted; manual backups stay",
+    "keepCount": "{count} backups",
+    "status": "Status",
+    "runNow": "Back up now",
+    "running": "Backing up…",
+    "started": "Backup started",
+    "busy": "A backup is already running",
+    "next": "Next nightly backup",
+    "off": "Off",
+    "last": "Last backup",
+    "disk": "Disk space",
+    "diskHint": "Unchanged files are stored once across backups",
+    "snapshots": "Backups",
+    "noSnapshots": "No backups yet",
+    "runs": "Recent runs",
+    "noRuns": "No runs yet",
+    "restoreHint": "Restoring is done on the server:",
+    "withConfig": "+ configuration",
+    "size": "Database {size} · {count} files {used}",
+    "col": {
+      "date": "Date",
+      "kind": "Kind",
+      "version": "Version",
+      "size": "Size",
+      "status": "Status"
+    },
+    "trigger": {
+      "manual": "Manual",
+      "nightly": "Nightly",
+      "update": "Before update"
+    },
+    "state": {
+      "queued": "Queued",
+      "running": "Running",
+      "succeeded": "Done",
+      "failed": "Failed"
+    }
+  },
+  "guest": {
+    "badge": "Guest",
+    "expired": "Guest · expired",
+    "until": "Until {date}",
+    "settings": "Guest access",
+    "spaceRole": "Role in the selected spaces",
+    "endDate": "Access ends",
+    "endDateHint": "Access closes by itself at the end of this day",
+    "noEnd": "No end date",
+    "needsSpace": "Guests see only the selected spaces; pick at least one."
+  },
+  "compliance": {
+    "title": "Compliance",
+    "subtitle": "Retention rules, legal hold, eDiscovery export and data loss prevention (DLP) rules",
+    "retention": "Retention",
+    "chatDays": "Chat messages",
+    "chatDaysHint": "Messages older than this lose their content; held ones stay",
+    "auditDays": "Audit log",
+    "auditDaysHint": "At least a year; entries of people on hold stay",
+    "keepAll": "Keep forever",
+    "days": "{count} days",
+    "years": "{count} years",
+    "dlp": "Data loss prevention (DLP)",
+    "dlpHint": "Checked in chat, board cards and comments. \"Warn\" asks for confirmation in chat and is only recorded elsewhere; \"Block\" does not send the content.",
+    "detector": {
+      "card": "Card number",
+      "tckn": "Turkish ID number",
+      "iban": "IBAN",
+      "custom": "Custom rule"
+    },
+    "action": "Action",
+    "warn": "Warn",
+    "block": "Block",
+    "ruleOn": "Rule on",
+    "customName": "Custom rule name",
+    "customPattern": "Pattern (regular expression)",
+    "addRule": "Add rule",
+    "holds": "Legal hold",
+    "holdsHint": "What the selected people wrote and the content of the spaces is never deleted by any cleanup until the hold ends; edited or deleted chat messages keep their original text.",
+    "noHolds": "No active legal hold",
+    "newHold": "New legal hold",
+    "holdName": "Name",
+    "reason": "Reason",
+    "startHold": "Start hold",
+    "holdCreated": "Legal hold started",
+    "active": "Active",
+    "released": "Released",
+    "since": "{date} · {name}",
+    "release": "Release",
+    "releaseConfirm": "Once released, the content follows the normal retention and trash rules again. Continue?",
+    "exports": "eDiscovery export",
+    "exportsHint": "The content of the selected people and spaces is collected in one ZIP file; it can be downloaded for 7 days.",
+    "noExports": "No exports yet",
+    "newExport": "New export",
+    "exportName": "Name",
+    "startExport": "Start export",
+    "exportStarted": "Export is being prepared",
+    "download": "Download",
+    "people": "People",
+    "searchPeople": "Search people",
+    "spaces": "Spaces",
+    "from": "From",
+    "to": "To",
+    "include": "Content",
+    "content": {
+      "chat": "Chat",
+      "pages": "Pages",
+      "cards": "Board cards",
+      "files": "Files",
+      "audit": "Audit log"
+    },
+    "count": {
+      "chatMessages": "messages",
+      "pages": "pages",
+      "cards": "cards",
+      "files": "files",
+      "auditEntries": "entries"
+    },
+    "state": {
+      "queued": "Queued",
+      "running": "Preparing",
+      "ready": "Ready",
+      "failed": "Failed"
+    }
+  },
+  "demo": {
+    "accounts": "Live demo accounts",
+    "accountsHint": "Pick one and the password fills in. The data goes back to the sample at the top of every hour.",
+    "banner": "Live demo · the data resets in {minutes} min"
+  },
+  "stepup": {
+    "passkey": "Verify with a passkey",
+    "or": "or",
+    "withPassword": "Verify with password",
+    "password": "Password",
+    "confirm": "Verify",
+    "passkeyFailed": "The passkey could not verify you. Try again or use your password.",
+    "addPasskeyHint": "Add a passkey to verify faster next time",
+    "offerTitle": "Verify with {name} next time",
+    "offerBody": "Use this device's lock instead of your password: a passkey is created and asked for directly at the next approval. Your password always stays an option.",
+    "offerAccept": "Add {name}",
+    "offerLater": "Not now",
+    "offerFailed": "The passkey could not be added. You can try again in My account › Security.",
+    "deviceLock": "the device lock",
+    "passkeyName": "{name} · this device"
+  }
+}

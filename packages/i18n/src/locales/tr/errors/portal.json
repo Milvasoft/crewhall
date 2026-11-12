@@ -1,0 +1,14 @@
+{
+  "portal_site_slug_taken": "Bu kısa adla bir portal sitesi zaten var.",
+  "portal_slug_taken": "Bu adres bu versiyon ve dilde başka bir sayfada kullanılıyor.",
+  "portal_version_exists": "Bu versiyon numarası zaten var.",
+  "portal_version_invalid": "Versiyon numarası mevcut versiyonlardan büyük olmalı.",
+  "portal_doc_conflict": "Bu içerik siz düzenlerken başka biri tarafından değiştirildi. Sayfayı yenileyip tekrar deneyin.",
+  "portal_nothing_to_publish": "Yayınlanacak değişiklik yok.",
+  "portal_media_in_use": "Bu dosya kullanılıyor; önce kullanıldığı yerlerden kaldırın.",
+  "portal_token_invalid": "Portal içerik anahtarı geçersiz.",
+  "portal_category_not_empty": "Kategori boş değil; önce içindeki dokümanları taşıyın ya da silin.",
+  "portal_locale_unsupported": "Bu dil sitede açık değil.",
+  "portal_translation_source_missing": "Çevrilecek kaynak doküman bulunamadı.",
+  "portal_redirect_loop": "Yönlendirme kendine ya da bir döngüye gidiyor."
+}

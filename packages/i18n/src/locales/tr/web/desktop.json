@@ -1,0 +1,277 @@
+{
+  "setup": {
+    "title": "Kurumunuza bağlanın",
+    "subtitle": "Kurumunuzun Crewhall adresini girin. Adresi bilmiyorsanız BT ekibinize sorun.",
+    "serverLabel": "Sunucu adresi",
+    "serverPlaceholder": "calisma.kurum.com",
+    "continue": "Devam",
+    "checking": "Sunucu denetleniyor…",
+    "connect": "Bağlan",
+    "foundTitle": "Bu sunucu bulundu",
+    "other": "Başka bir adres gir",
+    "poweredBy": "Crewhall ile",
+    "errors": {
+      "invalid": "Geçerli bir adres girin, örneğin calisma.kurum.com.",
+      "unreachable": "Sunucuya ulaşılamadı. Adresi ve ağ bağlantınızı kontrol edin.",
+      "notCrewhall": "Bu adreste bir Crewhall sunucusu bulunamadı.",
+      "needsSetup": "Bu sunucunun ilk kurulumu tamamlanmamış. Önce kurulumu tarayıcıdan tamamlayın."
+    }
+  },
+  "offline": {
+    "title": "Sunucuya ulaşılamıyor",
+    "body": "{name} adresine şu an bağlanılamıyor. Ağ bağlantınızı kontrol edin; bağlantı gelince yeniden deneyin.",
+    "retry": "Yeniden dene",
+    "changeServer": "Sunucuyu değiştir"
+  },
+  "loading": {
+    "connecting": "Bağlanıyor…"
+  },
+  "outdated": {
+    "title": "Uygulamayı güncelleyin",
+    "body": "{name} bu sürümle ({version}) çalışmıyor. Güncellemeyi kurun, sonra yeniden deneyin.",
+    "manual": "Güncelleme burada kurulamıyor. Yeni sürümü kurumunuzun Crewhall sayfasından indirin: Hesabım › Güvenlik › Masaüstü uygulaması."
+  },
+  "tray": {
+    "open": "Aç",
+    "home": "Ana sayfaya dön",
+    "unread": "{count, plural, =0 {Okunmamış yok} other {# okunmamış}}",
+    "syncNow": "Şimdi eşitle",
+    "syncing": "Eşitleniyor…",
+    "syncProblem": "Senkronda sorun var",
+    "settings": "Ayarlar…",
+    "autostart": "Oturum açılınca başlat",
+    "installUpdate": "Güncellemeyi kur ve yeniden başlat",
+    "quit": "Çık"
+  },
+  "menu": {
+    "about": "Hakkında",
+    "settings": "Ayarlar…",
+    "hide": "Gizle",
+    "hideOthers": "Diğerlerini gizle",
+    "unhide": "Tümünü göster",
+    "quit": "Çık",
+    "edit": "Düzen",
+    "undo": "Geri al",
+    "redo": "Yinele",
+    "cut": "Kes",
+    "copy": "Kopyala",
+    "paste": "Yapıştır",
+    "selectAll": "Tümünü seç",
+    "view": "Görünüm",
+    "reload": "Yeniden yükle",
+    "home": "Ana sayfa",
+    "zoomIn": "Yakınlaştır",
+    "zoomOut": "Uzaklaştır",
+    "resetZoom": "Gerçek boyut",
+    "fullscreen": "Tam ekran",
+    "window": "Pencere",
+    "minimize": "Küçült",
+    "close": "Kapat",
+    "copyLink": "Bağlantıyı kopyala",
+    "openInBrowser": "Tarayıcıda aç",
+    "openInNewWindow": "Yeni pencerede aç",
+    "addToDictionary": "Sözlüğe ekle"
+  },
+  "notify": {
+    "someone": "Biri",
+    "incomingCall": "{name} sizi arıyor",
+    "incomingVideoCall": "{name} sizi görüntülü arıyor",
+    "groupCall": "{conversationTitle} sohbetinde arama",
+    "answerHint": "Yanıtlamak için tıklayın",
+    "replyPlaceholder": "Yanıt yaz",
+    "markRead": "Okundu",
+    "join": "Katıl",
+    "answer": "Yanıtla",
+    "decline": "Reddet",
+    "replyFailed": "Yanıtın gönderilemedi",
+    "actionFailed": "Okundu olarak işaretlenemedi",
+    "updateReady": "Güncelleme hazır",
+    "updateReadyBody": "{version} sürümü yeniden başlatınca kurulacak.",
+    "conflict": "Senkron çakışması",
+    "conflictBody": "{count, plural, other {# dosya iki tarafta da değişti; iki kopya da saklandı.}}"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "tabs": {
+      "general": "Genel",
+      "sync": "Dosya senkronu",
+      "about": "Hakkında"
+    },
+    "server": "Sunucu",
+    "changeServer": "Sunucuyu değiştir",
+    "changeServerConfirm": "Sunucu değişince senkron klasörlerinin eşleşmesi kaldırılır; yerel dosyalar silinmez. Devam edilsin mi?",
+    "notifications": "Masaüstü bildirimleri",
+    "notificationsHint": "Mesaj, bahsetme ve aramalar için bildirim gösterilir. Pencere öndeyken uygulama içinde gösterilir.",
+    "autostart": "Oturum açılınca başlat",
+    "autostartHint": "Uygulama arka planda, tepside açılır.",
+    "explorerMenu": "Dosya Gezgini menüleri",
+    "explorerMenuHint": "Dosya ve klasörlerin sağ tık menüsünde \"Crewhall'a yükle\", Gönder menüsünde Crewhall görünür.",
+    "shortcut": "Crewhall'ı açan kısayol",
+    "shortcutHint": "Hangi programda olursan ol Crewhall'ı öne getirir. Değiştirmek için düğmeye tıkla ve tuşlara bas.",
+    "shortcutPress": "Tuşlara bas…",
+    "shortcutChange": "Kısayolu değiştir",
+    "shortcutOff": "Kapalı",
+    "shortcutDisable": "Kapat",
+    "shortcutDefault": "Varsayılanı kullan",
+    "shortcutErrors": {
+      "invalid": "Bu kısayol olmaz: Ctrl, Alt veya bir işlev tuşu (F1-F24) içermeli.",
+      "reserved": "Bu kısayolu sistem ya da metin düzenleme kullanıyor, başka bir tane seç.",
+      "altGr": "Windows'ta Ctrl+Alt, AltGr ile aynıdır ve yazarken karakterleri engeller. Başka bir tane seç.",
+      "inApp": "Bu kısayolu Crewhall'ın içinde bir eylem kullanıyor, başka bir tane seç.",
+      "taken": "Bu kısayolu başka bir program kullanıyor. Eski kısayolun duruyor.",
+      "held": "Bu kısayolu şu an başka bir program kullanıyor, bu yüzden çalışmıyor. O programı kapat ya da başka bir kısayol seç."
+    },
+    "version": "Sürüm {version}",
+    "updates": "Güncellemeler",
+    "checkUpdates": "Güncellemeleri denetle",
+    "update": {
+      "disabled": "Bu kurulumda otomatik güncelleme kapalı.",
+      "idle": "Güncelleme denetlenmedi.",
+      "checking": "Denetleniyor…",
+      "none": "Uygulama güncel.",
+      "available": "{version} sürümü indiriliyor…",
+      "downloaded": "{version} sürümü hazır.",
+      "error": "Güncelleme denetlenemedi."
+    },
+    "installUpdate": "Yeniden başlat ve kur",
+    "unsignedNote": "Bu sürüm kod imzası olmadan dağıtılıyor; ilk kurulumda Windows uyarı gösterebilir.",
+    "licenses": "Açık kaynak lisansları"
+  },
+  "sync": {
+    "drive": {
+      "title": "Sanal sürücü",
+      "hint": "Alanlarınız bu klasörde, her alan bir klasör olarak görünür. Dosyalar yer kaplamaz, açtığınızda iner. Açmak için ilk seferde dosyanın tamamı iner, büyük dosyalarda bu biraz sürer.",
+      "changeFolder": "Klasörü değiştir",
+      "fetching": "{name} iniyor: %{pct}",
+      "itemState": "Eşitleme sorunu",
+      "notSynced": "Eşitlenemedi. Ayrıntı Ayarlar › Eşitleme'de.",
+      "offConfirm": "Sanal sürücü kapatılsın mı? Sunucudaki dosyalar yerinde kalır. Bu bilgisayardaki kopyalar silinir, yalnız henüz yüklenmemiş değişiklikler kalır.",
+      "problems": {
+        "overlap": "Bu klasör eşitlenen bir klasörün içinde ya da onu içeriyor. Sanal sürücü için başka bir klasör seçin.",
+        "notEmpty": "Bu klasör boş değil. Sanal sürücü için boş bir klasör seçin.",
+        "failed": "Sanal sürücü açılamadı."
+      }
+    },
+    "intro": "Seçtiğiniz Drive klasörü bilgisayarınızdaki bir klasörle iki yönlü eşitlenir. Bir dosya iki tarafta da değişirse iki kopya da saklanır.",
+    "empty": "Henüz eşitlenen klasör yok.",
+    "add": "Klasör ekle",
+    "chooseSpace": "Alan seçin",
+    "chooseFolder": "Drive klasörünü seçin",
+    "wholeSpace": "Alanın tamamı",
+    "noFolders": "Bu klasörde alt klasör yok.",
+    "useThisFolder": "Bu klasörü eşitle",
+    "chooseLocal": "Bilgisayarda klasör seç…",
+    "localFolder": "Yerel klasör",
+    "back": "Geri",
+    "cancel": "Vazgeç",
+    "remove": "Eşleşmeyi kaldır",
+    "removeConfirm": "Eşleşme kaldırılsın mı? Dosyalar iki tarafta da kalır.",
+    "pause": "Duraklat",
+    "resume": "Sürdür",
+    "syncNow": "Şimdi eşitle",
+    "openFolder": "Klasörü aç",
+    "confirmDeletes": "Silmeyi onayla",
+    "readOnly": "Bu alanda yalnız görüntüleme yetkiniz var; yerel değişiklikler yüklenemez.",
+    "lastSync": "Son eşitleme {time}",
+    "never": "Henüz eşitlenmedi",
+    "progress": "{done} / {total} işlem",
+    "skipped": "{count, plural, other {# öğe atlandı}}",
+    "onlineOnly": "{count, plural, other {# öğe}} yalnız başka bir bulut uygulamasında (ör. OneDrive) duruyor ve atlandı. Eşitlemek için önce bu bilgisayara indirin.",
+    "failed": "{count, plural, other {# öğe eşitlenemedi}}",
+    "conflictLabel": "çakışan kopya",
+    "states": {
+      "idle": "Güncel",
+      "syncing": "Eşitleniyor",
+      "error": "Hata",
+      "paused": "Duraklatıldı",
+      "confirm": "Onay bekliyor"
+    },
+    "errors": {
+      "local_root_missing": "Yerel klasör bulunamadı. Taşındıysa eşleşmeyi kaldırıp yeniden ekleyin.",
+      "remote_root_missing": "Drive klasörü silinmiş ya da erişiminiz kalmamış.",
+      "mass_delete": "{count} öğe silinecek. Bu bilinçli bir silme değilse klasörü kontrol edin.",
+      "signed_out": "Oturum kapalı. Eşitleme için uygulamada oturum açın.",
+      "failed": "Eşitleme yapılamadı: {text}",
+      "overlap": "Bu yerel klasör başka bir eşleşmenin içinde ya da onu içeriyor.",
+      "notDirectory": "Seçilen yol bir klasör değil."
+    },
+    "skipReasons": {
+      "invalid_name": "geçersiz ad",
+      "reserved_name": "ayrılmış ad",
+      "name_too_long": "ad çok uzun",
+      "case_clash": "yalnız büyük/küçük harfle ayrılan ad",
+      "symlink": "kısayol bağlantısı",
+      "online_only": "bu bilgisayarda değil, yalnız bulutta",
+      "outside_space": "buradakiler eşitlenmez, bir alan klasörüne taşıyın"
+    },
+    "uploaded": "{count} yüklendi",
+    "downloaded": "{count} indirildi",
+    "conflicts": "{count} çakışma"
+  },
+  "screenShare": {
+    "title": "Neyi paylaşmak istiyorsunuz?",
+    "screens": "Ekranlar",
+    "windows": "Pencereler",
+    "share": "Paylaş",
+    "cancel": "Vazgeç",
+    "empty": "Paylaşılabilecek ekran bulunamadı. Ekran kaydı izni verilmemiş olabilir."
+  },
+  "download": {
+    "title": "Masaüstü uygulaması",
+    "body": "Bildirimler, tepside okunmamış sayısı ve Drive klasörlerini bilgisayarınızla eşitleme için Windows ve macOS uygulaması.",
+    "button": "{name} için indir",
+    "meta": "Sürüm {version} · {size}",
+    "login": "Masaüstü uygulamasını indir",
+    "inApp": "Şu an masaüstü uygulamasını kullanıyorsunuz.",
+    "platforms": {
+      "win": "Windows",
+      "mac": "macOS"
+    },
+    "unsignedWin": "İlk kurulumda Windows SmartScreen uyarı verebilir: \"Ek bilgi\" ve \"Yine de çalıştır\" ile devam edin.",
+    "unsignedMac": "macOS'ta ilk açılışta uygulamaya sağ tıklayıp Aç'ı seçin; macOS sürümü kendini güncellemez, yeni sürümü buradan indirin.",
+    "admin": {
+      "hosted": "Sunucudaki sürüm",
+      "none": "Bu sunucuda masaüstü sürümü yok.",
+      "noneHint": "Kurulum dosyalarını sunucunun DESKTOP_UPDATES_DIR klasörüne koyun; uygulamalar güncellemeleri buradan alır.",
+      "line": "{version} · {date}"
+    }
+  },
+  "control": {
+    "requestTitle": "{name} ekranınızı kontrol etmek istiyor",
+    "requestBody": "Paylaştığınız ekranda farenizi ve klavyenizi kullanabilir. Kendi farenizi oynattığınızda ya da Ctrl+Alt+Shift+X'e bastığınızda kontrol hemen size döner.",
+    "give": "Ver",
+    "deny": "Reddet",
+    "banner": "{name} ekranınızı kontrol ediyor",
+    "stop": "Durdur",
+    "shortcutHint": "Geri almak için farenizi oynatın ya da Ctrl+Alt+Shift+X",
+    "permissionTitle": "Ekran kontrolü için izin gerekiyor",
+    "permissionBody": "{name} ekranınızı kontrol etmek istedi. macOS'ta bunun için {app} uygulamasına Erişilebilirlik izni verin: Sistem Ayarları › Gizlilik ve Güvenlik › Erişilebilirlik. İzni verdikten sonra yeniden isteyebilir.",
+    "openSettings": "Erişilebilirlik ayarlarını aç",
+    "close": "Kapat"
+  },
+  "meeting": {
+    "inMeeting": "Toplantıda",
+    "backToMeeting": "Toplantıya dön"
+  },
+  "sendTo": {
+    "menuLabel": "Crewhall'a yükle",
+    "title": "Crewhall'a yükle",
+    "summary": "{count, plural, other {# dosya}}",
+    "signIn": "Yüklemek için önce Crewhall'da oturum aç.",
+    "openApp": "Crewhall'ı aç",
+    "noSpaces": "Dosya yükleyebileceğin bir alan yok.",
+    "uploadHere": "Buraya yükle",
+    "uploading": "Yükleniyor",
+    "progress": "{done} / {total} · {name}",
+    "done": "Yükleme tamamlandı",
+    "partly": "Yüklemenin bir kısmı tamamlanamadı",
+    "uploaded": "{count, plural, other {# dosya yüklendi.}}",
+    "notUploaded": "Şunlar yüklenemedi:",
+    "openInDrive": "Drive'da aç",
+    "close": "Kapat"
+  },
+  "titleBar": {
+    "back": "Geri",
+    "forward": "İleri"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "base64": {
+    "name": "Base64 encode / decode",
+    "description": "Encode text to Base64 or decode Base64 back to text, with URL-safe support, all local.",
+    "keywords": "base64, encode, decode",
+    "encode": "Encode",
+    "decode": "Decode",
+    "urlSafe": "URL-safe",
+    "encodePlaceholder": "Text to encode…",
+    "decodePlaceholder": "Base64 to decode…"
+  },
+  "binary-text": {
+    "name": "Binary ↔ Text",
+    "description": "Convert text to 8-bit binary and back, UTF-8 aware, entirely local.",
+    "keywords": "binary, text, bits, utf-8, ascii, encode, decode, 0, 1, converter",
+    "textToBinary": "Text → Binary",
+    "binaryToText": "Binary → Text",
+    "binary": "Binary",
+    "encodePlaceholder": "Text to encode…",
+    "invalidChars": "Binary may only contain 0, 1 and whitespace.",
+    "bitCount": "Bit count must be a multiple of 8."
+  }
+}

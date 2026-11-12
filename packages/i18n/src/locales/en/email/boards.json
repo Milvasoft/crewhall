@@ -1,0 +1,29 @@
+{
+  "attachmentsFolder": "{board} · Attachments",
+  "untitledDrawing": "Untitled drawing",
+  "templates": {
+    "empty": { "columns": ["To do", "In progress", "Done"], "labels": [] },
+    "sprint": {
+      "columns": ["Up next", "In progress", "Testing", "Done"],
+      "labels": ["Backend", "Web", "Mobile"]
+    },
+    "roadmap": {
+      "columns": ["Idea", "Up next", "In progress", "In review", "Done"],
+      "labels": ["Backend", "Infrastructure", "UI", "Security", "Integration"]
+    },
+    "bugs": {
+      "columns": ["New", "Confirmed", "Fixing", "Closed"],
+      "labels": ["Mobile", "Web", "API"]
+    }
+  },
+  "sprintName": "Sprint 1",
+  "notifications": {
+    "assigned": "{actor} assigned you to {key}: {title}",
+    "comment": "{actor} commented on {key}: {excerpt}",
+    "due_soon": "{key} is due soon: {title}"
+  },
+  "system": {
+    "created": "{actor} created the card",
+    "moved": "{actor} moved the card {from} → {to}"
+  }
+}

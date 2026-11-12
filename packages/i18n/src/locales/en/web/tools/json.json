@@ -1,0 +1,78 @@
+{
+  "json-csv": {
+    "name": "JSON ↔ CSV",
+    "description": "Convert an array of JSON objects to CSV and parse CSV back to JSON, locally.",
+    "keywords": "json, csv, convert, table, spreadsheet, excel"
+  },
+  "json-diff": {
+    "name": "JSON Diff",
+    "description": "Structurally compare two JSON documents and see added, removed and changed values, locally.",
+    "keywords": "json, diff, compare, difference, changes, patch",
+    "changes": "Changes",
+    "identical": "The two documents are structurally identical."
+  },
+  "json-schema": {
+    "name": "JSON Schema",
+    "description": "Generate a JSON Schema from sample JSON, or validate JSON against a schema, locally.",
+    "keywords": "json, schema, generate, validate, ajv, draft-07, validator",
+    "invalidJson": "Invalid JSON",
+    "generate": "Generate",
+    "validate": "Validate",
+    "data": "JSON data",
+    "valid": "Valid, data matches the schema.",
+    "errorCount": "{count, plural, one {# error} other {# errors}}"
+  },
+  "json-string": {
+    "name": "JSON ↔ String",
+    "description": "Stringify JSON into an escaped string literal for code, or parse a string back to JSON, locally.",
+    "keywords": "json, string, stringify, escape, unescape, parse, minify, json to string, code",
+    "string": "String"
+  },
+  "json-viewer": {
+    "name": "JSON Viewer & Beautifier",
+    "description": "Format, minify, sort and validate JSON locally, with precise error locations.",
+    "keywords": "json, beautify, format, pretty, minify, validate, viewer, prettify, tree",
+    "beautify": "Beautify",
+    "indent": "Indent",
+    "spaces": "{count, plural, one {# space} other {# spaces}}",
+    "sortKeys": "Sort keys",
+    "formatted": "Formatted",
+    "tree": "Tree",
+    "stats": {
+      "objects": "{count, plural, one {# object} other {# objects}}",
+      "arrays": "{count, plural, one {# array} other {# arrays}}",
+      "keys": "{count, plural, one {# key} other {# keys}}",
+      "depth": "depth {n}"
+    },
+    "placeholder": "Paste JSON…",
+    "treeEmpty": "Enter valid JSON to see the tree.",
+    "errorAt": "{error} (line {n}, column {column})",
+    "copyPath": "Copy path: {path}",
+    "pathButton": "path",
+    "copyValue": "Copy value",
+    "valueButton": "value",
+    "searchPlaceholder": "Search keys & values…",
+    "searchLabel": "Search JSON",
+    "expandAll": "Expand all"
+  },
+  "json-xml": {
+    "name": "JSON ↔ XML",
+    "description": "Convert JSON to XML and XML back to JSON, locally, both ways.",
+    "keywords": "json, xml, convert, soap, parse"
+  },
+  "json-yaml": {
+    "name": "JSON ↔ YAML",
+    "description": "Convert JSON to YAML and YAML back to JSON, locally, both ways.",
+    "keywords": "json, yaml, yml, convert, config"
+  },
+  "jsonpath": {
+    "name": "JSONPath Tester",
+    "description": "Run JSONPath queries against a JSON document and inspect the matches, locally.",
+    "keywords": "json, jsonpath, query, path, filter, xpath, select",
+    "invalid": "Invalid query",
+    "queryLabel": "JSONPath query",
+    "matchCount": "{count, plural, one {# match} other {# matches}}",
+    "matches": "Matches",
+    "paths": "Paths"
+  }
+}

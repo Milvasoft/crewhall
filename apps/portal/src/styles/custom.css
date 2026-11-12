@@ -1,0 +1,513 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* Global background color */
+html,
+body {
+  background-color: #0f0f0f !important;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Prevent horizontal scroll globally */
+#__docusaurus {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.main-wrapper {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Light theme override for html and body */
+[data-theme='light'] html,
+[data-theme='light'] body {
+  background-color: #f5f5f5 !important;
+}
+
+/* Dark theme override for html and body */
+[data-theme='dark'] html,
+[data-theme='dark'] body {
+  background-color: #0f0f0f !important;
+}
+
+/* Override Docusaurus background */
+.main-wrapper,
+[data-theme='light'] {
+  background-color: #f5f5f5 !important;
+}
+
+[data-theme='dark'] {
+  background-color: #0f0f0f !important;
+}
+
+/* More specific background overrides */
+[data-theme='light'] .main-wrapper,
+[data-theme='light'] main,
+[data-theme='light'] .theme-doc-version-banner {
+  background-color: #f5f5f5 !important;
+}
+
+[data-theme='dark'] .main-wrapper,
+[data-theme='dark'] main,
+[data-theme='dark'] .theme-doc-version-banner {
+  background-color: #0f0f0f !important;
+}
+
+/* Override hero styles */
+.hero--primary {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.hero {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Override navbar styles - default transparent */
+.navbar {
+  background: transparent !important;
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  height: 90px;
+  min-height: 80px;
+  z-index: 10000 !important;
+  border: none !important;
+  transition:
+    background-color 0.3s ease,
+    backdrop-filter 0.3s ease;
+}
+
+.navbar--fixed-top {
+  background: transparent !important;
+  background-color: transparent !important;
+  height: 90px;
+  min-height: 80px;
+  z-index: 10000 !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Navbar solid state when scrolled */
+.navbar.navbarSolid,
+.navbar--fixed-top.navbarSolid {
+  background: #0f0f0f !important;
+  background-color: #0f0f0f !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18) !important;
+}
+
+/* Light theme navbar solid state */
+[data-theme='light'] .navbar.navbarSolid,
+[data-theme='light'] .navbar--fixed-top.navbarSolid {
+  background: #f5f5f5 !important;
+  background-color: #f5f5f5 !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+.navbar__inner {
+  background: transparent !important;
+  background-color: transparent !important;
+  padding-left: 80px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  height: 80px;
+  transition: background-color 0.3s ease;
+}
+
+/* Navbar inner solid state when scrolled */
+.navbar__inner.navbarSolid {
+  background: #0f0f0f !important;
+  background-color: #0f0f0f !important;
+}
+
+/* Light theme navbar inner solid state */
+[data-theme='light'] .navbar__inner.navbarSolid {
+  background: #f5f5f5 !important;
+  background-color: #f5f5f5 !important;
+}
+
+.navbar__brand {
+  margin-left: 0px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+/* Navbar title - prevent text truncation on mobile */
+.navbar__title {
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: unset;
+}
+
+/* Mobile navbar - toggle (hamburger) on the left */
+@media (max-width: 996px) {
+  .navbar__toggle {
+    order: -1;
+    position: absolute;
+    left: 16px;
+  }
+
+  .navbar__brand {
+    margin-left: 40px;
+  }
+}
+
+.navbar__items--left {
+  margin-left: 100px;
+}
+
+.navbar__items--right {
+  margin-left: 100px;
+}
+
+.navbar__link {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.navbar__item {
+  font-size: 1.1rem;
+}
+
+.navbar__logo {
+  height: 40px;
+}
+.themedComponent_mlkZ {
+  display: inline-flex !important;
+}
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #d97b35;
+  --ifm-color-primary-dark: #c06a2a;
+  --ifm-color-primary-darker: #b56025;
+  --ifm-color-primary-darkest: #8e4b1d;
+  --ifm-color-primary-light: #e5a84b;
+  --ifm-color-primary-lighter: #edb960;
+  --ifm-color-primary-lightest: #f5ca75;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-background-color: #0f0f0f;
+  --ifm-hero-background-color: transparent;
+  --ifm-navbar-background-color: transparent;
+  --ifm-navbar-height: 80px;
+  --ifm-navbar-shadow: none;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #e5a84b;
+  --ifm-color-primary-dark: #d97b35;
+  --ifm-color-primary-darker: #c06a2a;
+  --ifm-color-primary-darkest: #b56025;
+  --ifm-color-primary-light: #edb960;
+  --ifm-color-primary-lighter: #f5ca75;
+  --ifm-color-primary-lightest: #f9d88a;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-background-color: #0f0f0f;
+  --ifm-font-color-base: #ffffff;
+  --ifm-color-content: #ffffff;
+  --ifm-heading-color: #ffffff;
+  background-color: #0f0f0f !important;
+  color: #ffffff !important;
+}
+
+/* Dark theme text colors */
+[data-theme='dark'] h1,
+[data-theme='dark'] h2,
+[data-theme='dark'] h3,
+[data-theme='dark'] h4,
+[data-theme='dark'] h5,
+[data-theme='dark'] h6,
+[data-theme='dark'] p,
+[data-theme='dark'] .navbar__link,
+[data-theme='dark'] .navbar__brand,
+[data-theme='dark'] .navbar__item {
+  color: #ffffff !important;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark theme text colors */
+[data-theme='dark'] {
+  --ifm-font-color-base: #ffffff;
+  --ifm-color-content: #ffffff;
+  --ifm-heading-color: #ffffff;
+}
+
+/* Light theme text colors */
+[data-theme='light'] {
+  --ifm-font-color-base: #141414;
+  --ifm-color-content: #141414;
+  --ifm-heading-color: #141414;
+}
+
+.header-github-link:hover {
+  opacity: 0.6;
+}
+
+.header-github-link:before {
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
+    no-repeat;
+  content: '';
+  display: flex;
+  height: 24px;
+  width: 24px;
+}
+
+/* ===============================
+   PRISM CODE SYNTAX HIGHLIGHTING
+   =============================== */
+
+/* Dark Theme Token Colors */
+[data-theme='dark'] .token.comment,
+[data-theme='dark'] .token.prolog,
+[data-theme='dark'] .token.doctype,
+[data-theme='dark'] .token.cdata {
+  color: #6a9955 !important;
+}
+
+[data-theme='dark'] .token.punctuation {
+  color: #d4d4d4 !important;
+}
+
+[data-theme='dark'] .token.property,
+[data-theme='dark'] .token.tag,
+[data-theme='dark'] .token.boolean,
+[data-theme='dark'] .token.number,
+[data-theme='dark'] .token.constant,
+[data-theme='dark'] .token.symbol {
+  color: #b5cea8 !important;
+}
+
+[data-theme='dark'] .token.selector,
+[data-theme='dark'] .token.attr-name,
+[data-theme='dark'] .token.string,
+[data-theme='dark'] .token.char,
+[data-theme='dark'] .token.builtin {
+  color: #ce9178 !important;
+}
+
+[data-theme='dark'] .token.operator,
+[data-theme='dark'] .token.entity,
+[data-theme='dark'] .token.url,
+[data-theme='dark'] .language-css .token.string,
+[data-theme='dark'] .style .token.string {
+  color: #d4d4d4 !important;
+}
+
+[data-theme='dark'] .token.atrule,
+[data-theme='dark'] .token.attr-value,
+[data-theme='dark'] .token.keyword {
+  color: #569cd6 !important;
+}
+
+[data-theme='dark'] .token.function {
+  color: #dcdcaa !important;
+}
+
+[data-theme='dark'] .token.class-name,
+[data-theme='dark'] .token.type-name {
+  color: #4ec9b0 !important;
+}
+
+[data-theme='dark'] .token.regex,
+[data-theme='dark'] .token.important,
+[data-theme='dark'] .token.variable {
+  color: #d16969 !important;
+}
+
+[data-theme='dark'] .token.namespace {
+  color: #4ec9b0 !important;
+}
+
+/* Dark theme code block background */
+[data-theme='dark'] pre[class*='language-'],
+[data-theme='dark'] code[class*='language-'] {
+  background-color: #1e1e1e !important;
+  color: #d4d4d4 !important;
+}
+
+[data-theme='dark'] .prism-code {
+  background-color: #1e1e1e !important;
+}
+
+/* ===============================
+   PRISM COLORS — LIGHT THEME
+   =============================== */
+
+[data-theme='light'] .token.comment,
+[data-theme='light'] .token.prolog,
+[data-theme='light'] .token.doctype,
+[data-theme='light'] .token.cdata {
+  color: #6a737d !important;
+}
+
+[data-theme='light'] .token.punctuation {
+  color: #24292e !important;
+}
+
+[data-theme='light'] .token.property,
+[data-theme='light'] .token.tag,
+[data-theme='light'] .token.boolean,
+[data-theme='light'] .token.number,
+[data-theme='light'] .token.constant,
+[data-theme='light'] .token.symbol {
+  color: #005cc5 !important;
+}
+
+[data-theme='light'] .token.selector,
+[data-theme='light'] .token.attr-name,
+[data-theme='light'] .token.string,
+[data-theme='light'] .token.char,
+[data-theme='light'] .token.builtin {
+  color: #032f62 !important;
+}
+
+[data-theme='light'] .token.operator,
+[data-theme='light'] .token.entity,
+[data-theme='light'] .token.url,
+[data-theme='light'] .language-css .token.string,
+[data-theme='light'] .style .token.string {
+  color: #24292e !important;
+}
+
+[data-theme='light'] .token.atrule,
+[data-theme='light'] .token.attr-value,
+[data-theme='light'] .token.keyword {
+  color: #d73a49 !important;
+}
+
+[data-theme='light'] .token.function {
+  color: #6f42c1 !important;
+}
+
+[data-theme='light'] .token.class-name,
+[data-theme='light'] .token.type-name {
+  color: #6f42c1 !important;
+}
+
+[data-theme='light'] .token.regex,
+[data-theme='light'] .token.important,
+[data-theme='light'] .token.variable {
+  color: #e36209 !important;
+}
+
+[data-theme='light'] .token.namespace {
+  color: #6f42c1 !important;
+}
+
+/* Light theme code block background */
+[data-theme='light'] pre[class*='language-'],
+[data-theme='light'] code[class*='language-'] {
+  background-color: #f6f8fa !important;
+  color: #24292e !important;
+}
+
+[data-theme='light'] .prism-code {
+  background-color: #f6f8fa !important;
+}
+
+[data-theme='light'] :not(pre) > code {
+  background-color: rgba(27, 31, 35, 0.05);
+}
+
+[data-theme='dark'] :not(pre) > code {
+  background-color: rgba(110, 118, 129, 0.25);
+  color: #f2f2f2;
+  border-radius: 6px;
+  padding: 0.15em 0.4em;
+  font-size: 0.9em;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+/* Sidebar solid background - not transparent */
+.theme-doc-sidebar-container {
+  background-color: #0f0f0f !important;
+}
+
+[data-theme='light'] .theme-doc-sidebar-container {
+  background-color: #f5f5f5 !important;
+}
+
+.menu {
+  background-color: #0f0f0f !important;
+}
+
+[data-theme='light'] .menu {
+  background-color: #f5f5f5 !important;
+}
+
+/* Sidebar menu items */
+.theme-doc-sidebar-menu {
+  background-color: #0f0f0f !important;
+}
+
+[data-theme='light'] .theme-doc-sidebar-menu {
+  background-color: #f5f5f5 !important;
+}
+
+/* Remove sidebar padding-top */
+.sidebar_njMd,
+[class*='sidebar_'] {
+  padding-top: 0 !important;
+  border-right: 1px solid #d97b35 !important;
+}
+
+/* Sidebar border-right more visible */
+.theme-doc-sidebar-container,
+[class*='docSidebarContainer_'] {
+  border-right: 1px solid #d97b35 !important;
+}
+
+[data-theme='light'] .theme-doc-sidebar-container,
+[data-theme='light'] [class*='docSidebarContainer_'] {
+  border-right: 1px solid #d97b35 !important;
+}
+
+/* Navbar sidebar brand - solid background */
+.navbar-sidebar__brand {
+  background-color: #0f0f0f !important;
+}
+
+[data-theme='light'] .navbar-sidebar__brand {
+  background-color: #f5f5f5 !important;
+}
+
+/* Back to main menu button margin */
+.navbar-sidebar__back {
+  margin-top: 20px !important;
+  background: none !important;
+}
+
+/* Sidebar - starts below navbar */
+.theme-doc-sidebar-container {
+  padding-top: 90px !important;
+}
+
+.sidebarViewport_aRkj,
+[class*='sidebarViewport_'] {
+  height: auto;
+  min-height: 100%;
+}
+
+.sidebar_njMd,
+[class*='sidebar_']:not([class*='navbar-sidebar']) {
+  height: auto;
+  min-height: 100%;
+}
+
+.menu_SIkG,
+.menu.thin-scrollbar {
+  overflow-y: auto !important;
+  max-height: none !important;
+  height: auto !important;
+}

@@ -1,0 +1,133 @@
+{
+  "title": "Announcements",
+  "subtitle": "Internal announcements and news",
+  "unreadOnly": "Unread only",
+  "new": "Write announcement",
+  "empty": "No announcements yet",
+  "emptyUnread": "No unread announcements",
+  "emptyWriter": "When you write the first one, everyone gets a notification and an e-mail.",
+  "important": "Important",
+  "ackPending": "Awaiting confirmation",
+  "readCount": "{count} / {total} people read",
+  "ackCount": "{count} / {total} people confirmed",
+  "unread": "Unread",
+  "unreadCount": "{count, plural, one {# unread announcement} other {# unread announcements}}",
+  "unknownAuthor": "Deleted user",
+  "notFound": "This announcement was not found or was deleted",
+  "actions": "Announcement actions",
+  "edit": "Edit",
+  "pin": "Pin as important",
+  "unpin": "Unpin",
+  "delete": "Delete",
+  "edited": "edited",
+  "ack": "I have read it",
+  "acked": "You confirmed · {when}",
+  "ackFor": "Confirm you read {title}",
+  "deleteTitle": "Delete this announcement?",
+  "deleteBody": "\"{title}\" is removed for everyone, along with who read it. This can't be undone.",
+  "seeAll": "All",
+  "toast": {
+    "published": "Announcement published, everyone was notified",
+    "saved": "Announcement saved",
+    "deleted": "Announcement deleted",
+    "pinned": "Announcement pinned",
+    "unpinned": "Unpinned",
+    "acked": "You confirmed you read it"
+  },
+  "dialog": {
+    "title": "Write announcement",
+    "editTitle": "Edit announcement",
+    "hint": "Everyone in the organization sees it; guests don't.",
+    "titleLabel": "Title",
+    "titlePlaceholder": "A short, clear title",
+    "bodyLabel": "Text",
+    "bodyPlaceholder": "The text of the announcement. Separate paragraphs with a blank line; links become clickable.",
+    "pinned": "Important: keep it pinned on top of the feed and the home page",
+    "requiresAck": "Ask readers to confirm \"I have read it\"",
+    "notifyHint": "Publishing notifies everyone in the app, by push and by e-mail (per their notification settings).",
+    "save": "Save",
+    "publish": "Publish"
+  },
+  "readers": {
+    "title": "Readers",
+    "unread": "Not read",
+    "notAcked": "Not confirmed",
+    "read": "Read",
+    "none": "Nobody in this list."
+  },
+  "notifications": {
+    "published": "{actor} published an announcement: {title}",
+    "kudos": "{actor} thanked you"
+  },
+  "kudos": {
+    "title": "Thank-you wall",
+    "subtitle": "Thank your teammates and never miss a celebration",
+    "send": "Say thanks",
+    "thank": "Say thanks",
+    "delete": "Take the card back",
+    "cardLabel": "Thank-you card from {from} to {to}",
+    "empty": "No thank-you cards yet",
+    "emptyHint": "Send the first one: pick a badge and add a few words if you like.",
+    "noneForPerson": "No thank-you cards yet.",
+    "toast": {
+      "sent": "Thank-you card sent to {name}",
+      "deleted": "Card taken back"
+    },
+    "badges": {
+      "teamwork": "Team spirit",
+      "helping": "Helping hand",
+      "idea": "Bright idea",
+      "customer": "Customer hero",
+      "quality": "Quality work",
+      "extraMile": "Went the extra mile"
+    },
+    "dialog": {
+      "title": "Send a thank-you card",
+      "hint": "The card shows on the wall and on their profile, and they get a notification.",
+      "to": "To",
+      "changePerson": "Change person",
+      "search": "Search people",
+      "badge": "Badge",
+      "message": "Message (optional)",
+      "messagePlaceholder": "What are you thankful for?",
+      "send": "Send"
+    },
+    "celebrations": {
+      "title": "Celebrations",
+      "today": "Today",
+      "upcoming": "Coming up",
+      "none": "No birthdays or work anniversaries in the next two weeks.",
+      "birthday": "Birthday",
+      "anniversary": "{years, plural, one {# year at work} other {# years at work}}"
+    },
+    "settings": {
+      "open": "Settings",
+      "title": "Thank-you wall settings",
+      "hint": "Badges and the channel celebration messages go to.",
+      "badges": "Badges",
+      "badgeEmoji": "Badge emoji",
+      "newBadge": "New badge name",
+      "add": "Add",
+      "channel": "Celebration channel",
+      "channelHint": "Birthdays and work anniversaries are posted to this channel every morning after 09:00.",
+      "noChannel": "No channel (nothing is posted)",
+      "post": {
+        "birthdays": "Share birthdays",
+        "anniversaries": "Share work anniversaries",
+        "kudos": "Share thank-you cards too"
+      },
+      "badgeName": "Name of the {name} badge",
+      "badgeActive": "{name} badge in use",
+      "active": "In use"
+    },
+    "profile": {
+      "received": "Thanks received",
+      "birthday": "Birthday",
+      "birthDay": "Day",
+      "birthMonth": "Month",
+      "showBirthday": "Show my birthday",
+      "showBirthdayHint": "When on, your teammates see your birthday and it is celebrated in the channel. The year is not kept.",
+      "startedOn": "First working day"
+    }
+  }
+}

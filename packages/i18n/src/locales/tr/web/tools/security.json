@@ -1,0 +1,213 @@
+{
+  "aes": {
+    "name": "AES şifrele / çöz",
+    "description": "Metni AES-256-GCM ve bir parolayla (PBKDF2) şifrele ya da çöz, tamamen yerelde.",
+    "keywords": "aes, şifrele, şifre çöz, gcm, pbkdf2, simetrik, parola",
+    "encrypt": "Şifrele",
+    "decrypt": "Çöz",
+    "passphrase": "Parola",
+    "plaintext": "Düz metin",
+    "ciphertext": "Şifreli metin (Base64)",
+    "note": "AES-256-GCM, anahtar PBKDF2 ile türetilir (100 bin tur). Şifreleme yerelde yapılır. Parolanı iyi sakla, kaybolursa geri getirilemez.",
+    "errors": {
+      "passphraseRequired": "Parola gerekli.",
+      "tooShort": "Şifreli metin çok kısa ya da bozuk.",
+      "decryptFailed": "Çözülemedi: parola yanlış ya da veri bozuk.",
+      "failed": "İşlem başarısız."
+    }
+  },
+  "basic-auth-generator": {
+    "name": "Basic Auth üretici",
+    "description": "Kullanıcı adı ve paroladan HTTP Basic Authorization başlığı üret, yerelde.",
+    "keywords": "basic auth, yetkilendirme, başlık, kimlik bilgisi, kullanıcı adı, parola, curl, base64",
+    "username": "Kullanıcı adı",
+    "password": "Parola",
+    "header": "Authorization başlığı",
+    "token": "Kimlik bilgisi jetonu",
+    "note": "Basic auth kimlik bilgilerini yalnızca Base64 ile kodlar, şifrelemez. Her zaman HTTPS üzerinden gönder."
+  },
+  "bcrypt-tool": {
+    "name": "Bcrypt özetle ve doğrula",
+    "description": "Parolayı seçtiğin maliyetle bcrypt ile özetle ya da bir özete karşı doğrula, yerelde.",
+    "keywords": "bcrypt, özet, karma, parola, şifre, doğrula, tuz, maliyet, tur, karşılaştır",
+    "hash": "Özetle",
+    "verify": "Doğrula",
+    "password": "Parola",
+    "cost": "Maliyet çarpanı: {value} ({count} tur)",
+    "hashing": "Özetleniyor…",
+    "hashNote": "Yüksek maliyet hem hesaplamayı hem saldırıyı yavaşlatır. Her özet kendi rastgele tuzunu içerir, bu yüzden aynı parolanın iki özeti farklı çıkar.",
+    "bcryptHash": "Bcrypt özeti",
+    "match": "Parola özetle eşleşiyor ✓",
+    "noMatch": "Eşleşmiyor."
+  },
+  "bip39-generator": {
+    "name": "BIP39 anımsatıcı üretici",
+    "description": "BIP39 kurtarma kelimelerini entropi ve seed ile üret ya da doğrula, yerelde.",
+    "keywords": "bip39, anımsatıcı, kurtarma, kelime, ifade, cüzdan, kripto, entropi, seed, üretici",
+    "length": "Uzunluk",
+    "wordsOption": "{count} kelime ({bits} bit)",
+    "generateNew": "Yenisini üret",
+    "mnemonic": "Anımsatıcı",
+    "entropy": "Entropi (hex)",
+    "passphrase": "Parola (isteğe bağlı, BIP39 \"25. kelime\")",
+    "seed": "Seed (hex, 512 bit)",
+    "validate": "Anımsatıcıyı doğrula",
+    "validatePlaceholder": "Sağlama toplamını denetlemek için bir anımsatıcı yapıştır…",
+    "valid": "Geçerli anımsatıcı ✓",
+    "invalid": "Geçersiz: kelimeler ya da sağlama toplamı yanlış.",
+    "note": "Web Crypto API ile yerelde üretilir. Yine de gerçek varlıkları koruyan bir anımsatıcıyı hiçbir web sitesine girme."
+  },
+  "hash-generator": {
+    "name": "Özet ve HMAC üretici",
+    "description": "SHA-1/256/384/512 özetlerini ve HMAC değerlerini tarayıcında Web Crypto ile hesapla.",
+    "keywords": "özet, karma, hash, sha, sha256, sha512, hmac, sağlama toplamı, imza",
+    "algorithm": "Algoritma",
+    "secretKey": "Gizli anahtar",
+    "hmacKey": "HMAC anahtarı",
+    "placeholder": "Özetlenecek metin…",
+    "digest": "Özet",
+    "bits": "{bits} bit",
+    "note": "Web Crypto ile yerelde hesaplanır. MD5 sunulmaz: Web Crypto desteklemez ve kriptografik olarak kırıktır."
+  },
+  "id-generator": {
+    "name": "Kimlik üretici",
+    "description": "GUID, UUID v4, zamana göre sıralanan UUID v7 ve ULID değerlerini yerelde, toplu üret.",
+    "keywords": "guid, uuid, ulid, kimlik, tanımlayıcı, rastgele, benzersiz, id",
+    "notes": {
+      "uuid4": "Rastgele",
+      "uuid7": "Zamana göre sıralanır",
+      "ulid": "Zamana göre sıralanır, Base32",
+      "guid": ".NET biçimi, büyük harf"
+    },
+    "count": "Adet",
+    "uppercase": "Büyük harf",
+    "hyphens": "Tireler",
+    "total": "{count, plural, one {# kimlik} other {# kimlik}}",
+    "copyAll": "Tümünü kopyala"
+  },
+  "jwt-decoder": {
+    "name": "JWT çözücü",
+    "description": "Bir JSON Web Token'ın başlığını ve yükünü çöz, claim'lerini incele, yerelde.",
+    "keywords": "jwt, jeton, token, json web token, bearer, yetkilendirme, claim, çöz",
+    "placeholder": "Bir JSON Web Token yapıştır…",
+    "notVerified": "Yerelde çözüldü. İmza <b>doğrulanmaz</b>: bu ekran jetonun içeriğini gösterir, güvenilir olduğunu değil.",
+    "header": "Başlık",
+    "payload": "Yük",
+    "claims": "Claim'ler",
+    "expired": "Süresi dolmuş",
+    "notExpired": "Süresi dolmamış",
+    "status": {
+      "expired": "süresi dolmuş",
+      "valid": "geçerli",
+      "notYetValid": "henüz geçerli değil"
+    },
+    "errors": {
+      "segments": "Bir JWT noktayla ayrılmış 2 ya da 3 parçadan oluşur.",
+      "header": "Başlık geçerli bir Base64URL kodlu JSON değil.",
+      "payload": "Yük geçerli bir Base64URL kodlu JSON değil.",
+      "invalid": "Geçersiz JWT"
+    }
+  },
+  "password-generator": {
+    "name": "Parola ve anahtar üretici",
+    "description": "Tarayıcında güçlü rastgele parolalar ve şifreleme anahtarları (hex/base64) üret.",
+    "keywords": "parola, şifre, anahtar, üretici, rastgele, gizli, şifreleme anahtarı, jeton, entropi",
+    "modes": {
+      "password": "Parola",
+      "key": "Anahtar"
+    },
+    "length": "Uzunluk:",
+    "sets": {
+      "lowercase": "Küçük harf",
+      "uppercase": "Büyük harf",
+      "digits": "Rakamlar",
+      "symbols": "Simgeler",
+      "avoidAmbiguous": "Karışabilenleri çıkar"
+    },
+    "entropy": "Her biri yaklaşık {bits} bit entropi",
+    "size": "Boyut",
+    "bitsOption": "{bits} bit",
+    "encoding": "Kodlama",
+    "count": "Adet",
+    "total": "{count, plural, one {# üretildi} other {# üretildi}}",
+    "copyAll": "Tümünü kopyala",
+    "noCharset": "En az bir karakter kümesi seç."
+  },
+  "password-strength-analyser": {
+    "name": "Parola gücü analizi",
+    "description": "Parolanın entropisini ve kırılma süresini karakter kümelerinden tahmin et, yerelde.",
+    "keywords": "parola, şifre, güç, entropi, kırma, süre, analiz, güvenli, bit",
+    "password": "Parola",
+    "placeholder": "Bir parola yaz ya da yapıştır…",
+    "hide": "Gizle",
+    "show": "Göster",
+    "score": {
+      "veryWeak": "Çok zayıf",
+      "weak": "Zayıf",
+      "fair": "Orta",
+      "strong": "Güçlü",
+      "veryStrong": "Çok güçlü"
+    },
+    "entropyLine": "{bits} bit entropi",
+    "crackTime": "Kırılma süresi:",
+    "time": {
+      "instantly": "anında",
+      "centuries": "yüzyıllar",
+      "second": "{count, plural, one {# saniye} other {# saniye}}",
+      "minute": "{count, plural, one {# dakika} other {# dakika}}",
+      "hour": "{count, plural, one {# saat} other {# saat}}",
+      "day": "{count, plural, one {# gün} other {# gün}}",
+      "year": "{count, plural, one {# yıl} other {# yıl}}"
+    },
+    "stats": {
+      "length": "Uzunluk",
+      "pool": "Karakter havuzu",
+      "entropy": "Entropi",
+      "score": "Puan"
+    },
+    "bits": "{bits} bit",
+    "warnings": {
+      "short": "8 karakterden kısa.",
+      "noUpper": "Büyük harf yok.",
+      "noDigits": "Rakam yok.",
+      "noSymbols": "Simge yok.",
+      "repeated": "Tek bir karakter tekrarlanıyor.",
+      "digitsOnly": "Yalnız rakam."
+    },
+    "note": "Entropi karakterlerin rastgele olduğunu varsayar. Sözlük kelimelerinden oluşan akılda kalıcı bir ifade, ham entropisinin gösterdiğinden zayıftır. Hiçbir şey bir yere gönderilmez."
+  },
+  "rsa-keygen": {
+    "name": "RSA anahtar üretici",
+    "description": "Tarayıcında Web Crypto ile PEM biçiminde RSA açık ve özel anahtar çifti üret.",
+    "keywords": "rsa, anahtar, anahtar çifti, pem, açık anahtar, özel anahtar, üret",
+    "modulus": "Modül",
+    "bitsOption": "{bits} bit",
+    "generating": "Üretiliyor…",
+    "generate": "Anahtar çifti üret",
+    "publicKey": "Açık anahtar (PEM)",
+    "privateKey": "Özel anahtar (PEM)",
+    "failed": "Anahtarlar üretilemedi.",
+    "note": "Web Crypto ile yerelde üretilir (RSA-OAEP, SHA-256). Özel anahtarın tarayıcıdan çıkmaz."
+  },
+  "totp-generator": {
+    "name": "TOTP üretici ve doğrulayıcı",
+    "description": "Bir gizli anahtardan zamana dayalı tek kullanımlık kodlar (RFC 6238) üret, QR kod ve doğrulayıcıyla, yerelde.",
+    "keywords": "totp, otp, 2fa, mfa, iki adımlı doğrulama, authenticator, tek kullanımlık, kod, hotp",
+    "secret": "Gizli anahtar (base32)",
+    "random": "Rastgele",
+    "digits": "Hane",
+    "period": "Süre (sn)",
+    "algorithm": "Algoritma",
+    "currentCode": "Geçerli kod",
+    "refreshesIn": "{seconds} sn sonra yenilenir",
+    "qrAlt": "otpauth QR kodu",
+    "validate": "Kodu doğrula",
+    "validatePlaceholder": "{count} haneli kodu gir…",
+    "valid": "Geçerli: şu anki zaman penceresiyle eşleşiyor ✓",
+    "invalid": "Eşleşmiyor.",
+    "errors": {
+      "invalidSecret": "Geçersiz base32 gizli anahtar.",
+      "computeFailed": "Kod hesaplanamadı."
+    }
+  }
+}

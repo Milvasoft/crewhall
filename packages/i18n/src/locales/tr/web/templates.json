@@ -1,0 +1,51 @@
+{
+  "title": "Şablon galerisi",
+  "hint": "Hazır bir sayfa, pano ya da bütün bir space ile başla. Kurumun ve ekibin kaydettiği şablonlar da burada.",
+  "filters": "Şablon süzgeçleri",
+  "source": "Kaynak",
+  "kinds": {
+    "all": "Tümü",
+    "page": "Sayfa",
+    "board": "Pano",
+    "space": "Space"
+  },
+  "scopes": {
+    "all": "Hepsi",
+    "builtin": "Hazır",
+    "org": "Kurum",
+    "space": "Space",
+    "personal": "Kişisel"
+  },
+  "search": "Şablonlarda ara",
+  "none": "Bu süzgeçle şablon yok.",
+  "emptySpace": "Boş space",
+  "blocks": "{count, plural, one {# blok} other {# blok}}",
+  "cards": "{count, plural, one {# hazır kart} other {# hazır kart}}",
+  "placeholders": "«tarih» ve «yazar» doldurulur",
+  "use": "Bu şablonu kullan",
+  "useSpace": "Bu space'e ekle",
+  "skipped": "Kapalı modüllerin kısmı atlandı: {modules}",
+  "delete": "{name} şablonunu sil",
+  "saveSpace": "Bu space'i şablon olarak kaydet",
+  "saveTitle": {
+    "page": "Sayfayı şablon olarak kaydet",
+    "board": "Panoyu şablon olarak kaydet",
+    "space": "Space'i şablon olarak kaydet"
+  },
+  "saveHint": {
+    "page": "Sayfanın şu anki içeriği şablon olur. Kullanılınca kopyalanır, bu sayfaya bağlı kalmaz.",
+    "board": "Sütunlar, etiketler, alanlar ve kartların başlıkları şablon olur. Kişiler, tarihler ve yorumlar alınmaz.",
+    "space": "Space'in sayfa ağacı (en çok 50 sayfa) ve panoları (en çok 10) şablon olur. Dosyalar ve izinler alınmaz."
+  },
+  "name": "Şablon adı",
+  "description": "Kısa açıklama",
+  "scope": "Kimler kullanabilir",
+  "save": "Kaydet",
+  "saved": "{name} şablonu kaydedildi.",
+  "newSpace": {
+    "label": "Şablon",
+    "none": "Boş başla",
+    "hint": "Seçilen şablonun sayfaları ve panoları space açılırken eklenir."
+  },
+  "fromGallery": "Şablon galerisinden seç"
+}

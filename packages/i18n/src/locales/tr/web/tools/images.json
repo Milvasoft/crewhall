@@ -1,0 +1,109 @@
+{
+  "background-remover": {
+    "name": "Arka plan silici (renk)",
+    "description": "Düz ya da düze yakın bir arka planı renge göre saydam yap; tolerans ve yumuşak kenar ayarıyla, tamamen yerelde.",
+    "keywords": "arka plan, sil, kaldır, saydam, şeffaf, dekupe, kırp, png, renk anahtarı",
+    "pickLabel": "Görseli buraya bırak (düz arka planda en iyi sonucu verir)",
+    "keyColor": "Anahtar renk",
+    "tolerance": "Tolerans {value}",
+    "softEdge": "Yumuşak kenar {value}",
+    "tip": "İpucu: arka plan rengini seçmek için orijinal görsele tıkla.",
+    "chooseAnother": "Başka görsel seç",
+    "originalCaption": "Orijinal, renk seçmek için tıkla",
+    "originalAlt": "Orijinal görsel",
+    "resultCaption": "Sonuç (saydam)",
+    "resultAlt": "Arka planı saydam sonuç",
+    "downloadPng": "PNG indir ({size})",
+    "loadFailed": "Görsel yüklenemedi.",
+    "processFailed": "Görsel işlenemedi."
+  },
+  "barcode-generator": {
+    "name": "Barkod üretici",
+    "description": "Metinden barkod üret (Code128, EAN, UPC, Code39 ve diğerleri), tamamen yerelde.",
+    "keywords": "barkod, çizgi kod, code128, ean, upc, code39, üretici, svg, png",
+    "placeholder": "Kodlanacak değer…",
+    "valueLabel": "Barkod değeri",
+    "format": "Biçim",
+    "showText": "Metni göster",
+    "tip": "İpucu: EAN-13 için 12 ya da 13 hane, UPC için 11 ya da 12, EAN-8 için 7 ya da 8 hane gerekir. CODE128 her metni kabul eder.",
+    "emptyValue": "Bir değer gir.",
+    "invalid": "\"{value}\" değeri {type} için geçerli değil."
+  },
+  "base64-image": {
+    "name": "Base64 görsel görüntüleyici",
+    "description": "Base64 ya da veri URI'si olarak verilen görseli önizle veya bir görseli Base64 veri URI'sine çevir, tamamen yerelde.",
+    "keywords": "base64, görsel, resim, veri uri, data uri, önizleme, kodla, çöz, satır içi",
+    "modes": {
+      "decode": "Base64 → Görsel",
+      "encode": "Görsel → Base64"
+    },
+    "hideInput": "Girdiyi gizle",
+    "showInput": "Girdiyi göster",
+    "inputLabel": "Base64 ya da veri URI'si",
+    "encodedLabel": "Veri URI'si",
+    "placeholder": "Bir veri URI'si ya da Base64 görsel metni yapıştır…",
+    "preview": "Önizleme",
+    "emptyDecode": "Önizlemek için görsel verisini yapıştır.",
+    "emptyEncode": "Bir görsel seç.",
+    "errors": {
+      "empty": "Görsel verisi yok.",
+      "notImage": "Bu veri URI'si bir görsel değil.",
+      "notBase64": "Girdi bir veri URI'si ya da geçerli bir Base64 değil.",
+      "invalid": "Geçersiz görsel."
+    }
+  },
+  "image-compressor": {
+    "name": "Görsel sıkıştırıcı",
+    "description": "Görselleri tarayıcında JPEG, WebP ya da PNG olarak yeniden boyutlandır ve sıkıştır; hiçbir şey yüklenmez.",
+    "keywords": "görsel, resim, fotoğraf, sıkıştır, küçült, boyutlandır, optimize, jpeg, webp, png",
+    "format": "Biçim",
+    "quality": "Kalite %{pct}",
+    "maxSize": "En büyük boyut",
+    "original": "Orijinal",
+    "compressed": "Sıkıştırılmış",
+    "chooseAnother": "Başka görsel seç",
+    "download": "{type} indir ({size})",
+    "loadFailed": "Görsel yüklenemedi.",
+    "compressFailed": "Görsel sıkıştırılamadı."
+  },
+  "qr-generator": {
+    "name": "QR kod üretici",
+    "description": "Metinden ya da URL'den QR kod üret; renk ve hata düzeltme seçenekleriyle, tamamen yerelde.",
+    "keywords": "qr, qr kod, karekod, üretici, url, bağlantı, barkod, png, svg",
+    "textLabel": "Metin ya da URL",
+    "placeholder": "Kodlanacak metni ya da URL'yi gir…",
+    "size": "Boyut",
+    "ecc": "Hata düzeltme",
+    "margin": "Kenar boşluğu",
+    "dark": "Koyu",
+    "light": "Açık",
+    "alt": "QR kod",
+    "empty": "Henüz QR kod yok",
+    "failed": "QR kod üretilemedi. Metin çok uzun olabilir."
+  },
+  "svg-placeholder": {
+    "name": "SVG yer tutucu üretici",
+    "description": "Satır içi SVG ya da veri URI'si olarak hafif yer tutucu görseller üret, tamamen yerelde.",
+    "keywords": "svg, yer tutucu, placeholder, görsel, resim, taslak, sahte, veri uri, üretici",
+    "width": "Genişlik",
+    "height": "Yükseklik",
+    "background": "Arka plan",
+    "textColor": "Metin rengi",
+    "textOptional": "Metin (isteğe bağlı)",
+    "previewAlt": "SVG yer tutucu önizlemesi",
+    "markup": "SVG kodu",
+    "dataUri": "Veri URI'si"
+  },
+  "wifi-qr": {
+    "name": "Wi-Fi QR kod üretici",
+    "description": "Cihazları bir Wi-Fi ağına bağlayan QR kod oluştur, tamamen yerelde.",
+    "keywords": "wifi, wi-fi, kablosuz, qr, karekod, ağ, şifre, parola, ssid, bağlan",
+    "ssid": "Ağ adı (SSID)",
+    "password": "Şifre",
+    "encryption": "Şifreleme",
+    "none": "Yok",
+    "hidden": "Gizli ağ",
+    "alt": "Wi-Fi QR kod",
+    "empty": "Bir SSID gir"
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "title": "Directory",
+  "more": "Show more",
+  "search": "Name, e-mail, phone, tag…",
+  "searchChart": "Find someone in the chart…",
+  "nav": {
+    "directory": "Org directory",
+    "chart": "Org chart",
+    "contacts": "External contacts",
+    "companies": "Companies"
+  },
+  "sidebar": {
+    "departments": "Departments",
+    "tags": "Tags"
+  },
+  "directory": {
+    "emptyTitle": "Nobody found",
+    "empty": "Change the search or the department filter.",
+    "openProfile": "Open profile",
+    "reports": "{count, plural, one {# person reports here} other {# people report here}}",
+    "fromDirectory": "This person's details come from the org directory (AD/LDAP).",
+    "synced": "Comes from the org directory and changes there.",
+    "noManager": "No manager"
+  },
+  "fields": {
+    "email": "E-mail",
+    "title": "Job title",
+    "department": "Department",
+    "team": "Team",
+    "phone": "Phone",
+    "mobile": "Mobile",
+    "location": "Office",
+    "manager": "Manager",
+    "about": "About"
+  },
+  "chart": {
+    "emptyTitle": "The chart is empty",
+    "empty": "The org chart grows as people get a manager.",
+    "collapse": "Collapse {name}'s team",
+    "expand": "Expand {name}'s team",
+    "flatTitle": "No managers in the chart yet",
+    "flat": "The org chart is drawn from each person's manager. Assign managers in the table, with a CSV file, or by dragging a person onto their manager in the chart.",
+    "flatMember": "The org chart is drawn from each person's manager. Managers are assigned by an organization admin.",
+    "assign": "Assign managers",
+    "view": {
+      "label": "View",
+      "tree": "Chart",
+      "table": "Table"
+    },
+    "group": {
+      "label": "Group by",
+      "manager": "Manager",
+      "department": "Department",
+      "team": "Team",
+      "none": "Not set"
+    },
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "zoomReset": "Actual size",
+    "zoom": "{count}%",
+    "export": "Export",
+    "png": "Download as PNG",
+    "pdf": "Download as PDF",
+    "fileName": "org-chart",
+    "importCsv": "Import CSV",
+    "template": "Download CSV template",
+    "dragHint": "Drop a person onto someone else to make them their manager.",
+    "top": "Drop here: no manager",
+    "moved": "{name} now reports to {person}",
+    "movedTop": "{name} has no manager now",
+    "undo": "Undo",
+    "synced": "The manager comes from the org directory; change it there.",
+    "drag": "Move {name}",
+    "table": {
+      "person": "Person",
+      "noManager": "No manager",
+      "saved": "Saved",
+      "caption": "People, their titles, departments and managers"
+    },
+    "csv": {
+      "title": "Import CSV",
+      "description": "The first line is the header. Columns: e-mail (required), title, department, team, phone, mobile, location, manager (the manager's e-mail). Columns not in the file are left alone; an empty cell clears the field.",
+      "pick": "Choose file",
+      "file": "CSV file",
+      "check": "Check first",
+      "apply": "{count, plural, one {Update # person} other {Update # people}}",
+      "summary": "{done} to update · {total} unchanged · {failed} with errors",
+      "done": "{count, plural, one {# person updated} other {# people updated}}",
+      "line": "Line",
+      "status": {
+        "updated": "To update",
+        "unchanged": "Unchanged",
+        "failed": "Error"
+      },
+      "nothing": "Nothing would change."
+    }
+  },
+  "actions": {
+    "edit": "Edit",
+    "more": "More",
+    "import": "Import vCard",
+    "exportContacts": "Download contacts as vCard",
+    "exportDirectory": "Download directory as vCard",
+    "carddav": "Sync with your phone (CardDAV)",
+    "newContact": "New contact",
+    "newCompany": "New company"
+  },
+  "kind": {
+    "all": "All",
+    "customer": "Customer",
+    "supplier": "Supplier",
+    "partner": "Partner",
+    "other": "Other"
+  },
+  "type": {
+    "work": "Work",
+    "home": "Home",
+    "other": "Other",
+    "mobile": "Mobile",
+    "fax": "Fax"
+  },
+  "form": {
+    "newTitle": "New contact",
+    "editTitle": "Edit contact",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "company": "Company",
+    "noCompany": "No company",
+    "jobTitle": "Job title",
+    "kind": "Type",
+    "birthday": "Birthday",
+    "type": "Type",
+    "removeRow": "Remove row",
+    "addEmail": "Add e-mail",
+    "addPhone": "Add phone",
+    "address": "Address",
+    "website": "Website",
+    "tags": "Tags",
+    "tagsPlaceholder": "Type a tag, press Enter",
+    "removeTag": "Remove tag {name}",
+    "notes": "Notes",
+    "private": "Only me",
+    "privateHint": "When off the contact is in the org's shared address book.",
+    "create": "Add"
+  },
+  "company": {
+    "newTitle": "New company",
+    "editTitle": "Edit company",
+    "name": "Company name",
+    "domain": "Domain",
+    "emptyTitle": "No companies yet",
+    "empty": "Add customers, suppliers and partners; link contacts to their companies.",
+    "people": "{count, plural, one {# person} other {# people}}"
+  },
+  "list": {
+    "emptyTitle": "No contacts yet",
+    "empty": "Add external contacts or import a vCard file.",
+    "privateNote": "Only you see this contact.",
+    "addedBy": "Added by {name}"
+  },
+  "import": {
+    "done": "{count} contacts added, {done} updated, {failed} skipped."
+  },
+  "carddav": {
+    "title": "Sync with your phone (CardDAV)",
+    "hint": "Add a CardDAV account on iPhone, Android (DAVx5) or Thunderbird. Use a personal access token with the “Write contacts” scope as the password; “Read and search” is enough to read.",
+    "url": "CardDAV address",
+    "copy": "Copy",
+    "copied": "Copied",
+    "user": "User name: {user}",
+    "createToken": "Create a token (My account › MCP and API)",
+    "tokensOff": "Personal access tokens are turned off in your organization."
+  },
+  "menu": {
+    "open": "Open",
+    "sendEmail": "Send e-mail",
+    "startChat": "Start a chat",
+    "copyEmail": "Copy e-mail",
+    "copyPhone": "Copy phone",
+    "copyMobile": "Copy mobile",
+    "copied": "Copied"
+  },
+  "external": {
+    "synced": "Syncs with your {name} account: {email}. Changes you make here go there too. Only you can see this contact.",
+    "versions": "{count, plural, one {Previous version (#)} other {Previous versions (#)}}",
+    "versionsHint": "The contact changed in two places at once. The last save won; the overwritten version stays here.",
+    "versionCrewhall": "Version written in Crewhall",
+    "saveTo": "Also add to account",
+    "saveToHint": "If you pick one, the contact also goes into that account's address book and becomes private to you.",
+    "saveToNone": "In Crewhall only"
+  }
+}

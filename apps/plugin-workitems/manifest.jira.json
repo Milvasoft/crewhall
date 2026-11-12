@@ -1,0 +1,117 @@
+{
+  "manifestVersion": 1,
+  "id": "com.milvasoft.jira",
+  "version": "0.1.0",
+  "name": {
+    "tr": "Jira",
+    "en": "Jira"
+  },
+  "notificationName": {
+    "tr": "Jira",
+    "en": "Jira"
+  },
+  "description": {
+    "tr": "Crewhall panolarını Jira işleriyle iki yönlü eşitler: başlık, açıklama, durum, atanan, öncelik, tarih, etiket, puan ve yorumlar. Bana atanan işler, sohbet komutu ve asistan araçları içerir. Jira Cloud ve Data Center ile çalışır.",
+    "en": "Keeps Crewhall boards in two-way sync with Jira issues: title, description, status, assignee, priority, dates, labels, points and comments. Includes your assigned work, a chat command and assistant tools. Works with Jira Cloud and Data Center."
+  },
+  "publisher": {
+    "name": "Milvasoft",
+    "url": "https://milvasoft.com"
+  },
+  "apiLevel": {
+    "min": 2
+  },
+  "origin": "https://jira.crewhall.app",
+  "hosting": "self",
+  "icon": "/icon.svg",
+  "permissions": ["hub:read", "boards:write", "notifications:write", "offline:access"],
+  "entryPoints": {
+    "tabs": [
+      {
+        "id": "main",
+        "title": {
+          "tr": "Jira",
+          "en": "Jira"
+        },
+        "url": "/tab",
+        "placement": "rail",
+        "icon": "board",
+        "mobile": false
+      }
+    ],
+    "cards": [
+      {
+        "id": "mine",
+        "title": {
+          "tr": "Bana atanan Jira işleri",
+          "en": "Jira issues assigned to me"
+        },
+        "url": "/card",
+        "size": "m"
+      }
+    ],
+    "commands": [
+      {
+        "name": "jira",
+        "description": {
+          "tr": "Jira işini sohbete getir: /jira ABC-12 ya da /jira ara giriş hatası",
+          "en": "Bring a Jira issue to the chat: /jira ABC-12 or /jira search login bug"
+        },
+        "url": "/commands/jira"
+      }
+    ],
+    "tools": [
+      {
+        "name": "search_issues",
+        "description": "Searches the caller's connected Jira issues by text. Read only.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string"
+            }
+          },
+          "required": ["query"]
+        },
+        "url": "/tools/search"
+      },
+      {
+        "name": "my_issues",
+        "description": "Lists open Jira issues assigned to the caller. Read only.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        },
+        "url": "/tools/mine"
+      },
+      {
+        "name": "add_issue_comment",
+        "description": "Adds a comment to a Jira issue the caller can reach.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Issue key"
+            },
+            "text": {
+              "type": "string"
+            }
+          },
+          "required": ["id", "text"]
+        },
+        "url": "/tools/comment",
+        "write": true
+      }
+    ],
+    "events": [
+      {
+        "type": "board.card.changed",
+        "url": "/events"
+      }
+    ]
+  },
+  "lifecycle": {
+    "url": "/crewhall/lifecycle"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "page_locked": "Bu sayfa kilitli. Düzenlemek için önce kilidi aç.",
+  "page_too_large": "Sayfa çok büyük. Markdown en çok 200.000 karakter olabilir.",
+  "collab_unavailable": "Ortak düzenleme sunucusuna ulaşılamıyor. Biraz sonra yeniden dene.",
+  "import_invalid": "Dosyalar içe aktarılamadı. Yalnız .md dosyaları alınır.",
+  "page_task_changed": "Bu madde sayfada değişmiş. Liste yenilendi, yeniden dene."
+}

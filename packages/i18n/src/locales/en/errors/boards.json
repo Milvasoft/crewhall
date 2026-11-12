@@ -1,0 +1,14 @@
+{
+  "board_column_not_empty": "The column still has cards. Choose where they should move before deleting it.",
+  "board_last_column": "A board needs at least one column.",
+  "board_limit_reached": "The board limit has been reached.",
+  "board_label_unknown": "This label does not exist on the board.",
+  "board_assignee_not_member": "This person cannot see the board; add them to the space or share the board first.",
+  "board_sprint_active": "This board already has a sprint running. Close it first.",
+  "board_sprint_state": "The sprint cannot do this in its current state.",
+  "board_link_cycle": "This link would make a loop: the card would block itself.",
+  "boards_chat_unavailable": "Card chats are turned off on this board.",
+  "drawing_file_too_large": "The image is too large. The limit is 8 MB.",
+  "drawing_file_invalid": "This image could not be read.",
+  "collab_document_invalid": "Invalid document name."
+}

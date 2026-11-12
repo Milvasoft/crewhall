@@ -1,0 +1,23 @@
+{
+  "base64": {
+    "name": "Base64 kodla / çöz",
+    "description": "Metni Base64'e kodla ya da Base64'ü metne çöz; URL-güvenli seçenekle, tamamen yerelde.",
+    "keywords": "base64, kodla, çöz, şifre çöz",
+    "encode": "Kodla",
+    "decode": "Çöz",
+    "urlSafe": "URL-güvenli",
+    "encodePlaceholder": "Kodlanacak metin…",
+    "decodePlaceholder": "Çözülecek Base64…"
+  },
+  "binary-text": {
+    "name": "İkili ↔ metin",
+    "description": "Metni 8 bitlik ikili gösterime çevir ve geri al; UTF-8 uyumlu, tamamen yerelde.",
+    "keywords": "ikili, binary, bit, metin, utf-8, ascii, kodla, çöz, 0, 1",
+    "textToBinary": "Metin → ikili",
+    "binaryToText": "İkili → metin",
+    "binary": "İkili",
+    "encodePlaceholder": "Kodlanacak metin…",
+    "invalidChars": "İkili yalnız 0, 1 ve boşluk içerebilir.",
+    "bitCount": "Bit sayısı 8'in katı olmalı."
+  }
+}

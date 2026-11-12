@@ -1,0 +1,147 @@
+.features {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 100svh;
+  padding: calc(var(--navbar) + 2svh) 5vw 6svh;
+  box-sizing: border-box;
+}
+
+/* the orange plate: full-bleed when the iris opens, gathered into the card by the engine */
+.plate {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: var(--brand-grad);
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 4vw;
+  width: min(1240px, 100%);
+  padding: clamp(28px, 4vw, 64px);
+  box-sizing: border-box;
+  border-radius: 28px;
+  background: var(--brand-grad);
+  color: #fff;
+}
+
+:global([data-theme='light']) .card {
+  color: #1d1d1d;
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-height: 560px) and (min-width: 769px) {
+  :global([data-home]:not([data-static])) .plate {
+    display: block;
+  }
+  :global([data-home]:not([data-static])) .card {
+    background: transparent;
+  }
+}
+
+.art {
+  transform-origin: 50% 90%;
+}
+
+.artImg {
+  display: block;
+  width: 100%;
+  max-height: 56svh;
+  object-fit: contain;
+}
+
+.title {
+  color: inherit;
+  margin-bottom: 28px;
+  font-size: clamp(1.8rem, 3.2vw, 3.4rem);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 0 0 16px;
+  font-size: clamp(1rem, 1.25vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.dot {
+  flex: none;
+  display: inline-flex;
+  width: 26px;
+  margin-top: 0.2em;
+  transform-origin: 50% 50%;
+}
+
+.dot img {
+  width: 100%;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+:global([data-theme='light']) .dot img {
+  filter: brightness(0);
+}
+
+@media (max-width: 1000px) {
+  .card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3svh;
+  }
+  .art {
+    width: min(70%, 360px);
+    margin: 0 auto;
+  }
+  .artImg {
+    max-height: 30svh;
+  }
+}
+
+@media (max-width: 768px) {
+  .features {
+    padding: calc(var(--navbar) - 6px) 16px 4svh;
+  }
+  .card {
+    padding: 24px 22px;
+    border-radius: 22px;
+  }
+  .artImg {
+    max-height: 24svh;
+  }
+  .title {
+    margin-bottom: 16px;
+  }
+  .list li {
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.98rem;
+  }
+  .dot {
+    width: 20px;
+  }
+}
+
+/* phones: plain flow at the height of the content (no pinned stage) */
+@media (max-width: 768px) {
+  .features {
+    height: auto;
+    min-height: 0;
+    padding: 40px 16px;
+  }
+  .artImg {
+    max-height: 240px;
+  }
+}

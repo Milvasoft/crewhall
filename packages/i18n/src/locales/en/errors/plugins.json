@@ -1,0 +1,21 @@
+{
+  "plugin_not_found": "The plugin or this version was not found.",
+  "plugin_signature_invalid": "The plugin package's signature could not be verified; it was not installed.",
+  "plugin_api_level": "This plugin version does not work with this Crewhall version.",
+  "plugin_not_for_installation": "This plugin is published for other organizations only.",
+  "plugin_permissions_mismatch": "Only the permissions the plugin asks for can be granted.",
+  "plugin_permissions_changed": "The new version asks for more permissions; you need to approve them.",
+  "plugin_unreachable": "The plugin's server could not be reached.",
+  "plugin_disabled": "This plugin is turned off for the organization.",
+  "plugin_offline_not_granted": "This person has not allowed the plugin to work in the background.",
+  "plugin_already_installed": "This plugin is already installed.",
+  "marketplace_unreachable": "The plugin marketplace could not be reached. Try again shortly.",
+  "plugin_link_invalid": "This is not a plugin id or this marketplace's install link.",
+  "plugin_hosting_changed": "This version changes how the plugin is hosted; uninstall it and install it again.",
+  "plugin_self_origin_required": "This plugin runs on the organization's own server; enter its https address.",
+  "plugin_self_origin_invalid": "The server address must be an https address without a path (e.g. https://wa.company.com).",
+  "plugin_self_unreachable": "The plugin on your server could not be reached, or /.well-known/crewhall-plugin.json could not be read.",
+  "plugin_self_manifest_mismatch": "The manifest on your server is not the one the marketplace signed (id, version, permissions or content).",
+  "plugin_user_not_linked": "The plugin cannot notify this person: they have not opened it yet.",
+  "plugin_url_invalid": "The notification link must open one of the plugin's own tabs."
+}

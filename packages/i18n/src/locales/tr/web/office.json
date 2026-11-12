@@ -1,0 +1,54 @@
+{
+  "untitled": {
+    "document": "Adsız belge",
+    "spreadsheet": "Adsız tablo",
+    "presentation": "Adsız sunum"
+  },
+  "new": {
+    "document": "Belge",
+    "spreadsheet": "Tablo",
+    "presentation": "Sunum",
+    "creating": "Oluşturuluyor…"
+  },
+  "open": {
+    "edit": "Düzenle",
+    "view": "Office'te aç",
+    "editInOffice": "Office'te düzenle",
+    "hint": "Bu dosyayı Crewhall Office'te açıp birlikte düzenleyebilirsin."
+  },
+  "editor": {
+    "title": "{name} · Office",
+    "back": "Drive'a dön",
+    "loading": "Belge açılıyor…",
+    "readOnly": "Salt okunur",
+    "unavailable": "Belge sunucusuna ulaşılamıyor. Biraz sonra yeniden dene ya da yöneticine haber ver.",
+    "retry": "Yeniden dene",
+    "savedToDrive": "Kaydettiğin her değişiklik Drive'da yeni bir sürüm olur."
+  },
+  "admin": {
+    "title": "Office (belge sunucusu)",
+    "hint": "Word, Excel ve PowerPoint dosyaları ayrı bir belge sunucusuyla (Euro-Office, ONLYOFFICE Docs ya da WOPI destekli bir sunucu) Drive içinde açılır ve birlikte düzenlenir.",
+    "enabled": "Office düzenlemeyi aç",
+    "active": "Çalışıyor",
+    "inactive": "Kapalı",
+    "serverUrl": "Sunucu adresi",
+    "serverUrlHint": "Tarayıcının editörü yüklediği genel adres, ör. https://office.ornek.com",
+    "internalUrl": "İç adres (isteğe bağlı)",
+    "internalUrlHint": "Crewhall sunucusu belge sunucusuna başka bir adresten ulaşıyorsa, ör. Docker ağında http://office",
+    "save": "Kaydet",
+    "saved": "Office ayarları kaydedildi",
+    "test": "Bağlantıyı dene",
+    "testOk": "Bağlantı çalışıyor. Düzenlenebilir: {types}",
+    "testFail": "Sunucu okunamadı: {error}",
+    "lastTest": "Son deneme: {when}",
+    "none": "yok",
+    "serverType": "Sunucu türü",
+    "types": {
+      "onlyoffice": "Euro-Office / ONLYOFFICE",
+      "wopi": "WOPI sunucusu"
+    },
+    "jwtSecret": "JWT sırrı",
+    "jwtSecretHint": "Belge sunucusunun JWT_SECRET değeri; yalnız yazılır, geri gösterilmez.",
+    "jwtSecretSet": "Kayıtlı (sonu {hint}). Değiştirmek için yenisini yaz."
+  }
+}

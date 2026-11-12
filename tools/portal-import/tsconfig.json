@@ -1,0 +1,8 @@
+{
+  "extends": "@crewhall/config/tsconfig/node.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": ["src", "test", "vitest.config.ts", "../../apps/backend/src/types"],
+  "exclude": ["test/fixtures"]
+}

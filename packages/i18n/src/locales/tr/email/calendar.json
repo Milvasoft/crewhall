@@ -1,0 +1,31 @@
+{
+  "when": "Zaman",
+  "where": "Yer",
+  "repeats": "Tekrar",
+  "recurring": "Tekrarlanan etkinlik",
+  "details": "Açıklama",
+  "people": "Katılımcılar",
+  "meeting": "Toplantı linki",
+  "join": "Toplantıya katıl",
+  "guestNote": "Toplantı saatinde linki aç; hesap gerekmez, adını yazıp bekleme salonundan katılırsın.",
+  "icsNote": "Takvimine eklemek ya da yanıtlamak için ekteki davet.ics dosyasını aç.",
+  "footer": "Bu daveti {orgName} kurumundan {inviterName} gönderdi.",
+  "invite": {
+    "subject": "Davet: {title} · {when}",
+    "title": "{inviterName} seni bir etkinliğe davet etti: {title}",
+    "body": ""
+  },
+  "update": {
+    "subject": "Güncellendi: {title} · {when}",
+    "title": "{title} güncellendi",
+    "body": "{inviterName} etkinliğin bilgilerini değiştirdi. Ekteki dosya takvimindeki etkinliği günceller."
+  },
+  "cancel": {
+    "subject": "İptal edildi: {title} · {when}",
+    "title": "{title} iptal edildi",
+    "body": "{inviterName} bu etkinliği iptal etti. Ekteki dosya etkinliği takviminden kaldırır."
+  },
+  "reminder": {
+    "title": "Hatırlatma: {title}"
+  }
+}

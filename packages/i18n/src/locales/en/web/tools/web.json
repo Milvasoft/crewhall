@@ -1,0 +1,282 @@
+{
+  "code-formatter": {
+    "name": "Code Formatter",
+    "description": "Format JavaScript, TypeScript, CSS, SCSS, HTML, JSON, YAML and Markdown with Prettier, locally.",
+    "keywords": "format, beautify, indent, pretty print, prettier",
+    "language": "Language",
+    "formatted": "Formatted",
+    "failed": "Could not format."
+  },
+  "color-converter": {
+    "name": "Color Converter",
+    "description": "Convert colors between hex, rgb(a) and hsl(a), with a live swatch, locally.",
+    "keywords": "color, colour, color code, color picker, hex, rgb, hsl",
+    "picker": "Color picker",
+    "preview": "Color preview",
+    "empty": "Enter a color.",
+    "unrecognized": "Unrecognized color. Try #hex, rgb() or hsl().",
+    "invalid": "Invalid color."
+  },
+  "config-validator": {
+    "name": "Config Validator",
+    "description": "Validate YAML, Docker Compose and Kubernetes manifests for structure and common mistakes, locally.",
+    "keywords": "config, validate, configuration file, manifest, yaml, docker compose, kubernetes, k8s",
+    "config": "Config",
+    "valid": "Valid",
+    "errorCount": "{count, plural, one {# error} other {# errors}}",
+    "noIssues": "No issues found.",
+    "issues": {
+      "empty": "Input is empty.",
+      "invalidYaml": "Invalid YAML: {error}",
+      "topLevelMapping": "Top-level document must be a mapping.",
+      "missingServices": "Missing top-level `services:` mapping.",
+      "serviceMapping": "Service \"{name}\" must be a mapping.",
+      "serviceNoSource": "Service \"{name}\" has neither `image` nor `build`.",
+      "versionObsolete": "The top-level `version` field is obsolete in the Compose spec.",
+      "docMapping": "Document must be a mapping.",
+      "docMappingN": "Document {n}: must be a mapping.",
+      "missingField": "Missing `{name}`.",
+      "missingFieldN": "Document {n}: missing `{name}`."
+    }
+  },
+  "device-information": {
+    "name": "Device Information",
+    "description": "See what your browser exposes: screen, viewport, platform, languages and more, locally.",
+    "keywords": "device, screen resolution, browser, viewport, pixel ratio, hardware",
+    "fields": {
+      "screen": "Screen resolution",
+      "availableScreen": "Available screen",
+      "viewport": "Viewport",
+      "pixelRatio": "Device pixel ratio",
+      "colorDepth": "Color depth",
+      "orientation": "Orientation",
+      "platform": "Platform",
+      "languages": "Languages",
+      "cpuCores": "CPU cores",
+      "deviceMemory": "Device memory",
+      "online": "Online",
+      "cookies": "Cookies enabled",
+      "timeZone": "Time zone",
+      "userAgent": "User agent"
+    },
+    "values": {
+      "unknown": "unknown",
+      "unavailable": "unavailable",
+      "yes": "yes",
+      "no": "no"
+    },
+    "bits": "{bits}-bit"
+  },
+  "email-normalizer": {
+    "name": "Email Normalizer",
+    "description": "Reduce emails to a canonical form (Gmail dots and +tags) to spot duplicates, locally.",
+    "keywords": "email, e-mail, mail, gmail, duplicate, normalize, canonical",
+    "address": "Email address",
+    "normalized": "Normalized",
+    "invalid": "Enter a valid email address.",
+    "help": "Gmail ignores dots and anything after <code>+</code>; other providers usually only ignore the <code>+</code> tag. Use this to detect duplicate signups, not to validate deliverability."
+  },
+  "html-wysiwyg-editor": {
+    "name": "HTML WYSIWYG Editor",
+    "description": "Write rich text with a toolbar and get clean HTML out, locally.",
+    "keywords": "rich text, text editor, html editor, formatting, wysiwyg",
+    "editor": "Editor",
+    "toolbar": {
+      "bold": "Bold",
+      "italic": "Italic",
+      "underline": "Underline",
+      "heading1": "Heading 1",
+      "heading2": "Heading 2",
+      "paragraph": "Paragraph",
+      "bulleted": "Bulleted list",
+      "numbered": "Numbered list",
+      "link": "Insert link",
+      "clear": "Remove formatting"
+    },
+    "listLabel": "List",
+    "linkLabel": "Link",
+    "linkPrompt": "Link address",
+    "linkApply": "Add link",
+    "linkCancel": "Cancel",
+    "sample": {
+      "title": "Rich text editor",
+      "text": "Write {first} here and copy the {second}.",
+      "bold": "rich text",
+      "italic": "clean HTML",
+      "item1": "Bulleted",
+      "item2": "Lists"
+    }
+  },
+  "http-mime": {
+    "name": "HTTP Status & MIME Lookup",
+    "description": "Look up HTTP status codes and MIME types with quick search, all local reference.",
+    "keywords": "status code, content type, file extension, error code, http, mime, content-type, 404",
+    "tabHttp": "HTTP Status",
+    "tabMime": "MIME Types",
+    "search": "Search",
+    "searchHttp": "Search code or text…",
+    "searchMime": "Search extension or type…",
+    "noMatches": "No matches.",
+    "statuses": {
+      "100": "Request received, continue.",
+      "101": "Server switching protocols.",
+      "200": "Standard successful response.",
+      "201": "Resource created.",
+      "202": "Accepted for processing.",
+      "204": "Success, no body returned.",
+      "206": "Range request fulfilled.",
+      "301": "Resource moved permanently.",
+      "302": "Temporary redirect.",
+      "304": "Cached version is still valid.",
+      "307": "Redirect, method preserved.",
+      "308": "Permanent, method preserved.",
+      "400": "Malformed or invalid request.",
+      "401": "Authentication required.",
+      "403": "Authenticated but not allowed.",
+      "404": "Resource does not exist.",
+      "405": "HTTP method not supported.",
+      "409": "Request conflicts with state.",
+      "410": "Resource permanently removed.",
+      "415": "Payload format not supported.",
+      "418": "RFC 2324 easter egg.",
+      "422": "Semantic validation failed.",
+      "429": "Rate limit exceeded.",
+      "500": "Generic server failure.",
+      "501": "Not supported by server.",
+      "502": "Invalid upstream response.",
+      "503": "Server overloaded or down.",
+      "504": "Upstream timed out."
+    }
+  },
+  "keycode-info": {
+    "name": "Keycode Info",
+    "description": "Press any key to see its JavaScript event.key, code, keyCode and modifiers, locally.",
+    "keywords": "key, keyboard, keycode, shortcut, keydown, event.key",
+    "prompt": "Press any key (this panel must be focused / the page active)…",
+    "location": "Location",
+    "modifiers": "Modifiers",
+    "none": "none",
+    "locations": {
+      "standard": "Standard",
+      "left": "Left",
+      "right": "Right",
+      "numpad": "Numpad"
+    }
+  },
+  "meta-tag-generator": {
+    "name": "Meta Tag Generator",
+    "description": "Generate SEO, OpenGraph and Twitter meta tags from a few fields, locally.",
+    "keywords": "meta tags, tags, social sharing, preview, seo, opengraph, og, twitter card",
+    "fieldsTitle": "Fields",
+    "metaTags": "Meta tags",
+    "fields": {
+      "title": "Title",
+      "description": "Description",
+      "url": "URL",
+      "image": "Image URL",
+      "siteName": "Site name",
+      "type": "OG type",
+      "twitterSite": "Twitter @site",
+      "themeColor": "Theme color",
+      "keywords": "Keywords"
+    }
+  },
+  "openapi": {
+    "name": "OpenAPI Viewer",
+    "description": "Explore an OpenAPI/Swagger spec (JSON or YAML) and generate C# models from its schemas, locally.",
+    "keywords": "spec, schema, model, api, openapi, swagger, c#",
+    "editorLabel": "OpenAPI / Swagger (JSON or YAML)",
+    "overview": "Overview",
+    "csharp": "C# models",
+    "summary": "OpenAPI {value} · {count, plural, one {# operation} other {# operations}} · {total, plural, one {# schema} other {# schemas}}",
+    "untitled": "Untitled API",
+    "noSchemas": "No component schemas to generate.",
+    "notSpec": "Not a valid JSON/YAML spec.",
+    "invalid": "Invalid spec."
+  },
+  "query-string": {
+    "name": "Query String Builder",
+    "description": "Build a URL query string from JSON parameters and parse one back to JSON, locally.",
+    "keywords": "query, query string, url parameters, params, querystring",
+    "queryString": "Query String",
+    "notObject": "Provide a JSON object of parameters."
+  },
+  "safelink-decoder": {
+    "name": "SafeLink Decoder",
+    "description": "Unwrap Outlook SafeLinks and similar redirect URLs to reveal the real destination, locally.",
+    "keywords": "redirect, decode link, safe link, real address, safelink, outlook",
+    "wrapped": "Wrapped link",
+    "destination": "Destination",
+    "warning": "Decoding only reveals where a link points. Always judge whether the destination is trustworthy before opening it.",
+    "errors": {
+      "empty": "Paste a wrapped link.",
+      "notUrl": "That doesn't look like a URL.",
+      "notFound": "No wrapped URL found (expected a `url=` style parameter).",
+      "failed": "Could not decode."
+    }
+  },
+  "slugify-string": {
+    "name": "Slugify String",
+    "description": "Turn text into a clean, URL-safe slug, stripping accents and punctuation, locally.",
+    "keywords": "short name, permanent link, accents, url, slug, slugify, permalink, seo",
+    "separator": "Separator",
+    "hyphen": "- (hyphen)",
+    "underscore": "_ (underscore)",
+    "dot": ". (dot)",
+    "lowercase": "Lowercase"
+  },
+  "url-encode": {
+    "name": "URL Encode / Decode",
+    "description": "Percent-encode or decode text and URLs, component-wise or whole, all local.",
+    "keywords": "encode, decode, percent encoding, url, uri, escape, querystring",
+    "encode": "Encode",
+    "decode": "Decode",
+    "scope": "Scope",
+    "component": "Component (encodeURIComponent)",
+    "full": "Full URL (encodeURI)",
+    "encoded": "Encoded",
+    "malformed": "Malformed percent encoding.",
+    "failed": "Failed."
+  },
+  "url-parser": {
+    "name": "URL Parser",
+    "description": "Break a URL into protocol, host, path, query parameters and fragment, locally.",
+    "keywords": "parse, query, params, host, path, url, uri, querystring",
+    "fields": {
+      "protocol": "Protocol",
+      "username": "Username",
+      "password": "Password",
+      "hostname": "Hostname",
+      "port": "Port",
+      "origin": "Origin",
+      "pathname": "Path",
+      "hash": "Fragment"
+    },
+    "components": "Components",
+    "details": "Details",
+    "queryParams": "Query parameters ({count})",
+    "noParams": "No query parameters.",
+    "copyJson": "Copy JSON",
+    "invalid": "Invalid URL."
+  },
+  "user-agent-parser": {
+    "name": "User-Agent Parser",
+    "description": "Break a User-Agent string into browser, engine, OS and device, locally.",
+    "keywords": "browser, operating system, device, parse, user agent, ua",
+    "placeholder": "Paste a User-Agent string…",
+    "useMine": "Use my browser's",
+    "fields": {
+      "browser": "Browser",
+      "engine": "Engine",
+      "os": "Operating system",
+      "device": "Device",
+      "deviceType": "Device type",
+      "cpu": "CPU architecture"
+    },
+    "values": {
+      "unknown": "Unknown",
+      "desktopUnknown": "Desktop / unknown",
+      "desktop": "desktop"
+    }
+  }
+}

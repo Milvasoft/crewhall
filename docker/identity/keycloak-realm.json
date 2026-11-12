@@ -1,0 +1,93 @@
+{
+  "realm": "crewhall",
+  "enabled": true,
+  "sslRequired": "none",
+  "groups": [
+    {
+      "name": "developers"
+    },
+    {
+      "name": "it-admins"
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "crewhall",
+      "name": "Crewhall",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "secret": "keycloak-client-secret",
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": [
+        "http://localhost:4911/*",
+        "http://localhost:4901/*",
+        "http://localhost:4110/*",
+        "http://192.168.1.14:4110/*",
+        "http://localhost:3000/*"
+      ],
+      "webOrigins": [
+        "+"
+      ],
+      "attributes": {
+        "post.logout.redirect.uris": "+",
+        "pkce.code.challenge.method": "S256"
+      },
+      "protocolMappers": [
+        {
+          "name": "groups",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-group-membership-mapper",
+          "config": {
+            "full.path": "false",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "claim.name": "groups"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "zeynep",
+      "email": "zeynep@kc.test",
+      "emailVerified": true,
+      "firstName": "Zeynep",
+      "lastName": "Etkin",
+      "enabled": true,
+      "requiredActions": [],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "zeynep-kc-pass",
+          "temporary": false
+        }
+      ],
+      "groups": [
+        "/it-admins"
+      ]
+    },
+    {
+      "username": "can",
+      "email": "can@kc.test",
+      "emailVerified": true,
+      "firstName": "Can",
+      "lastName": "Demir",
+      "enabled": true,
+      "requiredActions": [],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "can-kc-pass",
+          "temporary": false
+        }
+      ],
+      "groups": [
+        "/developers"
+      ]
+    }
+  ]
+}

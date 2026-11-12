@@ -1,0 +1,17 @@
+{
+  "mail_not_configured": "An admin hasn't set up the mail server yet.",
+  "mail_account_required": "Connect your e-mail account first.",
+  "mail_auth_mode_mismatch": "The mail server's sign-in method changed. Connect your account again.",
+  "mail_auth_failed": "The mail server didn't accept the sign-in details.",
+  "mail_server_unreachable": "Can't reach the mail server. Try again in a moment.",
+  "mail_folder_not_found": "Folder not found.",
+  "mail_message_not_found": "Message not found. It may have been moved or deleted.",
+  "mail_attachment_not_found": "Attachment not found.",
+  "mail_attachments_too_large": "The attachments are larger than the limit in total.",
+  "mail_recipients_required": "Add at least one recipient.",
+  "mail_send_failed": "The message couldn't be sent. The mail server refused it.",
+  "mail_oauth_failed": "Couldn't connect the account. Try again.",
+  "mail_remote_images_disabled": "Your organization doesn't allow remote images.",
+  "mail_inbox_exists": "A shared inbox with this address already exists.",
+  "mail_inbox_assignee_invalid": "A conversation can only be assigned to someone who can edit in this space."
+}

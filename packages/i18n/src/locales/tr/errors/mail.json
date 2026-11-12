@@ -1,0 +1,17 @@
+{
+  "mail_not_configured": "Yönetici henüz posta sunucusunu ayarlamadı.",
+  "mail_account_required": "Önce e-posta hesabını bağla.",
+  "mail_auth_mode_mismatch": "Posta sunucusunun giriş yöntemi değişti. Hesabını yeniden bağla.",
+  "mail_auth_failed": "Posta sunucusu giriş bilgilerini kabul etmedi.",
+  "mail_server_unreachable": "Posta sunucusuna ulaşılamıyor. Biraz sonra yeniden dene.",
+  "mail_folder_not_found": "Klasör bulunamadı.",
+  "mail_message_not_found": "İleti bulunamadı. Taşınmış ya da silinmiş olabilir.",
+  "mail_attachment_not_found": "Ek bulunamadı.",
+  "mail_attachments_too_large": "Eklerin toplam boyutu sınırı aşıyor.",
+  "mail_recipients_required": "En az bir alıcı ekle.",
+  "mail_send_failed": "İleti gönderilemedi. Posta sunucusu reddetti.",
+  "mail_oauth_failed": "Hesap bağlanamadı. Yeniden dene.",
+  "mail_remote_images_disabled": "Kurumun uzak resimleri göstermeye izin vermiyor.",
+  "mail_inbox_exists": "Bu adresle bir ortak kutu zaten var.",
+  "mail_inbox_assignee_invalid": "Konuşma yalnız bu space'te düzenleyebilen birine atanabilir."
+}

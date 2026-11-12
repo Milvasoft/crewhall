@@ -1,0 +1,22 @@
+{
+  "chat_archived": "Bu sohbet arşivlendi; yeni mesaj yazılamaz.",
+  "chat_group_full": "Grup sohbeti en çok 50 kişi olabilir. Daha büyük ekipler için sohbeti bir space'e bağla.",
+  "chat_pin_limit": "Sabitleme sınırına ulaşıldı. Önce başka bir sabitlemeyi kaldır.",
+  "chat_mention_all_confirm": "@herkes bu sohbetteki herkese bildirim gönderir. Göndermeden önce onayla.",
+  "chat_message_not_editable": "Bu mesajı değiştiremezsin.",
+  "chat_attachment_removed": "Dosya kaldırıldı.",
+  "webhook_key_invalid": "Webhook anahtarı geçersiz.",
+  "webhook_signature_invalid": "Servis imzası doğrulanamadı. Entegrasyondaki gizli anahtarı kontrol et.",
+  "webhook_disabled": "Bu webhook kapalı.",
+  "webhook_payload_invalid": "Webhook gövdesi tanınmadı. text, card ya da Google Chat cardsV2 gönder.",
+  "webhook_payload_too_large": "Webhook gövdesi en çok 32 KB olabilir.",
+  "ws_ticket_invalid": "Gerçek zamanlı bağlantı bileti geçersiz ya da süresi doldu.",
+  "chat_delete_not_allowed": "Bu sohbeti herkes için yalnız sohbetin sahibi ya da kurum yöneticisi silebilir; birebir ve space sohbetleri herkes için silinemez.",
+  "chat_delete_disabled": "Kurum yöneticin sohbetleri herkes için silmeyi kapattı.",
+  "chat_invalid_reaction": "Tepki olarak yalnız tek bir emoji eklenebilir.",
+  "chat_invalid_emoji": "Kanal simgesi tek bir emoji olmalı.",
+  "gif_disabled": "GIF arama bu kurumda kapalı.",
+  "gif_provider_error": "GIF servisine şu an ulaşılamıyor.",
+  "gif_busy": "Şu an GIF araması yoğun, biraz sonra tekrar dene.",
+  "chat_ref_no_access": "Bu öğeye erişimin yok ya da bu sohbete gönderilemiyor."
+}

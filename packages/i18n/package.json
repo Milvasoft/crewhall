@@ -1,0 +1,21 @@
+{
+  "name": "@crewhall/i18n",
+  "version": "0.0.0",
+  "private": true,
+  "license": "SEE LICENSE IN ../../LICENSE",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./locales/*": "./src/locales/*"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@crewhall/config": "workspace:*",
+    "@crewhall/shared": "workspace:*",
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.5"
+  }
+}

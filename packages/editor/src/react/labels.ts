@@ -1,0 +1,337 @@
+/**
+ * Every string the editor shows. The host passes them (from its i18n dictionaries); the package
+ * has no built-in UI text. `editorLabelKeys` lists the keys so hosts can test their dictionaries.
+ */
+export interface EditorLabels {
+  // Slash menu: item titles and short descriptions.
+  slashMenu: string;
+  slashEmpty: string;
+  slashText: string;
+  slashTextDesc: string;
+  slashHeading1: string;
+  slashHeading1Desc: string;
+  slashHeading2: string;
+  slashHeading2Desc: string;
+  slashHeading3: string;
+  slashHeading3Desc: string;
+  slashBulletList: string;
+  slashBulletListDesc: string;
+  slashOrderedList: string;
+  slashOrderedListDesc: string;
+  slashTaskList: string;
+  slashTaskListDesc: string;
+  slashQuote: string;
+  slashQuoteDesc: string;
+  slashCodeBlock: string;
+  slashCodeBlockDesc: string;
+  slashTable: string;
+  slashTableDesc: string;
+  slashAdmonitionDesc: string;
+  slashTabs: string;
+  slashTabsDesc: string;
+  slashMermaid: string;
+  slashMermaidDesc: string;
+  slashImage: string;
+  slashImageDesc: string;
+  slashFile: string;
+  slashFileDesc: string;
+  slashDivider: string;
+  slashDividerDesc: string;
+  slashTruncate: string;
+  slashTruncateDesc: string;
+  slashHtml: string;
+  slashHtmlDesc: string;
+  slashBookmark: string;
+  slashBookmarkDesc: string;
+  bookmarkPlaceholder: string;
+  slashVideo: string;
+  slashVideoDesc: string;
+  videoPlaceholder: string;
+  videoPlay: string;
+  videoUnsupported: string;
+  videoPickFile: string;
+  videoPickDrive: string;
+  videoUploading: string;
+  slashMath: string;
+  slashMathDesc: string;
+  slashMathInline: string;
+  slashMathInlineDesc: string;
+  mathEmpty: string;
+  mathPlaceholder: string;
+  slashColumns2: string;
+  slashColumns3: string;
+  slashColumnsDesc: string;
+  blockAddColumn: string;
+  slashToggle: string;
+  slashToggleDesc: string;
+  slashToggleHeading1: string;
+  slashToggleHeading2: string;
+  slashToggleHeading3: string;
+  slashToggleHeadingDesc: string;
+
+  // Admonition block.
+  admonitionNote: string;
+  admonitionTip: string;
+  admonitionInfo: string;
+  admonitionWarning: string;
+  admonitionDanger: string;
+  admonitionCaution: string;
+  admonitionImportant: string;
+  admonitionSuccess: string;
+  admonitionSecondary: string;
+  admonitionType: string;
+  admonitionTitlePlaceholder: string;
+
+  // Tabs block.
+  tabsLabel: string;
+  tabsNewTab: string;
+  tabsAdd: string;
+  tabsRename: string;
+  tabsRemove: string;
+  tabsSetDefault: string;
+  tabsDefault: string;
+  tabsLabelPlaceholder: string;
+
+  // Wiki blocks: toggle and embed.
+  toggleSummaryPlaceholder: string;
+  embedLabel: string;
+
+  // Code and mermaid blocks.
+  codeLanguagePlaceholder: string;
+  codeTitlePlaceholder: string;
+  mermaidLabel: string;
+  mermaidPreviewError: string;
+
+  // Atoms.
+  truncateLabel: string;
+  tocTitle: string;
+  tocEmpty: string;
+  unknownBlock: string;
+  imageToolbar: string;
+  imageWidth: string;
+  htmlBlockLabel: string;
+  htmlInlineLabel: string;
+  htmlEdit: string;
+  htmlDone: string;
+
+  // Images.
+  imageUrlPrompt: string;
+  imageUploadError: string;
+
+  // Selection toolbar.
+  toolbar: string;
+  bold: string;
+  italic: string;
+  strike: string;
+  code: string;
+  link: string;
+  linkPlaceholder: string;
+  linkApply: string;
+  linkRemove: string;
+
+  // Table toolbar.
+  tableToolbar: string;
+  tableAddRow: string;
+  tableAddColumn: string;
+  tableDeleteRow: string;
+  tableDeleteColumn: string;
+  tableAlignLeft: string;
+  tableAlignCenter: string;
+  tableAlignRight: string;
+  tableDelete: string;
+
+  // Block menu (click on the drag handle).
+  blockMenu: string;
+  blockMoveUp: string;
+  blockMoveDown: string;
+  blockDuplicate: string;
+  blockDelete: string;
+  blockTurnInto: string;
+  slashTurnIntoDesc: string;
+  blockCopy: string;
+  blockColor: string;
+  blockColorText: string;
+  blockColorBackground: string;
+  blockColorDefault: string;
+  colorGray: string;
+  colorRed: string;
+  colorOrange: string;
+  colorYellow: string;
+  colorGreen: string;
+  colorBlue: string;
+  colorPurple: string;
+
+  // Find and replace.
+  findLabel: string;
+  findPlaceholder: string;
+  findReplacePlaceholder: string;
+  findNoResults: string;
+  findCase: string;
+  findPrevious: string;
+  findNext: string;
+  findClose: string;
+  findToggleReplace: string;
+  findReplace: string;
+  findReplaceAll: string;
+
+  // Misc.
+  dragHandle: string;
+  invalidContent: string;
+}
+
+const keys = {
+  slashMenu: 1,
+  slashEmpty: 1,
+  slashText: 1,
+  slashTextDesc: 1,
+  slashHeading1: 1,
+  slashHeading1Desc: 1,
+  slashHeading2: 1,
+  slashHeading2Desc: 1,
+  slashHeading3: 1,
+  slashHeading3Desc: 1,
+  slashBulletList: 1,
+  slashBulletListDesc: 1,
+  slashOrderedList: 1,
+  slashOrderedListDesc: 1,
+  slashTaskList: 1,
+  slashTaskListDesc: 1,
+  slashQuote: 1,
+  slashQuoteDesc: 1,
+  slashCodeBlock: 1,
+  slashCodeBlockDesc: 1,
+  slashTable: 1,
+  slashTableDesc: 1,
+  slashAdmonitionDesc: 1,
+  slashTabs: 1,
+  slashTabsDesc: 1,
+  slashMermaid: 1,
+  slashMermaidDesc: 1,
+  slashImage: 1,
+  slashImageDesc: 1,
+  slashFile: 1,
+  slashFileDesc: 1,
+  slashDivider: 1,
+  slashDividerDesc: 1,
+  slashTruncate: 1,
+  slashTruncateDesc: 1,
+  slashHtml: 1,
+  slashHtmlDesc: 1,
+  slashBookmark: 1,
+  slashBookmarkDesc: 1,
+  bookmarkPlaceholder: 1,
+  slashVideo: 1,
+  slashVideoDesc: 1,
+  videoPlaceholder: 1,
+  videoPlay: 1,
+  videoUnsupported: 1,
+  videoPickFile: 1,
+  videoPickDrive: 1,
+  videoUploading: 1,
+  slashMath: 1,
+  slashMathDesc: 1,
+  slashMathInline: 1,
+  slashMathInlineDesc: 1,
+  mathEmpty: 1,
+  mathPlaceholder: 1,
+  slashColumns2: 1,
+  slashColumns3: 1,
+  slashColumnsDesc: 1,
+  blockAddColumn: 1,
+  slashToggle: 1,
+  slashToggleDesc: 1,
+  slashToggleHeading1: 1,
+  slashToggleHeading2: 1,
+  slashToggleHeading3: 1,
+  slashToggleHeadingDesc: 1,
+  admonitionNote: 1,
+  admonitionTip: 1,
+  admonitionInfo: 1,
+  admonitionWarning: 1,
+  admonitionDanger: 1,
+  admonitionCaution: 1,
+  admonitionImportant: 1,
+  admonitionSuccess: 1,
+  admonitionSecondary: 1,
+  admonitionType: 1,
+  admonitionTitlePlaceholder: 1,
+  tabsLabel: 1,
+  tabsNewTab: 1,
+  tabsAdd: 1,
+  tabsRename: 1,
+  tabsRemove: 1,
+  tabsSetDefault: 1,
+  tabsDefault: 1,
+  tabsLabelPlaceholder: 1,
+  toggleSummaryPlaceholder: 1,
+  embedLabel: 1,
+  codeLanguagePlaceholder: 1,
+  codeTitlePlaceholder: 1,
+  mermaidLabel: 1,
+  mermaidPreviewError: 1,
+  truncateLabel: 1,
+  tocTitle: 1,
+  tocEmpty: 1,
+  unknownBlock: 1,
+  imageToolbar: 1,
+  imageWidth: 1,
+  htmlBlockLabel: 1,
+  htmlInlineLabel: 1,
+  htmlEdit: 1,
+  htmlDone: 1,
+  imageUrlPrompt: 1,
+  imageUploadError: 1,
+  toolbar: 1,
+  bold: 1,
+  italic: 1,
+  strike: 1,
+  code: 1,
+  link: 1,
+  linkPlaceholder: 1,
+  linkApply: 1,
+  linkRemove: 1,
+  tableToolbar: 1,
+  tableAddRow: 1,
+  tableAddColumn: 1,
+  tableDeleteRow: 1,
+  tableDeleteColumn: 1,
+  tableAlignLeft: 1,
+  tableAlignCenter: 1,
+  tableAlignRight: 1,
+  tableDelete: 1,
+  blockMenu: 1,
+  blockMoveUp: 1,
+  blockMoveDown: 1,
+  blockDuplicate: 1,
+  blockDelete: 1,
+  blockTurnInto: 1,
+  slashTurnIntoDesc: 1,
+  blockCopy: 1,
+  blockColor: 1,
+  blockColorText: 1,
+  blockColorBackground: 1,
+  blockColorDefault: 1,
+  colorGray: 1,
+  colorRed: 1,
+  colorOrange: 1,
+  colorYellow: 1,
+  colorGreen: 1,
+  colorBlue: 1,
+  colorPurple: 1,
+  findLabel: 1,
+  findPlaceholder: 1,
+  findReplacePlaceholder: 1,
+  findNoResults: 1,
+  findCase: 1,
+  findPrevious: 1,
+  findNext: 1,
+  findClose: 1,
+  findToggleReplace: 1,
+  findReplace: 1,
+  findReplaceAll: 1,
+  dragHandle: 1,
+  invalidContent: 1,
+} satisfies Record<keyof EditorLabels, 1>;
+
+/** Every key of `EditorLabels` (the `satisfies` above makes a missing key a type error). */
+export const editorLabelKeys = Object.keys(keys) as readonly (keyof EditorLabels)[];

@@ -1,0 +1,388 @@
+# Production stack (design doc 17 §11). Setup in docs/kurulum.md, in short:
+#   cp docker/.env.example docker/.env   # domains and secrets
+#   docker compose -f docker/compose.yml --env-file docker/.env up -d --build
+# On first start open https://$HUB_DOMAIN: the setup wizard asks for the setup token
+# printed in the backend logs (`docker compose logs backend | grep -i setup`).
+#
+# Always on: caddy, web, backend (api, /ws, /mcp), worker (jobs), collab (page editing),
+# postgres, seaweedfs. Profiles: `portal` (the Next.js site), `meet` (LiveKit, egress, TURN), `ai` (speech-to-text for meeting notes),
+# `office` (Euro-Office document server for Word, Excel and PowerPoint files).
+#   docker compose ... --profile portal --profile meet up -d
+name: crewhall
+
+x-backend-env: &backend-env
+  NODE_ENV: production
+  # Public URLs; override only when the edge listens on another port or path.
+  HUB_URL: ${HUB_URL:-https://${HUB_DOMAIN}}
+  API_URL: ${HUB_URL:-https://${HUB_DOMAIN}}
+  DATABASE_URL: postgres://${POSTGRES_USER:-crewhall}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-crewhall}
+  AUTH_SECRET: ${AUTH_SECRET}
+  SETUP_TOKEN: ${SETUP_TOKEN:-}
+  S3_ENDPOINT: http://seaweedfs:8333
+  S3_PUBLIC_ENDPOINT: ${S3_PUBLIC_URL:-https://${S3_DOMAIN}}
+  S3_BUCKET: ${S3_BUCKET:-crewhall}
+  S3_ACCESS_KEY: ${S3_ACCESS_KEY}
+  S3_SECRET_KEY: ${S3_SECRET_KEY}
+  SMTP_URL: ${SMTP_URL:-}
+  MAIL_FROM: ${MAIL_FROM:-}
+  TRUSTED_ORIGINS: ${TRUSTED_ORIGINS:-crewhall://}
+  # Office module: the document server downloads and saves files on the internal network.
+  OFFICE_HOST_URL: ${OFFICE_HOST_URL:-http://backend:3000}
+  # Chat push (Expo); the token only when enhanced push security is on.
+  EXPO_PUSH_URL: ${EXPO_PUSH_URL:-https://exp.host/--/api/v2/push}
+  EXPO_ACCESS_TOKEN: ${EXPO_ACCESS_TOKEN:-}
+  # Native FCM pushes (HTTP v1): the service account JSON on one line.
+  FIREBASE_SERVICE_ACCOUNT_JSON: ${FIREBASE_SERVICE_ACCOUNT_JSON:-}
+  # iOS VoIP pushes to APNs (CallKit); off while the key is empty.
+  APNS_KEY_P8: ${APNS_KEY_P8:-}
+  APNS_KEY_ID: ${APNS_KEY_ID:-}
+  APNS_TEAM_ID: ${APNS_TEAM_ID:-}
+  APNS_BUNDLE_ID: ${APNS_BUNDLE_ID:-}
+  APNS_ENV: ${APNS_ENV:-production}
+  OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+  OTEL_SERVICE_NAME: crewhall-backend
+  CREWHALL_VERSION: ${CREWHALL_VERSION:-latest}
+  LOG_LEVEL: ${LOG_LEVEL:-info}
+  MIN_MOBILE_VERSION: ${MIN_MOBILE_VERSION:-}
+  MIN_CLIENT_IOS: ${MIN_CLIENT_IOS:-}
+  MIN_CLIENT_ANDROID: ${MIN_CLIENT_ANDROID:-}
+  MIN_CLIENT_DESKTOP: ${MIN_CLIENT_DESKTOP:-}
+  CLIENT_STORE_URL_IOS: ${CLIENT_STORE_URL_IOS:-}
+  CLIENT_STORE_URL_ANDROID: ${CLIENT_STORE_URL_ANDROID:-}
+  CLIENT_STORE_URL_DESKTOP: ${CLIENT_STORE_URL_DESKTOP:-}
+  PRIVATE_FETCH_ALLOWLIST: ${PRIVATE_FETCH_ALLOWLIST:-}
+  OUTBOUND_ALLOWED_PORTS: ${OUTBOUND_ALLOWED_PORTS:-}
+  # Desktop releases uploaded to the bucket by hand (docker/README.md, Seçenek 3).
+  DESKTOP_UPDATES_S3_PREFIX: ${DESKTOP_UPDATES_S3_PREFIX:-}
+  # Wiki collab server: the api reaches it inside the network, clients through Caddy /collab.
+  COLLAB_INTERNAL_URL: http://collab:3001
+  COLLAB_PUBLIC_URL: ${COLLAB_PUBLIC_URL:-wss://${HUB_DOMAIN}/collab}
+  # Portal: HMAC key of the site's /api/revalidate webhook (same value in the portal service).
+  PORTAL_REVALIDATE_SECRET: ${PORTAL_REVALIDATE_SECRET:-}
+  # Meetings (profile meet): empty keys = meetings answer 503 meet_unavailable.
+  LIVEKIT_URL: http://host.docker.internal:7880
+  LIVEKIT_PUBLIC_URL: wss://${LK_DOMAIN:-lk.example.com}
+  LIVEKIT_API_KEY: ${LIVEKIT_API_KEY:-}
+  LIVEKIT_API_SECRET: ${LIVEKIT_API_SECRET:-}
+  MEET_EGRESS_ENABLED: ${MEET_EGRESS_ENABLED:-false}
+  MEET_EGRESS_S3_ENDPOINT: https://${S3_DOMAIN}
+
+services:
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - '${HTTP_PORT:-80}:80'
+      - '${HTTPS_PORT:-443}:443'
+      - '${HTTPS_PORT:-443}:443/udp'
+    environment:
+      HUB_DOMAIN: ${HUB_DOMAIN}
+      S3_DOMAIN: ${S3_DOMAIN}
+      PORTAL_DOMAIN: ${PORTAL_DOMAIN:-portal.localhost}
+      LK_DOMAIN: ${LK_DOMAIN:-lk.example.com}
+      ACME_EMAIL: ${ACME_EMAIL:-}
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - backend
+      - web
+      - collab
+
+  web:
+    # Static SPA (docker/web/Dockerfile); branding comes at runtime from /api/v1/bootstrap.
+    image: ${CREWHALL_REGISTRY:-crewhall}/web:${CREWHALL_VERSION:-latest}
+    build:
+      context: ..
+      dockerfile: docker/web/Dockerfile
+    restart: unless-stopped
+    expose:
+      - '8080'
+
+  backend:
+    # REST, better-auth, /ws (chat, presence, notifications) and /mcp.
+    image: ${CREWHALL_REGISTRY:-crewhall}/backend:${CREWHALL_VERSION:-latest}
+    build:
+      context: ..
+      dockerfile: apps/backend/Dockerfile
+    restart: unless-stopped
+    environment:
+      <<: *backend-env
+      PORT: '3000'
+      # Migrations run on start under an advisory lock, so replicas are safe.
+      MIGRATE_ON_START: 'true'
+      # Jobs run in the worker service below.
+      WORKER_IN_PROCESS: 'false'
+    # Backups (tools/crewhall/crewhall runs `node dist/crewhall.js` in this service).
+    volumes:
+      - backups:/backups
+    expose:
+      - '3000'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    depends_on:
+      postgres:
+        condition: service_healthy
+      seaweedfs:
+        condition: service_started
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://localhost:3000/readyz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  worker:
+    # Same image, pg-boss job runner (design doc 17 §3): uploads, previews, link checks,
+    # push, e-mail digest, MCP approvals, nightly cleanup. Its WebSocket events reach the
+    # api through Postgres NOTIFY.
+    image: ${CREWHALL_REGISTRY:-crewhall}/backend:${CREWHALL_VERSION:-latest}
+    restart: unless-stopped
+    command: ['node', '--import', './dist/otel.js', 'dist/worker.js']
+    environment:
+      <<: *backend-env
+      OTEL_SERVICE_NAME: crewhall-worker
+    volumes:
+      - backups:/backups
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  collab:
+    # Same image, Hocuspocus for page documents (design doc 17 §3, §6); Caddy routes /collab.
+    image: ${CREWHALL_REGISTRY:-crewhall}/backend:${CREWHALL_VERSION:-latest}
+    restart: unless-stopped
+    command: ['node', '--import', './dist/otel.js', 'dist/collab.js']
+    environment:
+      <<: *backend-env
+      OTEL_SERVICE_NAME: crewhall-collab
+      COLLAB_PORT: '3001'
+    expose:
+      - '3001'
+    depends_on:
+      # The backend applies the migrations collab reads from.
+      backend:
+        condition: service_healthy
+
+  portal:
+    # Next.js portal site (design 11, doc 17 §11; port 3002). Start with --profile portal once the
+    # Hub has a portal site: Portal › Ayarlar gives the content token. ISR pages are cached in
+    # the volume; one replica (several need a shared cache, doc 17 §11).
+    profiles: ['portal']
+    image: ${CREWHALL_REGISTRY:-crewhall}/portal:${CREWHALL_VERSION:-latest}
+    build:
+      context: ..
+      dockerfile: apps/portal/Dockerfile
+    restart: unless-stopped
+    environment:
+      HUB_API_URL: http://backend:3000
+      PORTAL_CONTENT_TOKEN: ${PORTAL_CONTENT_TOKEN:-}
+      PORTAL_REVALIDATE_SECRET: ${PORTAL_REVALIDATE_SECRET:-}
+      PORTAL_DEFAULT_LOCALE: ${PORTAL_DEFAULT_LOCALE:-en}
+      PORTAL_PUBLIC_URL: ${PORTAL_PUBLIC_URL:-https://${PORTAL_DOMAIN:-portal.localhost}}
+      PORT: '3002'
+    expose:
+      - '3002'
+    volumes:
+      - portal-cache:/app/apps/portal/.next/cache
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-crewhall}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-crewhall}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-crewhall} -d ${POSTGRES_DB:-crewhall}']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  seaweedfs:
+    # Default bundled S3 store (Apache-2.0). Replace with any external S3 by changing S3_*.
+    image: chrislusf/seaweedfs:4.48
+    restart: unless-stopped
+    command: >
+      server -dir=/data -ip.bind=0.0.0.0 -volume.max=0 -master.volumeSizeLimitMB=1024
+      -s3 -s3.port=8333 -s3.config=/etc/seaweedfs/s3.json
+    configs:
+      - source: seaweedfs-s3
+        target: /etc/seaweedfs/s3.json
+    volumes:
+      - seaweedfs-data:/data
+    expose:
+      - '8333'
+
+  # ---- Meetings (design doc 17 §11, profile "meet") --------------------------------------
+  # docker compose -f docker/compose.yml --env-file docker/.env --profile meet up -d
+  # LiveKit, egress and coturn use the host network (doc 17: media ports are a wide UDP range).
+  # Open on the firewall: 7881/tcp, 50000-60000/udp, 3478/udp+tcp, 49160-49200/udp.
+  livekit:
+    # Apache-2.0. Signalling on 7880 (behind Caddy as lk.<domain>), ICE/TCP 7881.
+    image: livekit/livekit-server:v1.9.1
+    profiles: ['meet']
+    restart: unless-stopped
+    network_mode: host
+    command: ['--config', '/etc/livekit.yaml']
+    configs:
+      - source: livekit
+        target: /etc/livekit.yaml
+    depends_on:
+      - valkey
+
+  valkey:
+    # BSD-3. LiveKit and egress coordinate through it; bound to localhost only.
+    image: valkey/valkey:8-alpine
+    profiles: ['meet']
+    restart: unless-stopped
+    network_mode: host
+    command: ['valkey-server', '--port', '6390', '--bind', '127.0.0.1', '--save', '']
+
+  egress:
+    # Apache-2.0; the image bundles GStreamer (LGPL) as a separate program. Chrome inside:
+    # give it 2-4 GB RAM. Set MEET_EGRESS_ENABLED=true when it runs.
+    image: livekit/egress:v1.9.0
+    profiles: ['meet']
+    restart: unless-stopped
+    network_mode: host
+    cap_add:
+      - SYS_ADMIN
+    environment:
+      EGRESS_CONFIG_BODY: |
+        api_key: ${LIVEKIT_API_KEY:-}
+        api_secret: ${LIVEKIT_API_SECRET:-}
+        ws_url: ws://127.0.0.1:7880
+        redis:
+          address: 127.0.0.1:6390
+        health_port: 9090
+    depends_on:
+      - livekit
+
+  coturn:
+    # BSD-3. TURN for networks without UDP to the media ports (doc 17 §2).
+    image: coturn/coturn:4.6
+    profiles: ['meet']
+    restart: unless-stopped
+    network_mode: host
+    command:
+      - -n
+      - --listening-port=3478
+      - --min-port=49160
+      - --max-port=49200
+      - --realm=${HUB_DOMAIN}
+      - --user=${TURN_USER:-crewhall}:${TURN_PASSWORD:-change-me}
+      - --lt-cred-mech
+      - --fingerprint
+      - --no-cli
+      - --no-tls
+      - --no-dtls
+
+  whisper:
+    # MIT (speaches: faster-whisper behind an OpenAI-compatible API). AI meeting notes
+    # (yol haritası #12): Yönetim › Yapay zekâ › speech server http://whisper:8000/v1, model e.g.
+    # Systran/faster-whisper-small (downloaded on first use into the volume). CPU image; use the
+    # -cuda tag on a GPU host.
+    image: ghcr.io/speaches-ai/speaches:latest-cpu
+    profiles: ['ai']
+    restart: unless-stopped
+    volumes:
+      - whisper-models:/home/ubuntu/.cache/huggingface/hub
+
+  # ---- Office documents (profile "office") ----
+  # Euro-Office Document Server (AGPLv3, a fork of ONLYOFFICE Docs): a separate, unmodified
+  # service the office module talks to over HTTP; Crewhall's code does not include it. Then in
+  # Yönetim › Entegrasyonlar › Office: type Euro-Office, address https://$OFFICE_DOMAIN, internal
+  # address http://office, JWT secret = OFFICE_JWT_SECRET (docs/kurulum.md §13). Pin the tag.
+  office:
+    image: ghcr.io/euro-office/documentserver:${OFFICE_IMAGE_TAG:-v9.3.7}
+    profiles: ['office']
+    restart: unless-stopped
+    environment:
+      JWT_ENABLED: 'true'
+      JWT_SECRET: ${OFFICE_JWT_SECRET:-}
+      # It downloads files from the backend and saves back to it on the Docker network.
+      ALLOW_PRIVATE_IP_ADDRESS: 'true'
+      EXAMPLE_ENABLED: 'false'
+    volumes:
+      - office-data:/var/lib/euro-office/documentserver
+      - office-private:/var/www/euro-office/Data
+      - office-logs:/var/log/euro-office/documentserver
+
+configs:
+  livekit:
+    content: |
+      port: 7880
+      rtc:
+        tcp_port: 7881
+        port_range_start: 50000
+        port_range_end: 60000
+        use_external_ip: true
+        # Bandwidth estimation per subscriber; a link that cannot carry video pauses it and keeps
+        # the audio instead of freezing everything.
+        congestion_control:
+          enabled: true
+          allow_pause: true
+        turn_servers:
+          - host: ${TURN_DOMAIN:-${HUB_DOMAIN}}
+            port: 3478
+            protocol: udp
+            username: ${TURN_USER:-crewhall}
+            credential: ${TURN_PASSWORD:-change-me}
+          - host: ${TURN_DOMAIN:-${HUB_DOMAIN}}
+            port: 3478
+            protocol: tcp
+            username: ${TURN_USER:-crewhall}
+            credential: ${TURN_PASSWORD:-change-me}
+      keys:
+        ${LIVEKIT_API_KEY:-unset}: ${LIVEKIT_API_SECRET:-unset-unset-unset-unset-unset-unset}
+      redis:
+        address: 127.0.0.1:6390
+      room:
+        empty_timeout: 300
+        departure_timeout: 120
+        # Per room; ${LIVEKIT_MAX_PARTICIPANTS} raises it for large all-hands.
+        max_participants: ${LIVEKIT_MAX_PARTICIPANTS:-100}
+        # Screen share sends VP9 (SVC) with a VP8 backup; AV1 and H.264 for clients that ask.
+        enabled_codecs:
+          - mime: audio/opus
+          - mime: audio/red
+          - mime: video/vp8
+          - mime: video/h264
+          - mime: video/vp9
+          - mime: video/av1
+      webhook:
+        api_key: ${LIVEKIT_API_KEY:-unset}
+        urls:
+          - https://${HUB_DOMAIN}/api/meet/livekit/webhook
+      logging:
+        level: info
+  seaweedfs-s3:
+    content: |
+      {"identities":[{"name":"crewhall","credentials":[{"accessKey":"${S3_ACCESS_KEY}","secretKey":"${S3_SECRET_KEY}"}],"actions":["Admin","Read","Write","List","Tagging"]}]}
+
+volumes:
+  portal-cache:
+  caddy-data:
+  caddy-config:
+  postgres-data:
+  # Backups (tools/crewhall): snapshots and their deduplicated files; copy off the server too.
+  backups:
+  seaweedfs-data:
+  whisper-models:
+  office-data:
+  office-private:
+  office-logs:

@@ -1,0 +1,388 @@
+{
+  "ascii-table": {
+    "name": "ASCII tablosu",
+    "description": "Tüm ASCII tablosuna onlu, hex, sekizli ve ikili kodlarıyla göz at; tamamen yerelde.",
+    "keywords": "ascii, tablo, karakter, kod, onlu, sekizli, ikili, kontrol karakteri, başvuru",
+    "filterPlaceholder": "Koda, karaktere ya da ada göre süz… (ör. 65, 0x41, ESC)",
+    "noMatches": "Eşleşen karakter yok.",
+    "colChar": "Karakter",
+    "colBinary": "İkili",
+    "colName": "Ad",
+    "colDescription": "Açıklama",
+    "footer": "{count} karakter · 0 ile 127 arası kodlar. Yazdırılamayan kontrol kodları kısaltmalarıyla gösterilir.",
+    "charDesc": "\"{text}\" karakteri",
+    "control": {
+      "nul": "Boş karakter",
+      "soh": "Başlık başlangıcı",
+      "stx": "Metin başlangıcı",
+      "etx": "Metin sonu",
+      "eot": "İletim sonu",
+      "enq": "Sorgu",
+      "ack": "Onay",
+      "bel": "Zil",
+      "bs": "Geri silme",
+      "ht": "Yatay sekme",
+      "lf": "Satır besleme",
+      "vt": "Dikey sekme",
+      "ff": "Sayfa besleme",
+      "cr": "Satır başı",
+      "so": "Alternatif karakter setine geç",
+      "si": "Standart karakter setine dön",
+      "dle": "Veri bağlantısı kaçışı",
+      "dc1": "Aygıt denetimi 1 (XON)",
+      "dc2": "Aygıt denetimi 2",
+      "dc3": "Aygıt denetimi 3 (XOFF)",
+      "dc4": "Aygıt denetimi 4",
+      "nak": "Olumsuz onay",
+      "syn": "Eşzamanlı boşta",
+      "etb": "İletim bloğu sonu",
+      "can": "İptal",
+      "em": "Ortam sonu",
+      "sub": "Yerine koy",
+      "esc": "Kaçış",
+      "fs": "Dosya ayırıcı",
+      "gs": "Grup ayırıcı",
+      "rs": "Kayıt ayırıcı",
+      "us": "Birim ayırıcı",
+      "sp": "Boşluk",
+      "del": "Sil"
+    }
+  },
+  "benchmark-builder": {
+    "name": "Kıyaslama tablosu",
+    "description": "Süre ölçümlerini gruplar arasında ortalama ve varyansa göre karşılaştır, sonucu dışa aktar; tamamen yerelde.",
+    "keywords": "kıyaslama, performans, ölçüm, süre, ortalama, varyans, karşılaştır, benchmark",
+    "suiteName": "Grup {n}",
+    "removeMeasure": "Ölçümü kaldır",
+    "addMeasure": "+ Ölçüm",
+    "deleteSuite": "Sil",
+    "addSuite": "+ Grup ekle",
+    "unit": "Birim",
+    "colSuite": "Grup",
+    "colSamples": "Örnek sayısı",
+    "colMean": "Ortalama",
+    "colVariance": "Varyans",
+    "copyMarkdown": "Markdown tablosunu kopyala",
+    "copyBullets": "Madde listesini kopyala"
+  },
+  "chmod-calculator": {
+    "name": "Chmod hesaplayıcı",
+    "description": "Unix okuma, yazma ve çalıştırma izinlerini işaretle; sekizli ve sembolik chmod değerini al, tamamen yerelde.",
+    "keywords": "chmod, izin, yetki, dosya izni, unix, linux, sekizli, sembolik",
+    "who": "Kim",
+    "bits": {
+      "read": "Okuma",
+      "write": "Yazma",
+      "execute": "Çalıştırma"
+    },
+    "scopes": {
+      "owner": "Sahip",
+      "group": "Grup",
+      "other": "Diğerleri"
+    },
+    "octal": "Sekizli",
+    "symbolic": "Sembolik",
+    "command": "Komut"
+  },
+  "chronometer": {
+    "name": "Kronometre",
+    "description": "Tur kaydı tutan basit bir kronometre; tarayıcında yerel çalışır.",
+    "keywords": "kronometre, süre ölçer, zamanlayıcı, tur, zaman, saat",
+    "start": "Başlat",
+    "stop": "Durdur",
+    "lap": "Tur",
+    "lapN": "Tur {n}"
+  },
+  "data-size": {
+    "name": "Veri boyutu dönüştürücü",
+    "description": "Bayt, KB/MB/GB/TB, ikili KiB/MiB/GiB ve bit arasında dönüştür; tamamen yerelde.",
+    "keywords": "veri boyutu, bayt, dosya boyutu, birim, dönüştür, megabayt, gigabayt",
+    "value": "Değer",
+    "fromUnit": "Kaynak birim",
+    "bestFit": "En uygun:",
+    "invalid": "Geçerli bir sayı gir.",
+    "groups": {
+      "bits": "Bitler",
+      "decimal": "Onlu (SI, ×1000)",
+      "binary": "İkili (IEC, ×1024)"
+    }
+  },
+  "docker-run-to-compose": {
+    "name": "Docker run'dan Compose'a",
+    "description": "Bir docker run komutunu docker-compose servis tanımına dönüştür; tamamen yerelde.",
+    "keywords": "docker, compose, docker-compose, konteyner, yaml, dönüştür",
+    "inputLabel": "docker run komutu",
+    "noImage": "Komutta imaj bulunamadı. Örnek: docker run nginx"
+  },
+  "eta-calculator": {
+    "name": "Bitiş süresi hesaplayıcı",
+    "description": "Ölçülen bir hızdan işin ne kadar süreceğini ve ne zaman biteceğini tahmin et; tamamen yerelde.",
+    "keywords": "tahmini süre, bitiş zamanı, kalan süre, hız, ilerleme, eta",
+    "total": "İşlenecek öğe sayısı",
+    "processed": "İşlenen",
+    "inEvery": "her",
+    "span": "Süre",
+    "units": {
+      "second": "saniye",
+      "minute": "dakika",
+      "hour": "saat",
+      "day": "gün"
+    },
+    "duration": {
+      "days": "{count} gün",
+      "hours": "{count} saat",
+      "minutes": "{count} dakika",
+      "seconds": "{count} saniye"
+    },
+    "rateError": "İşleme hızı sıfırdan büyük olmalı.",
+    "totalDuration": "Toplam süre",
+    "willFinish": "Bitiş zamanı"
+  },
+  "git-memo": {
+    "name": "Git kopya kâğıdı",
+    "description": "Hep unuttuğun git komutlarının aranabilir bir listesi; tamamen yerelde.",
+    "keywords": "git, komut, kopya kâğıdı, hatırlatma, sürüm kontrolü, dal, commit",
+    "searchPlaceholder": "Komut ara… (ör. stash, geri al, rebase)",
+    "noMatches": "\"{q}\" ile eşleşen komut yok.",
+    "groups": {
+      "setup": "Kurulum ve ayarlar",
+      "staging": "Hazırlama ve commit",
+      "branches": "Dallar",
+      "remotes": "Uzak depolar ve eşitleme",
+      "history": "Geçmiş ve geri alma"
+    },
+    "commands": {
+      "configName": "Adını ayarla.",
+      "configEmail": "E-posta adresini ayarla.",
+      "init": "Yeni bir depo oluştur.",
+      "clone": "Uzak bir depoyu klonla.",
+      "status": "Çalışma ağacının durumunu göster.",
+      "add": "Değişiklikleri hazırla.",
+      "addPatch": "Değişiklikleri parça parça hazırla.",
+      "commit": "Hazırlanan değişiklikleri commit'le.",
+      "amend": "Son commit'i yeniden yaz.",
+      "restore": "Çalışma alanındaki değişiklikleri at.",
+      "unstage": "Bir dosyayı hazırlıktan çıkar.",
+      "branch": "Dalları listele.",
+      "switchCreate": "Yeni dal oluştur ve ona geç.",
+      "switch": "Dal değiştir.",
+      "merge": "Bir dalı bulunduğun dala birleştir.",
+      "branchDelete": "Birleştirilmiş bir dalı sil.",
+      "rebase": "Commit'leri başka bir tabanın üstüne yeniden uygula.",
+      "remotes": "Uzak depoları listele.",
+      "fetch": "Nesneleri birleştirmeden indir.",
+      "pull": "Uzak depodan çek ve birleştir.",
+      "push": "Commit'leri uzak depoya gönder.",
+      "pushUpstream": "Gönder ve upstream'i ayarla.",
+      "log": "Kısa, görsel geçmiş.",
+      "diff": "Hazırlanmamış değişiklikleri göster.",
+      "diffStaged": "Hazırlanmış değişiklikleri göster.",
+      "resetSoft": "Son commit'i geri al, değişiklikleri hazırlıkta tut.",
+      "resetHard": "Her şeyi bir ref'e sıfırla (geri dönüşü yok).",
+      "revert": "Başka bir commit'i geri alan yeni bir commit oluştur.",
+      "stash": "Değişiklikleri sonrası için kenara koy.",
+      "stashPop": "Kenara konan değişiklikleri geri getir.",
+      "cherryPick": "Belirli bir commit'i uygula.",
+      "reflog": "HEAD'in nerelerde olduğunu gör (kayıp commit'leri kurtar)."
+    }
+  },
+  "math-evaluator": {
+    "name": "Matematik hesaplayıcı",
+    "description": "Fonksiyon ve sabitler içeren matematik ifadelerini hesapla; tamamen yerelde, eval kullanmadan.",
+    "keywords": "matematik, hesap makinesi, ifade, formül, hesapla, fonksiyon",
+    "expression": "İfade",
+    "invalid": "Geçersiz ifade.",
+    "functions": "Fonksiyonlar: {items}.",
+    "constants": "Sabitler: {items}."
+  },
+  "number-base": {
+    "name": "Sayı tabanı dönüştürücü",
+    "description": "Tam sayıları hex, onlu, ikili, sekizli ve 2 ile 36 arası her taban arasında dönüştür; tamamen yerelde.",
+    "keywords": "sayı tabanı, ikili, onlu, sekizli, onaltılı, hex, dönüştür",
+    "number": "Sayı",
+    "inputBase": "Girdi tabanı",
+    "invalid": "Geçersiz sayı.",
+    "customBase": "Özel taban",
+    "rowLabel": "{name} (taban {n})",
+    "baseN": "Taban {n}",
+    "bases": {
+      "b2": "İkili",
+      "b8": "Sekizli",
+      "b10": "Onlu",
+      "b16": "Onaltılı"
+    }
+  },
+  "percentage-calculator": {
+    "name": "Yüzde hesaplayıcı",
+    "description": "Bir değerin yüzdesi, bir sayının diğerinin yüzde kaçı olduğu ve yüzde değişim tek yerde; tamamen yerelde.",
+    "keywords": "yüzde, oran, yüzde değişim, artış, azalış, hesapla",
+    "whatIs": "Yüzde",
+    "percentOf": "şu sayının:",
+    "isWhatPercentOf": "sayısı, şu sayının yüzde kaçı:",
+    "changeFrom": "Değişim:",
+    "to": "değerinden şu değere:"
+  },
+  "regex-tester": {
+    "name": "Regex test aracı",
+    "description": "JavaScript düzenli ifadelerini örnek metin üzerinde dene; eşleşmeleri, grupları ve değiştirmeyi canlı gör.",
+    "keywords": "regex, düzenli ifade, desen, eşleşme, değiştir, test",
+    "cheatsheetTitle": "Kopya kâğıdı",
+    "hideCheatsheet": "Kopya kâğıdını gizle",
+    "appendToPattern": "Desene ekle",
+    "patternPlaceholder": "desen",
+    "patternLabel": "Regex deseni",
+    "engine": "Regex motoru",
+    "dotnetApprox": ".NET (yaklaşık)",
+    "flags": {
+      "g": "tüm eşleşmeler",
+      "i": "büyük küçük harf duyarsız",
+      "m": "çok satırlı",
+      "s": "nokta satır sonunu da kapsar",
+      "u": "Unicode kipi"
+    },
+    "matchCount": "{count, plural, one {# eşleşme} other {# eşleşme}}",
+    "testString": "Test metni",
+    "matchPreview": "Eşleşme önizlemesi",
+    "noMatches": "Eşleşme yok.",
+    "tabs": {
+      "replace": "Değiştir",
+      "list": "Liste",
+      "details": "Ayrıntılar",
+      "explain": "Açıkla"
+    },
+    "replacement": "Yerine konacak",
+    "replaceHelp": "Gruplar için <group></group> ya da <named></named>, düz bir $ için <dollar></dollar> kullan.",
+    "copyAll": "Tümünü kopyala",
+    "matchN": "Eşleşme {n}",
+    "noGroups": "Yakalama grubu yok.",
+    "explainEmpty": "Açıklaması için bir desen gir.",
+    "cheatsheet": {
+      "classes": {
+        "title": "Karakter sınıfları",
+        "any": "satır sonu dışında herhangi bir karakter",
+        "wordDigitSpace": "sözcük karakteri, rakam, boşluk",
+        "notWordDigitSpace": "sözcük karakteri, rakam, boşluk olmayan",
+        "anyOf": "a, b ya da c",
+        "noneOf": "a, b ya da c dışında",
+        "range": "a ile g arasındaki karakter"
+      },
+      "anchors": {
+        "title": "Çapalar",
+        "startEnd": "metnin başı ve sonu",
+        "boundary": "sözcük sınırı, sözcük sınırı olmayan"
+      },
+      "escaped": {
+        "title": "Kaçışlı karakterler",
+        "special": "kaçışlı özel karakterler",
+        "whitespace": "sekme, satır besleme, satır başı"
+      },
+      "groups": {
+        "title": "Gruplar ve çevreye bakma",
+        "capture": "yakalama grubu",
+        "backreference": "1 numaralı gruba geri başvuru",
+        "nonCapturing": "yakalamayan grup",
+        "lookahead": "olumlu ileriye bakma",
+        "negativeLookahead": "olumsuz ileriye bakma"
+      },
+      "quantifiers": {
+        "title": "Niceleyiciler ve seçenekler",
+        "counts": "0 ya da daha fazla, 1 ya da daha fazla, 0 ya da 1",
+        "exact": "tam beş, iki ya da daha fazla",
+        "between": "bir ile üç arası",
+        "lazy": "olabildiğince az eşleş",
+        "alternation": "ab ya da cd ile eşleş"
+      }
+    }
+  },
+  "roman-numeral-converter": {
+    "name": "Roma rakamı dönüştürücü",
+    "description": "1 ile 3999 arası tam sayılarla Roma rakamları arasında dönüştür; tamamen yerelde.",
+    "keywords": "roma rakamı, romen rakamı, sayı, dönüştür, latin, arap rakamı",
+    "number": "Sayı ({min} ile {max} arası)",
+    "roman": "Roma rakamı",
+    "invalidNumber": "Geçersiz sayı.",
+    "invalidNumeral": "Geçersiz Roma rakamı."
+  },
+  "smart-paste": {
+    "name": "Akıllı yapıştır",
+    "description": "Ne olursa yapıştır; biçimi (JWT, JSON, SQL, XML…) tanır ve doğru araca gönderir.",
+    "keywords": "yapıştır, algıla, tanı, biçim, otomatik, pano",
+    "inputLabel": "Ne olursa yapıştır",
+    "placeholder": "Bir JWT, JSON, SQL, XML, URL ya da zaman damgası yapıştır…",
+    "empty": "Yukarıya bir şey yapıştır; ne olduğu kendiliğinden tanınır, doğru araca hemen geçersin.",
+    "unknown": "Biçim tanınamadı, düz metin olarak ele al:",
+    "detected": "Algılanan: {label}",
+    "alsoLooksLike": "Şuna da benziyor: {label}",
+    "types": {
+      "image": {
+        "label": "Base64 görsel / data URI",
+        "note": "Satır içi bir görsel."
+      },
+      "jwt": {
+        "note": "Bir JSON Web Token (header.payload.signature)."
+      },
+      "uuid": {
+        "note": "Evrensel benzersiz bir kimlik."
+      },
+      "timestamp": {
+        "label": "Unix zaman damgası",
+        "note": "Saniye ya da milisaniye cinsinden bir epoch zamanı."
+      },
+      "url": {
+        "note": "Bir web adresi."
+      },
+      "connectionString": {
+        "label": "Bağlantı dizesi",
+        "note": "ADO.NET biçiminde bir bağlantı dizesi."
+      },
+      "json": {
+        "note": "Geçerli JSON."
+      },
+      "html": {
+        "note": "HTML işaretlemesi."
+      },
+      "xml": {
+        "note": "XML işaretlemesi."
+      },
+      "sql": {
+        "note": "Bir SQL ifadesi."
+      },
+      "csv": {
+        "note": "Virgülle ayrılmış değerler."
+      },
+      "cron": {
+        "label": "Cron ifadesi",
+        "note": "Bir cron zamanlaması."
+      },
+      "yaml": {
+        "note": "Bir YAML belgesi."
+      },
+      "base64": {
+        "note": "Base64 ile kodlanmış veri."
+      }
+    }
+  },
+  "temperature-converter": {
+    "name": "Sıcaklık dönüştürücü",
+    "description": "Sıcaklığı Celsius, Fahrenheit, Kelvin ve Rankine arasında dönüştür; tamamen yerelde.",
+    "keywords": "sıcaklık, derece, santigrat, celsius, fahrenhayt, kelvin, dönüştür",
+    "value": "Değer",
+    "from": "Kaynak",
+    "invalid": "Bir sayı gir.",
+    "units": {
+      "c": "Santigrat",
+      "f": "Fahrenhayt",
+      "k": "Kelvin",
+      "r": "Rankine"
+    }
+  },
+  "unicode-inspector": {
+    "name": "ASCII / Unicode inceleyici",
+    "description": "Her karakteri incele: kod noktası, UTF-8/UTF-16 baytları ve HTML varlığı; tamamen yerelde.",
+    "keywords": "unicode, ascii, karakter, kod noktası, utf-8, utf-16, html varlığı, emoji",
+    "colChar": "Kr",
+    "colCode": "Kod",
+    "colEntity": "Varlık",
+    "empty": "İncelemek için bir metin yaz."
+  }
+}

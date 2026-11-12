@@ -1,0 +1,109 @@
+{
+  "background-remover": {
+    "name": "Background remover (color)",
+    "description": "Make a solid or near-solid background transparent by color, with tolerance and soft edges, locally.",
+    "keywords": "background, remove, transparent, chroma, chroma key, cutout, png, color key",
+    "pickLabel": "Drop an image here (solid backgrounds work best)",
+    "keyColor": "Key color",
+    "tolerance": "Tolerance {value}",
+    "softEdge": "Soft edge {value}",
+    "tip": "Tip: click the original to pick the background color.",
+    "chooseAnother": "Choose another",
+    "originalCaption": "Original, click to pick color",
+    "originalAlt": "Original image",
+    "resultCaption": "Result (transparent)",
+    "resultAlt": "Result with transparent background",
+    "downloadPng": "Download PNG ({size})",
+    "loadFailed": "Could not load the image.",
+    "processFailed": "Could not process the image."
+  },
+  "barcode-generator": {
+    "name": "Barcode generator",
+    "description": "Generate barcodes (Code128, EAN, UPC, Code39 and more) from text, locally.",
+    "keywords": "barcode, code128, ean, upc, code39, generator, svg, png",
+    "placeholder": "Value to encode…",
+    "valueLabel": "Barcode value",
+    "format": "Format",
+    "showText": "Show text",
+    "tip": "Tip: EAN-13 needs 12 or 13 digits, UPC needs 11 or 12, EAN-8 needs 7 or 8. CODE128 accepts any text.",
+    "emptyValue": "Enter a value.",
+    "invalid": "\"{value}\" is not valid for {type}."
+  },
+  "base64-image": {
+    "name": "Base64 image viewer",
+    "description": "Preview a Base64 or data URI image, or turn an image into a Base64 data URI, locally.",
+    "keywords": "base64, image, data uri, preview, encode, decode, inline",
+    "modes": {
+      "decode": "Base64 → Image",
+      "encode": "Image → Base64"
+    },
+    "hideInput": "Hide input",
+    "showInput": "Show input",
+    "inputLabel": "Base64 or data URI",
+    "encodedLabel": "Data URI",
+    "placeholder": "Paste a data URI or Base64 image string…",
+    "preview": "Preview",
+    "emptyDecode": "Paste image data to preview.",
+    "emptyEncode": "Choose an image.",
+    "errors": {
+      "empty": "No image data provided.",
+      "notImage": "This data URI is not an image.",
+      "notBase64": "Input is not a data URI or valid Base64.",
+      "invalid": "Invalid image."
+    }
+  },
+  "image-compressor": {
+    "name": "Image compressor",
+    "description": "Resize and compress images to JPEG, WebP or PNG in your browser; nothing is uploaded.",
+    "keywords": "image, photo, compress, resize, optimize, shrink, jpeg, webp, png",
+    "format": "Format",
+    "quality": "Quality {pct}%",
+    "maxSize": "Max size",
+    "original": "Original",
+    "compressed": "Compressed",
+    "chooseAnother": "Choose another",
+    "download": "Download {type} ({size})",
+    "loadFailed": "Could not load the image.",
+    "compressFailed": "Could not compress the image."
+  },
+  "qr-generator": {
+    "name": "QR code generator",
+    "description": "Generate a QR code from text or a URL, with color and error correction options, locally.",
+    "keywords": "qr, qr code, generator, url, link, barcode, png, svg",
+    "textLabel": "Text or URL",
+    "placeholder": "Enter text or a URL to encode…",
+    "size": "Size",
+    "ecc": "Error correction",
+    "margin": "Margin",
+    "dark": "Dark",
+    "light": "Light",
+    "alt": "QR code",
+    "empty": "No QR code yet",
+    "failed": "Could not generate the QR code. The text may be too long."
+  },
+  "svg-placeholder": {
+    "name": "SVG placeholder generator",
+    "description": "Generate lightweight placeholder images as inline SVG or a data URI, locally.",
+    "keywords": "svg, placeholder, image, mock, dummy, data uri, generator",
+    "width": "Width",
+    "height": "Height",
+    "background": "Background",
+    "textColor": "Text color",
+    "textOptional": "Text (optional)",
+    "previewAlt": "SVG placeholder preview",
+    "markup": "SVG markup",
+    "dataUri": "Data URI"
+  },
+  "wifi-qr": {
+    "name": "Wi-Fi QR code generator",
+    "description": "Create a QR code that connects devices to a Wi-Fi network, locally.",
+    "keywords": "wifi, wi-fi, qr, code, network, password, ssid, connect, generator",
+    "ssid": "Network name (SSID)",
+    "password": "Password",
+    "encryption": "Encryption",
+    "none": "None",
+    "hidden": "Hidden network",
+    "alt": "Wi-Fi QR code",
+    "empty": "Enter an SSID"
+  }
+}

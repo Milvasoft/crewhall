@@ -1,0 +1,192 @@
+{
+  "title": "Rehber",
+  "more": "Daha fazla",
+  "search": "Ad, e-posta, telefon, etiket…",
+  "searchChart": "Şemada kişi ara…",
+  "nav": {
+    "directory": "Kurum rehberi",
+    "chart": "Organizasyon şeması",
+    "contacts": "Dış kişiler",
+    "companies": "Şirketler"
+  },
+  "sidebar": {
+    "departments": "Departmanlar",
+    "tags": "Etiketler"
+  },
+  "directory": {
+    "emptyTitle": "Kimse bulunamadı",
+    "empty": "Aramayı ya da departman filtresini değiştir.",
+    "openProfile": "Profili aç",
+    "reports": "{count, plural, one {Ekibinde # kişi} other {Ekibinde # kişi}}",
+    "fromDirectory": "Bu kişinin bilgileri kurum dizininden (AD/LDAP) gelir.",
+    "synced": "Kurum dizininden gelir, orada değişir.",
+    "noManager": "Yöneticisi yok"
+  },
+  "fields": {
+    "email": "E-posta",
+    "title": "Unvan",
+    "department": "Departman",
+    "team": "Ekip",
+    "phone": "Telefon",
+    "mobile": "Cep telefonu",
+    "location": "Ofis",
+    "manager": "Yöneticisi",
+    "about": "Hakkında"
+  },
+  "chart": {
+    "emptyTitle": "Şema henüz boş",
+    "empty": "Kişilere yönetici atandıkça organizasyon şeması oluşur.",
+    "collapse": "{name} ekibini kapat",
+    "expand": "{name} ekibini aç",
+    "flatTitle": "Şemada henüz yönetici yok",
+    "flat": "Organizasyon şeması, kişilerin yöneticisinden çizilir. Yöneticileri tablodan, CSV dosyasıyla ya da şemada bir kişiyi yöneticisinin üstüne sürükleyerek atayabilirsin.",
+    "flatMember": "Organizasyon şeması, kişilerin yöneticisinden çizilir. Yöneticileri kurum yöneticisi atar.",
+    "assign": "Yöneticileri ata",
+    "view": {
+      "label": "Görünüm",
+      "tree": "Şema",
+      "table": "Tablo"
+    },
+    "group": {
+      "label": "Gruplama",
+      "manager": "Yönetici",
+      "department": "Departman",
+      "team": "Ekip",
+      "none": "Belirtilmemiş"
+    },
+    "zoomIn": "Yakınlaştır",
+    "zoomOut": "Uzaklaştır",
+    "zoomReset": "Gerçek boyut",
+    "zoom": "%{count}",
+    "export": "Dışa aktar",
+    "png": "PNG olarak indir",
+    "pdf": "PDF olarak indir",
+    "fileName": "organizasyon-semasi",
+    "importCsv": "CSV ile içe aktar",
+    "template": "Şablon CSV indir",
+    "dragHint": "Bir kişiyi başka birinin üstüne bırakırsan yöneticisi o olur.",
+    "top": "Buraya bırak: yöneticisi olmasın",
+    "moved": "{name} artık {person} ekibinde",
+    "movedTop": "{name} artık yöneticisiz",
+    "undo": "Geri al",
+    "synced": "Yöneticisi kurum dizininden gelir; orada değişir.",
+    "drag": "{name} kişisini taşı",
+    "table": {
+      "person": "Kişi",
+      "noManager": "Yönetici yok",
+      "saved": "Kaydedildi",
+      "caption": "Kişiler, unvanları, departmanları ve yöneticileri"
+    },
+    "csv": {
+      "title": "CSV ile içe aktar",
+      "description": "İlk satır başlıktır. Sütunlar: e-posta (zorunlu), unvan, departman, ekip, telefon, cep, konum, yönetici (yöneticinin e-postası). Dosyada olmayan sütunlara dokunulmaz; boş hücre alanı temizler.",
+      "pick": "Dosya seç",
+      "file": "CSV dosyası",
+      "check": "Önce kontrol et",
+      "apply": "{count, plural, one {# kişiyi güncelle} other {# kişiyi güncelle}}",
+      "summary": "{done} güncellenecek · {total} aynı · {failed} hatalı",
+      "done": "{count, plural, one {# kişi güncellendi} other {# kişi güncellendi}}",
+      "line": "Satır",
+      "status": {
+        "updated": "Güncellenecek",
+        "unchanged": "Aynı",
+        "failed": "Hatalı"
+      },
+      "nothing": "Değişecek bir şey yok."
+    }
+  },
+  "actions": {
+    "edit": "Düzenle",
+    "more": "Diğer",
+    "import": "vCard içe aktar",
+    "exportContacts": "Kişileri vCard olarak indir",
+    "exportDirectory": "Rehberi vCard olarak indir",
+    "carddav": "Telefonla eşitle (CardDAV)",
+    "newContact": "Yeni kişi",
+    "newCompany": "Yeni şirket"
+  },
+  "kind": {
+    "all": "Tümü",
+    "customer": "Müşteri",
+    "supplier": "Tedarikçi",
+    "partner": "İş ortağı",
+    "other": "Diğer"
+  },
+  "type": {
+    "work": "İş",
+    "home": "Ev",
+    "other": "Diğer",
+    "mobile": "Cep",
+    "fax": "Faks"
+  },
+  "form": {
+    "newTitle": "Yeni kişi",
+    "editTitle": "Kişiyi düzenle",
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "company": "Şirket",
+    "noCompany": "Şirket yok",
+    "jobTitle": "Unvan",
+    "kind": "Tür",
+    "birthday": "Doğum günü",
+    "type": "Tür",
+    "removeRow": "Satırı kaldır",
+    "addEmail": "E-posta ekle",
+    "addPhone": "Telefon ekle",
+    "address": "Adres",
+    "website": "Web sitesi",
+    "tags": "Etiketler",
+    "tagsPlaceholder": "Etiket yaz, Enter'a bas",
+    "removeTag": "{name} etiketini kaldır",
+    "notes": "Notlar",
+    "private": "Yalnız ben göreyim",
+    "privateHint": "Kapalıysa kişi kurumun ortak rehberinde görünür.",
+    "create": "Ekle"
+  },
+  "company": {
+    "newTitle": "Yeni şirket",
+    "editTitle": "Şirketi düzenle",
+    "name": "Şirket adı",
+    "domain": "Alan adı",
+    "emptyTitle": "Henüz şirket yok",
+    "empty": "Müşteri, tedarikçi ve iş ortaklarını ekle; kişileri şirketlerine bağla.",
+    "people": "{count, plural, one {# kişi} other {# kişi}}"
+  },
+  "list": {
+    "emptyTitle": "Henüz kişi yok",
+    "empty": "Dış kişileri ekle ya da bir vCard dosyasından içe aktar.",
+    "privateNote": "Bu kişiyi yalnız sen görüyorsun.",
+    "addedBy": "{name} ekledi"
+  },
+  "import": {
+    "done": "{count} kişi eklendi, {done} güncellendi, {failed} atlandı."
+  },
+  "carddav": {
+    "title": "Telefonla eşitle (CardDAV)",
+    "hint": "iPhone, Android (DAVx5) ya da Thunderbird'de CardDAV hesabı ekle. Şifre olarak “Kişiler yaz” kapsamlı bir kişisel erişim belirteci kullan; okumak için “Okuma ve arama” yeter.",
+    "url": "CardDAV adresi",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "user": "Kullanıcı adı: {user}",
+    "createToken": "Belirteç oluştur (Hesabım › MCP ve API)",
+    "tokensOff": "Kişisel erişim belirteçleri kurumunda kapalı."
+  },
+  "menu": {
+    "open": "Aç",
+    "sendEmail": "E-posta gönder",
+    "startChat": "Sohbet başlat",
+    "copyEmail": "E-postayı kopyala",
+    "copyPhone": "Telefonu kopyala",
+    "copyMobile": "Cep telefonunu kopyala",
+    "copied": "Kopyalandı"
+  },
+  "external": {
+    "synced": "{name} hesabınla eşitleniyor: {email}. Burada yaptığın değişiklik oraya da gider. Bu kişiyi yalnız sen görüyorsun.",
+    "versions": "{count, plural, one {Önceki sürüm (#)} other {Önceki sürümler (#)}}",
+    "versionsHint": "Kişi aynı anda iki yerde değişti. Son kaydedilen geçerli oldu; üzerine yazılan sürüm burada duruyor.",
+    "versionCrewhall": "Crewhall'da yazılan sürüm",
+    "saveTo": "Hesaba da ekle",
+    "saveToHint": "Seçersen kişi o hesabın rehberine de eklenir ve yalnız sana özel olur.",
+    "saveToNone": "Yalnız Crewhall'da"
+  }
+}

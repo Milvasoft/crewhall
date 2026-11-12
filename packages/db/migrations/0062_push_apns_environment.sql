@@ -1,0 +1,1 @@
+ALTER TABLE "push_devices" ADD COLUMN "apns_environment" text;

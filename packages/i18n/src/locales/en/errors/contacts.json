@@ -1,0 +1,8 @@
+{
+  "directory_field_synced": "This field comes from the org directory (AD/LDAP or Google Workspace); change it there.",
+  "directory_manager_cycle": "This manager would create a loop in the org chart.",
+  "contacts_vcard_invalid": "The file is not vCard (.vcf) or holds no contacts.",
+  "directory_csv_invalid": "The CSV file has no e-mail column or no rows.",
+  "directory_person_unknown": "No active member of the organization has this e-mail.",
+  "contacts_account_unavailable": "This account's address book does not sync. Check the account in the calendar settings."
+}

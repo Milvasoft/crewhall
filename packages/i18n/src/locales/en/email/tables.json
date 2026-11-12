@@ -1,0 +1,241 @@
+{
+  "attachmentsFolder": "{table} · Attachments",
+  "importedSheet": "Imported table",
+  "defaultView": "Grid",
+  "formTable": "{form} · Responses",
+  "formRespondent": "Respondent",
+  "formSubmitted": "Submitted",
+  "templates": {
+    "empty": {
+      "fields": {
+        "name": "Name",
+        "notes": "Notes",
+        "status": "Status"
+      },
+      "choices": {
+        "todo": "To do",
+        "doing": "Doing",
+        "done": "Done"
+      },
+      "views": {
+        "grid": "Grid"
+      },
+      "rows": []
+    },
+    "crm": {
+      "fields": {
+        "name": "Company",
+        "contact": "Contact",
+        "email": "Email",
+        "phone": "Phone",
+        "stage": "Stage",
+        "value": "Value",
+        "owner": "Owner",
+        "next": "Next step",
+        "notes": "Notes"
+      },
+      "choices": {
+        "lead": "Lead",
+        "contacted": "Contacted",
+        "proposal": "Proposal",
+        "won": "Won",
+        "lost": "Lost"
+      },
+      "views": {
+        "grid": "All customers",
+        "kanban": "Sales pipeline",
+        "calendar": "Follow-ups"
+      },
+      "rows": [
+        {
+          "name": "Example Logistics Inc.",
+          "contact": "Deniz Kaya",
+          "email": "deniz@example-logistics.com",
+          "stage": "proposal",
+          "value": 120000,
+          "notes": "Sent a proposal for warehouse tracking."
+        },
+        {
+          "name": "Blue Software",
+          "contact": "Ece Aydın",
+          "email": "ece@bluesoftware.com",
+          "stage": "contacted",
+          "value": 45000
+        },
+        {
+          "name": "North Energy",
+          "contact": "Murat Demir",
+          "stage": "lead"
+        }
+      ]
+    },
+    "inventory": {
+      "fields": {
+        "name": "Item",
+        "sku": "SKU",
+        "category": "Category",
+        "quantity": "Quantity",
+        "min": "Minimum stock",
+        "unitPrice": "Unit price",
+        "total": "Total value",
+        "status": "Stock status",
+        "location": "Location",
+        "photo": "Photo"
+      },
+      "choices": {
+        "hardware": "Hardware",
+        "supplies": "Supplies",
+        "office": "Office"
+      },
+      "formulaReorder": "Reorder",
+      "formulaEnough": "In stock",
+      "views": {
+        "grid": "All items",
+        "gallery": "Gallery",
+        "low": "Low stock"
+      },
+      "rows": [
+        {
+          "name": "USB-C charger",
+          "sku": "SRJ-065",
+          "category": "hardware",
+          "quantity": 4,
+          "min": 10,
+          "unitPrice": 650,
+          "location": "Warehouse A"
+        },
+        {
+          "name": "A4 paper (box)",
+          "sku": "KGT-A4",
+          "category": "supplies",
+          "quantity": 25,
+          "min": 8,
+          "unitPrice": 420,
+          "location": "Warehouse B"
+        },
+        {
+          "name": "Meeting room camera",
+          "sku": "KAM-4K",
+          "category": "office",
+          "quantity": 2,
+          "min": 1,
+          "unitPrice": 7800,
+          "location": "3rd floor"
+        }
+      ]
+    },
+    "hiring": {
+      "fields": {
+        "name": "Candidate",
+        "role": "Role",
+        "stage": "Stage",
+        "email": "Email",
+        "phone": "Phone",
+        "cv": "Résumé",
+        "rating": "Rating",
+        "interviewer": "Interviewer",
+        "interview": "Interview",
+        "source": "Source"
+      },
+      "choices": {
+        "engineering": "Engineering",
+        "design": "Design",
+        "sales": "Sales",
+        "applied": "Applied",
+        "screen": "Screening",
+        "technical": "Technical interview",
+        "offer": "Offer",
+        "hired": "Hired",
+        "rejected": "Rejected",
+        "linkedin": "LinkedIn",
+        "referral": "Referral",
+        "careers": "Careers site"
+      },
+      "views": {
+        "kanban": "Pipeline",
+        "grid": "All candidates",
+        "calendar": "Interviews"
+      },
+      "rows": [
+        {
+          "name": "Zeynep Arslan",
+          "role": "engineering",
+          "stage": "technical",
+          "email": "zeynep@example.com",
+          "rating": 4,
+          "source": "referral"
+        },
+        {
+          "name": "Can Yılmaz",
+          "role": "design",
+          "stage": "screen",
+          "source": "linkedin"
+        },
+        {
+          "name": "Elif Şahin",
+          "role": "sales",
+          "stage": "applied",
+          "source": "careers"
+        }
+      ]
+    },
+    "assets": {
+      "fields": {
+        "name": "Asset",
+        "tag": "Asset tag",
+        "type": "Type",
+        "assignee": "Assigned to",
+        "purchased": "Purchase date",
+        "price": "Purchase price",
+        "warranty": "Warranty ends",
+        "status": "Status",
+        "serial": "Serial number",
+        "age": "Age (months)"
+      },
+      "choices": {
+        "laptop": "Laptop",
+        "monitor": "Monitor",
+        "phone": "Phone",
+        "furniture": "Furniture",
+        "inUse": "In use",
+        "stored": "In storage",
+        "broken": "Broken",
+        "retired": "Retired"
+      },
+      "views": {
+        "grid": "All assets",
+        "byStatus": "By status",
+        "timeline": "Warranty periods"
+      },
+      "rows": [
+        {
+          "name": "MacBook Pro 14",
+          "tag": "DMB-0001",
+          "type": "laptop",
+          "purchased": "2025-03-12",
+          "price": 72000,
+          "warranty": "2027-03-12",
+          "status": "inUse",
+          "serial": "C02XK1"
+        },
+        {
+          "name": "Dell 27\" monitor",
+          "tag": "DMB-0002",
+          "type": "monitor",
+          "purchased": "2024-09-01",
+          "price": 9800,
+          "warranty": "2026-09-01",
+          "status": "stored"
+        },
+        {
+          "name": "Ergonomic chair",
+          "tag": "DMB-0003",
+          "type": "furniture",
+          "purchased": "2023-05-20",
+          "price": 6500,
+          "status": "inUse"
+        }
+      ]
+    }
+  }
+}

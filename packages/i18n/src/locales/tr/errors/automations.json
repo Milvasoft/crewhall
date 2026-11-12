@@ -1,0 +1,10 @@
+{
+  "automation_trigger_unknown": "Bu tetikleyici bilinmiyor ya da henüz kullanılamıyor.",
+  "automation_action_unknown": "Bu eylem bilinmiyor.",
+  "automation_config_invalid": "Kuralın ayarlarında eksik ya da geçersiz alan var.",
+  "automation_target_invalid": "Seçilen pano, sohbet, form, klasör ya da kişiye bu kuralla erişemezsin.",
+  "automation_limit_reached": "Bu space'te kural sınırına ulaşıldı.",
+  "automation_webhook_blocked": "Bu adrese istek gönderilemez (yerel ya da özel adres).",
+  "automation_webhook_failed": "Webhook adresi başarılı yanıt vermedi.",
+  "automation_owner_inactive": "Kuralın sahibi artık kurumda değil."
+}

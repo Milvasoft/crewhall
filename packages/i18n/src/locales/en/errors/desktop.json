@@ -1,0 +1,8 @@
+{
+  "desktop_storage_missing": "S3 storage is not configured on this server; desktop releases cannot be uploaded.",
+  "desktop_file_invalid": "The file name or extension does not fit this platform.",
+  "desktop_file_missing": "The file is not in storage. Upload it first.",
+  "desktop_version_invalid": "The version number is not valid (e.g. 0.2.5).",
+  "desktop_release_in_use": "This file belongs to the published version; it cannot be replaced or deleted.",
+  "desktop_served_from_folder": "This platform's releases are served from the server's folder; they cannot be published here."
+}

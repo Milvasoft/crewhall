@@ -1,0 +1,74 @@
+{
+  "layout": {
+    "poweredBy": "with Crewhall",
+    "buttonFallback": "If the button does not work, paste this link into your browser:",
+    "sentFor": "This e-mail was sent to {email} on behalf of {orgName}.",
+    "securityFooter": "This is a security e-mail and is sent for every request on your account."
+  },
+  "invite": {
+    "subject": "{inviterName} invited you to {orgName}",
+    "title": "{inviterName} invited you to {orgName}",
+    "greeting": "Hi,",
+    "intro": "The {orgName} team keeps its files, pages, chats and meetings in one workspace. Create your account to join the team.",
+    "role": "Organization role",
+    "spaces": "Spaces",
+    "invitedBy": "Invited by",
+    "cta": "Accept invitation",
+    "expires": "The invitation is valid until {date}.",
+    "twoFactorNote": "Your organization requires two-step verification, so you will set it up when you create your account.",
+    "ignore": "If you were not expecting this invitation you can ignore this e-mail; no account will be created."
+  },
+  "reset": {
+    "subject": "Reset your {orgName} password",
+    "title": "Reset your password",
+    "intro": "Hi {name}, we received a request to reset your password. Use the button below to choose a new one.",
+    "cta": "Choose a new password",
+    "expires": "The link is valid for 30 minutes (until {time}) and works once.",
+    "requestedAt": "Requested at",
+    "browser": "Browser",
+    "ip": "IP address",
+    "notMe": "If you did not make this request you do not need to do anything; your password stays the same. If this keeps happening, tell your admin.",
+    "sessionsNote": "Changing your password signs out your open sessions. Your vault password is not affected. {orgName} never asks for your password by e-mail."
+  },
+  "verify": {
+    "subject": "Verify your {orgName} e-mail address",
+    "title": "Verify your e-mail address",
+    "intro": "Hi {name}, confirm that this e-mail address belongs to you for your {orgName} account.",
+    "cta": "Verify my e-mail",
+    "expires": "The link is valid for 24 hours.",
+    "ignore": "If you did not create this account you can ignore this e-mail."
+  },
+  "smtpTest": {
+    "subject": "{appName} e-mail test",
+    "title": "E-mail settings work",
+    "intro": "This is a test e-mail sent from the setup wizard. If you can read it, invitation and password reset e-mails will arrive too."
+  },
+  "deliveryTest": {
+    "subject": "{appName} notification delivery test",
+    "title": "E-mail delivery works",
+    "intro": "This is a test e-mail sent from Administration › Notification delivery. If you can read it, your organization's e-mails will arrive this way.",
+    "pushTitle": "Notification delivery test",
+    "pushBody": "If you can see this, push notifications reach this device."
+  },
+  "lock": {
+    "subject": "Your {orgName} account is temporarily locked",
+    "title": "Your account is temporarily locked",
+    "intro": "Hi {name}, there were {count} failed sign-in attempts in a row on your account. Sign-ins are paused for a while to keep it safe.",
+    "until": "The lock lifts at {time}.",
+    "lastAttempt": "Last attempt",
+    "ip": "IP address",
+    "cta": "Unlock",
+    "ctaNote": "Reset your password to unlock right away. Signing in with a passkey is not affected by the lock.",
+    "notMe": "Was this not you? Change your password and tell your admin."
+  },
+  "lockAdmin": {
+    "subject": "{email} was locked",
+    "title": "An account was locked",
+    "intro": "{name} ({email}) was temporarily locked after {count} failed sign-in attempts in a row.",
+    "until": "The lock lifts by itself at {time}.",
+    "lastAttempt": "Last attempt",
+    "ip": "IP address",
+    "cta": "View member",
+    "note": "If the attempts were not theirs, ask them to reset their password. You can lift the lock under Admin › Members."
+  }
+}

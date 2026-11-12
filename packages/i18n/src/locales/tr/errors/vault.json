@@ -1,0 +1,20 @@
+{
+  "vault_setup_required": "Önce kasanı kur.",
+  "vault_already_set_up": "Kasan zaten kurulmuş.",
+  "vault_unlock_failed": "Kasa şifresi ya da anahtar yanlış.",
+  "vault_unlock_locked": "Çok fazla hatalı deneme. Biraz bekleyip yeniden dene.",
+  "vault_revision_conflict": "Bu öğe sen düzenlerken başka biri tarafından değiştirildi.",
+  "vault_revision_current": "Öğenin güncel sürümü tek başına silinemez.",
+  "vault_key_version_mismatch": "Kasa anahtarı bu sırada döndürüldü. Kasayı yenileyip yeniden dene.",
+  "vault_rotation_incomplete": "Anahtar döndürme eksik kaldı; kasa değişmiş olabilir. Yeniden dene.",
+  "vault_member_without_keys": "Bu kişi kasasını henüz kurmadı.",
+  "vault_personal_not_shareable": "Kişisel kasa paylaşılamaz.",
+  "vault_last_manager": "Kasada en az bir \"Yönet\" yetkilisi kalmalı.",
+  "vault_cannot_remove_self": "Kendi erişimini kaldıramazsın. Başka bir \"Yönet\" yetkilisinden kaldırmasını iste.",
+  "vault_attachment_too_large": "Ek en çok 100 MB olabilir.",
+  "vault_share_disabled": "Kurumun kasa linkleriyle paylaşımı kapalı.",
+  "vault_share_gone": "Bu linkin süresi doldu ya da kullanıldı. Paylaşan kişiden yeni bir link iste.",
+  "vault_share_limit": "Süre ya da açılma sayısı kurumun izin verdiği sınırın üstünde.",
+  "vault_breach_disabled": "Sızdırılmış şifre kontrolü kurumda kapalı.",
+  "vault_breach_unavailable": "Sızıntı kontrol servisine şu an ulaşılamıyor. Daha sonra yeniden dene."
+}

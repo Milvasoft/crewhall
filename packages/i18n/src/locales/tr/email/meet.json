@@ -1,0 +1,35 @@
+{
+  "recordingsFolder": "Toplantı kayıtları",
+  "quickMeetingTitle": "Hızlı görüşme",
+  "online": "Çevrimiçi toplantı",
+  "recurrence": {
+    "none": "",
+    "daily": "Her gün",
+    "weekdays": "Her iş günü",
+    "weekly": "Her hafta"
+  },
+  "invite": {
+    "subject": "Davet: {title} · {when}",
+    "title": "{inviterName} seni bir toplantıya davet etti",
+    "when": "Zaman",
+    "where": "Nerede",
+    "repeats": "Tekrar",
+    "agenda": "Gündem",
+    "people": "Katılımcılar",
+    "cta": "Toplantıya katıl",
+    "memberNote": "Toplantı saatinde bağlantıyı aç; bekleme salonunda kamera ve mikrofonunu deneyip katılırsın.",
+    "guestNote": "Misafir olarak katılıyorsun: hesap ya da kurulum gerekmez. Tarayıcıda adını yazarsın, {inviterName} seni bekleme salonundan alır. Link toplantıdan {hours} saat sonra geçersiz olur.",
+    "icsNote": "Takvimine eklemek için ekteki davet.ics dosyasını aç.",
+    "guestFooter": "Bu daveti {orgName} kurumundan {inviterName} gönderdi. Hesabın olmadığı için yalnız bu toplantıyla ilgili e-posta alırsın."
+  },
+  "update": {
+    "subject": "Güncellendi: {title} · {when}",
+    "title": "{title} toplantısı güncellendi",
+    "body": "{inviterName} toplantının bilgilerini değiştirdi. Ekteki davet takvimindeki etkinliği günceller."
+  },
+  "cancel": {
+    "subject": "İptal edildi: {title} · {when}",
+    "title": "{title} toplantısı iptal edildi",
+    "body": "{inviterName} bu toplantıyı iptal etti. Ekteki dosya etkinliği takviminden kaldırır."
+  }
+}

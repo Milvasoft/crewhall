@@ -1,0 +1,26 @@
+node_modules/
+dist/
+build/
+coverage/
+.turbo/
+.next/
+.expo/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+
+# local Claude settings
+.claude/settings.local.json
+
+# old design archive
+docs/*.zip
+
+# session worktrees
+.claude/worktrees/
+
+# TanStack Router dev cache
+apps/web/.tanstack/

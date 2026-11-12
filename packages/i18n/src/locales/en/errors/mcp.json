@@ -1,0 +1,16 @@
+{
+  "mcp_disabled": "Your administrator turned off MCP access for this organization.",
+  "mcp_guests_not_allowed": "The organization policy does not let guests connect MCP clients.",
+  "mcp_tokens_disabled": "The organization policy turned off personal access tokens.",
+  "mcp_reauth_required": "Verify yourself again for this action (passkey or password).",
+  "mcp_password_invalid": "Wrong password.",
+  "mcp_consent_invalid": "The connection request is invalid. Try connecting again from the client.",
+  "mcp_client_pending": "Your administrator has not approved this client yet.",
+  "mcp_client_blocked": "This client is blocked in the organization.",
+  "mcp_scope_not_allowed": "The organization policy does not allow this permission.",
+  "mcp_expiry_not_allowed": "The duration you chose is longer than the policy allows.",
+  "mcp_approval_closed": "This request is no longer waiting for a decision.",
+  "mcp_undo_unavailable": "This call cannot be undone, or the undo window has passed.",
+  "mcp_undo_stale": "Someone changed the target in the meantime; go back through the version history.",
+  "token_scope": "This token is not allowed to do this. Create a token with the needed scope; account, security and vault actions never work with a token."
+}

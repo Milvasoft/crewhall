@@ -1,0 +1,74 @@
+{
+  "layout": {
+    "poweredBy": "Crewhall ile",
+    "buttonFallback": "Düğme çalışmıyorsa bu bağlantıyı tarayıcına yapıştır:",
+    "sentFor": "Bu e-posta {orgName} adına {email} adresine gönderildi.",
+    "securityFooter": "Bu bir güvenlik e-postasıdır ve hesabınla ilgili her istekte gönderilir."
+  },
+  "invite": {
+    "subject": "{inviterName} seni {orgName} çalışma alanına davet etti",
+    "title": "{inviterName} seni {orgName} çalışma alanına davet etti",
+    "greeting": "Merhaba,",
+    "intro": "{orgName} ekibi dosyalarını, sayfalarını, sohbetlerini ve toplantılarını tek çalışma alanında topluyor. Hesabını oluşturup ekibe katılabilirsin.",
+    "role": "Kurum rolü",
+    "spaces": "Space'ler",
+    "invitedBy": "Davet eden",
+    "cta": "Daveti kabul et",
+    "expires": "Davet {date} tarihine kadar geçerli.",
+    "twoFactorNote": "Kurum politikası gereği hesabını açarken iki adımlı doğrulama kurman istenecek.",
+    "ignore": "Bu daveti beklemiyorsan e-postayı yok sayabilirsin; hesap oluşturulmaz."
+  },
+  "reset": {
+    "subject": "{orgName} şifreni sıfırla",
+    "title": "Şifreni sıfırla",
+    "intro": "Merhaba {name}, hesabın için şifre sıfırlama isteği aldık. Yeni şifre belirlemek için aşağıdaki düğmeyi kullan.",
+    "cta": "Yeni şifre belirle",
+    "expires": "Bağlantı 30 dakika geçerli (saat {time} itibarıyla dolar) ve tek kullanımlık.",
+    "requestedAt": "İstek zamanı",
+    "browser": "Tarayıcı",
+    "ip": "IP adresi",
+    "notMe": "Bu isteği sen yapmadıysan bir şey yapmana gerek yok, şifren değişmez. Bu e-posta sık geliyorsa yöneticine haber ver.",
+    "sessionsNote": "Şifren değişince açık oturumların kapanır. Kasa şifren bundan etkilenmez. {orgName} şifreni asla e-postayla istemez."
+  },
+  "verify": {
+    "subject": "{orgName} e-posta adresini doğrula",
+    "title": "E-posta adresini doğrula",
+    "intro": "Merhaba {name}, {orgName} hesabın için bu e-posta adresinin sana ait olduğunu doğrula.",
+    "cta": "E-postamı doğrula",
+    "expires": "Bağlantı 24 saat geçerli.",
+    "ignore": "Bu hesabı sen açmadıysan e-postayı yok sayabilirsin."
+  },
+  "smtpTest": {
+    "subject": "{appName} e-posta testi",
+    "title": "E-posta ayarları çalışıyor",
+    "intro": "Bu, kurulum sihirbazından gönderilen bir deneme e-postasıdır. Bunu görüyorsan davet ve şifre sıfırlama e-postaları da ulaşacak."
+  },
+  "deliveryTest": {
+    "subject": "{appName} bildirim gönderimi testi",
+    "title": "E-posta gönderimi çalışıyor",
+    "intro": "Bu, Yönetim › Bildirim gönderimi sayfasından gönderilen bir deneme e-postasıdır. Bunu görüyorsan kurumun e-postaları bu yoldan ulaşacak.",
+    "pushTitle": "Bildirim gönderimi testi",
+    "pushBody": "Bunu görüyorsan anlık bildirimler bu cihaza ulaşıyor."
+  },
+  "lock": {
+    "subject": "{orgName} hesabın geçici olarak kilitlendi",
+    "title": "Hesabın geçici olarak kilitlendi",
+    "intro": "Merhaba {name}, hesabına art arda {count} hatalı giriş denemesi yapıldı. Güvenliğin için girişler bir süre durduruldu.",
+    "until": "Kilit saat {time} itibarıyla kalkar.",
+    "lastAttempt": "Son deneme",
+    "ip": "IP adresi",
+    "cta": "Kilidi aç",
+    "ctaNote": "Kilidi hemen açmak için şifreni sıfırla. Passkey ile giriş kilitten etkilenmez.",
+    "notMe": "Bu sen değil miydin? Şifreni değiştir ve kurum yöneticine haber ver."
+  },
+  "lockAdmin": {
+    "subject": "{email} hesabı kilitlendi",
+    "title": "Bir hesap kilitlendi",
+    "intro": "{name} ({email}) hesabına art arda {count} hatalı giriş denemesi yapıldığı için hesap geçici olarak kilitlendi.",
+    "until": "Kilit saat {time} itibarıyla kendiliğinden kalkar.",
+    "lastAttempt": "Son deneme",
+    "ip": "IP adresi",
+    "cta": "Üyeyi görüntüle",
+    "note": "Deneme kişinin kendisine ait değilse şifresini sıfırlamasını iste. Kilidi Yönetim › Üyeler ekranından kaldırabilirsin."
+  }
+}

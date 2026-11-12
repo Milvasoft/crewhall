@@ -1,0 +1,35 @@
+{
+  "name": "@crewhall/plugin-hello",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sample Crewhall plugin: a tab, a home card, /hello, an assistant tool and an event subscription",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "validate": "tsx ../../packages/plugin-sdk/src/cli.ts validate manifest.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@crewhall/api-client": "workspace:*",
+    "@crewhall/plugin-sdk": "workspace:*",
+    "@hono/node-server": "^2.1.5",
+    "esbuild": "^0.25.12",
+    "hono": "^4.13.13",
+    "tsx": "^4.23.15",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@crewhall/config": "workspace:*",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.5",
+    "eslint": "^10.13.0",
+    "jose": "6.2.12",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.71.2",
+    "vitest": "^5.0.5"
+  }
+}

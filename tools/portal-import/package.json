@@ -1,0 +1,38 @@
+{
+  "name": "@crewhall/portal-import",
+  "version": "0.0.0",
+  "private": true,
+  "license": "SEE LICENSE IN ../../LICENSE",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "portal:import": "tsx --env-file-if-exists=../../apps/backend/.env src/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@crewhall/backend": "workspace:*",
+    "@crewhall/db": "workspace:*",
+    "@crewhall/editor": "workspace:*",
+    "@crewhall/shared": "workspace:*",
+    "acorn": "^8.19.0",
+    "drizzle-orm": "^0.45.4",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@crewhall/api-client": "workspace:*",
+    "@crewhall/config": "workspace:*",
+    "@eslint/js": "^10.0.1",
+    "@testcontainers/postgresql": "^12.2.1",
+    "@types/node": "^22.20.5",
+    "eslint": "^10.13.0",
+    "testcontainers": "^12.2.1",
+    "tsx": "^4.23.15",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.71.2",
+    "vitest": "^5.0.5"
+  }
+}

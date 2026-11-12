@@ -1,0 +1,1 @@
+ALTER TABLE "uploads" ADD COLUMN "base_version" integer;

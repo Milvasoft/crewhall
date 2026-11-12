@@ -1,0 +1,10 @@
+{
+  "form_closed": "Bu form şu an yanıt almıyor.",
+  "form_already_answered": "Bu formu zaten yanıtladın; her kişi bir kez yanıtlayabilir.",
+  "form_answers_invalid": "Bazı yanıtlar eksik ya da geçersiz. İşaretli alanları kontrol et.",
+  "form_definition_invalid": "Form tanımında hata var: yinelenen alan, boş seçenek listesi ya da geçersiz koşul.",
+  "form_limit_reached": "Bu space'te form sınırına ulaşıldı.",
+  "form_file_too_large": "Dosya çok büyük; en fazla 10 MB yükleyebilirsin.",
+  "form_file_invalid": "Bu dosya yüklenemedi. Başka bir dosya dene.",
+  "form_destination_invalid": "Seçilen pano, sütun, tablo ya da Drive klasörüne yazma yetkin yok ya da artık yok."
+}

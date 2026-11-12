@@ -1,0 +1,114 @@
+{
+  "ipv4-address-converter": {
+    "name": "IPv4 adres dönüştürücü",
+    "description": "Bir IPv4 adresini noktalı ondalık, tam sayı, onaltılık, sekizlik, ikilik ve IPv6 eşlenmiş biçimler arasında yerelde dönüştür.",
+    "keywords": "ip, adres, dönüştür, ondalık, tam sayı, onaltılık, sekizlik, ikilik, eşlenmiş",
+    "invalid": "Geçersiz adres.",
+    "inputLabel": "IPv4 adresi (noktalı, tam sayı, 0x, 0o ya da 0b)",
+    "placeholder": "192.168.1.1 ya da 3232235777 ya da 0xc0a80101",
+    "rows": {
+      "dotted": "Noktalı ondalık",
+      "decimal": "Ondalık (tam sayı)",
+      "hex": "Onaltılık",
+      "octal": "Sekizlik",
+      "binary": "İkilik",
+      "ipv6": "IPv6 (eşlenmiş)",
+      "ipv6Hex": "IPv6 (onaltılık)"
+    }
+  },
+  "ipv4-range-expander": {
+    "name": "IPv4 aralık genişletici",
+    "description": "Başlangıç ve bitiş IPv4 adreslerini tamamen kapsayan en küçük CIDR bloğunu yerelde bul.",
+    "keywords": "ip, aralık, cidr, genişlet, blok, üst ağ, birleştir, başlangıç, bitiş",
+    "invalid": "Geçersiz aralık.",
+    "startLabel": "Başlangıç adresi",
+    "endLabel": "Bitiş adresi",
+    "rows": {
+      "cidr": "CIDR bloğu",
+      "prefix": "Önek",
+      "netmask": "Ağ maskesi",
+      "blockStart": "Blok başı",
+      "blockEnd": "Blok sonu",
+      "addresses": "Adres sayısı"
+    }
+  },
+  "ipv4-subnet-calculator": {
+    "name": "IPv4 alt ağ hesaplayıcı",
+    "description": "Bir CIDR değerinden ağ, yayın, ağ maskesi, host aralığı ve host sayısını yerelde hesapla.",
+    "keywords": "ip, alt ağ, cidr, ağ maskesi, ağ, yayın, joker maske, host, hesapla, vlsm",
+    "invalid": "Geçersiz girdi.",
+    "inputLabel": "IPv4 adresi / CIDR (ya da adres ve ağ maskesi)",
+    "classD": "D (çoklu yayın)",
+    "classE": "E (ayrılmış)",
+    "yes": "Evet",
+    "no": "Hayır",
+    "rows": {
+      "network": "Ağ adresi",
+      "cidr": "CIDR gösterimi",
+      "netmask": "Ağ maskesi",
+      "wildcard": "Joker maske",
+      "broadcast": "Yayın adresi",
+      "firstHost": "İlk kullanılabilir host",
+      "lastHost": "Son kullanılabilir host",
+      "totalHosts": "Toplam adres",
+      "usableHosts": "Kullanılabilir host",
+      "ipClass": "IP sınıfı",
+      "private": "Özel (RFC 1918)"
+    }
+  },
+  "ipv6-ula-generator": {
+    "name": "IPv6 ULA üretici",
+    "description": "Rastgele bir RFC 4193 benzersiz yerel adres öneki (fd00::/8) ve alt ağını yerelde üret.",
+    "keywords": "ipv6, ula, benzersiz yerel, rfc4193, fd00, önek, alt ağ, üretici, özel",
+    "subnetLabel": "Alt ağ kimliği (0 ile 65535 arası)",
+    "generateNew": "Yeniden üret",
+    "help": "ULA'lar özel IPv6 aralıklarıdır (RFC 4193). Global kimlik rastgele olduğu için ayrı ayrı üretilen önekler pek çakışmaz.",
+    "rows": {
+      "prefix48": "/48 öneki",
+      "prefix64": "/64 ağı",
+      "firstAddress": "İlk adres",
+      "globalId": "Global kimlik",
+      "subnetId": "Alt ağ kimliği"
+    }
+  },
+  "mac-address-generator": {
+    "name": "MAC adresi üretici",
+    "description": "Seçtiğin ayırıcı, harf boyutu ve isteğe bağlı OUI önekiyle rastgele MAC adresleri yerelde üret.",
+    "keywords": "mac, adres, üretici, rastgele, oui, ethernet, donanım, hwaddr",
+    "separator": "Ayırıcı",
+    "separators": {
+      "colon": "İki nokta",
+      "hyphen": "Tire",
+      "dot": "Nokta",
+      "none": "Yok"
+    },
+    "count": "Adet",
+    "prefix": "OUI öneki (isteğe bağlı)",
+    "uppercase": "Büyük harf",
+    "copyAll": "Tümünü kopyala"
+  },
+  "mac-address-lookup": {
+    "name": "MAC adresi sorgulama",
+    "description": "Bir MAC adresinin üreticisini yaygın OUI öneklerinden oluşan gömülü listeden yerelde bul.",
+    "keywords": "mac, adres, sorgula, oui, üretici, satıcı, ethernet, donanım",
+    "invalid": "Geçersiz MAC.",
+    "inputLabel": "MAC adresi ya da OUI",
+    "vendor": "Üretici",
+    "notFound": "Gömülü listede yok. Bu araç tam IEEE kaydını değil, seçilmiş {count} yaygın OUI'yi içerir.",
+    "administration": "Yönetim",
+    "local": "Yerel olarak yönetilen",
+    "universal": "Evrensel olarak yönetilen (OUI)",
+    "cast": "Yayın türü",
+    "multicast": "Çoklu yayın / grup",
+    "unicast": "Tekil yayın"
+  },
+  "random-port": {
+    "name": "Rastgele port üretici",
+    "description": "Yerel servisler için kullanılmayan aralıktan rastgele TCP/UDP port numaraları yerelde seç.",
+    "keywords": "port, rastgele, tcp, udp, üretici, geçici, geliştirme sunucusu",
+    "min": "En az",
+    "max": "En çok",
+    "count": "Adet",
+    "copyAll": "Tümünü kopyala"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "vault_setup_required": "Set up your vault first.",
+  "vault_already_set_up": "Your vault is already set up.",
+  "vault_unlock_failed": "Wrong vault password or key.",
+  "vault_unlock_locked": "Too many wrong attempts. Wait a moment and try again.",
+  "vault_revision_conflict": "Someone else changed this item while you were editing it.",
+  "vault_revision_current": "The current version of an item cannot be deleted on its own.",
+  "vault_key_version_mismatch": "The vault key was rotated meanwhile. Reload the vault and try again.",
+  "vault_rotation_incomplete": "Key rotation was incomplete; the vault may have changed. Try again.",
+  "vault_member_without_keys": "This person has not set up their vault yet.",
+  "vault_personal_not_shareable": "A personal vault cannot be shared.",
+  "vault_last_manager": "A vault needs at least one person with \"Manage\" access.",
+  "vault_cannot_remove_self": "You cannot remove your own access. Ask another person with \"Manage\" access to do it.",
+  "vault_attachment_too_large": "Attachments can be at most 100 MB.",
+  "vault_share_disabled": "Your organization has turned off vault share links.",
+  "vault_share_gone": "This link has expired or has been used. Ask the sender for a new one.",
+  "vault_share_limit": "The duration or number of opens is above your organization's limit.",
+  "vault_breach_disabled": "The leaked password check is turned off in your organization.",
+  "vault_breach_unavailable": "The leak check service cannot be reached right now. Try again later."
+}

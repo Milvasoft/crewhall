@@ -1,0 +1,14 @@
+{
+  "board_column_not_empty": "Sütunda kart var. Silmeden önce kartların taşınacağı sütunu seç.",
+  "board_last_column": "Panonun en az bir sütunu olmalı.",
+  "board_limit_reached": "Pano sınırına ulaşıldı.",
+  "board_label_unknown": "Bu etiket panoda yok.",
+  "board_assignee_not_member": "Bu kişi panoyu göremiyor; önce space'e ekle ya da panoyu paylaş.",
+  "board_sprint_active": "Panoda zaten devam eden bir sprint var. Önce onu kapat.",
+  "board_sprint_state": "Sprint bu durumdayken bu işlem yapılamaz.",
+  "board_link_cycle": "Bu bağlantı bir döngü kurar: kart dolaylı olarak kendini engeller.",
+  "boards_chat_unavailable": "Bu panoda kart sohbetleri kapalı.",
+  "drawing_file_too_large": "Görsel çok büyük. En çok 8 MB olabilir.",
+  "drawing_file_invalid": "Bu görsel okunamadı.",
+  "collab_document_invalid": "Belge adı geçersiz."
+}

@@ -1,0 +1,35 @@
+{
+  "recordingsFolder": "Meeting recordings",
+  "quickMeetingTitle": "Quick call",
+  "online": "Online meeting",
+  "recurrence": {
+    "none": "",
+    "daily": "Every day",
+    "weekdays": "Every weekday",
+    "weekly": "Every week"
+  },
+  "invite": {
+    "subject": "Invitation: {title} · {when}",
+    "title": "{inviterName} invited you to a meeting",
+    "when": "When",
+    "where": "Where",
+    "repeats": "Repeats",
+    "agenda": "Agenda",
+    "people": "People",
+    "cta": "Join the meeting",
+    "memberNote": "Open the link at meeting time; you can try your camera and microphone in the waiting room before joining.",
+    "guestNote": "You are joining as a guest: no account or install needed. Type your name in the browser and {inviterName} lets you in from the waiting room. The link stops working {hours} hours after the meeting.",
+    "icsNote": "Open the attached invite.ics to add it to your calendar.",
+    "guestFooter": "{inviterName} from {orgName} sent this invitation. You don't have an account, so you only get e-mails about this meeting."
+  },
+  "update": {
+    "subject": "Updated: {title} · {when}",
+    "title": "{title} was updated",
+    "body": "{inviterName} changed the meeting details. The attached invitation updates the event in your calendar."
+  },
+  "cancel": {
+    "subject": "Cancelled: {title} · {when}",
+    "title": "{title} was cancelled",
+    "body": "{inviterName} cancelled this meeting. The attached file removes the event from your calendar."
+  }
+}

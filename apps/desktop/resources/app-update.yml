@@ -1,0 +1,3 @@
+# electron-updater reads only the cache folder name from here. The feed itself is set at runtime
+# to the organization's server (src/main/updater.ts), so no address is baked into the build.
+updaterCacheDirName: crewhall-desktop-updater

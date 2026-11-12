@@ -1,0 +1,76 @@
+# Edge server (design doc 17 §11). Certificates come from ACME automatically.
+# One origin for web and api keeps the session cookie first-party and needs no CORS.
+{
+	email {$ACME_EMAIL}
+}
+
+{$HUB_DOMAIN} {
+	encode zstd gzip
+
+	# api: REST (/api/v1), better-auth (/api/auth), theme css, /ws, /mcp and the OAuth 2.1
+	# endpoints of the MCP server (the consent pages /oauth/onay, /oauth/tamam stay on web),
+	# WebDAV (/dav) for Finder, Windows Explorer and rclone, CalDAV (/caldav) and CardDAV (/carddav).
+	# WOPI (/wopi): the office document server reads and saves Drive files there.
+	@backend path /api/* /healthz /readyz /ws /ws/* /mcp /mcp/* /.well-known/* /oauth/authorize /oauth/register /oauth/token /oauth/revoke /dav /dav/* /caldav /caldav/* /carddav /carddav/* /wopi/*
+	handle @backend {
+		reverse_proxy backend:3000
+	}
+
+	# Windows' WebClient probes the site root with OPTIONS before mapping /dav as a drive.
+	@davprobe {
+		method OPTIONS
+		path /
+	}
+	handle @davprobe {
+		reverse_proxy backend:3000
+	}
+
+	# Page collaboration (Hocuspocus WebSocket).
+	handle_path /collab* {
+		reverse_proxy collab:3001
+	}
+
+	handle {
+		reverse_proxy web:8080
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	# The confirm button of the app sign-in hands out a session: no other site may frame it.
+	@appSignIn path /mobile-login /mobile-login/* /mobil-giris /mobil-giris/*
+	header @appSignIn Content-Security-Policy "frame-ancestors 'none'"
+}
+
+# Presigned uploads and downloads go straight to the S3 store (phase 1).
+{$S3_DOMAIN} {
+	reverse_proxy seaweedfs:8333
+}
+
+# Portal site (design 11): Next.js renders and caches pages; the Hub revalidates on publish.
+{$PORTAL_DOMAIN:portal.localhost} {
+	encode zstd gzip
+	reverse_proxy portal:3002
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		-Server
+	}
+}
+
+# Office document server (profile office): the browser loads the editor from here.
+# Without the office profile this site answers 502; leave OFFICE_DOMAIN unset to skip it.
+{$OFFICE_DOMAIN:office.invalid} {
+	reverse_proxy office:80
+	header -Server
+}
+
+# LiveKit signalling for meetings (profile meet; LiveKit runs on the host network).
+# Without the meet profile this site answers 502; leave LK_DOMAIN unset to skip it.
+{$LK_DOMAIN:lk.invalid} {
+	reverse_proxy host.docker.internal:7880
+}

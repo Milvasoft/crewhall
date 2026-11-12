@@ -1,0 +1,72 @@
+/* Styles the old site had through components it did not use yet (Tabs) and site additions. */
+
+/* Docusaurus theme Tabs (CSS module classes kept) */
+.tabList__CuJ {
+  margin-bottom: var(--ifm-leading);
+}
+.tabItem_LNqP {
+  margin-top: 0 !important;
+}
+.tabItem_Ymn6 > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Images with a dark-mode variant */
+html[data-theme='dark'] .themed-light,
+html[data-theme='light'] .themed-dark {
+  display: none !important;
+}
+
+/* Preview (draft mode) bar: only editors coming from the Hub ever see it */
+.portal-preview-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  z-index: calc(var(--ifm-z-index-fixed) + 10);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.45rem 0.6rem 0.45rem 1rem;
+  border-radius: 999px;
+  background: #141516;
+  color: #fff;
+  font-size: 0.85rem;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+.portal-preview-bar a {
+  color: #141516;
+  background: #fbc419;
+  border-radius: 999px;
+  padding: 0.15rem 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* "Maybe you were looking for" on the 404 page */
+.portal-not-found-suggestions {
+  margin-top: 1.5rem;
+}
+.portal-not-found-suggestions ul {
+  padding-left: 1.2rem;
+}
+
+/*
+ * custom.css puts overflow-x: hidden on both html and body, which makes <body> the scroll
+ * container. Docusaurus resets body overflow to "visible" from JS (useLockBodyScroll) right
+ * after hydration, so the window scrolls; do the same in CSS so it holds before hydration too.
+ */
+html body {
+  overflow: visible;
+}
+
+/*
+ * custom.css also puts overflow-x: hidden on #__docusaurus and .main-wrapper. That makes their
+ * overflow-y compute to auto, so they become scroll containers that never scroll, and the home
+ * page's sticky stages would stick to them instead of the viewport. clip hides the horizontal
+ * overflow the same way without creating a scroll container.
+ */
+html #__docusaurus,
+html .main-wrapper {
+  overflow-x: clip;
+}

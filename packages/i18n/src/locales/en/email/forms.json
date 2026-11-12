@@ -1,0 +1,12 @@
+{
+  "cardTitle": "{form} answer",
+  "anonymous": "Anonymous",
+  "driveFile": "{form} · Answers.csv",
+  "csv": {
+    "submittedAt": "Submitted at",
+    "respondent": "Respondent"
+  },
+  "notifications": {
+    "response": "New answer to {title}"
+  }
+}

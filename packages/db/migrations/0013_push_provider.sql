@@ -1,0 +1,1 @@
+ALTER TABLE "push_devices" ADD COLUMN "provider" text DEFAULT 'expo' NOT NULL;

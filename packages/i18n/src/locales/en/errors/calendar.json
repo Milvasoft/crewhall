@@ -1,0 +1,18 @@
+{
+  "calendar_read_only": "You can only view this calendar.",
+  "calendar_not_team": "This is only possible for team calendars.",
+  "calendar_last_owner": "A team calendar needs at least one owner.",
+  "calendar_event_not_recurring": "This event does not repeat.",
+  "calendar_occurrence_unknown": "The series has no event on this date.",
+  "calendar_ics_invalid": "The file is not iCalendar (.ics) or holds no events.",
+  "calendar_integration_off": "Your admin has not switched this calendar connection on yet.",
+  "calendar_oauth_failed": "The account could not be connected. Try again.",
+  "calendar_account_revoked": "Access to this account was withdrawn. Connect it again.",
+  "calendar_external_failed": "Google or Microsoft could not save the change. Try again in a moment.",
+  "calendar_external_unsupported": "This is not possible on a connected calendar. Do it in Google Calendar or Outlook.",
+  "booking_conflict": "This resource is booked at that time. Pick another time or resource.",
+  "booking_unavailable": "This resource can no longer be booked.",
+  "booking_room_unsupported": "Rooms go on one-off timed events only (not recurring, all-day or mirrored calendar events).",
+  "booking_check_in_closed": "Check-in opens 15 minutes before the start and closes when the grace time ends.",
+  "calendar_exchange_auth_failed": "Exchange refused the sign-in. Check the e-mail, username and password."
+}

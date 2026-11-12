@@ -1,0 +1,4 @@
+{
+  "extends": "@crewhall/config/tsconfig/library.json",
+  "include": ["src", "test", "scripts"]
+}

@@ -1,0 +1,10 @@
+{
+  "form_closed": "This form is not taking answers right now.",
+  "form_already_answered": "You already answered this form; each person can answer once.",
+  "form_answers_invalid": "Some answers are missing or invalid. Check the marked fields.",
+  "form_definition_invalid": "The form has a problem: a duplicate field, an empty choice list or an invalid condition.",
+  "form_limit_reached": "This space reached its form limit.",
+  "form_file_too_large": "The file is too large; you can upload up to 10 MB.",
+  "form_file_invalid": "This file could not be uploaded. Try another file.",
+  "form_destination_invalid": "You cannot write to the chosen board, column, table or Drive folder, or it no longer exists."
+}

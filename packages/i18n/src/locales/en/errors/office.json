@@ -1,0 +1,4 @@
+{
+  "office_unavailable": "The document server is not available; Office is not set up or the server cannot be reached.",
+  "office_unsupported": "This file type cannot be opened in Office."
+}

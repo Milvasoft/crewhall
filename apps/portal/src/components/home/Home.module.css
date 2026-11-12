@@ -1,0 +1,330 @@
+/*
+ * Home page frames and shared motion styles.
+ *
+ * Pins and overlaps are pure CSS (sticky stages in tall wrappers, pulled up over the previous
+ * section), keyed on prefers-reduced-motion: no-preference. With reduced motion every section is
+ * a plain block in document flow; without JS the stages still pin and everything stays visible.
+ * The scroll engine only writes transforms, opacity, clip-paths and a few custom properties.
+ */
+
+.home {
+  --page: #0f0f0f;
+  --fg: #ffffff;
+  --fg-muted: rgba(255, 255, 255, 0.74);
+  --void: #050505;
+  --line: rgba(255, 255, 255, 0.1);
+  --tile: rgba(255, 255, 255, 0.04);
+  --brand: #d97b35;
+  --brand-2: #e5a84b;
+  --brand-grad: linear-gradient(135deg, #d97b35 0%, #e5a84b 100%);
+  --navbar: 90px;
+  position: relative;
+  /* the hero runs under the transparent navbar */
+  margin-top: calc(var(--navbar) * -1);
+  color: var(--fg);
+}
+
+:global([data-theme='light']) .home {
+  --page: #f5f5f5;
+  --fg: #141414;
+  --fg-muted: #555555;
+  --void: #d6d6d6;
+  --line: rgba(0, 0, 0, 0.09);
+  --tile: #ffffff;
+}
+
+/* ---------------------------------------------------------------- frames */
+
+.frame {
+  position: relative;
+  /* wrappers overlap; only stages take pointer events (clipped parts do not) */
+  pointer-events: none;
+}
+
+.stage {
+  position: relative;
+  pointer-events: auto;
+  background: var(--page);
+}
+
+.enterLayer {
+  position: relative;
+  height: 100%;
+}
+
+.exitLayer {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background: var(--page);
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fx {
+  position: absolute;
+  inset: 0;
+  z-index: 45;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* a seam of light in the diagonal crack, seen between the doors */
+.fx[data-kind='split']::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 300vmax;
+  height: calc(var(--fx, 0) * 1px);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(217, 123, 53, 0.35) 30%,
+    var(--brand-2) 46%,
+    #fff6e6 50%,
+    var(--brand-2) 54%,
+    rgba(217, 123, 53, 0.35) 70%,
+    transparent 100%
+  );
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* the leading edge of the wipe */
+.fx[data-kind='wipe']::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--fx, 100) * 1%);
+  width: 4px;
+  background: linear-gradient(180deg, var(--brand-2), var(--brand));
+  box-shadow: 0 0 32px 6px rgba(229, 168, 75, 0.55);
+}
+
+/*
+ * The pinned film, on screens wider than a phone. Off with reduced motion, on phones and very
+ * short screens, and when a section's content does not fit its stage on this screen (Home sets
+ * data-static): sections then run in plain document flow at the height of their content. The
+ * engine reads --motion to know whether the stages are pinned and leaves static sections at rest.
+ */
+@media (prefers-reduced-motion: no-preference) and (min-height: 560px) and (min-width: 769px) {
+  .home:not([data-static]),
+  .home:not([data-static]) .frame {
+    --motion: 1;
+  }
+
+  .home:not([data-static]) .frame[data-pinned] {
+    height: calc(var(--len) * 100svh);
+  }
+
+  .home:not([data-static]) .frame[data-enter='arc'],
+  .home:not([data-static]) .frame[data-enter='stack'] {
+    margin-top: -100svh;
+  }
+
+  .home:not([data-static]) .frame[data-enter='iris'],
+  .home:not([data-static]) .frame[data-enter='split'],
+  .home:not([data-static]) .frame[data-enter='wipe'] {
+    margin-top: -200svh;
+  }
+
+  .home:not([data-static]) .frame[data-pinned] > .stage {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+    background: var(--void);
+  }
+
+  /* a stage that cracks open must show what is underneath */
+  .home:not([data-static]) .frame[data-exit='split'] > .stage {
+    background: transparent;
+  }
+}
+
+/* Phones: the film is replaced by a light reveal as each block scrolls into view (CSS only). */
+@media (prefers-reduced-motion: no-preference) and (max-width: 768px) {
+  @supports (animation-timeline: view()) {
+    .home [data-fit] > :not([aria-hidden='true']) {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------- chapter rail */
+
+.rail {
+  display: none;
+}
+
+@media (min-width: 1101px) and (pointer: fine) {
+  .rail {
+    position: fixed;
+    right: 22px;
+    top: 50%;
+    z-index: 200;
+    display: block;
+    transform: translateY(-50%);
+    opacity: var(--visible, 1);
+    transition: opacity 0.5s ease;
+  }
+}
+
+.rail ol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.railTrack {
+  position: absolute;
+  right: 4.5px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: color-mix(in srgb, var(--fg) 22%, transparent);
+}
+
+.railFill {
+  position: absolute;
+  inset: 0;
+  background: var(--brand-grad);
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+}
+
+.rail a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  height: 10px;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.railDot {
+  position: relative;
+  flex: none;
+  width: 10px;
+  height: 10px;
+  box-sizing: border-box;
+  border: 1.5px solid color-mix(in srgb, var(--fg) 55%, transparent);
+  border-radius: 50%;
+  background: var(--page);
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.rail a[aria-current] .railDot {
+  border-color: var(--brand-2);
+  background: var(--brand);
+  transform: scale(1.35);
+  box-shadow: 0 0 12px rgba(229, 168, 75, 0.7);
+}
+
+.railLabel {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--page) 82%, transparent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(8px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.rail a:hover .railLabel,
+.rail a:focus-visible .railLabel {
+  opacity: 1;
+  transform: none;
+}
+
+.rail a:hover .railDot {
+  border-color: var(--brand-2);
+}
+
+/* ---------------------------------------------------------------- split text */
+
+.mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.revealWord {
+  --k: clamp(0, calc((var(--reveal, 1) * (var(--n) + 3) - var(--i)) / 3), 1);
+  display: inline-block;
+  transform: translateY(calc((1 - var(--k)) * 110%)) rotate(calc((1 - var(--k)) * 7deg));
+  transform-origin: 0 100%;
+}
+
+.inkWord {
+  --k: clamp(0, calc((var(--ink, 1) * (var(--n) + 8) - var(--i)) / 8), 1);
+  --hot: calc(var(--k) * (1 - var(--k)) * 4);
+  opacity: calc(0.18 + 0.82 * var(--k));
+  color: color-mix(in srgb, var(--brand-2) calc(var(--hot) * 100%), currentColor);
+}
+
+/* ---------------------------------------------------------------- shared section bits */
+
+.sectionTitle {
+  margin: 0;
+  font-size: clamp(2rem, 4.2vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--fg);
+}
+
+.sectionText {
+  margin: 0;
+  font-size: clamp(1rem, 1.25vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--fg);
+}
+
+.eyebrowLine {
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-bottom: 22px;
+  border-radius: 3px;
+  background: var(--brand-grad);
+}

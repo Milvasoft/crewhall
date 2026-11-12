@@ -1,0 +1,749 @@
+/* Wiki page and editor (design 05). Uses the kit tokens; works in both themes. */
+
+.wk-prose {
+  color: var(--fg);
+  font-size: 16px;
+  line-height: 1.65;
+  outline: none;
+  word-wrap: break-word;
+}
+.wk-prose:focus,
+.wk-prose:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+.wk-small .wk-prose {
+  font-size: 14.5px;
+}
+.wk-prose > * + * {
+  margin-top: 0.6em;
+}
+.wk-prose p {
+  margin: 0;
+}
+.wk-prose h1,
+.wk-prose h2,
+.wk-prose h3 {
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-top: 1.4em;
+}
+.wk-prose h1 {
+  font-size: 1.75em;
+}
+.wk-prose h2 {
+  font-size: 1.4em;
+}
+.wk-prose h3 {
+  font-size: 1.15em;
+}
+.wk-prose a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: var(--fg3);
+  text-underline-offset: 3px;
+}
+.wk-prose a[href^='/p/'] {
+  font-weight: 600;
+  text-decoration-color: var(--accent);
+}
+.wk-prose ul,
+.wk-prose ol {
+  padding-left: 1.4em;
+}
+.wk-prose ul {
+  list-style: disc;
+}
+.wk-prose ol {
+  list-style: decimal;
+}
+.wk-prose ul[data-type='taskList'] {
+  list-style: none;
+  padding-left: 0.2em;
+}
+.wk-prose ul[data-type='taskList'] li {
+  display: flex;
+  gap: 0.5em;
+  align-items: flex-start;
+}
+.wk-prose ul[data-type='taskList'] li > label {
+  margin-top: 0.3em;
+}
+.wk-prose ul[data-type='taskList'] li > label input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+.wk-prose ul[data-type='taskList'] li[data-checked='true'] > div {
+  color: var(--fg3);
+  text-decoration: line-through;
+}
+.wk-prose ul[data-type='taskList'] li > div {
+  flex: 1;
+  min-width: 0;
+}
+.wk-prose blockquote {
+  border-left: 3px solid var(--line2);
+  padding-left: 1em;
+  color: var(--fg2);
+}
+.wk-prose code {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 0.88em;
+  background: var(--bg2);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+.wk-prose pre {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.wk-prose pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+.wk-prose hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 1.6em 0;
+}
+.wk-prose img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+.wk-prose .wk-table,
+.wk-render table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14.5px;
+  table-layout: fixed;
+}
+.wk-prose .tableWrapper {
+  overflow-x: auto;
+}
+.wk-prose th,
+.wk-prose td,
+.wk-render th,
+.wk-render td {
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  vertical-align: top;
+  text-align: left;
+}
+.wk-prose th,
+.wk-render th {
+  background: var(--bg2);
+  font-weight: 650;
+}
+.wk-prose .selectedCell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  pointer-events: none;
+}
+.wk-prose td,
+.wk-prose th {
+  position: relative;
+}
+.wk-prose p.is-empty:first-child::before,
+.wk-prose .is-empty::before {
+  content: attr(data-placeholder);
+  color: var(--fg3);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+.wk-prose .ProseMirror-selectednode {
+  outline: 2px solid var(--accent);
+  border-radius: 8px;
+}
+.wk-dropcursor {
+  background: var(--accent);
+}
+
+/* Callout */
+.wk-callout {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+}
+.wk-callout-icon {
+  margin-top: 3px;
+  color: var(--fg2);
+  flex-shrink: 0;
+}
+.wk-callout-info,
+.wk-callout-note {
+  border-left: 3px solid var(--info);
+}
+.wk-callout-tip {
+  border-left: 3px solid var(--success);
+}
+.wk-callout-warning {
+  border-left: 3px solid var(--warning);
+}
+.wk-callout-danger {
+  border-left: 3px solid var(--danger);
+}
+.wk-callout-title {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.wk-callout-body > div > * + * {
+  margin-top: 0.4em;
+}
+
+/* Toggle */
+.wk-toggle-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.wk-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  color: var(--fg2);
+}
+.wk-toggle-btn:hover {
+  background: var(--bg2);
+}
+.wk-toggle-summary {
+  flex: 1;
+  min-width: 0;
+  font-weight: 650;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--fg);
+  font-size: inherit;
+}
+.wk-toggle-body {
+  padding-left: 26px;
+  margin-top: 4px;
+}
+.wk-toggle-closed .wk-toggle-body {
+  display: none;
+}
+
+/* Mermaid */
+.wk-mermaid {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.wk-mermaid-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12.5px;
+  color: var(--fg2);
+}
+.wk-mermaid-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+.wk-tab {
+  padding: 2px 10px;
+  border-radius: 6px;
+}
+.wk-tab-on {
+  background: var(--capsule);
+  color: var(--fg);
+  font-weight: 650;
+}
+.wk-mermaid-code {
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+.wk-mermaid-svg {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+.wk-mermaid-svg svg {
+  max-width: 100%;
+  height: auto;
+}
+.wk-mermaid-error {
+  padding: 6px 12px;
+  font-size: 12.5px;
+  color: var(--danger);
+}
+.wk-hidden {
+  display: none;
+}
+.wk-muted {
+  color: var(--fg3);
+  font-size: 13.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+}
+
+/* Embed */
+.wk-embed-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: var(--surface);
+}
+.wk-embed-selected .wk-embed-card {
+  outline: 2px solid var(--accent);
+}
+.wk-embed-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--bg2);
+  color: var(--fg2);
+  flex-shrink: 0;
+}
+.wk-embed-thumb {
+  width: 56px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.wk-embed-name {
+  display: block;
+  font-weight: 650;
+  font-size: 14.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wk-embed-meta {
+  display: block;
+  font-size: 12.5px;
+  color: var(--fg3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wk-embed-open {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: var(--bg2);
+  text-decoration: none !important;
+}
+
+/* Mentions: yellow (design 14 "Vurgu"). */
+.wk-mention {
+  border-radius: 5px;
+  padding: 0 3px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.wk-mention-user {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+.wk-mention-node,
+.wk-mention-date {
+  background: var(--bg2);
+}
+
+/* Comment anchors (design 5.9): neutral underline, darker when active. */
+.wk-comment {
+  border-bottom: 2px solid color-mix(in srgb, var(--fg3) 60%, transparent);
+  background: color-mix(in srgb, var(--fg3) 8%, transparent);
+  cursor: pointer;
+}
+.wk-comment-active {
+  border-bottom-color: var(--fg);
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/* Collaboration carets (design 5.8). */
+.collaboration-carets__caret {
+  border-left: 2px solid;
+  border-right: none;
+  margin-left: -1px;
+  margin-right: -1px;
+  pointer-events: none;
+  position: relative;
+  word-break: normal;
+}
+.collaboration-carets__label {
+  border-radius: 4px 4px 4px 0;
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 650;
+  left: -2px;
+  line-height: 1.3;
+  padding: 1px 5px;
+  position: absolute;
+  top: -1.4em;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Version diff (design 5.10). */
+.wk-add {
+  background: color-mix(in srgb, var(--success) 18%, transparent);
+  border-radius: 4px;
+}
+.wk-del {
+  background: color-mix(in srgb, var(--danger) 14%, transparent);
+  text-decoration: line-through;
+  border-radius: 4px;
+  color: var(--fg2);
+}
+.wk-block-add {
+  box-shadow: -10px 0 0 color-mix(in srgb, var(--success) 50%, transparent);
+  background: color-mix(in srgb, var(--success) 8%, transparent);
+}
+.wk-block-del {
+  box-shadow: -10px 0 0 color-mix(in srgb, var(--danger) 50%, transparent);
+  background: color-mix(in srgb, var(--danger) 6%, transparent);
+  text-decoration: line-through;
+  color: var(--fg2);
+}
+
+/* Static render of a stored document (versions). */
+.wk-render > * + * {
+  margin-top: 0.6em;
+}
+
+/* Search snippets */
+.wk-snippet mark {
+  background: color-mix(in srgb, var(--accent) 40%, transparent);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 1px;
+}
+
+@media print {
+  .wk-noprint {
+    display: none !important;
+  }
+}
+
+/* Page body on @crewhall/editor: the document is the page, so no focus ring around it. */
+.wk-editor .ch-editor-content:focus,
+.wk-editor .ch-editor-content:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* "Yorum" in the selection toolbar (icon + label). */
+.wk-editor .ch-tool.wk-comment-tool {
+  width: auto;
+  gap: 6px;
+  padding: 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Page option "Küçük metin". */
+.wk-small .ch-editor-content {
+  font-size: 14.5px;
+}
+
+/* "Tamamlananları gizle": the person's own view; an open sub-task keeps its parent visible. */
+.wk-hide-done
+  .ch-editor
+  li[data-type='taskItem'][data-checked='true']:not(
+    :has(li[data-type='taskItem'][data-checked='false'])
+  ) {
+  display: none;
+}
+
+.wk-render-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.wk-render-columns > * {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+/* The page, centred, and its outline in the free column on the right. */
+.wk-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 720px) minmax(0, 1fr);
+}
+.wk-page > article {
+  grid-column: 2;
+  grid-row: 1;
+}
+.wk-page--full {
+  grid-template-columns: 0 minmax(0, 1fr) 240px;
+}
+@media (max-width: 900px) {
+  .wk-page--full {
+    grid-template-columns: 0 minmax(0, 1fr) 0;
+  }
+}
+/* A public page shares the window with its details panel: keep at least the outline's small lines. */
+.wk-page--public:has(> .wk-outline-col) {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 720px) minmax(32px, 1fr);
+}
+@media print {
+  .wk-page {
+    display: block;
+  }
+}
+
+/* The column's own width decides how the outline looks; only this column is a container. */
+.wk-outline-col {
+  grid-column: 3;
+  grid-row: 1;
+  min-width: 0;
+  container-type: inline-size;
+}
+.wk-outline {
+  display: none;
+  position: sticky;
+  top: 16px;
+  margin-top: 72px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding: 0 8px;
+  max-width: 240px;
+  overscroll-behavior: contain;
+}
+.wk-outline-title {
+  margin-bottom: 6px;
+  padding-left: 8px;
+}
+.wk-outline-item {
+  display: block;
+  width: 100%;
+  padding: 4px 8px 4px calc(8px + var(--wk-outline-depth, 0) * 12px);
+  border-radius: 6px;
+  border-left: 2px solid transparent;
+  color: var(--fg2);
+  font-size: 13px;
+  line-height: 18px;
+  text-align: left;
+}
+.wk-outline-item:hover {
+  background: var(--bg2);
+  color: var(--fg);
+}
+.wk-outline-item[aria-current='location'] {
+  border-left-color: var(--accent);
+  color: var(--fg);
+  font-weight: 700;
+}
+.wk-outline-text {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+@container (min-width: 170px) {
+  .wk-outline {
+    display: block;
+  }
+}
+/* Too narrow for the text: small lines at the edge, the full outline on hover or focus. */
+@container (min-width: 32px) and (max-width: 169.98px) {
+  .wk-outline {
+    display: block;
+    position: sticky;
+    width: 28px;
+    margin-left: auto;
+    padding: 0;
+    overflow: hidden;
+  }
+  .wk-outline-title {
+    display: none;
+  }
+  .wk-outline-item {
+    height: 12px;
+    padding: 5px 0 5px calc(var(--wk-outline-depth, 0) * 5px);
+    border: 0;
+  }
+  .wk-outline-item:hover {
+    background: none;
+  }
+  .wk-outline-text {
+    display: block;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--line2);
+    color: transparent;
+  }
+  .wk-outline-item[aria-current='location'] .wk-outline-text {
+    background: var(--accent);
+  }
+  .wk-outline:hover,
+  .wk-outline:focus-within {
+    z-index: 5;
+    width: 240px;
+    margin-left: calc(100% - 240px);
+    padding: 8px;
+    overflow-y: auto;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.18);
+  }
+  .wk-outline:hover .wk-outline-title,
+  .wk-outline:focus-within .wk-outline-title {
+    display: block;
+  }
+  .wk-outline:hover .wk-outline-item,
+  .wk-outline:focus-within .wk-outline-item {
+    height: auto;
+    padding: 4px 8px 4px calc(8px + var(--wk-outline-depth, 0) * 12px);
+  }
+  .wk-outline:hover .wk-outline-item:hover,
+  .wk-outline:focus-within .wk-outline-item:hover {
+    background: var(--bg2);
+  }
+  .wk-outline:hover .wk-outline-text,
+  .wk-outline:focus-within .wk-outline-text {
+    display: -webkit-box;
+    height: auto;
+    background: none;
+    color: inherit;
+  }
+}
+
+/* A table of the Tables module inside a page. */
+.wk-table-embed {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: var(--surface);
+}
+.wk-embed-selected .wk-table-embed {
+  outline: 2px solid var(--accent);
+}
+.wk-table-embed-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.wk-table-embed-views {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.wk-table-embed-views button {
+  padding: 2px 8px;
+  border-radius: 6px;
+  color: var(--fg2);
+  font-size: 12.5px;
+}
+.wk-table-embed-views button:hover {
+  background: var(--bg2);
+}
+.wk-table-embed-views button.is-active {
+  background: var(--bg2);
+  color: var(--fg);
+  font-weight: 650;
+}
+.wk-table-embed-scroll {
+  overflow-x: auto;
+}
+.wk-table-embed table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.wk-table-embed th,
+.wk-table-embed td {
+  max-width: 240px;
+  overflow: hidden;
+  padding: 5px 8px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wk-table-embed th {
+  color: var(--fg3);
+  font-size: 12px;
+  font-weight: 650;
+}
+.wk-table-embed tbody tr:last-child td {
+  border-bottom: 0;
+}
+.wk-table-embed td a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+}
+.wk-table-embed td a:hover {
+  text-decoration: underline;
+}
+.wk-table-embed-more {
+  font-size: 12.5px;
+}
+
+/* The card about the page a link leads to. */
+.wk-link-preview {
+  position: fixed;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 320px;
+  max-width: calc(100vw - 16px);
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.18);
+}
+.wk-link-preview-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14.5px;
+  font-weight: 650;
+}
+.wk-link-preview-text {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--fg2);
+  font-size: 13px;
+  line-height: 18px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+.wk-link-preview-meta {
+  color: var(--fg3);
+  font-size: 12px;
+}

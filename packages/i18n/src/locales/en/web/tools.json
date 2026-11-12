@@ -1,0 +1,145 @@
+{
+  "title": "Tools",
+  "home": {
+    "subtitle": "Developer tools; all run in your browser, nothing goes to a server.",
+    "search": "Search tools",
+    "favorites": "Favorites",
+    "recent": "Recently used",
+    "all": "All tools",
+    "popular": "Popular",
+    "noResults": "No tool matches \"{q}\".",
+    "count": "{count, plural, one {# tool} other {# tools}}",
+    "noFavorites": "Star a tool to see it here."
+  },
+  "nav": {
+    "home": "All tools",
+    "categories": "Categories",
+    "favorites": "Favorites",
+    "recent": "Recently used"
+  },
+  "categories": {
+    "json": {
+      "name": "JSON",
+      "description": "Inspect, convert and validate JSON."
+    },
+    "dotnet": {
+      "name": ".NET",
+      "description": "C#, configuration and .NET workflows."
+    },
+    "encoding": {
+      "name": "Encoding",
+      "description": "Base64, URL and other encodings."
+    },
+    "security": {
+      "name": "Security",
+      "description": "Tokens, hashes, keys and generators."
+    },
+    "text": {
+      "name": "Text",
+      "description": "Compare, transform and inspect text."
+    },
+    "devutils": {
+      "name": "Developer utilities",
+      "description": "Regex, cron, IDs and everyday helpers."
+    },
+    "sql": {
+      "name": "SQL",
+      "description": "Format and convert SQL."
+    },
+    "datetime": {
+      "name": "Date and time",
+      "description": "Timestamps, cron and conversions."
+    },
+    "data": {
+      "name": "Data",
+      "description": "CSV, fake data and tabular tools."
+    },
+    "images": {
+      "name": "Images",
+      "description": "Compress, encode and generate images."
+    },
+    "network": {
+      "name": "Network",
+      "description": "IP addresses, subnets and MAC lookups."
+    },
+    "web": {
+      "name": "Web",
+      "description": "URLs, query strings and frontend helpers."
+    }
+  },
+  "common": {
+    "input": "Input",
+    "output": "Output",
+    "text": "Text",
+    "result": "Result",
+    "copy": "Copy",
+    "copied": "Copied",
+    "clear": "Clear",
+    "sample": "Sample",
+    "swap": "Swap",
+    "download": "Download",
+    "upload": "Choose file",
+    "generate": "Generate",
+    "reset": "Reset",
+    "format": "Format",
+    "minify": "Minify",
+    "convert": "Convert",
+    "options": "Options",
+    "error": "Error",
+    "loading": "Loading tool…",
+    "expand": "Expand",
+    "collapse": "Collapse",
+    "expandPanel": "Expand panel",
+    "collapsePanel": "Collapse panel",
+    "dropImage": "Drop an image here, or click to choose",
+    "crashed": "This tool crashed",
+    "crashedHint": "Change the input and try again. Reload the page if it keeps happening.",
+    "retry": "Try again",
+    "favoriteAdd": "Add to favorites",
+    "favoriteRemove": "Remove from favorites",
+    "breadcrumb": "Breadcrumb",
+    "execution": {
+      "local": "Local",
+      "localDetail": "Runs in your browser; the input never leaves your device.",
+      "server": "Server",
+      "serverDetail": "This operation requires server processing.",
+      "hybrid": "Hybrid",
+      "hybridDetail": "Mostly local; may optionally use the server."
+    },
+    "expandNamed": "Expand {name}"
+  },
+  "send": {
+    "menu": "Send",
+    "toTool": "To another tool",
+    "toChat": "To a chat",
+    "toPage": "As a new page",
+    "toDrive": "Save to Drive",
+    "chatTitle": "Send to a chat",
+    "chatSearch": "Search chats",
+    "chatSend": "Send",
+    "chatSent": "Sent to {name}",
+    "pageTitle": "Save as a new page",
+    "pageName": "Page name",
+    "pageSpace": "Space",
+    "pageCreate": "Create page",
+    "pageCreated": "Page created",
+    "driveTitle": "Save to Drive",
+    "driveName": "File name",
+    "driveSave": "Save here",
+    "driveSaved": "{name} saved to Drive",
+    "empty": "There is no output to send.",
+    "none": "No results.",
+    "tooLong": "The output is too long for a chat message (at most {max} characters); try saving it to Drive."
+  },
+  "open": {
+    "fromDrive": "Open in a tool",
+    "pick": "Choose a tool",
+    "loading": "Loading the file…",
+    "failed": "The file could not be opened.",
+    "fromFile": "From {name}"
+  },
+  "palette": {
+    "group": "Tools",
+    "open": "Open {name}"
+  }
+}

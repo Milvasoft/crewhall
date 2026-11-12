@@ -1,0 +1,213 @@
+{
+  "aes": {
+    "name": "AES Encrypt / Decrypt",
+    "description": "Encrypt or decrypt text with AES-256-GCM and a passphrase (PBKDF2), all local.",
+    "keywords": "aes, encrypt, decrypt, gcm, pbkdf2, cipher, symmetric, passphrase",
+    "encrypt": "Encrypt",
+    "decrypt": "Decrypt",
+    "passphrase": "Passphrase",
+    "plaintext": "Plaintext",
+    "ciphertext": "Ciphertext (Base64)",
+    "note": "AES-256-GCM, key derived with PBKDF2 (100k iterations). Encrypted locally. Keep your passphrase safe, it cannot be recovered.",
+    "errors": {
+      "passphraseRequired": "A passphrase is required.",
+      "tooShort": "Ciphertext is too short or malformed.",
+      "decryptFailed": "Decryption failed: wrong passphrase or corrupted data.",
+      "failed": "Failed."
+    }
+  },
+  "basic-auth-generator": {
+    "name": "Basic Auth Generator",
+    "description": "Turn a username and password into an HTTP Basic Authorization header, locally.",
+    "keywords": "basic auth, authorization, header, credentials, username, password, curl, base64",
+    "username": "Username",
+    "password": "Password",
+    "header": "Authorization header",
+    "token": "Credential token",
+    "note": "Basic auth only Base64-encodes credentials, it does not encrypt them. Always send it over HTTPS."
+  },
+  "bcrypt-tool": {
+    "name": "Bcrypt Hash & Verify",
+    "description": "Hash a password with bcrypt at a chosen cost, or verify one against a hash, locally.",
+    "keywords": "bcrypt, hash, password, verify, salt, cost, rounds, compare",
+    "hash": "Hash",
+    "verify": "Verify",
+    "password": "Password",
+    "cost": "Cost factor: {value} ({count} rounds)",
+    "hashing": "Hashing…",
+    "hashNote": "Higher cost is slower to compute and to attack. Each hash includes its own random salt, so hashing the same password twice differs.",
+    "bcryptHash": "Bcrypt hash",
+    "match": "Password matches the hash ✓",
+    "noMatch": "No match."
+  },
+  "bip39-generator": {
+    "name": "BIP39 Mnemonic Generator",
+    "description": "Generate and validate BIP39 recovery mnemonics with entropy and seed, locally.",
+    "keywords": "bip39, mnemonic, seed, phrase, recovery, wallet, crypto, entropy, generator",
+    "length": "Length",
+    "wordsOption": "{count} words ({bits}-bit)",
+    "generateNew": "Generate new",
+    "mnemonic": "Mnemonic",
+    "entropy": "Entropy (hex)",
+    "passphrase": "Passphrase (optional, BIP39 \"25th word\")",
+    "seed": "Seed (hex, 512-bit)",
+    "validate": "Validate a mnemonic",
+    "validatePlaceholder": "Paste a mnemonic to check its checksum…",
+    "valid": "Valid mnemonic ✓",
+    "invalid": "Invalid: wrong words or checksum.",
+    "note": "Generated locally with the Web Crypto API. Still, never enter a mnemonic that protects real funds into any website."
+  },
+  "hash-generator": {
+    "name": "Hash & HMAC Generator",
+    "description": "Compute SHA-1/256/384/512 digests and HMACs in your browser via Web Crypto.",
+    "keywords": "hash, sha, sha256, sha512, hmac, digest, checksum, signature",
+    "algorithm": "Algorithm",
+    "secretKey": "Secret key",
+    "hmacKey": "HMAC key",
+    "placeholder": "Text to hash…",
+    "digest": "Digest",
+    "bits": "{bits} bits",
+    "note": "Computed locally with Web Crypto. MD5 is not offered (unsupported by Web Crypto and cryptographically broken)."
+  },
+  "id-generator": {
+    "name": "ID Generator",
+    "description": "Generate GUIDs, UUID v4, time-sortable UUID v7 and ULIDs locally, in bulk.",
+    "keywords": "guid, uuid, uuidv4, uuidv7, ulid, id, identifier, random, unique",
+    "notes": {
+      "uuid4": "Random",
+      "uuid7": "Time-sortable",
+      "ulid": "Time-sortable, Base32",
+      "guid": ".NET style, uppercase"
+    },
+    "count": "Count",
+    "uppercase": "Uppercase",
+    "hyphens": "Hyphens",
+    "total": "{count, plural, one {# ID} other {# IDs}}",
+    "copyAll": "Copy all"
+  },
+  "jwt-decoder": {
+    "name": "JWT Decoder",
+    "description": "Decode a JSON Web Token's header and payload and inspect its claims, locally.",
+    "keywords": "jwt, token, json web token, bearer, auth, claims, decode",
+    "placeholder": "Paste a JSON Web Token…",
+    "notVerified": "Decoded locally. The signature is <b>not</b> verified: this shows the token contents, not that it is trusted.",
+    "header": "Header",
+    "payload": "Payload",
+    "claims": "Claims",
+    "expired": "Expired",
+    "notExpired": "Not expired",
+    "status": {
+      "expired": "expired",
+      "valid": "valid",
+      "notYetValid": "not yet valid"
+    },
+    "errors": {
+      "segments": "A JWT has 2 or 3 dot-separated segments.",
+      "header": "Header is not valid Base64URL-encoded JSON.",
+      "payload": "Payload is not valid Base64URL-encoded JSON.",
+      "invalid": "Invalid JWT"
+    }
+  },
+  "password-generator": {
+    "name": "Password & Key Generator",
+    "description": "Generate strong random passwords and encryption keys (hex/base64) in your browser.",
+    "keywords": "password, key, generator, random, secret, encryption key, token, entropy",
+    "modes": {
+      "password": "Password",
+      "key": "Key"
+    },
+    "length": "Length:",
+    "sets": {
+      "lowercase": "Lowercase",
+      "uppercase": "Uppercase",
+      "digits": "Digits",
+      "symbols": "Symbols",
+      "avoidAmbiguous": "Avoid ambiguous"
+    },
+    "entropy": "~{bits} bits of entropy each",
+    "size": "Size",
+    "bitsOption": "{bits}-bit",
+    "encoding": "Encoding",
+    "count": "Count",
+    "total": "{count} generated",
+    "copyAll": "Copy all",
+    "noCharset": "Select at least one character set."
+  },
+  "password-strength-analyser": {
+    "name": "Password Strength Analyser",
+    "description": "Estimate a password's entropy and crack time from its character sets, locally.",
+    "keywords": "password, strength, entropy, crack, time, analyze, analyser, secure, bits",
+    "password": "Password",
+    "placeholder": "Type or paste a password…",
+    "hide": "Hide",
+    "show": "Show",
+    "score": {
+      "veryWeak": "Very weak",
+      "weak": "Weak",
+      "fair": "Fair",
+      "strong": "Strong",
+      "veryStrong": "Very strong"
+    },
+    "entropyLine": "{bits} bits of entropy",
+    "crackTime": "Crack time:",
+    "time": {
+      "instantly": "instantly",
+      "centuries": "centuries",
+      "second": "{count, plural, one {# second} other {# seconds}}",
+      "minute": "{count, plural, one {# minute} other {# minutes}}",
+      "hour": "{count, plural, one {# hour} other {# hours}}",
+      "day": "{count, plural, one {# day} other {# days}}",
+      "year": "{count, plural, one {# year} other {# years}}"
+    },
+    "stats": {
+      "length": "Length",
+      "pool": "Charset pool",
+      "entropy": "Entropy",
+      "score": "Score"
+    },
+    "bits": "{bits} bits",
+    "warnings": {
+      "short": "Shorter than 8 characters.",
+      "noUpper": "No uppercase letters.",
+      "noDigits": "No digits.",
+      "noSymbols": "No symbols.",
+      "repeated": "A single repeated character.",
+      "digitsOnly": "Digits only."
+    },
+    "note": "Entropy assumes random characters. A memorable phrase with dictionary words is weaker than its raw entropy suggests. Nothing is sent anywhere."
+  },
+  "rsa-keygen": {
+    "name": "RSA Key Generator",
+    "description": "Generate an RSA public/private key pair in PEM format, in your browser via Web Crypto.",
+    "keywords": "rsa, key, keypair, pem, public key, private key, generate",
+    "modulus": "Modulus",
+    "bitsOption": "{bits}-bit",
+    "generating": "Generating…",
+    "generate": "Generate key pair",
+    "publicKey": "Public key (PEM)",
+    "privateKey": "Private key (PEM)",
+    "failed": "Failed to generate keys.",
+    "note": "Generated locally with Web Crypto (RSA-OAEP, SHA-256). Your private key never leaves the browser."
+  },
+  "totp-generator": {
+    "name": "TOTP Generator & Validator",
+    "description": "Generate time-based one-time codes (RFC 6238) from a secret, with a QR code and validator, locally.",
+    "keywords": "totp, otp, 2fa, mfa, authenticator, one-time, code, hotp, rfc6238, google authenticator",
+    "secret": "Secret (base32)",
+    "random": "Random",
+    "digits": "Digits",
+    "period": "Period (s)",
+    "algorithm": "Algorithm",
+    "currentCode": "Current code",
+    "refreshesIn": "Refreshes in {seconds}s",
+    "qrAlt": "otpauth QR code",
+    "validate": "Validate a code",
+    "validatePlaceholder": "Enter a {count}-digit code…",
+    "valid": "Valid: matches the current window ✓",
+    "invalid": "Does not match.",
+    "errors": {
+      "invalidSecret": "Invalid base32 secret.",
+      "computeFailed": "Could not compute code."
+    }
+  }
+}

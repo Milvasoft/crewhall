@@ -1,0 +1,302 @@
+{
+  "untitled": "Untitled",
+  "nav": {
+    "search": "Search pages",
+    "recent": "Recent",
+    "favorites": "Favorites",
+    "pages": "Pages",
+    "loading": "Loading…",
+    "empty": "No pages yet",
+    "newPage": "New page",
+    "templates": "Templates",
+    "trash": "Trash",
+    "expand": "Expand {name}",
+    "collapse": "Collapse {name}",
+    "addChild": "Add a page under {name}"
+  },
+  "tree": {
+    "openNewTab": "Open in new tab",
+    "addChild": "Add sub page",
+    "noCreate": "You may not add pages in this space"
+  },
+  "home": {
+    "title": "Pages",
+    "import": "Import",
+    "templates": "Start from a template",
+    "recent": "Recently changed",
+    "emptyTitle": "No pages in this space yet",
+    "emptyBody": "Keep your team's knowledge in one place: open a blank page, start from a template or import Markdown files."
+  },
+  "page": {
+    "title": "Page title",
+    "share": "Share",
+    "menu": "Page menu",
+    "edited": "Edited by {name} · {when}",
+    "reading": "{minutes} min read",
+    "comments": "{count, plural, one {# comment} other {# comments}}",
+    "addIcon": "Add icon",
+    "addCover": "Add cover",
+    "addComment": "Add comment",
+    "changeIcon": "Change icon",
+    "removeIcon": "Remove icon",
+    "coverPick": "Cover: {name}",
+    "coverRemove": "Remove cover",
+    "lockedBanner": "This page is locked. Writing is off to prevent accidental changes.",
+    "unlock": "Unlock",
+    "inTrash": "This page is in the trash. Restore it from the Drive trash.",
+    "collabDenied": "The collaboration server did not let you open this page. Reload the page.",
+    "startTemplate": "Start from a template",
+    "startImport": "Import (Markdown)",
+    "startBlank": "Continue blank",
+    "children": "Sub-pages",
+    "copyName": "{name} (copy)",
+    "trashed": "Page moved to the trash.",
+    "presence": "{count} more people on this page",
+    "hideDone": "Hide completed ({count})",
+    "showDone": "Show completed ({count})"
+  },
+  "status": {
+    "connecting": "Connecting",
+    "saving": "Saving",
+    "saved": "Saved",
+    "offline": "Offline · {count, plural, =0 {changes kept on this device} one {# change on this device} other {# changes on this device}}",
+    "readOnly": "Read-only",
+    "denied": "No access",
+    "local": "Local preview"
+  },
+  "editor": {
+    "label": "Page content",
+    "placeholder": "Start writing or type / for commands…",
+    "comment": "Comment",
+    "embedPick": "Choose what to embed",
+    "embedInsert": "Embed",
+    "videoPick": "Choose a video to play",
+    "embedLoading": "Loading…",
+    "embedNoAccess": "No access",
+    "embedDeleted": "Deleted item",
+    "embedOpen": "Open",
+    "embedType": {
+      "file": "File",
+      "folder": "Folder",
+      "page": "Page",
+      "board": "Board",
+      "drawing": "Drawing"
+    },
+    "imagesFolder": "Page images",
+    "attachmentsFolder": "Page attachments"
+  },
+  "slash": {
+    "none": "No results",
+    "navigate": "navigate",
+    "insert": "insert",
+    "close": "close",
+    "embed": "Embed",
+    "embedDesc": "Embed a Drive file, board or drawing in the page",
+    "subpage": "Sub-page",
+    "subpageDesc": "Create a page under this one and link it",
+    "pageLink": "Link to page",
+    "pageLinkDesc": "Link to another page ([[)",
+    "toc": "Table of contents",
+    "tocDesc": "Lists the page's headings here",
+    "tableEmbed": "Linked table",
+    "tableEmbedDesc": "Show a table from the Tables module, live, on this page"
+  },
+  "mention": {
+    "title": "Mention",
+    "people": "People",
+    "pages": "Pages and nodes",
+    "dates": "Date",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "nextWeek": "Next week",
+    "noAccess": "No access · cannot read"
+  },
+  "menu": {
+    "fullWidth": "Full width",
+    "smallText": "Small text",
+    "lock": "Lock page",
+    "unlock": "Unlock",
+    "favorite": "Add to favorites",
+    "unfavorite": "Remove from favorites",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied.",
+    "duplicate": "Duplicate",
+    "move": "Move…",
+    "saveTemplate": "Save as template",
+    "history": "Version history",
+    "import": "Import…",
+    "export": "Export",
+    "trash": "Move to trash",
+    "follow": "Follow: tell me when it changes",
+    "unfollow": "Stop following",
+    "followDescendants": "Follow sub-pages too",
+    "followingDescendants": "Following with sub-pages, click to stop",
+    "toPortal": "Send to Portal"
+  },
+  "comments": {
+    "title": "Comments",
+    "open": "Open {count}",
+    "resolved": "Resolved {count}",
+    "general": "Whole page",
+    "first": "Write a comment, @ to mention someone",
+    "newGeneral": "Comment on the page…",
+    "reply": "Reply… @ to mention someone",
+    "replyButton": "Reply",
+    "resolve": "Resolve",
+    "reopen": "Reopen",
+    "send": "Send",
+    "delete": "Delete comment",
+    "edited": "edited",
+    "unknown": "Deleted person",
+    "noneOpen": "No open comments. Select text and press Comment.",
+    "noneResolved": "No resolved comments."
+  },
+  "versions": {
+    "title": "Version history",
+    "current": "Current version",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "created": "{name} · page created",
+    "restoredFrom": "Restored version {version}",
+    "nameCurrent": "Name the current version",
+    "labelPlaceholder": "e.g. before 1.4 release",
+    "save": "Save version",
+    "saved": "Version saved.",
+    "readOnlyChanges": "Read-only · {count, plural, =0 {no changes} one {# change} other {# changes}} since the previous version",
+    "readOnlyFirst": "Read-only · first version",
+    "highlight": "Highlight changes",
+    "added": "added",
+    "removed": "removed",
+    "copy": "Make a copy",
+    "restore": "Restore this version",
+    "restored": "The page is back to this version; the previous state was kept as a version.",
+    "restoredLive": "The page was restored to an earlier version.",
+    "source": {
+      "web": "Web",
+      "mobile": "Mobile",
+      "mcp": "With Claude",
+      "api": "API"
+    }
+  },
+  "backlinks": {
+    "title": "Linked from · {count}",
+    "none": "No pages link here yet.",
+    "kind": {
+      "link": "link",
+      "mention": "mention",
+      "embed": "embed"
+    }
+  },
+  "templates": {
+    "title": "Templates",
+    "hint": "The template's content is copied, with no link back; «date» and «author» are filled in.",
+    "all": "All",
+    "builtin": "Organization",
+    "space": "Space",
+    "personal": "Personal",
+    "search": "Search templates",
+    "none": "No templates in this filter.",
+    "meta": "{scope} · {blocks} blocks",
+    "use": "Use this template",
+    "saveTitle": "Save as template",
+    "name": "Template name",
+    "description": "Description",
+    "saved": "Template saved.",
+    "scope": {
+      "builtin": "Organization template",
+      "space": "Space template",
+      "personal": "Personal template"
+    }
+  },
+  "import": {
+    "title": "Import",
+    "hint": "Markdown or Word files, a folder or an export package: folders become the page tree, images come along.",
+    "files": "Files or a package",
+    "filesHint": ".md, .docx or an Outline / Notion / Confluence (HTML) export package (.zip)",
+    "folder": "Folder",
+    "folderHint": "An unpacked Outline, Notion or Confluence export; images come along",
+    "done": "{count, plural, one {# page imported.} other {# pages imported.}}",
+    "warning": {
+      "empty": "empty file, skipped",
+      "too_large": "too large, skipped",
+      "duplicate": "same path twice, skipped",
+      "unreadable": "file could not be read, skipped",
+      "too_many": "one import takes at most 200 pages, skipped",
+      "missing_attachment": "attachment not in the package: {target}",
+      "attachment_failed": "attachment could not be uploaded: {target}"
+    },
+    "attachments": "{count, plural, one {# image or attachment uploaded to Drive.} other {# images or attachments uploaded to Drive.}}",
+    "attachmentsFolder": "Imported attachments"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search pages and comments",
+    "allSpaces": "All spaces",
+    "last90": "Last 90 days",
+    "inComments": "Search comments too",
+    "count": "{count, plural, one {# result} other {# results}}",
+    "hint": "Titles, block content, closed toggles, code blocks and comments are searched.",
+    "none": "No results for \"{q}\".",
+    "matched": {
+      "title": "title",
+      "body": "content",
+      "comment": "comment"
+    }
+  },
+  "export": {
+    "title": "Export",
+    "hint": "Turn {name} into a file to download. Images and attachments come along.",
+    "format": "Format",
+    "formats": {
+      "pdf": "PDF",
+      "docx": "Word (.docx)",
+      "html": "HTML",
+      "md": "Markdown (.md)"
+    },
+    "formatHints": {
+      "pdf": "Ready to print and share",
+      "docx": "To edit in Word",
+      "html": "One file, images embedded",
+      "md": "Images in an attachments folder"
+    },
+    "children": "Include sub-pages",
+    "childrenHint": "One ZIP file; links between the pages work between the files too.",
+    "start": "Export",
+    "running": "Preparing…",
+    "runningHint": "The download starts when it is done. If you close this, a notification brings the file.",
+    "downloading": "Downloading {fileName}.",
+    "skipped": "Left out (too large or unreadable): {names}",
+    "failed": "The export failed. Try again in a moment."
+  },
+  "lists": {
+    "recentEmpty": "No pages opened yet",
+    "recentEmptyBody": "Pages you open and edit are listed here by day.",
+    "favoritesEmpty": "No favorite pages yet",
+    "favoritesEmptyBody": "Star a page with ☆ in its header, or right-click it in the tree and choose Add to favorites."
+  },
+  "outline": {
+    "label": "Contents"
+  },
+  "tableEmbed": {
+    "pick": "Choose a table to link",
+    "pickBody": "The table shows live on the page; rows are edited in the table itself.",
+    "none": "This space has no tables yet",
+    "goTables": "Go to Tables",
+    "empty": "No rows in this view.",
+    "more": "{count} more rows"
+  },
+  "portal": {
+    "title": "Send to Portal",
+    "hint": "“{name}” becomes a draft doc on the portal. Sending again to the same version and language updates that draft; publishing happens in the Portal.",
+    "noSites": "This organization has no portal site.",
+    "site": "Site",
+    "version": "Version",
+    "language": "Language",
+    "note": "Images on the page are copied to the portal media and internal links become plain text. Mentions and embedded items do not appear when published.",
+    "send": "Send as draft",
+    "created": "“{name}” was sent to the portal as a draft",
+    "updated": "The portal draft of “{name}” was updated",
+    "imagesSkipped": "Images left out because they could not be read: {count}",
+    "open": "Open"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "calendar_read_only": "Bu takvimi yalnız görüntüleyebilirsin.",
+  "calendar_not_team": "Bu işlem yalnız ekip takvimlerinde yapılır.",
+  "calendar_last_owner": "Ekip takviminde en az bir sahip kalmalı.",
+  "calendar_event_not_recurring": "Bu etkinlik tekrarlanmıyor.",
+  "calendar_occurrence_unknown": "Serinin bu tarihte bir etkinliği yok.",
+  "calendar_ics_invalid": "Dosya iCalendar (.ics) değil ya da içinde etkinlik yok.",
+  "calendar_integration_off": "Yöneticin bu takvim bağlantısını henüz açmadı.",
+  "calendar_oauth_failed": "Hesap bağlanamadı. Yeniden dene.",
+  "calendar_account_revoked": "Hesabın erişimi geri alınmış. Hesabı yeniden bağla.",
+  "calendar_external_failed": "Değişiklik Google ya da Microsoft tarafında kaydedilemedi. Biraz sonra yeniden dene.",
+  "calendar_external_unsupported": "Bu işlem bağlı takvimlerde yapılamıyor. Google Takvim ya da Outlook üzerinden yap.",
+  "booking_conflict": "Bu kaynak o saatte dolu. Başka bir saat ya da kaynak seç.",
+  "booking_unavailable": "Bu kaynak artık rezervasyona açık değil.",
+  "booking_room_unsupported": "Oda yalnız tek seferlik, saatli etkinliklere eklenebilir (tekrarlanan, tüm gün ya da bağlı takvimdeki etkinliklere eklenmez).",
+  "booking_check_in_closed": "Giriş, başlangıçtan 15 dakika önce açılır ve bekleme süresi bitince kapanır.",
+  "calendar_exchange_auth_failed": "Exchange girişi reddetti. E-posta, kullanıcı adı ve şifreyi kontrol et."
+}

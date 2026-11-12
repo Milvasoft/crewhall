@@ -1,0 +1,51 @@
+{
+  "appsettings-env": {
+    "name": "appsettings.json ↔ Environment Variables",
+    "description": "Convert .NET appsettings.json to environment variables (and back) for Docker, Kubernetes and CI.",
+    "keywords": "environment variables, configuration, settings, env, docker, kubernetes, connection string, double underscore",
+    "failed": "Conversion failed.",
+    "format": "Format",
+    "formats": {
+      "doubleUnderscore": "Double underscore (__)",
+      "colon": ".NET config (:)"
+    },
+    "envVars": "Environment variables",
+    "jsonPlaceholder": "Paste appsettings.json…",
+    "envPlaceholder": "Paste KEY__SUBKEY=value lines…"
+  },
+  "connection-string": {
+    "name": "Connection String Parser",
+    "description": "Parse an ADO.NET or database connection string into key-values (and back), locally.",
+    "keywords": "connection string, database, parse, ado.net, sql",
+    "connectionString": "Connection string"
+  },
+  "csharp-to-json": {
+    "name": "C# ↔ JSON",
+    "description": "Generate sample JSON from C# classes (loose mode) or generate C# DTOs from JSON.",
+    "keywords": "class, model, dto, poco, record, serialize, generate",
+    "failed": "Conversion failed.",
+    "sampleValues": "Example values",
+    "looseMode": "Loose mode",
+    "useRecords": "Use records"
+  },
+  "csharp-typescript": {
+    "name": "C# ↔ TypeScript",
+    "description": "Generate TypeScript interfaces from C# models and C# classes from TypeScript, locally.",
+    "keywords": "interface, model, dto, convert, frontend"
+  },
+  "escape": {
+    "name": "Escape / Unescape",
+    "description": "Escape or unescape text for C# strings, JSON, regex, URLs and HTML, locally.",
+    "keywords": "escape, unescape, backslash, html entities, string",
+    "escape": "Escape",
+    "unescape": "Unescape",
+    "target": "Target",
+    "targets": {
+      "csharp": "C# string",
+      "json": "JSON string",
+      "regex": "Regex",
+      "url": "URL",
+      "html": "HTML"
+    }
+  }
+}

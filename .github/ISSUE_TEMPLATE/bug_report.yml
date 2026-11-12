@@ -1,0 +1,58 @@
+name: Bug report
+description: Something in Crewhall does not work as it should.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Security problems go to the Security tab ("Report a vulnerability"), not here.
+        You can write in English or Turkish.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open Drive in a shared space
+        2. Drag a file onto a folder in the sidebar
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: client
+    attributes:
+      label: Where
+      multiple: true
+      options:
+        - Web
+        - Desktop app (Windows)
+        - Desktop app (macOS)
+        - Server / API
+        - Self-hosting (Docker Compose)
+        - Plugin SDK
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The release or commit you run (Account › About shows it).
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: Browser and operating system, and for self-hosting the server OS and how you run it.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Remove passwords, tokens, email addresses and internal host names before you paste.
+      render: text

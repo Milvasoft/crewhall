@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+@import '@crewhall/ui/styles.css';
+
+@source '../../../../packages/ui/src';
+@source '.';
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Nunito Variable', system-ui, sans-serif;
+  }
+}

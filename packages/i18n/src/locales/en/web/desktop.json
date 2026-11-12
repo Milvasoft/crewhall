@@ -1,0 +1,277 @@
+{
+  "setup": {
+    "title": "Connect to your organization",
+    "subtitle": "Enter your organization's Crewhall address. If you don't know it, ask your IT team.",
+    "serverLabel": "Server address",
+    "serverPlaceholder": "work.example.com",
+    "continue": "Continue",
+    "checking": "Checking the server…",
+    "connect": "Connect",
+    "foundTitle": "Server found",
+    "other": "Enter another address",
+    "poweredBy": "with Crewhall",
+    "errors": {
+      "invalid": "Enter a valid address, for example work.example.com.",
+      "unreachable": "The server could not be reached. Check the address and your network connection.",
+      "notCrewhall": "No Crewhall server was found at this address.",
+      "needsSetup": "This server has not been set up yet. Finish the setup in a browser first."
+    }
+  },
+  "offline": {
+    "title": "Server unreachable",
+    "body": "{name} cannot be reached right now. Check your network connection and try again once you're back online.",
+    "retry": "Try again",
+    "changeServer": "Change server"
+  },
+  "loading": {
+    "connecting": "Connecting…"
+  },
+  "outdated": {
+    "title": "Update the app",
+    "body": "{name} does not work with this version ({version}). Install the update, then try again.",
+    "manual": "The update cannot be installed from here. Download the new version from your organization's Crewhall page: My account › Security › Desktop app."
+  },
+  "tray": {
+    "open": "Open",
+    "home": "Back to home",
+    "unread": "{count, plural, =0 {Nothing unread} other {# unread}}",
+    "syncNow": "Sync now",
+    "syncing": "Syncing…",
+    "syncProblem": "Sync needs attention",
+    "settings": "Settings…",
+    "autostart": "Start when I sign in",
+    "installUpdate": "Install update and restart",
+    "quit": "Quit"
+  },
+  "menu": {
+    "about": "About",
+    "settings": "Settings…",
+    "hide": "Hide",
+    "hideOthers": "Hide others",
+    "unhide": "Show all",
+    "quit": "Quit",
+    "edit": "Edit",
+    "undo": "Undo",
+    "redo": "Redo",
+    "cut": "Cut",
+    "copy": "Copy",
+    "paste": "Paste",
+    "selectAll": "Select all",
+    "view": "View",
+    "reload": "Reload",
+    "home": "Home",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetZoom": "Actual size",
+    "fullscreen": "Full screen",
+    "window": "Window",
+    "minimize": "Minimize",
+    "close": "Close",
+    "copyLink": "Copy link",
+    "openInBrowser": "Open in browser",
+    "openInNewWindow": "Open in new window",
+    "addToDictionary": "Add to dictionary"
+  },
+  "notify": {
+    "replyPlaceholder": "Write a reply",
+    "markRead": "Mark as read",
+    "join": "Join",
+    "answer": "Answer",
+    "decline": "Decline",
+    "replyFailed": "Your reply wasn't sent",
+    "actionFailed": "Couldn't mark it as read",
+    "someone": "Someone",
+    "incomingCall": "{name} is calling you",
+    "incomingVideoCall": "{name} is video calling you",
+    "groupCall": "Call in {conversationTitle}",
+    "answerHint": "Click to answer",
+    "updateReady": "Update ready",
+    "updateReadyBody": "Version {version} will be installed when you restart.",
+    "conflict": "Sync conflict",
+    "conflictBody": "{count, plural, one {# file changed on both sides; both copies were kept.} other {# files changed on both sides; both copies were kept.}}"
+  },
+  "settings": {
+    "title": "Settings",
+    "tabs": {
+      "general": "General",
+      "sync": "File sync",
+      "about": "About"
+    },
+    "server": "Server",
+    "changeServer": "Change server",
+    "changeServerConfirm": "Changing the server removes the synced folder pairs; local files are not deleted. Continue?",
+    "notifications": "Desktop notifications",
+    "notificationsHint": "Shown for messages, mentions and calls. While the window is in front they appear inside the app.",
+    "autostart": "Start when I sign in",
+    "autostartHint": "The app opens in the background, in the tray.",
+    "explorerMenu": "File Explorer menus",
+    "explorerMenuHint": "Adds \"Upload to Crewhall\" to the right-click menu of files and folders, and Crewhall to the Send to menu.",
+    "shortcut": "Shortcut that opens Crewhall",
+    "shortcutHint": "Brings Crewhall to the front from any program. To change it, click the button and press the keys.",
+    "shortcutPress": "Press the keys…",
+    "shortcutChange": "Change the shortcut",
+    "shortcutOff": "Off",
+    "shortcutDisable": "Turn off",
+    "shortcutDefault": "Use the default",
+    "shortcutErrors": {
+      "invalid": "That won't work: it needs Ctrl, Alt or a function key (F1-F24).",
+      "reserved": "The system or text editing uses this shortcut. Pick another one.",
+      "altGr": "On Windows Ctrl+Alt is the same as AltGr and blocks characters as you type. Pick another one.",
+      "inApp": "An action inside Crewhall uses this shortcut. Pick another one.",
+      "taken": "Another program uses this shortcut. Your old shortcut still works.",
+      "held": "Another program is using this shortcut right now, so it doesn't work. Close that program or pick another shortcut."
+    },
+    "version": "Version {version}",
+    "updates": "Updates",
+    "checkUpdates": "Check for updates",
+    "update": {
+      "disabled": "Automatic updates are off in this build.",
+      "idle": "Not checked yet.",
+      "checking": "Checking…",
+      "none": "The app is up to date.",
+      "available": "Downloading version {version}…",
+      "downloaded": "Version {version} is ready.",
+      "error": "Could not check for updates."
+    },
+    "installUpdate": "Restart and install",
+    "unsignedNote": "This build is distributed without a code signature; Windows may warn on first install.",
+    "licenses": "Open source licenses"
+  },
+  "sync": {
+    "drive": {
+      "title": "Virtual drive",
+      "hint": "Your spaces appear in this folder, one folder per space. Files take no room until you open them. Opening a file downloads all of it the first time, which takes a while for large files.",
+      "changeFolder": "Change folder",
+      "fetching": "Downloading {name}: {pct}%",
+      "itemState": "Sync problem",
+      "notSynced": "Could not be synced. See Settings › Sync.",
+      "offConfirm": "Turn off the virtual drive? Files on the server stay where they are. The copies on this computer are deleted, except for changes not uploaded yet.",
+      "problems": {
+        "overlap": "This folder is inside a synced folder or contains one. Choose another folder for the virtual drive.",
+        "notEmpty": "This folder is not empty. Choose an empty folder for the virtual drive.",
+        "failed": "The virtual drive could not be turned on."
+      }
+    },
+    "intro": "The Drive folder you choose is synced both ways with a folder on this computer. If a file changes on both sides, both copies are kept.",
+    "empty": "No folders are synced yet.",
+    "add": "Add folder",
+    "chooseSpace": "Choose a space",
+    "chooseFolder": "Choose a Drive folder",
+    "wholeSpace": "Whole space",
+    "noFolders": "This folder has no subfolders.",
+    "useThisFolder": "Sync this folder",
+    "chooseLocal": "Choose a folder on this computer…",
+    "localFolder": "Local folder",
+    "back": "Back",
+    "cancel": "Cancel",
+    "remove": "Remove pair",
+    "removeConfirm": "Remove this pair? The files stay on both sides.",
+    "pause": "Pause",
+    "resume": "Resume",
+    "syncNow": "Sync now",
+    "openFolder": "Open folder",
+    "confirmDeletes": "Confirm delete",
+    "readOnly": "You can only view this space; local changes cannot be uploaded.",
+    "lastSync": "Last synced {time}",
+    "never": "Not synced yet",
+    "progress": "{done} / {total} steps",
+    "skipped": "{count, plural, one {# item skipped} other {# items skipped}}",
+    "onlineOnly": "{count, plural, one {# item is} other {# items are}} only in another cloud app (such as OneDrive) and skipped. Download them to this computer first to sync them.",
+    "failed": "{count, plural, one {# item could not sync} other {# items could not sync}}",
+    "conflictLabel": "conflicted copy",
+    "states": {
+      "idle": "Up to date",
+      "syncing": "Syncing",
+      "error": "Error",
+      "paused": "Paused",
+      "confirm": "Waiting for confirmation"
+    },
+    "errors": {
+      "local_root_missing": "The local folder was not found. If it moved, remove the pair and add it again.",
+      "remote_root_missing": "The Drive folder was deleted or you no longer have access.",
+      "mass_delete": "{count} items would be deleted. If you did not mean to delete them, check the folder.",
+      "signed_out": "You are signed out. Sign in to the app to sync.",
+      "failed": "Sync failed: {text}",
+      "overlap": "This local folder is inside another pair or contains one.",
+      "notDirectory": "The chosen path is not a folder."
+    },
+    "skipReasons": {
+      "invalid_name": "invalid name",
+      "reserved_name": "reserved name",
+      "name_too_long": "name too long",
+      "case_clash": "name differs only in letter case",
+      "symlink": "symbolic link",
+      "online_only": "not on this computer, only in the cloud",
+      "outside_space": "not synced here, move it into a space folder"
+    },
+    "uploaded": "{count} uploaded",
+    "downloaded": "{count} downloaded",
+    "conflicts": "{count, plural, one {# conflict} other {# conflicts}}"
+  },
+  "screenShare": {
+    "title": "What do you want to share?",
+    "screens": "Screens",
+    "windows": "Windows",
+    "share": "Share",
+    "cancel": "Cancel",
+    "empty": "No screen can be shared. Screen recording permission may be missing."
+  },
+  "download": {
+    "title": "Desktop app",
+    "body": "The Windows and macOS app for notifications, the unread count in the tray and syncing Drive folders with your computer.",
+    "button": "Download for {name}",
+    "meta": "Version {version} · {size}",
+    "login": "Download the desktop app",
+    "inApp": "You are using the desktop app right now.",
+    "platforms": {
+      "win": "Windows",
+      "mac": "macOS"
+    },
+    "unsignedWin": "Windows SmartScreen may warn on the first install: continue with \"More info\" and \"Run anyway\".",
+    "unsignedMac": "On macOS, right-click the app and choose Open the first time; the macOS app does not update itself, download new versions here.",
+    "admin": {
+      "hosted": "Version on this server",
+      "none": "This server hosts no desktop release.",
+      "noneHint": "Put the installers into the server's DESKTOP_UPDATES_DIR folder; the apps take their updates from there.",
+      "line": "{version} · {date}"
+    }
+  },
+  "control": {
+    "requestTitle": "{name} wants to control your screen",
+    "requestBody": "They can use your mouse and keyboard on the screen you share. Move your own mouse or press Ctrl+Alt+Shift+X to take control back at once.",
+    "give": "Allow",
+    "deny": "Decline",
+    "banner": "{name} is controlling your screen",
+    "stop": "Stop",
+    "shortcutHint": "Move your mouse or press Ctrl+Alt+Shift+X to take it back",
+    "permissionTitle": "Screen control needs a permission",
+    "permissionBody": "{name} asked to control your screen. On macOS, give {app} the Accessibility permission for this: System Settings › Privacy & Security › Accessibility. They can ask again once it is allowed.",
+    "openSettings": "Open Accessibility settings",
+    "close": "Close"
+  },
+  "meeting": {
+    "inMeeting": "In a meeting",
+    "backToMeeting": "Back to the meeting"
+  },
+  "sendTo": {
+    "menuLabel": "Upload to Crewhall",
+    "title": "Upload to Crewhall",
+    "summary": "{count, plural, one {# file} other {# files}}",
+    "signIn": "Sign in to Crewhall first to upload.",
+    "openApp": "Open Crewhall",
+    "noSpaces": "There's no space you can upload files to.",
+    "uploadHere": "Upload here",
+    "uploading": "Uploading",
+    "progress": "{done} / {total} · {name}",
+    "done": "Upload finished",
+    "partly": "Part of the upload didn't finish",
+    "uploaded": "{count, plural, one {# file uploaded.} other {# files uploaded.}}",
+    "notUploaded": "These weren't uploaded:",
+    "openInDrive": "Open in Drive",
+    "close": "Close"
+  },
+  "titleBar": {
+    "back": "Back",
+    "forward": "Forward"
+  }
+}

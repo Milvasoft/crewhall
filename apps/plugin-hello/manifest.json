@@ -1,0 +1,49 @@
+{
+  "manifestVersion": 1,
+  "id": "dev.crewhall.hello",
+  "version": "1.0.0",
+  "name": { "tr": "Merhaba", "en": "Hello" },
+  "description": {
+    "tr": "Eklenti SDK'sının bütün giriş noktalarını gösteren örnek eklenti",
+    "en": "Sample plugin showing every entry point of the plugin SDK"
+  },
+  "publisher": { "name": "Crewhall", "url": "https://crewhall.dev" },
+  "apiLevel": { "min": 1 },
+  "origin": "http://localhost:4331",
+  "icon": "/icon.svg",
+  "permissions": ["hub:read", "chat:send"],
+  "entryPoints": {
+    "tabs": [
+      {
+        "id": "main",
+        "title": { "tr": "Merhaba", "en": "Hello" },
+        "url": "/tab",
+        "placement": "rail",
+        "icon": "smile"
+      }
+    ],
+    "cards": [
+      { "id": "today", "title": { "tr": "Bugün", "en": "Today" }, "url": "/card", "size": "s" }
+    ],
+    "commands": [
+      {
+        "name": "hello",
+        "description": { "tr": "Selam ver", "en": "Say hello" },
+        "url": "/commands/hello"
+      }
+    ],
+    "tools": [
+      {
+        "name": "greet",
+        "description": "Returns a greeting for a name. Read only.",
+        "inputSchema": {
+          "type": "object",
+          "properties": { "name": { "type": "string" } },
+          "required": ["name"]
+        },
+        "url": "/tools/greet"
+      }
+    ],
+    "events": [{ "type": "message.created", "url": "/events" }]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "sql-formatter": {
+    "name": "SQL Formatter",
+    "description": "Format and beautify SQL for many dialects, with keyword casing, all local.",
+    "keywords": "sql, format, beautify, prettify, query, postgres, mysql, tsql",
+    "dialect": "Dialect",
+    "standardSql": "Standard SQL",
+    "keywordCase": "Keywords",
+    "case": {
+      "upper": "UPPERCASE",
+      "lower": "lowercase",
+      "preserve": "Preserve"
+    },
+    "formatted": "Formatted",
+    "placeholder": "Paste SQL…"
+  },
+  "sql-parameterizer": {
+    "name": "SQL Parameterizer",
+    "description": "Replace inline literals in a SQL query with parameters and extract their values, locally.",
+    "keywords": "sql, parameter, parameterize, prepared, placeholder, injection",
+    "style": "Style",
+    "positional": "positional",
+    "query": "Parameterized query",
+    "params": "Parameters ({count})"
+  },
+  "sql-to-json": {
+    "name": "SQL → JSON",
+    "description": "Turn SQL INSERT statements into JSON rows, parsed locally in your browser.",
+    "keywords": "sql, json, insert, convert, rows",
+    "inputLabel": "SQL (INSERT statements)",
+    "noInserts": "No INSERT statements found."
+  }
+}

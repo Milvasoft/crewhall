@@ -1,0 +1,702 @@
+{
+  "common": {
+    "add": "Ekle",
+    "copy": "Kopyala",
+    "copied": "Panoya kopyalandı",
+    "show": "Göster",
+    "hide": "Gizle",
+    "removeItem": "{name} kaldır",
+    "unsavedTitle": "Kaydedilmemiş değişiklikler",
+    "leave": "Çık"
+  },
+  "nav": {
+    "group": "Güvenlik",
+    "security": "Güvenlik",
+    "sso": "SSO uygulamaları",
+    "systemGroup": "Sistem",
+    "integrations": "Entegrasyonlar",
+    "backups": "Yedekler",
+    "compliance": "Uyumluluk"
+  },
+  "modules": {
+    "title": "Modüller",
+    "subtitle": "Kapalı modül rayda ve mobilde görünmez, uçları yanıt vermez.",
+    "core": "Drive ve hızlı erişim",
+    "coreHint": "Çekirdek modüller her zaman açıktır.",
+    "items": {
+      "chat": {
+        "name": "Chat",
+        "desc": "Kanallar, doğrudan mesajlar ve sohbet ekleri"
+      },
+      "meet": {
+        "name": "Toplantılar",
+        "desc": "Görüntülü toplantı ve sesli görüşme (LiveKit)"
+      },
+      "wiki": {
+        "name": "Sayfalar",
+        "desc": "Space'lere bağlı wiki sayfaları"
+      },
+      "boards": {
+        "name": "Panolar",
+        "desc": "Görev panoları ve kartlar"
+      },
+      "drawings": {
+        "name": "Çizimler",
+        "desc": "Beyaz tahta çizimleri ve şemalar; panolardaki çizim kartları da buna bağlı"
+      },
+      "vault": {
+        "name": "Kasa",
+        "desc": "Zero-knowledge şifre ve gizli bilgi kasası"
+      },
+      "portal": {
+        "name": "Portal",
+        "desc": "Kurumun dışa açık sitesi ve içerik yönetimi"
+      },
+      "mcp": {
+        "name": "MCP ve API",
+        "desc": "Yapay zekâ istemcileri, kişisel erişim belirteçleri ve onaylar"
+      },
+      "calendar": {
+        "name": "Takvim",
+        "desc": "Kişisel, ekip ve space takvimleri, davetler ve CalDAV"
+      },
+      "contacts": {
+        "name": "Rehber",
+        "desc": "Kurum rehberi, organizasyon şeması, dış kişiler ve CardDAV"
+      },
+      "ai": {
+        "name": "Yapay zekâ",
+        "desc": "Editörde yazma yardımı ve sohbet özetleri"
+      },
+      "forms": {
+        "name": "Formlar ve anketler",
+        "desc": "Form oluşturucu, herkese açık link ve sonuçlar"
+      },
+      "tables": {
+        "name": "Tablolar",
+        "desc": "Space tabloları: alan tipleri, tablo, kanban, takvim, galeri ve zaman çizelgesi görünümleri, CSV/Excel"
+      },
+      "automations": {
+        "name": "Otomasyonlar",
+        "desc": "Kodsuz şu olunca bunu yap kuralları, gelen ve giden webhooklar"
+      },
+      "mail": {
+        "name": "Posta",
+        "desc": "Kurumun posta sunucusuna IMAP/SMTP ile bağlanan e-posta istemcisi"
+      },
+      "tools": {
+        "name": "Araçlar",
+        "desc": "Geliştirici araçları: JSON, kodlama, güvenlik, metin, ağ ve daha fazlası; hepsi tarayıcıda çalışır."
+      },
+      "office": {
+        "name": "Office",
+        "desc": "Word, Excel ve PowerPoint dosyalarını Drive içinde açma ve birlikte düzenleme"
+      }
+    }
+  },
+  "disabled": {
+    "title": "Bu modül kurumunda kapalı",
+    "body": "{module} modülü kurum yöneticisi tarafından kapatıldı. Açılması gerekiyorsa yöneticine haber ver.",
+    "bodyGeneric": "Bu bölüm kurum yöneticisi tarafından kapatıldı.",
+    "home": "Ana sayfaya dön",
+    "admin": "Modülleri yönet"
+  },
+  "login": {
+    "ssoWith": "{name} ile giriş yap",
+    "domainSso": "Bu alan adı {name} ile giriş yapar.",
+    "continueWith": "{name} ile devam et",
+    "modeLabel": "Giriş yöntemi",
+    "modeEmail": "E-posta ile",
+    "modeDirectory": "Dizin hesabıyla",
+    "directoryHint": "Kullanıcı adın ya da e-postan; şifre dizin şifrendir.",
+    "emergency": "Acil durum girişi (kurum sahibi)",
+    "emergencyHint": "Şifreyle giriş kurum politikasıyla kapalı. Bu yol yalnız kurum sahibi için açıktır."
+  },
+  "reauth": {
+    "title": "Kimliğini doğrula",
+    "body": "Güvenlik ayarlarını değiştirmek için yeniden doğrula. Doğrulama 10 dakika geçerlidir.",
+    "password": "Şifre",
+    "confirm": "Doğrula"
+  },
+  "security": {
+    "title": "Güvenlik",
+    "subtitle": "Giriş, oturum ve şifre politikaları · tüm üyelere uygulanır",
+    "auth": "Kimlik doğrulama",
+    "require2fa": "İki adımlı doğrulama zorunlu",
+    "enrolled": "{count}/{total} üye kurdu",
+    "pendingPeople": "{count, plural, one {{name} bekliyor} other {{name} bekliyor (# kişi)}}",
+    "passkey": "Passkey ile giriş",
+    "passkeyHint": "Passkey hem şifreyi hem 2FA'yı karşılar",
+    "rememberDevice": "\"Bu cihazı 30 gün hatırla\"",
+    "rememberDeviceHint": "2FA kodunu güvenilen cihazda atla",
+    "adminsAlways": "Kurum sahibi ve yöneticilerinde 2FA, politika kapalı olsa da zorunludur.",
+    "passwordPolicy": "Şifre politikası",
+    "localLogin": "Şifreyle giriş",
+    "localLoginHint": "Kapatılırsa üyeler SSO ya da dizinle girer; kurum sahibi şifresini korur",
+    "minLength": "En az uzunluk",
+    "minLengthHint": "Karakter sınıfı zorunluluğu yok",
+    "chars": "{count} karakter",
+    "breachCheck": "Sızıntı listesi kontrolü",
+    "breachCheckHint": "k-anonimlik ile, şifre sunucudan çıkmaz",
+    "session": "Oturum",
+    "sessionHours": "Oturum süresi",
+    "sessionHoursHint": "Sonra yeniden doğrulama istenir",
+    "rememberDays": "\"Oturumu açık tut\" süresi",
+    "rememberDaysHint": "Kapalıysa seçenek giriş ekranında görünmez",
+    "hours": "{count, plural, one {# saat} other {# saat}}",
+    "days": "{count, plural, one {# gün} other {# gün}}",
+    "off": "Kapalı",
+    "lockout": "Hatalı giriş kilidi",
+    "lockoutHint": "Ardışık kilitte süre ikiye katlanır",
+    "lockoutValue": "{count} deneme · {n} dk",
+    "ipTitle": "IP izin listesi",
+    "ipOff": "Kapalı",
+    "ipAdmin": "Yönetim alanı",
+    "ipAll": "Tüm girişler",
+    "ipHint": {
+      "off": "Liste kaydedilir ama uygulanmaz.",
+      "admin": "Yönetim ekranlarına yalnız bu adreslerden erişilir.",
+      "all": "Tüm oturum açmış istekler yalnız bu adreslerden kabul edilir."
+    },
+    "ipEmpty": "Henüz aralık yok.",
+    "ipCidr": "Adres ya da CIDR",
+    "ipLabel": "Etiket",
+    "ipLabelHint": "Ofis, VPN…",
+    "ipRemove": "{ip} aralığını kaldır",
+    "ipCovered": "IP'n listede",
+    "ipNotCovered": "IP'n listede değil",
+    "ipUnknown": "Mevcut IP adresin belirlenemedi.",
+    "ipAdd": "Aralık ekle",
+    "ipAddMine": "IP'mi ekle",
+    "ipMine": "Benim adresim"
+  },
+  "scopes": {
+    "openid": {
+      "title": "Kimliğin",
+      "body": "Uygulama seni bu kurumdaki hesabınla tanır.",
+      "short": "zorunlu"
+    },
+    "profile": {
+      "title": "Profil",
+      "body": "Adın ve profil fotoğrafın.",
+      "short": "ad, avatar"
+    },
+    "email": {
+      "title": "E-posta adresi",
+      "body": "Doğrulanmış e-posta adresin.",
+      "short": "e-posta"
+    },
+    "groups": {
+      "title": "Space ve roller",
+      "body": "Üyesi olduğun space'ler ve kurumdaki rolün.",
+      "short": "space'ler"
+    },
+    "offline_access": {
+      "title": "Sen yokken erişim",
+      "body": "Uygulama, sen yokken oturumunu yenileyebilir.",
+      "short": "yenileme"
+    }
+  },
+  "sso": {
+    "title": "SSO uygulamaları",
+    "subtitle": "Kurum hesabıyla giriş yapılan uygulamalar · OpenID Connect",
+    "add": "Uygulama ekle",
+    "issuer": "Yayıncı (issuer)",
+    "discovery": "Discovery",
+    "signingKey": "İmza anahtarı",
+    "rotatedAgo": "{count, plural, =0 {bugün döndü} one {# gün önce döndü} other {# gün önce döndü}}",
+    "noKey": "Henüz anahtar yok",
+    "rotateKey": "Anahtarı döndür",
+    "rotateKeyTitle": "İmza anahtarı döndürülsün mü?",
+    "rotateKeyBody": "Yeni belirteçler yeni anahtarla imzalanır. Eski anahtar, belirteçleri dolana kadar JWKS'te kalır; bağlı uygulamalar kesilmez.",
+    "keyRotatedToast": "İmza anahtarı döndürüldü",
+    "cols": {
+      "app": "Uygulama",
+      "clientId": "Client ID",
+      "type": "Tür",
+      "access": "Erişim",
+      "lastLogin": "Son giriş",
+      "status": "Durum"
+    },
+    "types": {
+      "web": "Web",
+      "spa": "SPA",
+      "native": "Mobil / masaüstü"
+    },
+    "typeShort": {
+      "web": "Web · gizli",
+      "spa": "SPA · PKCE",
+      "native": "Native · PKCE"
+    },
+    "typeLong": {
+      "web": "Web uygulaması · gizli istemci",
+      "spa": "Tek sayfa uygulama · açık istemci",
+      "native": "Mobil ya da masaüstü uygulama · açık istemci"
+    },
+    "typeHint": {
+      "web": "Sunucu tarafı uygulama; client secret üretilir.",
+      "spa": "Tarayıcıda çalışan uygulama; secret yok, PKCE zorunlu.",
+      "native": "Mobil ya da masaüstü uygulama; secret yok, PKCE zorunlu."
+    },
+    "accessAll": "Tüm üyeler",
+    "accessSpace": "{name} space üyeleri",
+    "status": {
+      "active": "Etkin",
+      "disabled": "Devre dışı",
+      "expiring": "{count, plural, one {Secret # günde doluyor} other {Secret # günde doluyor}}",
+      "expired": "Secret süresi doldu"
+    },
+    "guestsTag": "Misafir",
+    "neverUsed": "Henüz giriş yok",
+    "actions": "{name} işlemleri",
+    "edit": "Düzenle",
+    "rotateSecret": "Secret'ı yenile",
+    "disable": "Devre dışı bırak",
+    "enable": "Etkinleştir",
+    "delete": "Sil",
+    "enabledToast": "Uygulama etkinleştirildi",
+    "disabledToast": "Uygulama devre dışı; açık oturumlar bir sonraki yenilemede düşer",
+    "deletedToast": "Uygulama silindi",
+    "deleteTitle": "{name} silinsin mi?",
+    "deleteBody": "Bu uygulamaya kurum hesabıyla giriş hemen durur. Geri alınamaz.",
+    "rotateTitle": "{name} için yeni secret üretilsin mi?",
+    "rotateBody": "Eski secret hemen çalışmaz hale gelir. Yeni değeri uygulamaya girmen gerekir.",
+    "emptyTitle": "Henüz SSO uygulaması yok",
+    "emptyBody": "Kurum hesabıyla giriş yapılacak bir uygulamayı OpenID Connect istemcisi olarak ekle.",
+    "skipConsent": "Kurum içi uygulamalarda izin ekranını atla",
+    "skipConsentHint": "Kişiye \"profilinize erişmek istiyor\" sorulmaz",
+    "guests": "Misafirler SSO kullanabilir",
+    "guestsHint": "Uygulama bazında ayrıca açılır",
+    "loginsTitle": "Son 7 gün",
+    "loginsAside": "SSO girişleri",
+    "noLogins": "Henüz giriş yok.",
+    "addTitle": "Yeni SSO uygulaması",
+    "editTitle": "{name} düzenle",
+    "formHint": "Redirect URI'ler tam eşleşmeyle doğrulanır; joker karakter yok, http yalnız localhost için.",
+    "create": "Oluştur",
+    "addUri": "URI ekle",
+    "months": "{count} ay",
+    "scopeRequired": "zorunlu",
+    "fields": {
+      "name": "Ad",
+      "type": "Tür",
+      "homepage": "Ana sayfa",
+      "logo": "Logo adresi",
+      "redirectUris": "Redirect URI'ler",
+      "postLogout": "Çıkış sonrası URI'ler",
+      "scopes": "Kapsamlar",
+      "access": "Kimler giriş yapabilir",
+      "guests": "Misafirler",
+      "guestsHint": "Kurum ayarı da açık olmalı",
+      "skipConsent": "Kurum içi uygulama",
+      "skipConsentHint": "İzin ekranı gösterilmez",
+      "secretMonths": "Secret geçerliliği",
+      "clientId": "Client ID",
+      "clientSecret": "İstemci sırrı"
+    },
+    "uriProblem": {
+      "empty": "Adres boş.",
+      "wildcard": "Joker karakter kullanılamaz.",
+      "invalid": "Geçerli bir tam adres değil.",
+      "http": "http yalnız localhost için kabul edilir.",
+      "fragment": "Adres # parçası içeremez."
+    },
+    "createdSub": "{type} · az önce oluşturuldu",
+    "rotatedSub": "{type} · secret yenilendi",
+    "secretOnceTitle": "Client secret yalnız şimdi gösteriliyor.",
+    "secretOnceBody": "Kapattıktan sonra görüntülenemez, yalnızca yenilenebilir.",
+    "publicClient": "Bu istemci açık istemcidir: secret yok, PKCE zorunlu.",
+    "secretValid": "Geçerlilik: {date}",
+    "audited": "Denetim günlüğüne yazıldı",
+    "copiedClose": "Kopyaladım, kapat"
+  },
+  "idp": {
+    "pageTitle": "Entegrasyonlar",
+    "pageSubtitle": "Kurumun bağlı servisleri",
+    "pageSummary": "{count} bağlı · {n} hata",
+    "sectionTitle": "Kimlik sağlayıcıları",
+    "sectionHint": "SSO (OpenID Connect, SAML 2.0) ve Active Directory / LDAP ile giriş",
+    "add": "Ekle",
+    "emptyTitle": "Henüz kimlik sağlayıcısı yok",
+    "emptyBody": "Keycloak, Microsoft Entra ID, Google Workspace ya da Active Directory bağla; kişiler kurum hesabıyla girsin.",
+    "presets": {
+      "keycloak": "Keycloak",
+      "entra": "Microsoft Entra ID",
+      "google": "Google Workspace",
+      "okta": "Okta",
+      "oidc": "Genel OIDC",
+      "saml": "SAML 2.0",
+      "active_directory": "Active Directory",
+      "openldap": "OpenLDAP"
+    },
+    "kinds": {
+      "oidc": "OpenID Connect",
+      "saml": "SAML 2.0",
+      "ldap": "LDAP dizini"
+    },
+    "status": {
+      "connected": "Bağlı",
+      "error": "Hata",
+      "off": "Kapalı",
+      "untested": "Test edilmedi"
+    },
+    "lastTest": "Son test {when}",
+    "linkedUsers": "Bağlı kişi",
+    "people": "{count, plural, one {# kişi} other {# kişi}}",
+    "lastLogin": "Son giriş",
+    "lastSync": "Son eşitleme",
+    "syncShort": "{count} kontrol, {n} askıya alındı",
+    "never": "Henüz yok",
+    "domains": "Alan adları",
+    "noDomains": "Yok",
+    "enforced": "SSO zorunlu",
+    "test": "Test et",
+    "testOk": "Bağlantı başarılı",
+    "testFailed": "Bağlantı başarısız",
+    "settings": "Ayarlar",
+    "back": "Entegrasyonlar",
+    "newTitle": "Yeni bağlantı: {name}",
+    "delete": "Sil",
+    "deleted": "Kimlik sağlayıcısı silindi",
+    "deleteTitle": "{name} silinsin mi?",
+    "deleteBody": "Bağlı hesaplar kalır; bundan sonra yerel şifreyle ya da başka bir sağlayıcıyla girerler.",
+    "general": "Genel",
+    "connection": "Bağlantı",
+    "accounts": "Hesaplar",
+    "mappings": "Rol eşleme",
+    "mappingsHint": "Gruplar yalnız hesap ilk oluşturulurken uygulanır.",
+    "mappingsHintSync": "Gruplar her girişte ve dizin eşitlemesinde yeniden uygulanır. En yüksek rol geçerlidir; kurum sahibi dizinden verilemez.",
+    "noMappings": "Eşleme yok: yeni hesaplar varsayılan rolle açılır.",
+    "mapGroup": "Grup",
+    "mapOrgRole": "Kurum rolü",
+    "mapSpace": "Space",
+    "mapSpaceRole": "Space rolü",
+    "mapKeep": "Değiştirme",
+    "mapNoSpace": "Space yok",
+    "mapUnknownSpace": "Bilinmeyen space",
+    "mapRemove": "Eşlemeyi kaldır",
+    "mapAdd": "Eşleme ekle",
+    "badDomain": "Geçerli bir alan adı değil.",
+    "missing": "Zorunlu alanları doldur.",
+    "saveFirst": "Kaydettikten sonra IdP yöneticisine vereceğin adresler burada görünür.",
+    "secretStored": "Kayıtlı",
+    "secretChange": "Değiştir",
+    "secretHint": "Gizli değer bir daha gösterilmez; yalnız değiştirilebilir.",
+    "seconds": "{count} sn",
+    "fields": {
+      "name": "Görünen ad",
+      "nameHint": "Giriş ekranında \"… ile giriş yap\" düğmesinde görünür",
+      "enabled": "Etkin",
+      "enabledHint": "Kapalıyken bu yolla giriş yapılamaz",
+      "domains": "E-posta alan adları",
+      "domainsHint": "Bu alan adlarındaki kişiler bu sağlayıcıyı kullanır",
+      "enforceSso": "SSO zorunlu",
+      "enforceSsoHint": "Bu alan adlarında şifreyle giriş kapanır; kurum sahibi hariç",
+      "issuer": "Issuer URL",
+      "issuerHint": "Discovery adresi: issuer + /.well-known/openid-configuration",
+      "clientId": "Client ID",
+      "clientSecret": "İstemci sırrı",
+      "scopes": "Kapsamlar",
+      "groupsClaim": "Grup claim'i",
+      "groupsClaimHint": "Keycloak ve Entra: groups",
+      "prompt": "IdP'ye prompt",
+      "endSession": "Çıkışta IdP oturumunu da kapat",
+      "endSessionHint": "Crewhall'dan çıkan kişi IdP'den de çıkar",
+      "entryPoint": "SSO adresi (HTTP-Redirect)",
+      "idpIssuer": "IdP entity ID",
+      "idpCert": "IdP imza sertifikası",
+      "idpCertHint": "PEM ya da base64; birden çoksa boş satırla ayır",
+      "emailAttribute": "E-posta özniteliği",
+      "nameAttribute": "Ad özniteliği",
+      "groupsAttribute": "Grup özniteliği",
+      "logoutUrl": "Tekil çıkış adresi (SLO)",
+      "url": "Sunucu adresi",
+      "urlHint": "ldaps://host:636 önerilir; ldap:// ile StartTLS kullan",
+      "bindDn": "Servis hesabı (bind DN)",
+      "bindDnHint": "Boşsa anonim bağlanılır",
+      "bindPassword": "Servis hesabı şifresi",
+      "baseDn": "Arama kökü (base DN)",
+      "userFilter": "Kullanıcı filtresi",
+      "userFilterHint": "'{username}' yazılan adla değiştirilir",
+      "uidAttribute": "Kalıcı kimlik özniteliği",
+      "uidAttributeHint": "AD: objectGUID, OpenLDAP: entryUUID",
+      "useMemberOf": "Grupları memberOf'tan al",
+      "useMemberOfHint": "Kapalıysa ayrı grup araması yapılır",
+      "groupBaseDn": "Grup arama kökü",
+      "groupFilter": "Grup filtresi",
+      "groupFilterHint": "'{dn}' ve '{username}' değiştirilir",
+      "groupNameAttribute": "Grup adı özniteliği",
+      "activeDirectory": "Active Directory",
+      "activeDirectoryHint": "Devre dışı hesaplar (userAccountControl) giriş yapamaz",
+      "startTls": "StartTLS",
+      "startTlsHint": "ldap:// bağlantısını şifreli hale getirir",
+      "tlsVerify": "Sertifikayı doğrula",
+      "tlsVerifyHint": "Yalnız test için kapat",
+      "caCert": "Kurum içi CA sertifikası",
+      "caCertHint": "Boşsa sistem güven deposu kullanılır",
+      "timeout": "Zaman aşımı",
+      "jit": "İlk girişte hesap aç",
+      "jitHint": "Kapalıysa yalnız davet edilmiş kişiler girebilir",
+      "defaultRole": "Varsayılan rol",
+      "defaultRoleHint": "Hiçbir eşlemeye uymayan yeni hesaplar",
+      "linkExisting": "Aynı e-postalı hesabı bağla",
+      "linkExistingHint": "Yalnız IdP e-postayı doğrulanmış bildirirse",
+      "trustMfa": "IdP'nin MFA'sını kabul et",
+      "trustMfaHint": "IdP MFA bildirirse yerel 2FA sorulmaz",
+      "syncEnabled": "Saatlik dizin eşitlemesi",
+      "syncEnabledHint": "Dizinde silinen ya da kapatılan kişiler askıya alınır",
+      "syncRoles": "Her girişte uygula"
+    },
+    "prompt": {
+      "none": "Yok",
+      "login": "login · her seferinde şifre",
+      "select_account": "select_account · hesap seçtir",
+      "consent": "consent · izin ekranı"
+    },
+    "forAdmin": "IdP yöneticisi için",
+    "adminHint": {
+      "oidc": "Kimlik sağlayıcısında bir istemci aç ve bu redirect URI'yi kaydet.",
+      "saml": "IdP'de yeni bir SAML uygulaması aç; metadata adresini ya da aşağıdaki değerleri gir."
+    },
+    "callback": {
+      "oidc": "Dönüş adresi (Redirect URI)",
+      "saml": "ACS adresi"
+    },
+    "ldapAdminHint": "Servis hesabına arama kökünde okuma izni ver. Şifreler Crewhall'da saklanmaz; her girişte dizine sorulur.",
+    "spEntityId": "SP entity ID",
+    "spMetadata": "SP metadata adresi",
+    "testTitle": "Bağlantıyı test et",
+    "testHint": {
+      "oidc": "Discovery ve anahtarlar alınır; kimse giriş yapmaz. Kaydedilmemiş değerler de test edilir.",
+      "saml": "Metadata ve sertifika kontrol edilir; kimse giriş yapmaz.",
+      "ldap": "Bağlanır, servis hesabıyla oturum açar ve arar. Bir kullanıcı adı yazarsan grupları ve alacağı rol gösterilir."
+    },
+    "testUser": "Kullanıcı adı (isteğe bağlı)",
+    "testUserHint": "sAMAccountName, uid ya da e-posta",
+    "testRun": "Bağlantıyı test et",
+    "stepOk": "Başarılı",
+    "stepFailed": "Başarısız",
+    "ms": "{ms} ms",
+    "steps": {
+      "discovery": "Discovery",
+      "jwks": "İmza anahtarları (JWKS)",
+      "metadata": "Meta veri",
+      "certificate": "Sertifika",
+      "connect": "Sunucuya bağlantı",
+      "starttls": "StartTLS",
+      "tls": "TLS",
+      "bind": "Servis hesabıyla oturum",
+      "search": "Arama",
+      "user": "Kullanıcı",
+      "groups": "Gruplar",
+      "endpoints": "Uç noktalar"
+    },
+    "noEmail": "E-posta yok",
+    "dirDisabled": "Dizinde kapalı",
+    "noGroups": "Grup yok",
+    "resultRole": "Kurum rolü",
+    "resultSpaces": "Space'ler",
+    "noAccess": "Erişim yok",
+    "syncTitle": "Dizin eşitlemesi",
+    "syncHourly": "Saatte bir çalışır",
+    "syncOff": "Otomatik eşitleme kapalı",
+    "lastSyncAt": "son {when}",
+    "syncFailed": "Son eşitleme başarısız.",
+    "syncNow": "Şimdi senkronize et",
+    "synced": "Dizin eşitlendi",
+    "sync": {
+      "checked": "kontrol",
+      "updated": "güncellendi",
+      "suspended": "askıya alındı",
+      "reactivated": "yeniden açıldı"
+    },
+    "linkedTitle": "Bağlı hesaplar",
+    "noLinked": "Henüz bağlı hesap yok",
+    "cols": {
+      "person": "Kişi",
+      "status": "Durum",
+      "lastLogin": "Son giriş"
+    },
+    "dirStatus": {
+      "active": "Dizinde etkin",
+      "disabled": "Dizinde kapalı",
+      "missing": "Dizinde yok"
+    },
+    "memberStatus": {
+      "active": "Etkin",
+      "invited": "Davet edildi",
+      "suspended": "Askıda"
+    },
+    "groupCount": "{count, plural, one {# grup} other {# grup}}"
+  },
+  "consent": {
+    "title": "{client}, {org} hesabınla giriş yapmak istiyor",
+    "redirect": "Dönüş adresi",
+    "change": "Başka hesap",
+    "what": "{client} şunlara erişecek",
+    "required": "zorunlu",
+    "noPassword": "{client} şifreni görmez; giriş bu sayfada kurum hesabınla yapılır.",
+    "allow": "İzin ver",
+    "deny": "Reddet",
+    "footer": "Giriş, kurumunun güvenlik politikasıyla yapılır.",
+    "returning": "{client} uygulamasına dönülüyor…",
+    "invalidTitle": "Giriş isteği geçersiz",
+    "deniedTitle": "Bu uygulamaya erişimin yok"
+  },
+  "backups": {
+    "title": "Yedekler",
+    "subtitle": "Veritabanı ve dosyaların gece yedeği; sunucudaki crewhall aracıyla aynı yedekler",
+    "unavailable": "Sunucuda yazılabilir yedek klasörü yok (CREWHALL_BACKUP_DIR). Docker Compose kurulumunda backups hacmi bağlı olmalı.",
+    "toolsOutdated": "Yedekleme aracı veritabanı sunucusundan eski: istemci {client}, sunucu {server}. Bu sürümle yedek alınamaz; sunucudaki Crewhall imajı güncellenmeli.",
+    "toolsMissing": "Yedekleme aracı (pg_dump) çalıştırılamıyor; veritabanı sunucusu {server}. Yedek alınamaz.",
+    "schedule": "Gece yedeği",
+    "enabled": "Gece yedeği",
+    "enabledHint": "Her gece belirlenen saatte veritabanı ve dosyalar yedeklenir",
+    "time": "Saat",
+    "timezone": "Saat dilimi",
+    "keep": "Saklanan gece yedeği",
+    "keepHint": "Eskileri ve yalnız onların kullandığı dosyalar silinir; elle alınan yedekler kalır",
+    "keepCount": "{count} yedek",
+    "status": "Durum",
+    "runNow": "Şimdi yedek al",
+    "running": "Yedek alınıyor…",
+    "started": "Yedek başladı",
+    "busy": "Zaten bir yedek alınıyor",
+    "next": "Sonraki gece yedeği",
+    "off": "Kapalı",
+    "last": "Son yedek",
+    "disk": "Kapladığı yer",
+    "diskHint": "Değişmeyen dosyalar yedekler arasında bir kez saklanır",
+    "snapshots": "Yedekler",
+    "noSnapshots": "Henüz yedek yok",
+    "runs": "Son çalışmalar",
+    "noRuns": "Henüz çalışma yok",
+    "restoreHint": "Geri yükleme sunucuda yapılır:",
+    "withConfig": "+ yapılandırma",
+    "size": "Veritabanı {size} · {count} dosya {used}",
+    "col": {
+      "date": "Tarih",
+      "kind": "Tür",
+      "version": "Sürüm",
+      "size": "Boyut",
+      "status": "Durum"
+    },
+    "trigger": {
+      "manual": "Elle",
+      "nightly": "Gece",
+      "update": "Güncelleme öncesi"
+    },
+    "state": {
+      "queued": "Sırada",
+      "running": "Sürüyor",
+      "succeeded": "Tamam",
+      "failed": "Başarısız"
+    }
+  },
+  "guest": {
+    "badge": "Misafir",
+    "expired": "Misafir · süresi doldu",
+    "until": "{date} tarihine kadar",
+    "settings": "Misafir erişimi",
+    "spaceRole": "Seçilen space'lerdeki rolü",
+    "endDate": "Erişim bitişi",
+    "endDateHint": "Bu günün sonunda erişimi kendiliğinden kapanır",
+    "noEnd": "Süresiz",
+    "needsSpace": "Misafir yalnız seçilen space'leri görür; en az bir space seç."
+  },
+  "compliance": {
+    "title": "Uyumluluk",
+    "subtitle": "Veri saklama kuralları, yasal tutma, eDiscovery dışa aktarma ve veri sızıntısı (DLP) kuralları",
+    "retention": "Veri saklama",
+    "chatDays": "Sohbet mesajları",
+    "chatDaysHint": "Bu süreden eski mesajların içeriği silinir; yasal tutmadakiler kalır",
+    "auditDays": "Denetim kaydı",
+    "auditDaysHint": "En az bir yıl; yasal tutmadaki kişilerin kayıtları kalır",
+    "keepAll": "Süresiz sakla",
+    "days": "{count} gün",
+    "years": "{count} yıl",
+    "dlp": "Veri sızıntısı (DLP)",
+    "dlpHint": "Sohbet, pano kartı ve yorumlarda denetlenir. \"Uyar\" sohbette onay ister, diğer yerlerde yalnız kayda geçer; \"Engelle\" içeriği göndermez.",
+    "detector": {
+      "card": "Kart numarası",
+      "tckn": "TC kimlik numarası",
+      "iban": "IBAN numarası",
+      "custom": "Özel kural"
+    },
+    "action": "Davranış",
+    "warn": "Uyar",
+    "block": "Engelle",
+    "ruleOn": "Kural açık",
+    "customName": "Özel kural adı",
+    "customPattern": "Desen (düzenli ifade)",
+    "addRule": "Kural ekle",
+    "holds": "Yasal tutma",
+    "holdsHint": "Seçilen kişilerin yazdıkları ve space’lerin içeriği tutma kalkana kadar hiçbir temizlikte silinmez; sohbette düzenlenen ya da silinen mesajların özgün hâli saklanır.",
+    "noHolds": "Etkin yasal tutma yok",
+    "newHold": "Yeni yasal tutma",
+    "holdName": "Ad",
+    "reason": "Gerekçe",
+    "startHold": "Tutmayı başlat",
+    "holdCreated": "Yasal tutma başladı",
+    "active": "Etkin",
+    "released": "Kaldırıldı",
+    "since": "{date} · {name}",
+    "release": "Kaldır",
+    "releaseConfirm": "Tutma kalkınca içerik yeniden normal saklama ve çöp kurallarına tabi olur. Devam edilsin mi?",
+    "exports": "eDiscovery dışa aktarma",
+    "exportsHint": "Seçilen kişilerin ve space’lerin içeriği tek bir ZIP dosyasında toplanır; dosya 7 gün indirilebilir.",
+    "noExports": "Henüz dışa aktarma yok",
+    "newExport": "Yeni dışa aktarma",
+    "exportName": "Ad",
+    "startExport": "Dışa aktarmayı başlat",
+    "exportStarted": "Dışa aktarma hazırlanıyor",
+    "download": "İndir",
+    "people": "Kişiler",
+    "searchPeople": "Kişi ara",
+    "spaces": "Space'ler",
+    "from": "Başlangıç",
+    "to": "Bitiş",
+    "include": "İçerik",
+    "content": {
+      "chat": "Sohbet",
+      "pages": "Sayfalar",
+      "cards": "Pano kartları",
+      "files": "Dosyalar",
+      "audit": "Denetim kaydı"
+    },
+    "count": {
+      "chatMessages": "mesaj",
+      "pages": "sayfa",
+      "cards": "kart",
+      "files": "dosya",
+      "auditEntries": "kayıt"
+    },
+    "state": {
+      "queued": "Sırada",
+      "running": "Hazırlanıyor",
+      "ready": "Hazır",
+      "failed": "Başarısız"
+    }
+  },
+  "demo": {
+    "accounts": "Canlı demo hesapları",
+    "accountsHint": "Birini seç, şifre kendiliğinden dolar. Veriler her saat başı örnek hâline döner.",
+    "banner": "Canlı demo · veriler {minutes} dk sonra sıfırlanır"
+  },
+  "stepup": {
+    "passkey": "Passkey ile doğrula",
+    "or": "ya da",
+    "withPassword": "Şifreyle doğrula",
+    "password": "Şifre",
+    "confirm": "Doğrula",
+    "passkeyFailed": "Passkey ile doğrulanamadı. Yeniden dene ya da şifreyle doğrula.",
+    "addPasskeyHint": "Passkey ekleyerek bir dahaki sefere hızlıca doğrula",
+    "offerTitle": "Bir dahaki sefere {name} ile doğrula",
+    "offerBody": "Şifre yerine bu cihazın kilidini kullan: bir passkey oluşturulur ve sonraki onaylarda doğrudan o sorulur. Şifre her zaman seçenek olarak kalır.",
+    "offerAccept": "{name} ile doğrulamayı ekle",
+    "offerLater": "Şimdi değil",
+    "offerFailed": "Passkey eklenemedi. Hesabım › Güvenlik'ten yeniden deneyebilirsin.",
+    "deviceLock": "cihaz kilidi",
+    "passkeyName": "{name} · bu cihaz"
+  }
+}

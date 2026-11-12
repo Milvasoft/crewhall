@@ -1,0 +1,79 @@
+{
+  "nav": "İstatistikler",
+  "title": "İstatistikler",
+  "updated": "Son güncelleme {time}",
+  "never": "Henüz özet yok. İstatistikler saatte bir güncellenir; hemen görmek için şimdi güncelle.",
+  "refresh": "Şimdi güncelle",
+  "range": "Aralık",
+  "days": "{count} gün",
+  "source": "Veriler saatlik özetten gelir, ham olaylar taranmaz. Gün sınırı UTC'dir; kişi bazındaki etkinlik 60 gün saklanır.",
+  "tile": {
+    "dau": "Bugün aktif",
+    "wau": "Son 7 gün",
+    "mau": "Son 30 gün",
+    "ofMembers": "{members} üyenin %{pct} kadarı",
+    "storage": "Depolama",
+    "quota": "Kota {size}",
+    "noQuota": "Kota sınırı yok"
+  },
+  "active": {
+    "title": "Aktif kullanıcılar",
+    "dau": "Günlük",
+    "wau": "Haftalık",
+    "mau": "Aylık"
+  },
+  "storage": {
+    "title": "Toplam depolama",
+    "empty": "Bu aralıkta ölçüm yok."
+  },
+  "modules": {
+    "title": "Modül kullanımı",
+    "hint": "Aralıktaki günlük ortalama kişi sayısı ve toplam işlem sayısı",
+    "module": "Modül",
+    "avg": "Günlük ort.",
+    "peak": "En yüksek",
+    "actions": "Toplam işlem",
+    "actionsHint": "Aralıkta yapılan kayıt işlemlerinin sayısı: gönderme, düzenleme, silme, yükleme."
+  },
+  "area": {
+    "drive": "Drive",
+    "quick": "Hızlı erişim",
+    "chat": "Sohbet",
+    "meet": "Toplantı",
+    "wiki": "Sayfalar",
+    "boards": "Panolar",
+    "drawings": "Çizimler",
+    "vault": "Kasa",
+    "portal": "Portal",
+    "mcp": "MCP ve API",
+    "core": "Genel",
+    "ai": "Yapay zekâ",
+    "calendar": "Takvim",
+    "forms": "Formlar",
+    "contacts": "Rehber",
+    "mail": "Posta",
+    "automations": "Otomasyonlar",
+    "tools": "Araçlar",
+    "tables": "Tablolar",
+    "office": "Office"
+  },
+  "spaces": {
+    "title": "Büyüyen space'ler",
+    "space": "Space",
+    "size": "Boyut",
+    "growth": "Artış",
+    "items": "Öğe",
+    "empty": "Bu aralıkta büyüyen space yok."
+  },
+  "users": {
+    "title": "En çok yer kaplayan kişiler",
+    "person": "Kişi",
+    "size": "Yüklediği",
+    "empty": "Henüz dosya yüklenmemiş."
+  },
+  "view": {
+    "table": "Tablo olarak göster",
+    "chart": "Grafik olarak göster",
+    "day": "Gün"
+  }
+}

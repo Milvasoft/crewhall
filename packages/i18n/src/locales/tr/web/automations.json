@@ -1,0 +1,281 @@
+{
+  "title": "Otomasyonlar",
+  "untitled": "Yeni kural",
+  "nav": {
+    "rules": "Kurallar",
+    "none": "Bu space'te kural yok.",
+    "new": "Yeni kural"
+  },
+  "home": {
+    "title": "{space} otomasyonları",
+    "intro": "Kodsuz \"şu olunca bunu yap\" kuralları: bir olay olunca koşullara bakılır, eylemler sırayla çalışır.",
+    "empty": "Henüz kural yok",
+    "emptyBody": "Ör. kart Bitti'ye taşınınca sohbete yaz, form gelince karta dönüştür, PDF yüklenince n8n'e haber ver.",
+    "noAccess": "Kuralları göremezsin",
+    "noAccessBody": "Otomasyonları space'in editörleri görür, yöneticileri değiştirir.",
+    "stopped": "Hata nedeniyle durdu",
+    "neverRan": "Henüz çalışmadı",
+    "toggle": "{name} kuralını aç ya da kapat"
+  },
+  "notFound": {
+    "title": "Kural bulunamadı",
+    "body": "Kural silinmiş olabilir ya da görme yetkin yok."
+  },
+  "editor": {
+    "name": "Kural adı",
+    "enabled": "Açık",
+    "when": "Ne zaman",
+    "if": "Şu koşulda (isteğe bağlı)",
+    "then": "Ne yapılsın",
+    "trigger": "Tetikleyici",
+    "choose": "Seç",
+    "any": "Herhangi",
+    "anyFolder": "Space'in her yerinde",
+    "anyField": "Herhangi bir alan",
+    "tableValuesHint": "Boş bırakılan alanlar yazılmaz. Seçimler etiketle, kişiler e-posta ya da adla eşleşir; uymayan değer atlanır.",
+    "valueVariable": "Değer · {name}",
+    "soon": "yakında",
+    "moduleOff": "modül kapalı",
+    "noConditions": "Koşul yok: tetikleyici her çalıştığında eylemler çalışır.",
+    "field": "Alan",
+    "op": "Koşul",
+    "value": "Değer",
+    "addCondition": "Koşul ekle",
+    "removeCondition": "Koşulu kaldır",
+    "addAction": "Eylem ekle",
+    "removeAction": "{name} eylemini kaldır",
+    "moveUp": "Yukarı taşı",
+    "templateHint": "Olaydan bir değer eklemek için \"Değişken ekle\"yi kullan.",
+    "insertVariable": "{name} değişkenini ekle",
+    "create": "Kuralı oluştur",
+    "created": "Kural oluşturuldu",
+    "save": "Kaydet",
+    "savedState": "Kaydedildi",
+    "saved": "Kural kaydedildi",
+    "test": "Şimdi dene",
+    "testStarted": "Örnek olayla çalıştırıldı; sonuç geçmişte",
+    "delete": "Kuralı sil",
+    "deleteTitle": "“{name}” silinsin mi?",
+    "deleteBody": "Kural ve çalışma geçmişi kalıcı olarak silinir.",
+    "deleted": "Kural silindi",
+    "tabs": "Kural sayfaları",
+    "tabRule": "Kural",
+    "tabRuns": "Geçmiş ({count})",
+    "stoppedNotice": "Bu kural art arda {count} kez hata verdiği için durduruldu. Sorunu düzeltip \"Açık\" ile yeniden kaydet.",
+    "webhooks": "Webhook bilgileri",
+    "hookUrl": "Gelen webhook adresi",
+    "hookHint": "Bu adrese JSON gönderen her istek kuralı tetikler; gövdedeki alanlar body.alan değişkeniyle okunur. Dakikada en çok 60 istek.",
+    "signingSecret": "İmza anahtarı",
+    "signingHint": "Giden istekler X-Crewhall-Signature başlığıyla (sha256 HMAC) imzalanır; alıcı bu anahtarla doğrular.",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "regenerate": "Yenile",
+    "addVariable": "Değişken ekle",
+    "answerVariable": "Yanıt · {name}",
+    "stepVariable": "{count}. adımın sonucu ({name})",
+    "members": "{count, plural, one {# kişi} other {# kişi}}"
+  },
+  "ops": {
+    "equals": "eşittir",
+    "not_equals": "eşit değildir",
+    "contains": "içerir",
+    "not_contains": "içermez",
+    "gt": "büyüktür",
+    "lt": "küçüktür",
+    "exists": "dolu",
+    "not_exists": "boş"
+  },
+  "status": {
+    "queued": "Sırada",
+    "running": "Çalışıyor",
+    "succeeded": "Başarılı",
+    "failed": "Hata",
+    "skipped": "Atlandı"
+  },
+  "runs": {
+    "emptyTitle": "Henüz çalışmadı",
+    "emptyBody": "Tetikleyici olay olunca ya da \"Şimdi dene\" ile her çalışma burada görünür.",
+    "test": "Deneme",
+    "ms": "{count} ms",
+    "event": "Olay verisi",
+    "more": "Daha eski çalışmalar",
+    "select": "{date} tarihli çalışmayı seç",
+    "download": "JSON olarak indir"
+  },
+  "runErrors": {
+    "rule_disabled": "Kural kapalı olduğu için çalışmadı.",
+    "module_disabled": "Otomasyonlar kurumda kapalı olduğu için çalışmadı.",
+    "automation_owner_inactive": "Kuralın sahibi artık kurumda değil; kuralı bir yönetici yeniden kaydetmeli.",
+    "step_failed": "Bir adım hata verdi."
+  },
+  "triggers": {
+    "tables.row_created": {
+      "name": "Tabloya satır eklendi",
+      "desc": "Seçilen tabloya yeni satır eklenince (elle, formdan, içe aktarmayla ya da başka bir kuraldan)."
+    },
+    "tables.row_updated": {
+      "name": "Tablo satırı değişti",
+      "desc": "Seçilen tablodaki bir satırın değeri değişince; alan seçilirse yalnız o alan değişince."
+    },
+    "boards.card_moved": {
+      "name": "Kart taşındı",
+      "desc": "Seçilen panoda bir kart başka sütuna taşınınca."
+    },
+    "forms.response_submitted": {
+      "name": "Form yanıtı geldi",
+      "desc": "Seçilen form her yanıt aldığında. Yanıtlar answers.alan_kimliği değişkeniyle okunur."
+    },
+    "drive.file_uploaded": {
+      "name": "Dosya yüklendi",
+      "desc": "Space'e (ya da seçilen klasöre) dosya ya da yeni sürüm yüklenince."
+    },
+    "webhook.received": {
+      "name": "Webhook geldi",
+      "desc": "Kurala özel adrese dışarıdan istek gelince (CI, izleme, n8n…)."
+    },
+    "calendar.event_upcoming": {
+      "name": "Etkinlik yaklaştı",
+      "desc": "Space takviminde bir etkinliğin başlamasına seçilen süre kalınca (tekrarlanan etkinliklerin her oluşumunda)."
+    }
+  },
+  "actions": {
+    "tables.create_row": {
+      "name": "Tabloya satır ekle",
+      "desc": "Seçilen tabloya alanları şablonlardan doldurulan yeni satır ekler."
+    },
+    "tables.update_row": {
+      "name": "Tablo satırını güncelle",
+      "desc": "Satır kimliği verilen satırın seçilen alanlarını şablonlardan günceller."
+    },
+    "chat.post": {
+      "name": "Sohbete yaz",
+      "desc": "Seçilen sohbete kural adıyla mesaj yazar."
+    },
+    "boards.create_card": {
+      "name": "Kart aç",
+      "desc": "Seçilen panonun sütununda yeni kart açar."
+    },
+    "notify.users": {
+      "name": "Bildirim gönder",
+      "desc": "Seçilen kişilere bildirim gider."
+    },
+    "webhook.send": {
+      "name": "Webhook gönder",
+      "desc": "Olayı imzalı JSON olarak dış adrese gönderir."
+    },
+    "ai.step": {
+      "name": "Yapay zekâ adımı",
+      "desc": "Talimatı olayla birlikte kurumun modeline verir; cevap, sonraki adımlarda bu adımın text çıktısı olarak kullanılabilir."
+    }
+  },
+  "fields": {
+    "tableId": "Tablo",
+    "fieldId": "Hangi alan değişince",
+    "values": "Alan değerleri",
+    "rowId": "Satır kimliği",
+    "boardId": "Pano",
+    "fromColumnId": "Hangi sütundan",
+    "toColumnId": "Hangi sütuna",
+    "columnId": "Sütun",
+    "formId": "Hangi form",
+    "folderId": "Klasör",
+    "extensions": "Uzantılar (ör. pdf, docx)",
+    "minutesBefore": "Kaç dakika önce",
+    "conversationId": "Sohbet",
+    "text": "Mesaj",
+    "title": "Kart başlığı",
+    "description": "Açıklama",
+    "userIds": "Kişiler",
+    "url": "Adres",
+    "prompt": "Yapay zekâya talimat"
+  },
+  "notifications": {
+    "notify": "{name}: {text}",
+    "disabled": "{name} kuralı art arda {count} kez hata verdi ve durduruldu"
+  },
+  "board": {
+    "intro": "Bu panodan başlayan kurallar. Kurallar space'in Otomasyonlar sayfasında kurulur: kart taşınınca sohbete yaz, bildirim gönder, webhook çağır.",
+    "none": "Bu pano için henüz kural yok.",
+    "open": "Otomasyonları aç",
+    "off": "Otomasyonlar bu kurumda kapalı."
+  },
+  "conversationTypes": {
+    "direct": "Birebir",
+    "group": "Grup",
+    "space": "Space sohbeti",
+    "meeting": "Toplantı",
+    "alert": "Alarm",
+    "card": "Kart sohbeti"
+  },
+  "variables": {
+    "table": {
+      "name": "Tablo adı"
+    },
+    "row": {
+      "id": "Satır kimliği",
+      "title": "Satır başlığı",
+      "url": "Satır bağlantısı"
+    },
+    "values": "Tüm değerler (Alan: değer)",
+    "before": "Önceki değerler (Alan: değer)",
+    "changed": "Değişen alanlar",
+    "card": {
+      "ref": "Kart kodu",
+      "title": "Kart başlığı",
+      "url": "Kart bağlantısı"
+    },
+    "board": {
+      "name": "Pano adı"
+    },
+    "from": {
+      "name": "Önceki sütun"
+    },
+    "to": {
+      "name": "Yeni sütun",
+      "done": "Tamamlandı sütunu mu"
+    },
+    "actor": {
+      "name": "İşlemi yapan"
+    },
+    "form": {
+      "title": "Form adı",
+      "url": "Form bağlantısı"
+    },
+    "response": {
+      "url": "Yanıt bağlantısı"
+    },
+    "respondent": {
+      "name": "Yanıtlayan"
+    },
+    "answers": "Tüm yanıtlar (Soru: cevap)",
+    "file": {
+      "name": "Dosya adı",
+      "mime": "Dosya türü",
+      "size": "Dosya boyutu",
+      "version": "Sürüm",
+      "url": "Dosya bağlantısı"
+    },
+    "folder": {
+      "name": "Klasör adı"
+    },
+    "body": "Gelen veri",
+    "contentType": "İçerik türü",
+    "event": {
+      "title": "Etkinlik adı",
+      "startsAt": "Başlangıç",
+      "url": "Etkinlik bağlantısı"
+    },
+    "minutesBefore": "Kaç dakika önce"
+  },
+  "menu": {
+    "open": "Aç",
+    "runs": "Çalıştırma geçmişi",
+    "pause": "Duraklat",
+    "resume": "Etkinleştir",
+    "paused": "Kural duraklatıldı",
+    "resumed": "Kural etkinleştirildi",
+    "saving": "Kaydediliyor…",
+    "rename": "Yeniden adlandır",
+    "renamed": "Kuralın adı değişti"
+  }
+}

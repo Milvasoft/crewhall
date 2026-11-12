@@ -1,0 +1,11 @@
+{
+  "ai_disabled": "AI assistance is turned off for this organization. Ask your admin.",
+  "ai_not_configured": "AI is not set up yet. An admin needs to enter a model and an API key.",
+  "ai_quota_exceeded": "This month's AI quota is used up. It resets at the start of the month.",
+  "ai_provider_error": "The AI model could not be reached. Try again in a moment.",
+  "ai_refused": "The model did not answer this request. Change the text and try again.",
+  "ai_run_not_found": "This AI result was not found or was already recorded.",
+  "ai_transcription_not_configured": "No speech recognition server is set up. Ask your admin.",
+  "ai_recording_not_ready": "The recording is not ready yet. Try again in a moment.",
+  "ai_action_unverified": "The action ran but its result could not be verified. Check the target."
+}

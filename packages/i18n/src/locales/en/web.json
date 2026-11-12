@@ -1,0 +1,1839 @@
+{
+  "ui": {
+    "saved": "Saved",
+    "more": "More actions",
+    "picker": {
+      "datePlaceholder": "Select date",
+      "rangePlaceholder": "Select date range",
+      "timePlaceholder": "--:--",
+      "chooseDate": "Choose date",
+      "chooseRange": "Choose date range",
+      "chooseTime": "Choose time",
+      "clear": "Clear",
+      "previousMonth": "Previous month",
+      "nextMonth": "Next month",
+      "previousYear": "Previous year",
+      "nextYear": "Next year",
+      "previousYears": "Previous years",
+      "nextYears": "Next years",
+      "chooseMonthYear": "Choose month and year",
+      "chooseYear": "Choose year",
+      "hours": "Hour",
+      "minutes": "Minute",
+      "pickEnd": "Start {from}, choose the end date",
+      "presets": {
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "last7": "Last 7 days",
+        "last30": "Last 30 days",
+        "thisMonth": "This month",
+        "lastMonth": "Last month",
+        "custom": "Custom"
+      }
+    },
+    "selectAll": "Select all",
+    "pageSelected": "Everything on this page is selected",
+    "selectEvery": "Select all",
+    "selectEveryCount": "Select all ({count})",
+    "selectedCount": "{count} selected",
+    "selectionActions": "Actions for the selection",
+    "clearSelection": "Clear selection"
+  },
+  "prefs": {
+    "language": "Language",
+    "theme": "Theme",
+    "languages": {
+      "tr": "Türkçe",
+      "en": "English"
+    },
+    "appearance": {
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "density": {
+      "label": "Density",
+      "comfortable": "Comfortable",
+      "compact": "Compact"
+    }
+  },
+  "auth": {
+    "brand": {
+      "poweredBy": "with Crewhall",
+      "titleLead": "The {org} team's",
+      "titleAccent": "workspace",
+      "description": "Files, pages, boards, chat, meetings and the vault in one place."
+    },
+    "fields": {
+      "email": "Email",
+      "emailInvalid": "Enter a valid email address.",
+      "password": "Password",
+      "name": "Full name",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
+    },
+    "errors": {
+      "network": "Can't reach the server. Check your connection and try again."
+    },
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Continue with your {org} account.",
+      "forgot": "Forgot password",
+      "capsLock": "Caps Lock may be on.",
+      "remember": "Keep me signed in on this device",
+      "submit": "Sign in",
+      "or": "or",
+      "passkey": "Sign in with a passkey",
+      "noAccount": "No account? Ask an admin in your organization for an invite.",
+      "invalid": "Email or password is incorrect.",
+      "remaining": "{count, plural, one {# attempt left} other {# attempts left}} before the account is locked."
+    },
+    "twoFactor": {
+      "title": "Verification code",
+      "subtitle": "Enter the 6-digit code from your authenticator app.",
+      "change": "Change",
+      "codeLabel": "6-digit verification code",
+      "trust": "Remember this device for 30 days",
+      "submit": "Verify",
+      "useBackup": "Use a backup code",
+      "usePasskey": "Verify with a passkey",
+      "invalid": "The code is wrong or has expired.",
+      "lostDevice": "Lost your phone? If you have no backup codes either, an org admin can reset your 2FA."
+    },
+    "backup": {
+      "title": "Sign in with a backup code",
+      "subtitle": "Enter one of the 10 backup codes you saved when setting up 2FA.",
+      "label": "Backup code",
+      "hint": "E.g. 4F7K-92QD. Each code works only once.",
+      "submit": "Verify and sign in",
+      "invalid": "The backup code is invalid or was already used.",
+      "afterUse": "After signing in you can create new codes in My account › Security.",
+      "back": "Back to the app code",
+      "adminHelp": "If you have no backup codes, your org admins can reset your 2FA."
+    },
+    "passkey": {
+      "title": "Confirm your passkey",
+      "subtitle": "Approve with your fingerprint, face or device PIN in the window your browser opened.",
+      "waiting": "Waiting for the browser window",
+      "waitingHint": "If you don't see it, check your open tabs.",
+      "useEmail": "Sign in with email and password",
+      "where": "Passkeys are added in My account › Security. For a passkey on your phone, choose \"Use another device\" in the browser window.",
+      "failed": "The passkey could not be verified. Try again or sign in with email and password."
+    },
+    "locked": {
+      "title": "Account temporarily locked",
+      "subtitle": "There were repeated failed attempts for <b>{email}</b>. Sign-ins are paused for your safety.",
+      "retryIn": "You can try again in",
+      "liftsAt": "The lock lifts at {time}",
+      "unlockByEmail": "Unlock by email",
+      "notYou": "<b>Wasn't you?</b> Change your password and tell your org admin.",
+      "passkeyHint": "Passkey sign-in is not affected by the lock.",
+      "lastAttempt": "The last attempt was at {time}.",
+      "lastAttemptIp": "The last attempt was at {time} from {ip}."
+    },
+    "forgot": {
+      "title": "Reset your password",
+      "subtitle": "Enter your account email and we'll send you a reset link.",
+      "submit": "Send link",
+      "backToLogin": "Back to sign in",
+      "vaultNote": "<b>Resetting your password doesn't open your vault.</b> Your vault password is separate and never stored on the server; you need your vault recovery key to recover it.",
+      "passkeyHint": "If you have a passkey you can sign in without a password.",
+      "sentTitle": "Check your email",
+      "sentBody": "If an account exists for <b>{email}</b>, a reset link arrives within a few minutes. The link is valid for 30 minutes.",
+      "notArrived": "Didn't get it?",
+      "checkSpam": "Look in your spam folder",
+      "checkAddress": "Make sure the address is right",
+      "resend": "Send again",
+      "resendIn": "Send again · {time}",
+      "otherAddress": "Other address",
+      "closeTab": "You can close this tab; the link opens in a new one.",
+      "noEmailBody": "E-mail is not set up on this server, so we can't send a reset link.",
+      "noEmailHint": "Ask an org admin to reset your password. If you have a passkey you can sign in without a password."
+    },
+    "reset": {
+      "title": "Set a new password",
+      "subtitle": "Choose a new password for your account.",
+      "newPassword": "New password",
+      "repeat": "New password (again)",
+      "mismatch": "The two passwords don't match.",
+      "signOutAll": "Saving signs you out on every device.",
+      "submit": "Save password",
+      "expiredTitle": "This link has expired",
+      "expiredBody": "Reset links are valid for 30 minutes and work only once.",
+      "newLink": "Request a new link"
+    },
+    "password": {
+      "ruleLength": "At least {min} characters ({count})",
+      "rulePersonal": "Doesn't contain your name or email",
+      "tooShort": "Too short: at least {min} characters (now {count}).",
+      "strength": {
+        "veryWeak": "Very weak",
+        "weak": "Weak",
+        "fair": "Fair",
+        "good": "Good",
+        "strong": "Strong"
+      }
+    },
+    "invite": {
+      "invitedBy": "<b>{name}</b> invited you to <b>{org}</b>",
+      "validFor": "Until {date} · valid for {days, plural, one {# more day} other {# more days}}",
+      "orgRole": "Organization role",
+      "createTitle": "Create your account",
+      "acceptTitle": "Join with this account",
+      "accept": "Accept invitation",
+      "emailFixed": "The email comes from the invitation and can't be changed.",
+      "submit": "Create account and join",
+      "haveAccount": "Already have an account?",
+      "exists": "An account with this email exists. Sign in to accept the invitation.",
+      "terms": "By continuing you accept the {org} terms of use.",
+      "invalidTitle": "This invitation is no longer valid",
+      "invalidBody": "It expired or was revoked. Ask the person who invited you for a new one.",
+      "spaces": "Spaces",
+      "signInTitle": "Sign in with your account",
+      "signInBody": "{email} already has an account. The invitation is accepted when you sign in.",
+      "mismatch": "This invitation is for {invited}. You are signed in as {current}.",
+      "switchAccount": "Sign out and continue with the invited account"
+    }
+  },
+  "setup": {
+    "badge": "Crewhall setup",
+    "stepOf": "Step {step} of {total}",
+    "eta": {
+      "org": "~2 minutes",
+      "owner": "~1 minute",
+      "spaces": "~1 minute",
+      "invite": "last step"
+    },
+    "org": {
+      "short": "Organization",
+      "hint": "Name, address and language",
+      "title": "Introduce your organization",
+      "subtitle": "This shows on the sign-in page, in emails and at the top left of the app. You can change it later in Admin › Brand.",
+      "name": "Organization name",
+      "slug": "Organization ID",
+      "slugHint": "Lowercase letters, digits and dashes. Used by the API and exports; it can't change later.",
+      "slugInvalid": "2-40 characters; lowercase letters, digits and dashes only.",
+      "locale": "Default language",
+      "token": "Setup token",
+      "tokenHint": "The server prints it to the logs on first start (docker compose logs backend)."
+    },
+    "owner": {
+      "short": "First admin",
+      "hint": "Organization owner account",
+      "title": "Create the admin account",
+      "subtitle": "The organization's first account. It can reach every setting and member.",
+      "note": "Role: <b>Organization owner</b>. You'll set up two-step verification at the end of setup."
+    },
+    "spaces": {
+      "short": "Shared spaces",
+      "hint": "Where teams will work",
+      "title": "Create the first spaces",
+      "subtitle": "Files, pages, boards, chats and the vault belong to spaces. One space per team or project is a good start.",
+      "placeholder": "Space name",
+      "default": "Default",
+      "add": "Add space",
+      "submit": "{count, plural, one {Create # space} other {Create # spaces}}"
+    },
+    "invite": {
+      "short": "Invite the team",
+      "hint": "You can also do this later",
+      "title": "Invite your team",
+      "subtitle": "Invitees create their own accounts. Invitations are valid for 7 days.",
+      "emails": "Email addresses · {count}",
+      "skip": "Skip for now",
+      "submit": "Invite and finish"
+    },
+    "done": "Setup complete: {spaces, plural, one {# space} other {# spaces}}, {invites, plural, one {# invitation} other {# invitations}}.",
+    "checks": {
+      "title": "System check",
+      "database": "Database",
+      "storage": "Storage",
+      "smtp": "E-mail (SMTP)",
+      "ok": "connected",
+      "missing": "not set up"
+    },
+    "links": {
+      "title": "Invitation links",
+      "subtitle": "SMTP isn't set up, so no invitation e-mails were sent. Copy the links and share them with your team; they are valid for 7 days.",
+      "copied": "Link copied",
+      "copyAll": "Copy all"
+    }
+  },
+  "setup2fa": {
+    "step1": "Connect the app",
+    "step2": "Backup codes",
+    "title": "Set up two-step verification",
+    "subtitle": "To protect your account, signing in will ask for a code from your phone in addition to your password.",
+    "policy": "{org} admins require two-step verification. You can't continue without it.",
+    "confirmPassword": "Enter your password to continue",
+    "scan": "1. Scan the QR code with your authenticator app",
+    "qrAlt": "Two-step verification QR code",
+    "manual": "Can't scan it? Enter the key manually:",
+    "account": "Account name: {org} ({email})",
+    "enterCode": "2. Enter the 6-digit code from the app",
+    "verify": "Verify and continue",
+    "passkeyInstead": "Add a passkey instead",
+    "codes": {
+      "connected": "App connected",
+      "title": "Save your backup codes",
+      "subtitle": "If you lose your phone you can sign in with these codes. Each works once and is shown only now.",
+      "download": "Download (.txt)",
+      "copy": "Copy",
+      "copied": "Codes copied",
+      "print": "Print",
+      "saved": "I saved the codes somewhere safe",
+      "finish": "Finish and open {app}",
+      "fileTitle": "two-step verification backup codes"
+    }
+  },
+  "session": {
+    "expired": {
+      "title": "Verify again for security",
+      "subtitle": "Enter your password again to continue. Your changes on this page are still here.",
+      "passkey": "Passkey",
+      "otherAccount": "Sign in with another account"
+    }
+  },
+  "pages": {
+    "notFound": {
+      "title": "Page not found",
+      "body": "The link may be wrong, or the item was moved or deleted. Or you don't have access to it.",
+      "home": "Back to home",
+      "search": "Search",
+      "hint": "If a teammate sent you the link, ask the owner to add you."
+    },
+    "error": {
+      "title": "Something went wrong",
+      "subtitle": "The server couldn't complete the request ({status})",
+      "body": "This is an error on our side. Try again in a few seconds; if it keeps happening, send the ID below to your admin.",
+      "idLabel": "Error ID",
+      "copy": "Copy error ID",
+      "copied": "Error ID copied",
+      "home": "Home"
+    }
+  },
+  "shell": {
+    "rail": "Modules",
+    "breadcrumb": "Location",
+    "search": "Search or type a command",
+    "searchIn": "Search in {name}",
+    "notifications": "Notifications",
+    "noNotifications": "No notifications",
+    "noNotificationsHint": "Mentions, shares and assignments will show up here.",
+    "account": "Account menu",
+    "signOut": "Sign out",
+    "signOutConfirm": "Sign out?",
+    "darkMode": "Switch to dark theme",
+    "lightMode": "Switch to light theme",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "showSidebar": "Show sidebar",
+    "hideSidebar": "Hide sidebar",
+    "more": "More",
+    "back": "Back",
+    "modules": {
+      "home": "Home",
+      "chat": "Chat",
+      "drive": "Drive",
+      "pages": "Pages",
+      "boards": "Boards",
+      "drawings": "Drawings",
+      "meet": "Meetings",
+      "calendar": "Calendar",
+      "contacts": "Directory",
+      "vault": "Vault",
+      "tables": "Tables",
+      "forms": "Forms",
+      "automations": "Automations",
+      "mail": "Mail",
+      "portal": "Portal",
+      "admin": "Admin",
+      "tools": "Tools"
+    },
+    "resizeSidebar": "Resize the sidebar",
+    "resizePanel": "Resize the panel",
+    "sidebarCollapsed": "Collapsed",
+    "railMenu": {
+      "open": "Open",
+      "order": "Edit the left menu",
+      "hide": "Hide from the left menu"
+    },
+    "newVersion": {
+      "ready": "A new version is ready",
+      "reload": "Reload",
+      "later": "Later"
+    },
+    "version": {
+      "title": "Version",
+      "web": "Crewhall {version}",
+      "dev": "development",
+      "server": "Server {version}",
+      "api": "API {level}",
+      "desktop": "Desktop {version}",
+      "copy": "Copy version details",
+      "copied": "Version details copied"
+    },
+    "keys": {
+      "title": "Keyboard shortcuts",
+      "subtitle": "Change the left menu's shortcuts in My account › Appearance › Left menu. These keys do nothing while you type.",
+      "navigation": "Left menu",
+      "general": "General",
+      "palette": "Command palette",
+      "ask": "Ask the assistant",
+      "status": "Set your status",
+      "help": "This list",
+      "lists": "Lists",
+      "selectAll": "Select all",
+      "clear": "Clear the selection",
+      "drive": "Drive",
+      "preview": "Preview",
+      "rename": "Rename",
+      "trash": "Move to trash",
+      "details": "Details",
+      "newFolder": "New folder",
+      "upload": "Upload",
+      "chat": "Chat",
+      "chatSearch": "Search in chat",
+      "reply": "Reply",
+      "edit": "Edit",
+      "unread": "Mark as unread",
+      "mail": "Mail",
+      "next": "Next message",
+      "previous": "Previous message",
+      "vault": "Vault",
+      "search": "Search",
+      "newItem": "New item",
+      "lock": "Lock the vault"
+    }
+  },
+  "modules": {
+    "comingTitle": "{module} is coming here",
+    "comingBody": "This module arrives in the next release. Your space is ready: you can already manage its members and settings.",
+    "portalBody": "Portal content (docs, blog, menu) will be managed here in the next release."
+  },
+  "palette": {
+    "title": "Command palette",
+    "placeholder": "Search or type a command",
+    "empty": "No results. Try another word.",
+    "count": "{count, plural, one {# result} other {# results}}",
+    "kinds": {
+      "all": "All",
+      "space": "Space",
+      "person": "Person",
+      "page": "Page",
+      "command": "Command",
+      "file": "File",
+      "drawing": "Drawing"
+    },
+    "groups": {
+      "space": "Spaces",
+      "person": "People",
+      "page": "Pages and settings",
+      "command": "Commands",
+      "file": "Files and folders",
+      "drawing": "Drawings",
+      "recent": "Recently visited",
+      "shortcuts": "Shortcuts"
+    },
+    "hint": {
+      "move": "move",
+      "open": "open",
+      "filter": "filter by type",
+      "commands": "commands only",
+      "pages": "pages only"
+    },
+    "cmd": {
+      "newSpace": "Create a new space",
+      "invite": "Invite someone to the team",
+      "language": "Change language: {language}",
+      "addLink": "Add a link to the current surface",
+      "scheduleMeeting": "Schedule a meeting"
+    }
+  },
+  "home": {
+    "surfaces": "Quick access surfaces",
+    "mine": "Mine",
+    "eyebrow": "Quick access",
+    "greeting": {
+      "night": "Good night, {name}",
+      "morning": "Good morning, {name}",
+      "afternoon": "Good afternoon, {name}",
+      "evening": "Good evening, {name}"
+    },
+    "emptyTitle": "Set up your surface, {name}",
+    "spaceSurfaceTitle": "{name} surface",
+    "emptyBody": "This will be your start screen: links you open often, your notes, chats and the work assigned to you. The card surface arrives in the next release; meanwhile set up your spaces and invite your team.",
+    "yourSpaces": "Your spaces",
+    "steps": {
+      "space": "New space",
+      "spaceBody": "Open a shared area for a team or project.",
+      "invite": "Invite the team",
+      "inviteBody": "Send invitations by email and pick roles.",
+      "security": "Review your security",
+      "securityBody": "2FA, passkeys and open sessions."
+    }
+  },
+  "spaces": {
+    "personal": "Personal",
+    "onlyYou": "Only you",
+    "memberCount": "{count, plural, one {# member} other {# members}}",
+    "switcher": "Choose a space",
+    "search": "Search spaces",
+    "yours": "Your spaces",
+    "noMatch": "No matching space.",
+    "archived": "Archived spaces",
+    "settingsOf": "{name} settings",
+    "new": "New space",
+    "sidebar": "Space sidebar",
+    "settings": "Space settings",
+    "storage": "Storage",
+    "name": "Name",
+    "color": "Color",
+    "colorHint": "Category color, not accent",
+    "colors": {
+      "s1": "Blue",
+      "s2": "Teal",
+      "s3": "Pink",
+      "s4": "Purple",
+      "s5": "Green",
+      "s6": "Gray"
+    },
+    "badge": "Badge",
+    "badgeLetter": "Letter",
+    "badgeIcon": "Icon",
+    "membersAndRoles": "Members and roles",
+    "addPerson": "Add a person or email",
+    "you": "you",
+    "role": "Role",
+    "roleOf": "Role of {name}",
+    "notify": "{count, plural, one {# person gets} other {# people get}} an invitation notice.",
+    "create": "Create space",
+    "created": "{name} created",
+    "settingsTitle": "Space settings",
+    "settingsSub": "{name} · {count, plural, one {# member} other {# members}} · created {date}",
+    "addMember": "Add member",
+    "addMemberTitle": "Add a member to {name}",
+    "person": "Person",
+    "pickPerson": "Pick someone from the organization",
+    "add": "Add",
+    "searchMember": "Search members",
+    "columns": {
+      "member": "Member",
+      "role": "Role",
+      "added": "Added"
+    },
+    "removeMember": "Remove from space",
+    "roleChanged": "Role updated",
+    "roleHelp": {
+      "owner": "Everything; can delete the space and transfer ownership",
+      "admin": "Manages members and settings",
+      "editor": "Creates, edits and shares content",
+      "viewer": "Views, comments, downloads"
+    },
+    "general": "General",
+    "orgQuota": "from the org quota",
+    "address": "Address",
+    "archive": "Archive space",
+    "archiveHint": "Becomes read-only and leaves search.",
+    "archiveAction": "Archive",
+    "archiveConfirmTitle": "Archive {name}?",
+    "archiveConfirmBody": "The space becomes read-only and leaves search. Its storage still counts.",
+    "archivedToast": "{name} archived"
+  },
+  "invite": {
+    "title": "Invite members",
+    "emails": "Email addresses",
+    "placeholder": "Paste or type addresses",
+    "addMore": "Add address…",
+    "guestNote": "{emails}: outside the org domain, will be invited as a guest and see only the selected spaces.",
+    "orgRole": "Organization role",
+    "orgAdmin": "Organization admin",
+    "spaces": "Spaces",
+    "validity": "Invitations are valid for 7 days",
+    "send": "{count, plural, =0 {Send invitations} one {Send # invitation} other {Send # invitations}}",
+    "sent": "{count, plural, one {# invitation sent} other {# invitations sent}}",
+    "resend": "Resend invitation",
+    "resent": "Invitation sent again",
+    "revoke": "Revoke invitation",
+    "linksTitle": "Invitation links",
+    "linksBody": "E-mail is not set up. Copy the links and send them to the people you invited yourself.",
+    "defaultSpace": "default, everyone joins"
+  },
+  "admin": {
+    "title": "Admin",
+    "subtitle": "{org} · organization settings",
+    "backToApp": "Back to the app",
+    "searchSettings": "Search settings",
+    "publish": "Publish",
+    "unsaved": "{count, plural, one {# unsaved change} other {# unsaved changes}}",
+    "leaveUnsaved": "You have unsaved changes. Leave the page?",
+    "groups": {
+      "org": "Organization",
+      "brand": "Brand and theme"
+    },
+    "nav": {
+      "general": "General",
+      "members": "Members",
+      "spaces": "Spaces",
+      "brand": "Brand",
+      "theme": "Theme",
+      "delivery": "Notification delivery"
+    },
+    "general": {
+      "title": "General",
+      "subtitle": "Organization details and regional defaults",
+      "org": "Organization",
+      "name": "Organization name",
+      "nameHint": "On the sign-in page, in emails and the tab title",
+      "slug": "Organization ID",
+      "slugHint": "Used by the API and exports; can't be changed",
+      "region": "Region and language",
+      "locale": "Default language",
+      "localeHint": "New members and emails",
+      "policies": "Policies",
+      "require2fa": "Require two-step verification",
+      "require2faHint": "Members without it can't enter the app; always required for owners and admins",
+      "membersCreate": "Members can create spaces",
+      "membersCreateHint": "When off, only admins open spaces",
+      "publicLinks": "Public links",
+      "publicLinksHint": "When off, nothing can be shared outside by link",
+      "trashDays": "Trash retention",
+      "trashDaysHint": "Trashed files, pages, board cards and vault items are deleted for good after this many days (1-3650)",
+      "trashDaysUnit": "days"
+    },
+    "brand": {
+      "title": "Brand",
+      "subtitle": "Organization and app name, logos and product signature",
+      "identity": "Identity",
+      "orgName": "Organization name",
+      "orgNameHint": "Shared with General · sign-in, email, tab",
+      "appName": "App name",
+      "appNameHint": "Tab shows \"{org} · app name\"",
+      "logos": "Logos",
+      "logosHint": "SVG recommended · PNG at least 2×",
+      "logoLight": "Logo for light backgrounds",
+      "logoDark": "Logo for dark backgrounds",
+      "mark": "Emblem · square",
+      "favicon": "Favicon",
+      "noFile": "Not uploaded",
+      "change": "Change",
+      "fallback": "Crewhall default",
+      "signature": "Product signature",
+      "poweredBy": "\"with Crewhall\" line",
+      "poweredByHint": "Sign-in page, email footer and About",
+      "preview": "Where it shows",
+      "previewHint": "previewed before saving",
+      "published": "Brand published",
+      "remove": "Remove"
+    },
+    "theme": {
+      "title": "Theme",
+      "subtitle": "Background, surface and accent for light and dark; the other tones are derived",
+      "draft": "Draft",
+      "reset": "Back to default",
+      "import": "Import",
+      "export": "Export (JSON)",
+      "imported": "Theme opened as a draft",
+      "importInvalid": "The file is not a valid theme",
+      "issues": "{count, plural, one {# contrast issue} other {# contrast issues}}",
+      "published": "Theme published · v{version}",
+      "presets": "Theme set",
+      "presetsHint": "Picking one fills the colors; you can change them after",
+      "preset": {
+        "milva": "Default",
+        "neutral": "Neutral",
+        "ocean": "Ocean",
+        "forest": "Forest",
+        "custom": "Custom"
+      },
+      "colors": "Colors",
+      "light": "Light theme",
+      "dark": "Dark theme",
+      "token": {
+        "bg": "Background",
+        "surface": "Surface",
+        "accent": "Accent"
+      },
+      "auto": "Auto",
+      "derived": "Derived",
+      "contrast": "Contrast check",
+      "contrastHint": "WCAG 2.2 · at least 4.5:1 for text",
+      "pair": {
+        "fgBg": "Text / background",
+        "fg2Bg": "Secondary text / background",
+        "accentFgAccent": "Text on accent",
+        "accentTextBg": "Accent text / background"
+      },
+      "failed": "Fails · {ratio}:1",
+      "failTitle": "{scheme} · {pair} is not readable",
+      "failBody": "Now {ratio}:1. Text needs at least 4.5:1; a failing theme can't be published.",
+      "autofix": "Fix automatically",
+      "fixManually": "Fix it by changing the background or accent color.",
+      "livePreview": "Live preview",
+      "livePreviewHint": "not saved",
+      "card": "Card",
+      "mention": "Bugra",
+      "shape": "Shape",
+      "radius": "Corner radius",
+      "radiusHint": "Card 16 · button 12",
+      "radiusSharp": "Sharp",
+      "radiusDefault": "Default",
+      "radiusSoft": "Soft",
+      "density": "Density",
+      "densityHint": "Default for new members",
+      "versions": "Versions",
+      "live": "Live"
+    },
+    "members": {
+      "title": "Members",
+      "subtitle": "{members, plural, one {# member} other {# members}} · {invites, plural, one {# pending invitation} other {# pending invitations}}",
+      "invite": "Invite",
+      "search": "Name or email",
+      "filter": {
+        "all": "All",
+        "admins": "Admins",
+        "no2fa": "No 2FA",
+        "invites": "Invitations",
+        "suspended": "Suspended"
+      },
+      "columns": {
+        "member": "Member",
+        "role": "Organization role",
+        "twoFactor": "2FA",
+        "lastSeen": "Last seen",
+        "status": "Status"
+      },
+      "role": {
+        "owner": "Organization owner",
+        "admin": "Organization admin",
+        "member": "Member",
+        "guest": "Guest"
+      },
+      "status": {
+        "active": "Active",
+        "invited": "Invitation pending",
+        "suspended": "Suspended",
+        "expired": "Expired"
+      },
+      "twoFactorOn": "On",
+      "twoFactorOff": "None",
+      "online": "Online",
+      "invitedBy": "Invited by {name} · {when}",
+      "expiredOn": "Expired on {date}",
+      "panel": "Member",
+      "since": "Since {date}",
+      "suspend": "Suspend",
+      "suspendHint": "Sessions end and sign-in is blocked; content stays in spaces.",
+      "suspendAction": "Suspend",
+      "reactivate": "Reactivate",
+      "reactivateHint": "The person can sign in again.",
+      "reactivateAction": "Reactivate",
+      "locked": "Locked · {time}",
+      "push": {
+        "title": "Push diagnostics",
+        "hint": "Why did or didn’t this person get a push?",
+        "show": "Show",
+        "refresh": "Refresh",
+        "inQuietHours": "in quiet hours",
+        "sessions": "Open sessions",
+        "devices": "Devices",
+        "recent": "Recent notifications",
+        "none": "None",
+        "attending": "At the session, push held back",
+        "notAttending": "Not at the session",
+        "idle": "idle for {seconds} s",
+        "active": "Active",
+        "muted": "Muted on this device",
+        "disabled": "Off: {reason}",
+        "noPush": "No push asked for",
+        "waiting": "Queued, not sent yet",
+        "sent": "Sent ({count} devices)",
+        "failed": "Could not send: {errors}",
+        "skip": {
+          "pref_off": "Their preference is off",
+          "silent": "The sender asked for silence",
+          "busy": "Status is Busy",
+          "dnd": "Do not disturb is on",
+          "quiet_hours": "In quiet hours",
+          "attending": "They were at a session then",
+          "no_devices": "No registered device"
+        }
+      },
+      "lockedTitle": "Sign-in locked",
+      "lockedHint": "Repeated failed attempts. The lock lifts by itself at {time}.",
+      "unlock": "Unlock",
+      "unlocked": "Lock lifted",
+      "select": "Select {name}",
+      "bulk": {
+        "suspendTitle": "{count, plural, one {Deactivate # member?} other {Deactivate # members?}}",
+        "done": "{count, plural, one {# entry updated} other {# entries updated}}",
+        "revoke": "Revoke invitation"
+      }
+    },
+    "spaces": {
+      "title": "Spaces",
+      "subtitle": "{active, plural, one {# active shared space} other {# active shared spaces}} · {archived} archived",
+      "kpiShared": "Shared spaces",
+      "kpiStorage": "Total storage",
+      "kpiQuota": "Quota warnings",
+      "columns": {
+        "space": "Space",
+        "members": "Members",
+        "storage": "Storage",
+        "yourRole": "Your role",
+        "created": "Created",
+        "status": "Status",
+        "owner": "Owner"
+      },
+      "status": {
+        "active": "Active",
+        "archived": "Archived",
+        "quota": "Quota warning"
+      },
+      "personalNote": "Admins can't see the content of personal spaces.",
+      "default": "Default · everyone joins",
+      "byInvite": "By invitation",
+      "readOnly": "Read-only",
+      "notMember": "Not a member"
+    },
+    "delivery": {
+      "title": "Notification delivery",
+      "subtitle": "How the org's e-mail and mobile notifications go out.",
+      "saved": "Delivery settings saved",
+      "modes": {
+        "env": "Server default",
+        "notifike": "Notifike"
+      },
+      "email": {
+        "title": "E-mail",
+        "envOn": "Uses the server's SMTP.",
+        "envOff": "The server has no e-mail set up.",
+        "envMissing": "The server has no e-mail set up: invitations and notification e-mails won't go out. Choose your own SMTP server or Notifike.",
+        "smtp": "My own SMTP server",
+        "smtpHint": "Through the org's mail server.",
+        "notifikeHint": "Through your Notifike account."
+      },
+      "smtp": {
+        "host": "Server",
+        "port": "Port",
+        "security": "Security",
+        "securities": {
+          "tls": "TLS",
+          "starttls": "STARTTLS",
+          "none": "None"
+        },
+        "noneWarning": "An unencrypted connection is for testing only: the password and content travel in the clear.",
+        "username": "Username",
+        "password": "Password",
+        "from": "Sender",
+        "fromHint": "Name and address, e.g. \"Crewhall '<'notify@example.com'>'\"."
+      },
+      "push": {
+        "title": "Mobile notifications",
+        "envOn": "Uses the server's Firebase account.",
+        "envOff": "The server has no Firebase; only Expo delivery works.",
+        "direct": "Direct (my own Firebase)",
+        "directHint": "With the org's Firebase project.",
+        "notifikeHint": "Through your Notifike account.",
+        "serviceAccount": "Firebase service account (JSON)",
+        "serviceAccountHint": "Firebase console › Project settings › Service accounts › Generate new private key.",
+        "uploadFile": "Choose JSON file",
+        "project": "project {name}",
+        "expoToken": "Expo access token (optional)",
+        "expoTokenHint": "Only if the Expo project requires access tokens."
+      },
+      "notifike": {
+        "title": "Notifike",
+        "baseUrl": "Address",
+        "baseUrlHint": "Without /api/v1.0, e.g. https://api.notifike.com",
+        "apiKey": "API key",
+        "authFailed": "Notifike refused the key · {date}. Renew the key."
+      },
+      "secret": {
+        "stored": "Stored",
+        "changed": "last changed {time}",
+        "replace": "Change",
+        "remove": "Remove",
+        "replaceLabel": "{name}: change",
+        "removeLabel": "{name}: remove",
+        "willRemove": "Will be removed when you save.",
+        "emptyKeeps": "Leave it empty to keep the stored value."
+      },
+      "test": {
+        "email": "Send test e-mail",
+        "push": "Send test notification",
+        "to": "Recipient",
+        "toHint": "Empty sends it to your own address.",
+        "toPlaceholder": "name@example.com",
+        "saveFirst": "Tests use the saved settings; save your changes first.",
+        "result": "Test result",
+        "ok": "Sent ({count, plural, one {# recipient} other {# recipients}})",
+        "failed": "Not sent"
+      },
+      "via": {
+        "env": "Server default",
+        "smtp": "Own SMTP",
+        "direct": "Own Firebase",
+        "notifike": "Notifike"
+      },
+      "notes": {
+        "title": "Good to know",
+        "expo": "Expo and iOS notifications always go straight to Expo in every mode; Notifike has no Expo provider.",
+        "sender": "In Notifike mode the sender name and address come from the provider account in Notifike.",
+        "required": "You can't save a mode while a field it needs is empty; the missing field is marked."
+      },
+      "errors": {
+        "required": "Required for this delivery path.",
+        "serviceAccount": "Not a valid Firebase service account ({text}).",
+        "invalid": "Invalid value."
+      }
+    },
+    "desktop": {
+      "nav": "Desktop releases",
+      "title": "Desktop releases",
+      "subtitle": "Upload and publish the installers; the desktop apps take their updates from this server.",
+      "platform": "Operating system",
+      "platforms": {
+        "win": "Windows",
+        "mac": "macOS"
+      },
+      "upload": {
+        "title": "New release",
+        "drop": "Drop the files here",
+        "pick": "or choose",
+        "hint": {
+          "win": "The installer (.exe), optionally with its .blockmap.",
+          "mac": "The update archive (.zip) and the disk image (.dmg) for downloads; .blockmap optional."
+        },
+        "unsupported": "{name} is not a file for this platform.",
+        "version": "Version",
+        "versionHint": "Read from the file name; fix it if needed.",
+        "versionInvalid": "The version should look like 1.2.3.",
+        "missing": {
+          "win": "Publishing needs the .exe installer.",
+          "mac": "Publishing needs the .zip update archive."
+        },
+        "waiting": "You can publish once the uploads finish.",
+        "publish": "Publish",
+        "published": "{version} is live.",
+        "remove": "Remove {name} from the list",
+        "cancel": "Cancel the upload of {name}",
+        "state": {
+          "uploading": "Uploading",
+          "done": "Uploaded",
+          "failed": "Upload failed",
+          "cancelled": "Cancelled",
+          "paused": "The connection dropped; it continues where it stopped once you are back online."
+        },
+        "progress": "Upload progress of {name}",
+        "tooLarge": "{name} is over the 1 GB limit.",
+        "tooLargeForProxy": "{name} could not be uploaded: a proxy in front of the S3 address (for example Cloudflare, 100 MB limit) refused the request as too large (413). Use the S3 record without the proxy (DNS only) or raise that proxy's request size limit.",
+        "resume": "Resume",
+        "resumeLabel": "Resume the upload of {name}",
+        "noEtag": "The part's ETag header could not be read: the S3 bucket CORS must expose the ETag header (ExposeHeaders: ETag)."
+      },
+      "kind": {
+        "installer": "Installer",
+        "blockmap": "Blockmap",
+        "update_zip": "Update archive",
+        "dmg": "Disk image"
+      },
+      "list": {
+        "title": "Releases",
+        "empty": "No release has been uploaded for this platform yet.",
+        "col": {
+          "version": "Version",
+          "files": "Files",
+          "uploaded": "Uploaded"
+        },
+        "live": "Live",
+        "menu": "Actions for {version}",
+        "publish": "Publish this release",
+        "delete": "Delete",
+        "deleteLive": "The live release cannot be deleted"
+      },
+      "confirmPublish": {
+        "title": "Publish {version}?",
+        "body": "The server offers this release as the latest. People on a newer release do not go back; only those on an older one update to it.",
+        "confirm": "Publish"
+      },
+      "confirmDelete": {
+        "title": "Delete {version}?",
+        "body": "The release files are removed from the server. This cannot be undone.",
+        "confirm": "Delete",
+        "blockmaps": "Also delete the blockmap files",
+        "blockmapsHint": "Kept by default: apps on older releases use them to download only the difference."
+      },
+      "deleted": "{version} deleted.",
+      "info": {
+        "check": "The apps check at startup and every few hours, and only update to a newer release.",
+        "smartscreen": "If the installer is not signed, Windows shows a SmartScreen warning on the first install; people continue with \"More info\" and \"Run anyway\". Updates do not show it."
+      },
+      "folder": "This platform's updates are served from the server folder (DESKTOP_UPDATES_DIR), so they cannot be published here. Once the folder is emptied, this page manages them.",
+      "forbidden": "Only the owner of the server's primary organization manages desktop releases."
+    }
+  },
+  "account": {
+    "title": "My account",
+    "personal": "Personal settings",
+    "nav": {
+      "profile": "Profile",
+      "security": "Security",
+      "appearance": "Appearance",
+      "notifications": "Notifications",
+      "about": "About"
+    },
+    "profile": {
+      "title": "Profile",
+      "subtitle": "How your teammates see you",
+      "photo": "Profile photo",
+      "photoHint": "Square, at least 256 px. Your initials are used otherwise.",
+      "upload": "Upload",
+      "verified": "Verified",
+      "preferences": "Preferences",
+      "orgDefault": "Org default: {language}",
+      "inOrg": "Your place in the organization",
+      "since": "Since {date}",
+      "roleNote": "A space owner or org admin changes your role.",
+      "cropTitle": "Crop the photo",
+      "cropHint": "Drag to move, use the slider to zoom. It is saved as a square.",
+      "zoom": "Zoom",
+      "removePhoto": "Remove"
+    },
+    "security": {
+      "title": "Security",
+      "subtitle": "Your sign-in methods and open sessions",
+      "password": "Password",
+      "passwordHint": "Changing it can sign out your other sessions",
+      "change": "Change",
+      "changePassword": "Change password",
+      "currentPassword": "Current password",
+      "signOutOthers": "Sign out sessions on other devices",
+      "passwordChanged": "Your password was changed",
+      "wrongPassword": "Wrong password.",
+      "totp": "Authenticator app",
+      "totpHint": "Sign-in asks for a 6-digit code in addition to your password",
+      "totpRequired": "Required by your organization's policy",
+      "on": "On",
+      "off": "Off",
+      "setup": "Set up",
+      "remove": "Remove",
+      "cannotRemove": "The policy requires it, so at least one method must remain",
+      "disableTitle": "Remove two-step verification?",
+      "disableBody": "Enter your password to confirm.",
+      "backupCodes": "Backup codes",
+      "backupHint": "For signing in when you can't reach your phone",
+      "newCodes": "New codes",
+      "generate": "Generate",
+      "passkeys": "Passkeys",
+      "passkey": "Passkey",
+      "addPasskey": "Add passkey",
+      "passkeyAdded": "Passkey added",
+      "noPasskeys": "No passkeys yet. Add one to sign in without a password using your fingerprint or face.",
+      "added": "Added {date}",
+      "sessions": "Sessions and devices",
+      "thisDevice": "This device",
+      "unknownDevice": "Unknown device",
+      "close": "Sign out",
+      "closeOthers": "Sign out all other sessions",
+      "othersClosed": "Other sessions signed out",
+      "vaultNote": "Your vault password is separate and never sent to the server. To change it or renew the recovery key, go to Vault › Settings."
+    },
+    "appearance": {
+      "title": "Appearance",
+      "subtitle": "Theme, density, language and text size",
+      "display": "Display",
+      "densityHint": "Compact tightens list rows and tables",
+      "orgDefault": "Organization",
+      "reducedMotion": "Reduce motion",
+      "reducedMotionHint": "Turns off transitions and sliding animations",
+      "fontSize": "Text size",
+      "percent": "{value}%",
+      "language": "Language and formats",
+      "menuOrder": "Left menu",
+      "menuOrderHint": "Drag or use the arrows to order, the eye to hide, the key button to set a shortcut; it saves at once and applies in the desktop app too. The phone app has its own order. Home stays on top.",
+      "menuOrderReset": "Back to the default",
+      "menuPhoneTab": "Phone bottom tab",
+      "menuDrag": "Move {label}",
+      "menuUp": "Move {label} up",
+      "menuDown": "Move {label} down",
+      "deviceNote": "Theme, density and text size are kept in this browser; the language and the menu order are saved to your account: the language applies on mobile too, the menu order in the desktop app and other browsers.",
+      "menuHide": "Hide {label}",
+      "menuShow": "Show {label}",
+      "menuKey": "Shortcut of {label}",
+      "menuKeyPress": "Press a key",
+      "menuKeyReserved": "Those keys clash with the browser or the system. Try a letter (G then that letter) or Alt Shift with a letter.",
+      "menuKeyTaken": "This shortcut is used by {name}."
+    },
+    "mobile": {
+      "open": "Connect the mobile app",
+      "title": "Connect the mobile app",
+      "subtitle": "The QR code carries the server address and your e-mail to the app. Your password and two-step verification are still asked on the phone.",
+      "step1": "Open the Crewhall app on your phone.",
+      "step2": "Tap \"Connect with QR\" and scan this code.",
+      "step3": "Enter your password, and your 2FA code if it is on.",
+      "qrAlt": "Mobile app connection QR code",
+      "validFor": "Valid for {time}",
+      "expired": "The code expired",
+      "refresh": "New code"
+    },
+    "about": {
+      "title": "About",
+      "subtitle": "Crewhall and the open source works inside it",
+      "credits": "Licenses and credits",
+      "creditsHint": "Crewhall uses these works under their licenses.",
+      "uses": {
+        "notoAnimated": "Animated emoji in chat (unmodified)",
+        "emojibase": "Emoji list and English keywords",
+        "cldr": "Turkish emoji names and keywords",
+        "lottie": "The library that plays animated emoji",
+        "tooMuchTools": "Source code of the tools in the Tools module"
+      },
+      "others": "Other dependencies are MIT, Apache-2.0, BSD or ISC licensed; the full list is in THIRD_PARTY_NOTICES.md in the source code."
+    }
+  },
+  "mobileSignIn": {
+    "title": "Sign in on the mobile app?",
+    "subtitle": "The Crewhall mobile app wants to sign in with this account. Confirm if you started this request.",
+    "confirm": "Confirm and return to the app",
+    "extension": {
+      "title": "Sign in on the browser extension?",
+      "subtitle": "The Crewhall browser extension wants to sign in with this account. Confirm if you started this. The extension still needs your vault password to open your vault.",
+      "confirm": "Confirm and return to the extension",
+      "returning": "Returning to the extension",
+      "returningBody": "This window closes in a moment."
+    },
+    "otherAccount": "Sign in with another account",
+    "note": "Confirming opens a separate session for your phone; you can end it in My account › Security › Sessions and devices.",
+    "returning": "Returning to the app",
+    "returningBody": "If the app doesn't open, close this window and switch to the app yourself.",
+    "invalidTitle": "This link is not valid",
+    "invalidBody": "The mobile sign-in link is incomplete or points to an untrusted address. Start signing in again from the mobile app."
+  },
+  "quick": {
+    "conflict": "The surface changed elsewhere; the latest version was loaded.",
+    "removed": "Card removed",
+    "undo": "Undo",
+    "moved": "Card moved to {name}",
+    "edit": {
+      "start": "Edit",
+      "done": "Done",
+      "undo": "Undo",
+      "editing": "editing",
+      "cardMenu": "Menu of the {name} card",
+      "removeCard": "Remove the {name} card"
+    },
+    "empty": {
+      "title": "This surface is empty",
+      "body": "Use Add card for links, notes or Drive files; pasting a URL on the surface makes a link card too.",
+      "viewer": "No cards have been added to this surface yet."
+    },
+    "error": {
+      "title": "Cards couldn't load",
+      "body": "The server didn't answer. Try again in a moment."
+    },
+    "firstRun": {
+      "body": "This is your start screen: the links you open often, your notes and Drive files. Start with a card, then drag things where you like.",
+      "link": "Add a link",
+      "linkHint": "Paste an address; the title and icon come by themselves.",
+      "note": "Add a note",
+      "noteHint": "Colored free text, saved as you type.",
+      "gallery": "Card gallery",
+      "galleryHint": "Link groups, to-dos, file and folder cards.",
+      "pinFrom": "Or pin cards one by one from {name}",
+      "pin": "Pin"
+    },
+    "gallery": {
+      "title": "Add card",
+      "to": "to {name}",
+      "search": "Search card types",
+      "soon": "Soon",
+      "tip": "You can drag a type onto the surface and drop it where you want.",
+      "newGroup": "New group",
+      "kinds": {
+        "link": "Link",
+        "link_group": "Link group",
+        "note": "Sticky note",
+        "todo": "To-do",
+        "node": "File / folder",
+        "page": "Page",
+        "chat": "Chat",
+        "meeting": "Meeting",
+        "board": "Board cards",
+        "vault": "Vault item"
+      },
+      "hints": {
+        "link": "One site",
+        "link_group": "List or grid",
+        "note": "Colored free text",
+        "todo": "Personal list",
+        "node": "From Drive",
+        "page": "With preview",
+        "chat": "Latest messages",
+        "meeting": "Next one, join",
+        "board": "Assigned to me",
+        "vault": "Copy in one click"
+      }
+    },
+    "group": {
+      "count": "Group · {count}",
+      "links": "{count, plural, one {# link} other {# links}}",
+      "addLink": "Add link"
+    },
+    "note": {
+      "title": "Note",
+      "style": "Note color and text size",
+      "color": "Note color",
+      "fontSize": "Text size",
+      "normal": "Normal",
+      "large": "Large",
+      "text": "Note text",
+      "edit": "Edit note",
+      "placeholder": "Write something…",
+      "saved": "Saved · {time}"
+    },
+    "todo": {
+      "progress": "{done} / {total}",
+      "add": "New item…",
+      "removeItem": "Delete \"{text}\"",
+      "editItem": "Edit \"{text}\"",
+      "itemText": "Item text (Enter saves, Esc cancels; leave it empty to delete)",
+      "defaultTitle": "To-do"
+    },
+    "node": {
+      "locked": "No access",
+      "lockedHint": "The item on this card was deleted or is not shared with you.",
+      "removeCard": "Remove card",
+      "emptyFolder": "Folder is empty",
+      "openFolder": "Open folder",
+      "updated": "Edited by {name}, {when}"
+    },
+    "nodePicker": {
+      "title": "File or folder from Drive",
+      "add": "Add as card"
+    },
+    "pin": {
+      "done": "Card pinned to Mine",
+      "sourceMissing": "Source removed"
+    },
+    "menu": {
+      "openLink": "Open link",
+      "newTab": "Open in new tab",
+      "size": "Size",
+      "sizeOption": "Size {size}, {w} × {h}",
+      "duplicate": "Duplicate",
+      "copyLink": "Copy link",
+      "copied": "Link copied",
+      "move": "Move to another space",
+      "pinMine": "Pin to Mine",
+      "detach": "Make independent",
+      "remove": "Remove",
+      "open": {
+        "folder": "Open folder",
+        "file": "Open file",
+        "page": "Open page",
+        "board": "Open board",
+        "drawing": "Open drawing",
+        "chat": "Open the chat",
+        "meeting": "Go to meetings",
+        "vault_item": "Open in the vault"
+      },
+      "edit": "Edit"
+    },
+    "moveDialog": {
+      "title": "Move to another space",
+      "body": "The card goes to the home you choose. What it shows stays where it is, with its permissions.",
+      "search": "Find a space",
+      "none": "No matching space.",
+      "empty": "There is no other home you can move this card to.",
+      "warning": "{count, plural, one {# person} other {# people}} here may not be able to open what this card shows. They see it locked; share the content with them so they can open it.",
+      "cancel": "Cancel",
+      "confirm": "Move"
+    },
+    "health": {
+      "up": "Reachable",
+      "down": "Unreachable",
+      "warn": "Warning",
+      "slow": "Slow response",
+      "tls": "Certificate expiring",
+      "unknown": "Not checked",
+      "lastResponse": "Last response",
+      "duration": "Duration",
+      "since": "{ago} · since {time}",
+      "lastOk": "Last success",
+      "last24h": "Last 24 hours",
+      "availability": "{value} available",
+      "dayAgo": "24 hours ago",
+      "now": "Now",
+      "openAnyway": "Open anyway",
+      "checkNow": "Check now",
+      "enableCheck": "Turn the check on",
+      "notChecked": "Not checked yet",
+      "checkOff": "This link is not checked.",
+      "internal": "Not checked (internal network)",
+      "internalHint": "This address is on an internal network. For safety the server does not send requests to internal addresses; the link opens, but its status is not tracked."
+    },
+    "addLink": {
+      "title": "Add link",
+      "to": "to {name}",
+      "url": "Address",
+      "invalidUrl": "Enter a valid web address.",
+      "fetched": "{title} · title and icon taken from the site",
+      "notFetched": "The site didn't answer; the domain will be used",
+      "name": "Display name",
+      "description": "Description · optional",
+      "where": "Where should it go?",
+      "target": {
+        "card": "Own card",
+        "cardHint": "Gets its own 2 × 1 card on the surface",
+        "group": "Existing group",
+        "groupHint": "Inside a link group"
+      },
+      "group": "Group",
+      "groupOption": "{name} · {count} links",
+      "section": "Section",
+      "health": "Health check",
+      "healthHint": "One request a minute. After 3 failures in a row it says \"unreachable\" and notifies.",
+      "duplicate": "This address is already here. You can still add it.",
+      "pasteTip": "Tip: pasting a URL on the surface with Ctrl V opens this window too.",
+      "submit": "Add",
+      "added": "{name} added"
+    },
+    "settings": {
+      "title": "Card settings",
+      "name": "Title",
+      "dot": "Dot",
+      "noDot": "None",
+      "view": "View",
+      "list": "List",
+      "grid": "Grid",
+      "sections": "Sections",
+      "addSection": "Add",
+      "newSection": "Section {n}",
+      "toggleSection": "Open or close {name}",
+      "sectionName": "Section name",
+      "untitled": "Untitled",
+      "removeSection": "Delete section {name}",
+      "removeLink": "Remove {name}",
+      "asTabs": "Show as tabs",
+      "sort": "Order",
+      "sorts": {
+        "manual": "Manual",
+        "name": "By name (A → Z)",
+        "popular": "Most opened · last 30 days"
+      },
+      "showUrls": "Show addresses",
+      "showHealth": "Show health",
+      "removeCard": "Remove card",
+      "autosave": "Changes are saved",
+      "editLink": "Edit link {name}",
+      "density": "Size",
+      "densities": {
+        "compact": "Small",
+        "normal": "Normal",
+        "large": "Large"
+      }
+    },
+    "strip": {
+      "editors": "Space members see it · editors: Owner, Admin, Editor",
+      "viewer": "You can only view; pin cards to your own surface.",
+      "lastChange": "Last change: {name} · {when}"
+    },
+    "page": {
+      "empty": "This page is empty so far.",
+      "open": "Open page",
+      "edited": "Edited {when}"
+    },
+    "chat": {
+      "empty": "No messages yet.",
+      "locked": "You cannot see this chat",
+      "lockedHint": "The chat was removed or you are not a member.",
+      "reply": "Reply to {name}",
+      "send": "Send",
+      "open": "Open chat",
+      "deleted": "This message was deleted",
+      "attachment": "Attachment"
+    },
+    "meeting": {
+      "title": "Meeting",
+      "live": "Live now",
+      "next": "Up next",
+      "today": "Today {time}",
+      "at": "{date} {time}",
+      "none": "No meetings planned.",
+      "join": "Join",
+      "people": "{count, plural, one {# person} other {# people}} inside",
+      "all": "All meetings"
+    },
+    "vault": {
+      "title": "Vault item",
+      "locked": "Vault locked",
+      "lockedHint": "Unlock your vault to copy.",
+      "unlock": "Unlock vault",
+      "missing": "Item not found",
+      "missingHint": "It was deleted or you have no access to this vault.",
+      "noSecret": "Nothing to copy",
+      "open": "Open in vault"
+    },
+    "picker": {
+      "search": "Search",
+      "add": "Add",
+      "empty": "No results.",
+      "pageTitle": "Choose a page",
+      "chatTitle": "Choose a chat",
+      "vaultTitle": "Choose a vault item",
+      "vaultLocked": "Unlock your vault first to add a vault item. The item name and secret are not stored on the card; they show only while your vault is unlocked."
+    },
+    "editLink": {
+      "title": "Edit link",
+      "healthHint": "The address is checked once for the whole org; this setting applies to every card that shows it.",
+      "movedHint": "Once saved, the card moves to the new address; its icon and health come from there.",
+      "icon": "Icon",
+      "iconAuto": "The site's icon",
+      "iconCustom": "Custom",
+      "iconUrl": "Icon address",
+      "iconHttps": "The icon address should start with https."
+    },
+    "dnd": {
+      "picked": "Picked up {name}",
+      "over": "{name} is over {target}",
+      "dropped": "Dropped {name}",
+      "cancelled": "{name} was not moved",
+      "instructions": "Press Space to pick it up, use the arrow keys to move it and Space again to drop it. Escape cancels.",
+      "moveSection": "Move sub-section {name}",
+      "moveLink": "Move link {name}"
+    },
+    "editCard": {
+      "title": "Edit card",
+      "name": "Title",
+      "folderItems": "Items shown",
+      "show": "Show",
+      "space": "Space",
+      "allSpaces": "All spaces",
+      "boardCards": "Cards shown",
+      "messages": "Messages shown"
+    }
+  },
+  "drive": {
+    "types": {
+      "folder": "Folder",
+      "file": "File",
+      "page": "Page",
+      "board": "Board",
+      "drawing": "Drawing"
+    },
+    "picker": {
+      "spaces": "Spaces",
+      "path": "Location",
+      "root": "{name} root",
+      "search": "Search by name",
+      "items": "Items",
+      "empty": "Nothing here",
+      "open": "Open {name}",
+      "hint": "Choose a space, open folders and select the item."
+    },
+    "comingModule": "The {type} editor arrives in a later release.",
+    "linkCopied": "Link copied",
+    "favoriteAdded": "Added to favorites",
+    "favoriteRemoved": "Removed from favorites",
+    "trashed": "{count, plural, one {Item moved to the trash} other {# items moved to the trash}}",
+    "pinned": "{name} pinned to quick access",
+    "pastedImage": "pasted-image",
+    "keys": {
+      "space": "Space"
+    },
+    "kinds": {
+      "image": "Image",
+      "pdf": "PDF",
+      "video": "Video",
+      "audio": "Audio",
+      "code": "Code",
+      "text": "Text",
+      "sheet": "Spreadsheet",
+      "doc": "Document",
+      "slides": "Presentation",
+      "archive": "Archive",
+      "design": "Design file",
+      "other": "File"
+    },
+    "nav": {
+      "recent": "Recent",
+      "favorites": "Favorites",
+      "all": "All content",
+      "trash": "Trash",
+      "expand": "Expand {name}",
+      "collapse": "Collapse {name}"
+    },
+    "filters": {
+      "all": "All"
+    },
+    "sorts": {
+      "name": "Sort: folders first, by name",
+      "updatedAt": "Sort: modified",
+      "size": "Sort: size",
+      "type": "Sort: type"
+    },
+    "view": {
+      "list": "List view",
+      "grid": "Grid view"
+    },
+    "folder": {
+      "summary": "{count, plural, one {# item} other {# items}} · {size}",
+      "emptySummary": "Empty folder",
+      "upload": "Upload",
+      "new": "New",
+      "uploadFiles": "Upload files",
+      "uploadFolder": "Upload folder",
+      "emptyTitle": "This folder is empty",
+      "emptyBody": "Drag files here, paste an image with Ctrl V or create a folder with \"New\".",
+      "emptyViewer": "Nothing has been added to this folder yet.",
+      "loadError": "The folder couldn't load"
+    },
+    "drop": {
+      "title": "Drop into {name}",
+      "body": "{count, plural, one {# file} other {# files}} · {members} members can access"
+    },
+    "list": {
+      "label": "Folder content",
+      "name": "Name",
+      "type": "Type",
+      "owner": "Owner",
+      "updated": "Modified",
+      "size": "Size",
+      "select": "Select {name}",
+      "shared": "Shared outside the space",
+      "processing": "Processing…",
+      "system": "Automatic",
+      "more": "More actions for {name}",
+      "noPreview": "no preview",
+      "empty": "Empty"
+    },
+    "menu": {
+      "preview": "Preview",
+      "open": "Open",
+      "share": "Share…",
+      "copyLink": "Copy link",
+      "favorite": "Add to favorites",
+      "unfavorite": "Remove from favorites",
+      "pin": "Pin to quick access",
+      "rename": "Rename",
+      "move": "Move…",
+      "copy": "Make a copy…",
+      "download": "Download",
+      "versions": "Version history · {count}",
+      "details": "Details",
+      "trash": "Move to trash",
+      "noEdit": "You can't edit this item",
+      "noTrash": "You can't delete this item",
+      "noShare": "You can't share this item"
+    },
+    "selection": {
+      "label": "Selected items",
+      "count": "{count} selected",
+      "delete": "Delete",
+      "clear": "Clear selection"
+    },
+    "details": {
+      "title": "Details",
+      "type": "Type",
+      "location": "Location",
+      "owner": "Owner",
+      "updated": "Modified",
+      "size": "Size",
+      "access": "Access",
+      "accessValue": "{members} members · {people, plural, =0 {no personal access} one {1 person} other {# people}} · {links, plural, =0 {no public link} one {1 public link} other {# public links}}"
+    },
+    "preview": {
+      "label": "Preview of {name}",
+      "loading": "Loading preview",
+      "version": "Version {n}",
+      "prev": "Previous file",
+      "next": "Next file",
+      "tabs": {
+        "info": "Info",
+        "versions": "Versions"
+      },
+      "unsupported": "This file type can't be previewed in the browser; download it to open.",
+      "wrap": "Wrap lines",
+      "copy": "Copy",
+      "copied": "Content copied",
+      "outline": "Outline",
+      "truncated": "Large file: showing the first {count} lines."
+    },
+    "versions": {
+      "current": "Current",
+      "view": "View",
+      "restore": "Restore",
+      "restored": "Restored as version {n}",
+      "viewing": "You're viewing version {n}",
+      "backToCurrent": "Back to current",
+      "policy": "Every upload is a new version. The last 50 versions or 1 year are kept; versions count towards the quota."
+    },
+    "rename": {
+      "title": "Rename",
+      "name": "Name",
+      "taken": "An item with this name already exists in this folder."
+    },
+    "newFolder": {
+      "title": "New folder",
+      "default": "New folder",
+      "create": "Create",
+      "created": "{name} created"
+    },
+    "move": {
+      "title": "{count, plural, one {Move item} other {Move # items}}",
+      "copyTitle": "{count, plural, one {Copy item} other {Copy # items}}",
+      "move": "Move",
+      "copy": "Copy",
+      "submitMove": "Move here",
+      "submitCopy": "Copy here",
+      "moved": "{count, plural, one {Item moved} other {# items moved}}",
+      "movedTo": "{count, plural, one {Item} other {# items}} moved to {name}",
+      "copied": "{count, plural, one {Copy made} other {# copies made}}",
+      "target": "Destination: {path}",
+      "crossSpace": "Changing space: the {count} members of {name} will see the items. Personal access is removed; public links keep working.",
+      "crossSpaceCopy": "Copies take the permissions of {name}; {count} members will see them.",
+      "taken": "An item with the same name exists in the destination folder."
+    },
+    "conflict": {
+      "title": "A file with this name already exists",
+      "subtitle": "Uploading to {folder} · {count, plural, one {1 conflict} other {# conflicts}}",
+      "existing": "Existing",
+      "incoming": "Uploading",
+      "fromComputer": "from your computer",
+      "version": "Add as a new version",
+      "versionHint": "Becomes version {version}. Links, comments and cards stay on the same file.",
+      "replace": "Replace",
+      "replaceHint": "The old file waits 30 days in the trash.",
+      "rename": "Keep both",
+      "renameHint": "The new file is saved as \"{name}\".",
+      "recommended": "Recommended",
+      "applyRest": "{count, plural, one {Apply to the remaining conflict} other {Apply to the remaining # conflicts}}",
+      "skip": "Skip this file",
+      "cancelAll": "Cancel upload"
+    },
+    "upload": {
+      "panel": "Uploads",
+      "uploading": "{count, plural, one {Uploading 1 file} other {Uploading # files}}",
+      "finished": "{count, plural, one {1 upload} other {# uploads}}",
+      "summary": "{done} done · {failed} failed",
+      "eta": "about {seconds} s",
+      "done": "{size} · {folder}",
+      "paused": "Connection lost · {pct}%, will resume where it stopped",
+      "interrupted": "Interrupted; pick the same file again to resume",
+      "conflict": "Name conflict: waiting for a choice",
+      "canceled": "Canceled",
+      "resume": "Resume",
+      "pickAgain": "Pick file",
+      "otherFile": "That is another file; pick the file with the same name and size.",
+      "cancel": "Cancel uploading {name}",
+      "collapse": "Collapse",
+      "expand": "Expand"
+    },
+    "share": {
+      "title": "Share \"{name}\"",
+      "withAccess": "People with access",
+      "spaceMembers": "{name} members",
+      "spaceMembersHint": "{count} people · inherited from the space",
+      "byRole": "By space role",
+      "addPerson": "Add a person or e-mail",
+      "role": "Access",
+      "roles": {
+        "viewer": "Can view",
+        "editor": "Can edit"
+      },
+      "expiry": "Expires",
+      "expiries": {
+        "none": "Never",
+        "days": "{count, plural, one {1 day} other {# days}}"
+      },
+      "until": "until {date}",
+      "addedBy": "added by {name}",
+      "inherited": "From above: {name}",
+      "remove": "Remove access for {name}",
+      "publicLink": "Public link",
+      "publicOff": "Off · only people with access can open it",
+      "publicOn": "Anyone with the link, no sign-in · {count} views",
+      "noLinkRight": "Only owners and admins can turn on a public link.",
+      "inheritedLink": "The public link of \"{name}\" covers this too.",
+      "urlLost": "This link was made before addresses were kept, so it can’t be shown. Create a new address to copy it (the old one stops working).",
+      "urlNoRight": "Only the person who shared it and people who may share links see the address.",
+      "regenerate": "New address",
+      "copy": "Copy",
+      "password": "Password",
+      "passwordNone": "No password",
+      "removePassword": "Remove",
+      "allowDownload": "Allow downloads",
+      "allowDownloadHint": "When off, it can only be previewed in the browser",
+      "done": "Done",
+      "yourAccess": "Your access: {role}",
+      "membersHidden": "You can't see this space's members.",
+      "widenOnly": "Space members can always see this. Use a separate space for content that must stay hidden from them."
+    },
+    "trash": {
+      "summary": "{count, plural, one {1 item} other {# items}} · {size} · deleted for good after 30 days",
+      "restoreSelected": "Restore selected",
+      "empty": "Empty trash",
+      "from": "Previous location",
+      "by": "Deleted by",
+      "deleted": "Deleted",
+      "left": "Left",
+      "root": "Root",
+      "days": "{count, plural, one {1 day} other {# days}}",
+      "restore": "Restore",
+      "purge": "Delete forever",
+      "purgeOne": "Delete {name} forever",
+      "restored": "{count, plural, one {Item restored} other {# items restored}}",
+      "purged": "Deleted for good",
+      "nothing": "The trash is empty",
+      "nothingBody": "Deleted items wait here for 30 days.",
+      "emptyTitle": "Empty the trash?",
+      "emptyBody": "{count, plural, one {1 item is} other {# items are}} deleted for good. This cannot be undone.",
+      "purgeTitle": "Delete \"{name}\" for good?",
+      "purgeBody": "This cannot be undone.",
+      "rules": "Only owners and admins can empty the trash. Restoring puts an item back where it was, or at the root if its folder is gone too.",
+      "purgeSelected": "{count, plural, one {Delete the selected item permanently} other {Delete # selected items permanently}}",
+      "purgeManyTitle": "Delete {count, plural, one {1 item} other {# items}} permanently?"
+    },
+    "quota": {
+      "warning": "Org storage is {pct} full · {used} / {total}",
+      "full": "Org storage is full · {used} / {total}. New files cannot be uploaded; pages and chat keep working.",
+      "trash": "The trash takes {size}.",
+      "manage": "Manage storage"
+    },
+    "recent": {
+      "title": "Recent",
+      "searchAll": "Search everywhere",
+      "favorites": "Favorites · {count}",
+      "noFavorites": "Items you star show up here; drag to reorder.",
+      "location": "Location",
+      "opened": "Opened",
+      "lastEdit": "Last edited by",
+      "groups": {
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "week": "This week",
+        "older": "Older"
+      },
+      "empty": "You haven't opened anything yet",
+      "emptyBody": "Files and folders you open in Drive are listed here."
+    },
+    "search": {
+      "title": "Search Drive",
+      "placeholder": "Search by name",
+      "thisSpace": "In {name}",
+      "thisSpaceShort": "This space",
+      "allSpaces": "All spaces",
+      "start": "Type what you are looking for",
+      "startBody": "Searches folder, file and page names and the text inside files (PDF, Office, text); only what you can access is listed.",
+      "inContent": "In content",
+      "none": "No results for \"{q}\"",
+      "noneBody": "Try another word or search all spaces.",
+      "count": "{count, plural, one {1 result} other {# results}}"
+    },
+    "text": {
+      "source": "Source",
+      "preview": "Preview",
+      "split": "Side by side",
+      "viewMode": "View",
+      "save": "Save",
+      "saved": "Saved as version {n}",
+      "unsaved": "Unsaved changes",
+      "discard": "Discard changes",
+      "editorLabel": "Contents of {name}",
+      "readOnlyLarge": "Files over {size} open read-only.",
+      "readOnlyRights": "You can only view this file.",
+      "oldVersion": "Older versions cannot be edited; restore one to edit it.",
+      "conflictTitle": "The file changed while you were editing",
+      "conflictBody": "{name} was changed meanwhile (now version {n}). If you save, your text becomes a new version; the one in between stays in the history.",
+      "conflictSave": "Save anyway",
+      "conflictReload": "Drop mine, open the latest",
+      "leaveTitle": "You have unsaved changes",
+      "leaveBody": "Closing drops your changes to {name}.",
+      "leave": "Leave without saving"
+    }
+  },
+  "publicShare": {
+    "poweredBy": "Shared with Crewhall",
+    "signIn": "Sign in",
+    "footer": "© {year} {org}",
+    "viewOnly": "View only",
+    "noPreview": "This file has no preview.",
+    "backToFolder": "Back to folder",
+    "facts": {
+      "sharedBy": "Shared by",
+      "expires": "Expires",
+      "access": "Access",
+      "anyone": "Anyone with the link",
+      "download": "Download",
+      "on": "On",
+      "off": "Off"
+    },
+    "password": {
+      "title": "This link is password protected",
+      "body": "{name} ({org}) shared a file with you. Enter the password they gave you to open it.",
+      "label": "Password",
+      "open": "Open",
+      "wrong": "{count, plural, =0 {Wrong password.} one {Wrong password. 1 attempt left.} other {Wrong password. # attempts left.}}",
+      "hint": "If you don't know the password, ask the person who shared it. Passwords should come through another channel, not the same e-mail as the link."
+    },
+    "locked": {
+      "title": "Too many wrong attempts",
+      "body": "The link is locked for this browser; you can try again at {time}.",
+      "later": "The link is locked for this browser for a while. Try again later."
+    },
+    "expired": {
+      "title": "This link has expired",
+      "body": "The link shared by {name} expired on {date}.",
+      "bodyNoDate": "The link shared by {name} has expired."
+    },
+    "invalid": {
+      "title": "This link is not valid",
+      "body": "The share may have been removed or the link copied wrong. Ask the person who sent it again."
+    },
+    "member": "Are you a member of {org}? Sign in to reach the item with your own access; we bring you back here afterwards.",
+    "memberSignIn": "Sign in with your {org} account",
+    "folder": {
+      "meta": "Shared by {name} · {org} · {count, plural, one {# item} other {# items}} · {size}",
+      "search": "Search this folder",
+      "download": "{count, plural, one {Download} other {Download # files}}"
+    },
+    "kind": {
+      "page": "Page",
+      "board": "Board",
+      "drawing": "Drawing"
+    },
+    "board": {
+      "empty": "No cards in this column"
+    },
+    "contentError": "The content could not be opened. Reload the page and try again."
+  },
+  "viewer": {
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "download": "Download",
+    "openInTab": "Open in new tab",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied",
+    "counter": "{n} / {total}",
+    "noPreview": "There is no preview for this file. Download it to open it.",
+    "failed": "The file could not be opened."
+  },
+  "openInApp": {
+    "region": "Mobile app",
+    "title": "Open in the app",
+    "body": "Carry on with this page in the app.",
+    "open": "Open",
+    "close": "Close",
+    "continue": {
+      "title": "{org} is ready, continue in the app",
+      "body": "The app connects to this server; sign in there with your account.",
+      "open": "Continue in the app",
+      "install": "Get the app",
+      "stay": "Continue in the browser"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+name: Feature request
+description: Suggest something Crewhall should do.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the problem first; the solution can follow. You can write in English or Turkish.
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What you are trying to do, and what gets in the way today.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What you would like
+      description: How it could work. Screens, examples or how another tool does it all help.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      multiple: true
+      options:
+        - Home and quick access
+        - Drive
+        - Chat
+        - Pages
+        - Boards
+        - Drawings
+        - Meetings
+        - Calendar
+        - Vault
+        - Portal
+        - Identity and admin
+        - Plugins and MCP
+        - Desktop app
+        - Self-hosting
+        - Other
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contributing
+      options:
+        - label: I would like to work on this myself.

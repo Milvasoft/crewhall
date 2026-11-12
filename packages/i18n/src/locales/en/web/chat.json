@@ -1,0 +1,1019 @@
+{
+  "list": {
+    "title": "Chat",
+    "newChat": "New chat",
+    "search": "Search chats",
+    "filters": "Chat filters",
+    "filter": {
+      "unread": "Unread",
+      "direct": "Direct",
+      "group": "Groups",
+      "space": "Spaces",
+      "meeting": "Meetings",
+      "archive": "Archive"
+    },
+    "pinned": "Pinned",
+    "recent": "Recent chats",
+    "empty": "No chats yet. Start one with the pencil button.",
+    "noMatch": "No chats match this filter.",
+    "draft": "Draft · no messages yet",
+    "noMessages": "No messages yet",
+    "attachment": "File",
+    "you": "You",
+    "mentions": "{count} unread mentions",
+    "unread": "{count} unread messages"
+  },
+  "time": {
+    "today": "Today",
+    "yesterday": "Yesterday"
+  },
+  "home": {
+    "title": "Pick a chat",
+    "body": "Open a chat from the list on the left or start a new one."
+  },
+  "notFound": {
+    "title": "Chat not found",
+    "body": "The chat was deleted or archived, or you are no longer a member.",
+    "back": "Back to chats"
+  },
+  "header": {
+    "spaceMembers": "{space} space · {count, plural, one {# member} other {# members}}",
+    "alertSpace": "{space} · alert chat · {count, plural, one {# member} other {# members}}",
+    "members": "{count, plural, one {# member} other {# members}}",
+    "meeting": "Meeting chat · {count, plural, one {# participant} other {# participants}}",
+    "localTime": "local time {time}",
+    "menu": "Chat menu",
+    "archived": "Archived"
+  },
+  "tabs": {
+    "label": "Chat tabs",
+    "chat": "Chat",
+    "files": "Files",
+    "pinned": "Pinned"
+  },
+  "menu": {
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "markUnread": "Mark as unread",
+    "notify": "Notifications: {level}",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "mute1h": "1 hour",
+    "muteTomorrow": "Until tomorrow morning",
+    "muteWeek": "1 week",
+    "members": "Members · {count}",
+    "addPeople": "Add people",
+    "webhooks": "Apps and webhooks",
+    "nameGroup": "Name the group",
+    "rename": "Rename",
+    "linkSpace": "Link to a space",
+    "archive": "Archive for everyone",
+    "unarchive": "Unarchive for everyone",
+    "leave": "Leave chat",
+    "archiveMine": "Archive",
+    "unarchiveMine": "Unarchive",
+    "clear": "Delete for me",
+    "deleteAll": "Delete for everyone"
+  },
+  "notify": {
+    "all": "All",
+    "critical": "Critical only",
+    "mentions": "Mentions only",
+    "none": "None"
+  },
+  "presence": {
+    "online": "Online",
+    "away": "Away",
+    "busy": "Busy",
+    "dnd": "Do not disturb",
+    "offline": "Offline",
+    "autoMeeting": "In a meeting · automatic",
+    "autoScreen": "Presenting · automatic",
+    "lastSeen": "last seen {time}",
+    "until": "until {time}"
+  },
+  "person": {
+    "guest": "Guest",
+    "localTime": "Local time {time} · {city}",
+    "sameTime": "same as you",
+    "timeDiff": "{hours} hours apart",
+    "sharedSpaces": "Shared spaces",
+    "message": "Message",
+    "profile": "Profile"
+  },
+  "pane": {
+    "messages": "Messages",
+    "loadingOlder": "Loading older messages…",
+    "newMessages": "New messages",
+    "seen": "Seen",
+    "seenAt": "Seen {time}",
+    "jumpLatest": "Jump to latest",
+    "dropFiles": "Drop files here to attach them"
+  },
+  "typing": {
+    "one": "{name} is typing…",
+    "two": "{first} and {second} are typing…",
+    "many": "{count} people are typing…"
+  },
+  "message": {
+    "guest": "Guest",
+    "reply": "Reply",
+    "forward": "Forward",
+    "copy": "Copy",
+    "copyLink": "Copy link",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "markUnread": "Mark as unread",
+    "edit": "Edit",
+    "delete": "Delete",
+    "more": "More actions",
+    "deleted": "This message was deleted",
+    "edited": "(edited)",
+    "bot": "BOT",
+    "automation": "Automation",
+    "copied": "Message copied",
+    "linkCopied": "Link copied",
+    "copyCode": "Copy code",
+    "codeCopied": "Code copied",
+    "pinnedHint": "Pinned message",
+    "pinnedToast": "Message pinned",
+    "unpinnedToast": "Message unpinned",
+    "info": "Message info"
+  },
+  "system": {
+    "created": "{actor} created the chat and added {people}",
+    "renamed": "{actor} renamed the chat: {name}",
+    "members_added": "{actor} added {people}",
+    "member_removed": "{actor} removed {people}",
+    "member_left": "{actor} left the chat",
+    "linked_space": "{actor} linked the chat to a space",
+    "message_pinned": "{actor} pinned a message",
+    "webhook_added": "{actor} added an incoming webhook: {name}",
+    "archived": "{actor} archived the chat",
+    "unarchived": "{actor} unarchived the chat",
+    "createdAlone": "{actor} created the chat",
+    "meeting_started": "{actor} started a meeting",
+    "meeting_startedAlone": "A meeting started",
+    "meeting_ended": "Meeting ended · {minutes, plural, one {# minute} other {# minutes}}",
+    "recording_started": "{actor} started recording",
+    "recording_ready": "Meeting recording is ready · Drive › Meeting recordings",
+    "call_missed": "Missed voice call · {actor}",
+    "call_missedVideo": "Missed video call · {actor}",
+    "call_declined": "Declined voice call · {actor}",
+    "call_declinedVideo": "Declined video call · {actor}",
+    "call_busy": "Declined voice call · {actor} · Busy",
+    "call_busyVideo": "Declined video call · {actor} · Busy",
+    "call_ended": "Voice call · {duration} · {people}",
+    "call_endedVideo": "Video call · {duration} · {people}"
+  },
+  "severity": {
+    "critical": "Critical",
+    "warning": "Warning",
+    "success": "Success",
+    "info": "Info"
+  },
+  "attachment": {
+    "open": "Open {name}",
+    "download": "Download {name}",
+    "removed": "File removed"
+  },
+  "reactions": {
+    "picker": "Pick a reaction",
+    "add": "React with {emoji}",
+    "who": "{emoji} {names}"
+  },
+  "mention": {
+    "title": "People in this chat",
+    "all": "@everyone",
+    "here": "@here",
+    "allName": "everyone",
+    "unknown": "Someone",
+    "allHint": "Notifies all {count} people in this chat",
+    "move": "move",
+    "pick": "add",
+    "close": "close",
+    "confirmTitle": "Notify @everyone?",
+    "confirmBody": "This message notifies all {count} people in the chat, even those who muted it.",
+    "confirmSend": "Send"
+  },
+  "composer": {
+    "placeholder": "Message {name}",
+    "send": "Send",
+    "save": "Save",
+    "emoji": "Add emoji",
+    "attach": "Attach files",
+    "editing": "Editing message",
+    "replyingTo": "Replying to {name}",
+    "cancel": "Cancel",
+    "removeFile": "Remove {name}",
+    "offline": "You are offline: what you write waits in line and is sent once connected.",
+    "archived": "This chat is archived; no new messages.",
+    "readOnly": "You cannot write in this chat.",
+    "tooManyFiles": "A message can carry at most {max} files.",
+    "tooLong": "A message can be at most {max} characters."
+  },
+  "pending": {
+    "waiting": "Waiting to be sent",
+    "failed": "Not sent",
+    "retry": "Retry",
+    "discard": "Delete",
+    "confirmSend": "Confirm and send",
+    "uploadStalled": "Upload stopped · {done} / {total}"
+  },
+  "connection": {
+    "lost": "Connection lost.",
+    "connecting": "Reconnecting…",
+    "retryIn": "Reconnecting… attempt {attempt} · in {seconds} s",
+    "retryNow": "Retry now"
+  },
+  "starter": {
+    "direct": "This chat is just the two of you. Files you share stay in Drive under Personal › Chat attachments.",
+    "space": "Everyone in the {space} space sees this chat. Attachments go to the space's Attachments folder.",
+    "group": "People added to the group see the history chosen when they were added.",
+    "hello": "Hello",
+    "welcome": "Welcome {name}!"
+  },
+  "files": {
+    "filter": {
+      "all": "All",
+      "docs": "Documents",
+      "media": "Media",
+      "code": "Code"
+    },
+    "search": "Search files",
+    "openInDrive": "Open in Drive",
+    "cols": {
+      "name": "Name",
+      "by": "Shared by",
+      "date": "Date",
+      "size": "Size"
+    },
+    "goTo": "Go to message",
+    "empty": "No files yet",
+    "emptyHint": "Files shared in the chat show up here and in its Attachments folder in Drive.",
+    "total": "{count, plural, one {# file} other {# files}} · {size}"
+  },
+  "pinned": {
+    "count": "{count} pinned · up to 50",
+    "search": "Search pinned",
+    "show": "Show in chat",
+    "empty": "No pinned messages",
+    "emptyHint": "Pick Pin from a message's menu to list it here.",
+    "by": "Pinned by {name} · {date}"
+  },
+  "new": {
+    "title": "New chat",
+    "to": "To:",
+    "toPlaceholder": "Type a name or e-mail",
+    "people": "People",
+    "spaces": "Spaces",
+    "goSpace": "Go to the space chat · {count} members",
+    "remove": "Remove {name}",
+    "groupName": "Group name (optional)",
+    "spaceName": "Chat name",
+    "linkSpace": "Link to a space",
+    "noSpace": "None",
+    "pickHint": "One person makes a direct chat, two or more make a group.",
+    "directSummary": "Direct chat · opens the existing one if there is one",
+    "groupSummary": "{count} people selected · group chat",
+    "spaceSummary": "Space chat: everyone who joins the space joins the chat too.",
+    "openExisting": "Go to the existing chat",
+    "firstMessageHint": "The chat is created with the first message and shows up in everyone's list.",
+    "firstMessage": "Write the first message",
+    "open": "Open chat"
+  },
+  "dialogs": {
+    "rename": {
+      "title": "Rename chat",
+      "groupTitle": "Name the group",
+      "name": "Name",
+      "hint": "The name changes for everyone and a system line is posted. Without a name, members' names show.",
+      "clear": "Remove name"
+    },
+    "people": {
+      "search": "Search people",
+      "none": "No one matches"
+    },
+    "add": {
+      "title": "Add people",
+      "subtitle": "{name} · {count} members now",
+      "history": "Chat history",
+      "historyOptions": {
+        "none": "Don't share history",
+        "days7": "Share the last 7 days",
+        "days30": "Share the last 30 days",
+        "all": "Share all history"
+      },
+      "historyHints": {
+        "none": "They only see messages from when they are added.",
+        "days7": "Messages and files from the last week.",
+        "days30": "Messages and files from the last month.",
+        "all": "Everything since the chat started."
+      },
+      "systemLine": "Adding posts a system line. An unnamed group's displayed name changes with the new member.",
+      "submit": "{count, plural, =0 {Add} one {Add # person} other {Add # people}}"
+    },
+    "members": {
+      "title": "Members · {count}",
+      "you": "(you)",
+      "remove": "Remove"
+    },
+    "link": {
+      "title": "Link to a space",
+      "hint": "The group becomes a space chat: membership comes from the space, history and attachments stay.",
+      "none": "You are not an admin of any space.",
+      "submit": "Link"
+    },
+    "leave": {
+      "title": "Leave {name}",
+      "body": "The chat leaves your list; you won't see its messages until added again.",
+      "submit": "Leave"
+    },
+    "delete": {
+      "title": "Delete message?",
+      "body": "The message is deleted for everyone and shows \"This message was deleted\".",
+      "others": "{name}'s message is deleted for everyone. You do this as a space admin.",
+      "files": "{count, plural, one {The attached file goes} other {The # attached files go}} to the Drive trash."
+    },
+    "forward": {
+      "title": "Forward message",
+      "text": "{name} wrote: {text}"
+    },
+    "clear": {
+      "title": "Delete {name} for you?",
+      "body": "The chat leaves your list and its messages so far are hidden from you only; the others still see them. A new message brings the chat back, empty.",
+      "submit": "Delete for me"
+    },
+    "deleteAll": {
+      "title": "Delete {name} for everyone?",
+      "body": "All messages and attachments are deleted for everyone; attachments go to the Drive trash and are removed for good when it expires. This cannot be undone and is written to the audit log.",
+      "confirm": "Type the chat name to confirm",
+      "submit": "Delete for everyone"
+    }
+  },
+  "hooks": {
+    "title": "Apps and webhooks",
+    "hint": "Apps that post into this chat from outside. Each webhook writes with its own secret URL.",
+    "add": "Add incoming webhook",
+    "list": "Incoming webhooks · {count}",
+    "empty": "No webhooks yet.",
+    "lastUsed": "Last message {time} · {count} requests in 24 h",
+    "neverUsed": "No requests yet",
+    "health": {
+      "active": "Active",
+      "limited": "Rate limited",
+      "muted": "Muted",
+      "failing": "Failing",
+      "disabled": "Off"
+    },
+    "log": "Delivery log",
+    "edit": "Edit",
+    "mute": "Mute 1 h",
+    "unmute": "Unmute",
+    "regenerate": "Regenerate URL",
+    "regenerated": "New URL created; the old one stopped working.",
+    "enable": "Turn on",
+    "disable": "Turn off",
+    "limitedHint": "It went over {limit} requests a minute in the last hour; the rest got 429 and the app should retry after Retry-After.",
+    "failingHint": "Recent requests were refused with 4xx. See the delivery log for the reason.",
+    "googleTitle": "Moving from Google Chat?",
+    "googleBody": "Only change the webhook URL in the app. Google Chat's text and cardsV2 bodies are accepted as they are.",
+    "createHint": "The webhook posts into {name} as a bot.",
+    "name": "Name",
+    "nameHint": "Shown as the bot name on messages.",
+    "namePlaceholder": "e.g. Grafana",
+    "create": "Create",
+    "created": "Created",
+    "url": "Webhook URL",
+    "urlHint": "The secret key is part of the URL; this is the only time you see it in full.",
+    "show": "Show",
+    "copy": "Copy URL",
+    "copied": "Copied",
+    "copyExample": "Copy example",
+    "examples": {
+      "curl": "Crewhall format",
+      "google": "Google Chat compatible"
+    },
+    "sample": {
+      "text": "Deploy finished",
+      "title": "api 1.4.0 is live",
+      "label": "Errors"
+    },
+    "limits": "60 requests a minute, body up to 32 KB. Anything over gets 429 or 413.",
+    "done": "Done",
+    "logTitle": "{name} · delivery log",
+    "logHint": "Requests of the last 7 days. Click a failed row for the reason and the relevant part of the body; the key is never stored.",
+    "logEmpty": "No requests in the last 7 days.",
+    "cols": {
+      "time": "Time",
+      "status": "Status",
+      "size": "Size",
+      "latency": "Duration"
+    },
+    "ms": "{ms} ms",
+    "ip": "Source IP: {ip}",
+    "codes": {
+      "400": "Body failed validation",
+      "413": "Body over 32 KB",
+      "429": "Per-minute limit exceeded",
+      "5xx": "Error on our side; the app should retry"
+    },
+    "integrations": {
+      "add": "Add integration",
+      "hint": "Brings GitHub, Azure DevOps or Jira events into {name} as cards. The signature is checked on every request.",
+      "service": "Service",
+      "events": "Which events?",
+      "via": "{service} integration",
+      "secret": "Secret",
+      "secretHint": "Shown only now. Paste it into the service's webhook settings.",
+      "copySecret": "Copy the secret",
+      "setupTitle": "In {service}",
+      "setup": {
+        "github": "Repository › Settings › Webhooks › Add webhook.\nPayload URL: the address above. Content type: application/json.\nSecret: the secret. Events: \"Let me select individual events\" with the choices here.",
+        "azure_devops": "Project settings › Service hooks › Web Hooks.\nURL: the address above. Basic authentication: any user name, the secret as password.\nAdd one subscription per event type.",
+        "jira": "Jira settings › System › WebHooks › Create a WebHook.\nURL: the address above. Secret: the secret.\nEvents: Issue created/updated/deleted and Comment created."
+      },
+      "event": {
+        "push": "Push (commits)",
+        "pull_request": "Pull request opened, merged, closed, review requested",
+        "issues": "Issue opened, closed",
+        "issue_comment": "Issue and PR comments",
+        "workflow_run": "Actions workflow finished (succeeded or failed)",
+        "release": "Release published",
+        "git_push": "Code pushed",
+        "git_pullrequest_created": "Pull request created",
+        "git_pullrequest_updated": "Pull request updated",
+        "git_pullrequest_merged": "Pull request merged",
+        "build_complete": "Build completed",
+        "ms_vss-release_deployment-completed-event": "Deployment completed",
+        "workitem_created": "Work item created",
+        "workitem_updated": "Work item updated",
+        "workitem_commented": "Work item commented on",
+        "jira_issue_created": "Issue created",
+        "jira_issue_updated": "Issue updated",
+        "jira_issue_deleted": "Issue deleted",
+        "comment_created": "Comment added"
+      }
+    }
+  },
+  "search": {
+    "label": "Search messages",
+    "placeholder": "Search messages · from:name filters by person",
+    "chats": "Chats · {count}",
+    "people": "People",
+    "noPeople": "No one matches \"{q}\"",
+    "from": "From",
+    "fromWho": "From: {name}",
+    "anyone": "Anyone",
+    "inChat": "Chat",
+    "allChats": "All chats",
+    "hasFile": "With files",
+    "date": "Date",
+    "anyTime": "Any time",
+    "lastDays": "Last {days} days",
+    "clear": "Clear filters",
+    "start": "Search messages",
+    "startHint": "Only chats you can read, and only the history shared with you.",
+    "none": "No results for \"{q}\"",
+    "noneHint": "Try another word or remove filters.",
+    "results": "{count, plural, one {# message} other {# messages}} for \"{q}\"",
+    "show": "Show in chat"
+  },
+  "notifications": {
+    "chat": {
+      "mention": "{actor} mentioned you · {conversationTitle}",
+      "direct": "{actor} sent you a message",
+      "reply": "{actor} replied to your message · {conversationTitle}",
+      "message": "New message in {conversationTitle}",
+      "alert": "{webhookName} · {conversationTitle}",
+      "webhook_failing": "Webhook {webhookName} is failing · {conversationTitle}",
+      "reminder": "Reminder",
+      "scheduled_failed": "Your scheduled message couldn't be sent · {conversationTitle}"
+    },
+    "drive": {
+      "shared": "{actor} shared {nodeName} with you"
+    },
+    "space": {
+      "added": "{actor} added you to the {spaceName} space"
+    },
+    "link": {
+      "down": "{linkTitle} is down",
+      "up": "{linkTitle} is back up"
+    },
+    "meet": {
+      "invited": "{actor} invited you to a meeting · {title}",
+      "recording_ready": "Recording of {title} is ready",
+      "call_missed": "Missed call from {actor}",
+      "updated": "{actor} changed the meeting · {title}",
+      "cancelled": "{actor} cancelled the meeting · {title}",
+      "ring_declined": "{actor} can't join · {title}",
+      "ring_unanswered": "{actor} didn't answer your call · {title}"
+    },
+    "page": {
+      "mention": "{actor} mentioned you on {name}",
+      "comment_mention": "{actor} mentioned you in a comment on {name}",
+      "comment_reply": "{count, plural, one {{actor} replied to your comment on {name}} other {# new replies to your comment on {name}}}",
+      "restored": "{actor} restored {name} to an earlier version",
+      "export_ready": "{name} is exported · {fileName}",
+      "updated": "{actor} updated {name}"
+    },
+    "approval": {
+      "requested": "{client} is waiting for your approval · {title}"
+    },
+    "generic": "New notification",
+    "snooze": {
+      "label": "Snooze",
+      "hour": "1 hour",
+      "tomorrow": "Tomorrow morning",
+      "week": "Next week"
+    },
+    "more": "{count} notifications",
+    "snoozedUntil": "snoozed, back {time}",
+    "markRead": "Mark as read",
+    "markUnread": "Mark as unread",
+    "restore": "Restore",
+    "dismiss": "Dismiss",
+    "bellUnread": "Notifications, {count} unread",
+    "readAll": "Mark all as read",
+    "seeAll": "See all",
+    "box": {
+      "inbox": "Inbox",
+      "snoozed": "Snoozed",
+      "dismissed": "Dismissed"
+    },
+    "source": "Source",
+    "sources": {
+      "chat": "Chat",
+      "pages": "Pages",
+      "boards": "Boards",
+      "meetings": "Meetings",
+      "drive": "Drive",
+      "vault": "Vault",
+      "alerts": "Webhooks and links",
+      "account": "Account",
+      "announcements": "Announcements"
+    },
+    "settings": "Notification settings",
+    "subtitle": "From every module · kept 90 days",
+    "unreadOnly": "Unread only",
+    "tabs": {
+      "all": "All",
+      "mentions": "Mentions",
+      "assigned": "Assigned",
+      "alerts": "Alerts"
+    },
+    "selected": "{count} selected",
+    "clearSelection": "Clear selection",
+    "empty": {
+      "inbox": "Mentions, shares and assignments show up here.",
+      "snoozed": "Nothing snoozed. Snoozed notifications come back unread at the time you pick.",
+      "dismissed": "Nothing dismissed."
+    },
+    "retention": "Notifications are kept for 90 days.",
+    "bulk": "Bulk actions",
+    "plugin": {
+      "notification": "{plugin} · {title}"
+    }
+  },
+  "status": {
+    "title": "Set your status",
+    "emoji": "Pick an emoji",
+    "placeholder": "What are you up to?",
+    "message": "Status message",
+    "clearMessage": "Clear message",
+    "clearAfter": "Clear message",
+    "clears": {
+      "30m": "30 min",
+      "1h": "1 hour",
+      "4h": "4 hours",
+      "today": "Today",
+      "week": "This week",
+      "never": "Don't clear"
+    },
+    "suggestions": "Suggestions",
+    "suggest": {
+      "meeting": "In a meeting",
+      "focus": "Focusing",
+      "home": "Working from home",
+      "leave": "On leave"
+    },
+    "visibility": "Visibility",
+    "visibilities": {
+      "online": "Online",
+      "busy": "Busy",
+      "dnd": "Do not disturb",
+      "away": "Appear away",
+      "invisible": "Invisible"
+    },
+    "hints": {
+      "busy": "Notifications go quiet, messages stay unread",
+      "dnd": "Only calls and critical alerts come through",
+      "invisible": "You appear offline and keep using everything"
+    },
+    "autoMeeting": "Automatic \"In a meeting\"",
+    "autoMeetingHint": "You show as Busy during calendar meetings and calls, and as Presenting (like do not disturb) while sharing your screen",
+    "lasts": "For",
+    "durations": {
+      "30m": "30 min",
+      "1h": "1 hour",
+      "4h": "4 hours",
+      "today": "Until the end of today",
+      "week": "Until the end of this week",
+      "never": "Until I change it"
+    }
+  },
+  "profile": {
+    "people": "People",
+    "notFound": "Person not found",
+    "email": "E-mail",
+    "details": "Details",
+    "since": "In the organisation since",
+    "timezone": "Time zone",
+    "sharedSpaces": "Shared spaces",
+    "noSpaces": "No shared spaces.",
+    "sharedChats": "Shared chats · {count}",
+    "noChats": "No shared chats."
+  },
+  "prefs": {
+    "title": "Notification settings",
+    "hint": "Pick how you hear about each kind. Locked boxes cannot be turned off.",
+    "category": "Notification",
+    "channels": {
+      "inApp": "In app",
+      "desktop": "Desktop",
+      "push": "Push",
+      "email": "E-mail"
+    },
+    "lockedNote": "Locked boxes cannot be turned off, for security.",
+    "pageSubtitle": "Turn the bell, desktop, phone and e-mail digest on or off for each kind of notification.",
+    "openPage": "All settings",
+    "sections": {
+      "chat": "Chat",
+      "meet": "Meetings, calls and calendar",
+      "work": "Work",
+      "org": "Organization and integrations",
+      "security": "Security"
+    },
+    "groups": {
+      "chat_direct": {
+        "title": "Direct messages",
+        "hint": "When someone writes to you directly"
+      },
+      "chat_mention": {
+        "title": "Mentions",
+        "hint": "Your name, @channel or @here"
+      },
+      "chat_reply": {
+        "title": "Replies",
+        "hint": "Replies to your message or a thread you follow"
+      },
+      "chat_messages": {
+        "title": "Group and channel messages",
+        "hint": "Groups and space chats you belong to"
+      },
+      "chat_alerts": {
+        "title": "Critical alerts",
+        "hint": "Critical messages in alert chats; they break through quiet hours"
+      },
+      "chat_reminders": {
+        "title": "Reminders",
+        "hint": "Reminders you set and scheduled messages that could not be sent"
+      },
+      "calls": {
+        "title": "Calls",
+        "hint": "Incoming and missed calls"
+      },
+      "meetings": {
+        "title": "Meetings",
+        "hint": "Invitations, changes, cancellations and recordings"
+      },
+      "calendar": {
+        "title": "Calendar",
+        "hint": "Event invitations, responses and reminders"
+      },
+      "mail": {
+        "title": "Mail",
+        "hint": "New e-mail and shared inbox messages assigned to you"
+      },
+      "boards": {
+        "title": "Boards",
+        "hint": "Cards assigned to you, comments and due dates"
+      },
+      "pages": {
+        "title": "Pages",
+        "hint": "Mentions and replies in pages and comments, exports"
+      },
+      "drive": {
+        "title": "Drive and sharing",
+        "hint": "Files shared with you and being added to a space"
+      },
+      "approvals": {
+        "title": "Approval requests",
+        "hint": "Actions of the AI, MCP clients or plugins waiting for you"
+      },
+      "announcements": {
+        "title": "Announcements and kudos",
+        "hint": "Company announcements and thanks you receive"
+      },
+      "forms": {
+        "title": "Forms",
+        "hint": "Responses to your forms"
+      },
+      "automations": {
+        "title": "Automations",
+        "hint": "Automation notifications and stopped rules"
+      },
+      "integrations": {
+        "title": "Links and webhooks",
+        "hint": "Links going down or back up, failing webhooks"
+      },
+      "vault": {
+        "title": "Vault",
+        "hint": "Vault access and new devices"
+      },
+      "security": {
+        "title": "Account security",
+        "hint": "New sessions, 2FA and password changes"
+      },
+      "portal": {
+        "title": "Portal",
+        "hint": "Portal pages that could not be published"
+      },
+      "plugins": {
+        "title": "Plugins",
+        "hint": "Every plugin; you can also mute each one below"
+      }
+    },
+    "categories": {
+      "mention": "Mentions",
+      "direct_reply": "Direct messages and replies",
+      "conversation_message": "Group and space chat messages",
+      "alert": "Critical messages in alert chats",
+      "share": "Shares and being added to a space",
+      "boards": "Boards: assigned, comments, due dates",
+      "meetings": "Meetings: started, invites, recordings",
+      "links": "A link went down or came back",
+      "vault": "Vault: access and new devices",
+      "security": "Security: new session, 2FA, password",
+      "portal": "Portal publish failed",
+      "announcements": "Organization announcements"
+    },
+    "digest": "E-mail digest",
+    "digests": {
+      "off": "Off",
+      "hourly": "Hourly",
+      "daily": "Daily"
+    },
+    "quiet": "Quiet hours",
+    "quietFrom": "From",
+    "quietTo": "To",
+    "sound": "Message sound",
+    "soundHint": "Plays a short sound while you are in another chat or the tab is in the background. Mentions and direct messages sound brighter. Silent for muted chats, do not disturb and quiet hours. Saved in this browser.",
+    "soundTry": "Play",
+    "timezone": "Time zone",
+    "noTimezone": "Not set",
+    "useBrowserZone": "Use {zone}",
+    "plugins": {
+      "title": "Plugins",
+      "hint": "Plugins you see. For those that can notify you, turn each channel on or off (e.g. WhatsApp only on the desktop, never on the phone). Saved to your account, on every device."
+    },
+    "alertPlugins": "Plugin notifications follow this row too; set each plugin in the Plugins section."
+  },
+  "disabled": {
+    "title": "Chat is turned off in this organisation",
+    "body": "An admin turned the chat module off. Your chats come back as they were when it is turned on.",
+    "home": "Back to home"
+  },
+  "archive": {
+    "archived": "Chat archived",
+    "unarchived": "Chat unarchived",
+    "cleared": "Chat deleted for you",
+    "deleted": "Chat deleted for everyone"
+  },
+  "admin": {
+    "deleteForEveryone": "Delete chats for everyone",
+    "deleteForEveryoneHint": "When on, group owners and org admins can delete a chat with its messages and attachments for everyone. Direct and space chats are never deleted for everyone."
+  },
+  "commands": {
+    "title": "Commands",
+    "meet": {
+      "hint": "Starts a video call or meeting in this chat",
+      "usage": "/meet · /meet voice"
+    },
+    "remind": {
+      "hint": "Sets a reminder for you",
+      "usage": "/remind 15m meeting · /remind tomorrow 9:00 report"
+    },
+    "poll": {
+      "hint": "Opens a poll; everyone votes and sees results live",
+      "usage": "/poll Question? | Option 1 | Option 2"
+    },
+    "me": {
+      "hint": "Sends it as an action line",
+      "usage": "/me went to grab a coffee"
+    },
+    "whisper": {
+      "hint": "A message only the chosen person sees",
+      "usage": "/whisper @person message"
+    },
+    "voiceWord": "voice",
+    "remindSet": "Reminder set: {when}",
+    "remindDefault": "Reminder",
+    "undo": "Undo",
+    "remindInvalid": "I couldn't read the time. Try /remind 15m meeting or /remind tomorrow 9:00 report",
+    "whisperNeedsPerson": "Pick someone to whisper to: /whisper @person message",
+    "whisperDirect": "No need to whisper in a one-to-one chat; it is already just the two of you.",
+    "meetUnavailable": "A meeting can't be started in this chat.",
+    "emptyText": "Write some text after the command.",
+    "move": "move",
+    "pick": "use",
+    "close": "close",
+    "zamanla": {
+      "hint": "Sends the message later",
+      "usage": "/zamanla tomorrow 9:00 message · /zamanla 30m message"
+    },
+    "gif": {
+      "hint": "Searches GIPHY and sends a GIF",
+      "usage": "/gif cat · /gif congrats"
+    }
+  },
+  "whisper": {
+    "to": "Whisper · only {name} sees this",
+    "toYou": "Whisper · only you see this",
+    "composing": "Whispering to {name}"
+  },
+  "poll": {
+    "label": "Poll",
+    "voters": "{count, plural, one {# person voted} other {# people voted}}",
+    "multiple": "Several can be chosen",
+    "closed": "Poll closed",
+    "close": "Close poll",
+    "closedToast": "Poll closed",
+    "retract": "Take back my vote",
+    "votedBy": "Voted: {names}",
+    "dialogTitle": "Open a poll",
+    "dialogHint": "Write the question and at least two options. Everyone votes and sees results live.",
+    "question": "Question",
+    "questionPlaceholder": "What should we ask?",
+    "option": "Option {n}",
+    "addOption": "Add option",
+    "removeOption": "Remove option {n}",
+    "allowMultiple": "Allow several options",
+    "create": "Send poll"
+  },
+  "schedule": {
+    "later": "Send later",
+    "tomorrow": "Tomorrow 09:00",
+    "monday": "Monday 09:00",
+    "custom": "Custom date and time…",
+    "text": "Message",
+    "date": "Date",
+    "time": "Time",
+    "zone": "Time zone: {zone}",
+    "past": "A time in the past is selected.",
+    "submit": "Schedule",
+    "scheduled": "Message scheduled: {when}",
+    "uploading": "You can schedule it once the files are uploaded.",
+    "count": "{count, plural, one {# scheduled message} other {# scheduled messages}}",
+    "list": "Scheduled messages",
+    "files": "{count, plural, one {# file} other {# files}}",
+    "edit": "Edit",
+    "sendNow": "Send now",
+    "delete": "Delete",
+    "sent": "Message sent",
+    "deleted": "Scheduled message deleted",
+    "saved": "Scheduled message saved",
+    "editTitle": "Edit scheduled message"
+  },
+  "emoji": {
+    "label": "Emoji",
+    "hint": "Shown next to the name in the chat list, the header and notifications.",
+    "pick": "Pick an emoji",
+    "change": "Emoji: {emoji}, change",
+    "remove": "Remove"
+  },
+  "gif": {
+    "button": "Send a GIF",
+    "picker": "Pick a GIF",
+    "search": "Search GIPHY",
+    "empty": "No results",
+    "results": "GIF results",
+    "untitled": "GIF",
+    "attribution": "Powered by GIPHY",
+    "open": "Enlarge the {title} GIF",
+    "play": "Play the {title} GIF",
+    "off": "GIFs are off in this organization.",
+    "admin": {
+      "title": "GIF (GIPHY)",
+      "hint": "Your organization's GIPHY API key for searching and sending GIFs in chat. It is stored encrypted and never shown again.",
+      "active": "Active",
+      "inactive": "Off",
+      "enabled": "Turn GIFs on in chat",
+      "key": "GIPHY API key",
+      "keySet": "A key is saved ({key}). Type a new one to replace it.",
+      "keyMissing": "No key; get one at developers.giphy.com.",
+      "saveKey": "Save key",
+      "removeKey": "Remove key",
+      "rating": "Content rating",
+      "lang": "Language",
+      "ratings": {
+        "g": "G · for everyone",
+        "pg": "PG",
+        "pg-13": "PG-13",
+        "r": "R"
+      },
+      "test": "Test",
+      "testOk": "It works: {count} trending GIFs came back.",
+      "testFailed": "Couldn't connect ({error}).",
+      "saved": "GIF settings saved",
+      "terms": "GIFs load from GIPHY's servers; search results are cached briefly and images are never stored.",
+      "tier": "Key type",
+      "tiers": {
+        "beta": "Beta (~100 requests an hour)",
+        "production": "Production (no hourly limit)"
+      },
+      "usageLabel": "GIPHY usage this hour",
+      "usage": "{count} / {total} GIPHY requests used this hour, {n} left. Cached results do not count.",
+      "usageUnlimited": "{count} GIPHY requests this hour; production keys have no hourly limit."
+    },
+    "minQuery": "Type at least 2 letters to search; trending GIFs for now."
+  },
+  "info": {
+    "title": "Message info",
+    "summary": "{count} / {total} people saw it",
+    "seen": "Seen",
+    "notSeen": "Not seen yet",
+    "unknownTime": "time unknown",
+    "directSeen": "Seen · {when}",
+    "directNotSeen": "Not seen yet."
+  },
+  "emojiPicker": {
+    "search": "Search emoji",
+    "tone": "Skin tone",
+    "groups": "Categories",
+    "empty": "No matching emoji.",
+    "tones": {
+      "0": "Default",
+      "1": "Light",
+      "2": "Medium-light",
+      "3": "Medium",
+      "4": "Medium-dark",
+      "5": "Dark"
+    },
+    "group": {
+      "0": "Smileys & emotion",
+      "1": "People & body",
+      "3": "Animals & nature",
+      "4": "Food & drink",
+      "5": "Travel & places",
+      "6": "Activities",
+      "7": "Objects",
+      "8": "Symbols",
+      "9": "Flags",
+      "recent": "Recently used"
+    }
+  },
+  "cardActions": {
+    "claim": "I'm on it",
+    "release": "Let go",
+    "claimedBy": "{name} is on it",
+    "claimedByMe": "You're on it",
+    "toBoard": "Open a board card",
+    "toBoardHint": "The card's title, fields and link go into the card's description.",
+    "title": "Title",
+    "space": "Space",
+    "board": "Board",
+    "noBoard": "No boards in this space",
+    "column": "Column",
+    "assignee": "Assignee",
+    "nobody": "Nobody",
+    "create": "Open the card",
+    "created": "\"{title}\" opened on the board"
+  },
+  "refs": {
+    "pickerTitle": "Add an item",
+    "searching": "Searching…",
+    "none": "No matching item. Only what you can see is listed.",
+    "attached": "Added items",
+    "remove": "Remove {name}",
+    "add": "Add a Drive, page or board item",
+    "tooMany": "A message can have at most {max} items.",
+    "noAccess": "You don't have access to this item",
+    "deleted": "This item was deleted",
+    "sendToChat": "Send to chat",
+    "sendHint": "No public link is created. Whoever opens it sees it only with their own permission.",
+    "sendSearch": "Search chats or people",
+    "sendTargets": "Chats and people",
+    "sendNote": "Add a note (optional)",
+    "sendNone": "No matching chat or person.",
+    "sent": "Sent to {name}",
+    "types": {
+      "folder": "Folder",
+      "file": "File",
+      "page": "Page",
+      "board": "Board",
+      "drawing": "Drawing",
+      "card": "Card"
+    }
+  }
+}

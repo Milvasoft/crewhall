@@ -1,0 +1,7 @@
+{
+  "page_locked": "This page is locked. Unlock it to edit.",
+  "page_too_large": "The page is too large. Markdown can be at most 200,000 characters.",
+  "collab_unavailable": "The collaboration server cannot be reached. Try again in a moment.",
+  "import_invalid": "The files could not be imported. Only .md files are accepted.",
+  "page_task_changed": "This to-do has changed on the page. The list was refreshed; try again."
+}

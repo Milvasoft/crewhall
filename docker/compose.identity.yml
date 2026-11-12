@@ -1,0 +1,31 @@
+# Test identity systems for local development (identity module, docs/contracts/kimlik-entegrasyonu.md):
+# Keycloak (Apache-2.0) as an OIDC + SAML IdP and OpenLDAP (osixia/openldap, MIT) as a directory.
+# Not for production. Ports default to the 49xx range; change them with KEYCLOAK_PORT / LDAP_PORT.
+#   docker compose -f docker/compose.identity.yml up -d
+name: crewhall-identity
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.7
+    command: ['start-dev', '--import-realm']
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+    ports:
+      - '${KEYCLOAK_PORT:-4980}:8080'
+    volumes:
+      - ./identity/keycloak-realm.json:/opt/keycloak/data/import/crewhall-realm.json:ro
+
+  openldap:
+    image: osixia/openldap:1.5.0
+    # --copy-service: the seed LDIF below is applied on first start.
+    command: ['--copy-service']
+    environment:
+      LDAP_ORGANISATION: Crewhall Test
+      LDAP_DOMAIN: crewhall.test
+      LDAP_ADMIN_PASSWORD: ldap-admin-secret
+      LDAP_TLS: 'false'
+    ports:
+      - '${LDAP_PORT:-4989}:389'
+    volumes:
+      - ./identity/ldap-seed.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom/50-seed.ldif:ro

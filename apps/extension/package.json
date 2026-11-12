@@ -1,0 +1,43 @@
+{
+  "name": "@crewhall/extension",
+  "version": "0.1.0",
+  "private": true,
+  "license": "SEE LICENSE IN ../../LICENSE",
+  "type": "module",
+  "description": "Crewhall browser extension: vault autofill and sending pages, images and text to Crewhall",
+  "scripts": {
+    "build": "vite build && vite build -c vite.content.config.ts",
+    "package": "node scripts/package.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@crewhall/api-client": "workspace:*",
+    "@crewhall/crypto": "workspace:*",
+    "@crewhall/i18n": "workspace:*",
+    "@crewhall/shared": "workspace:*",
+    "@crewhall/ui": "workspace:*",
+    "@fontsource-variable/nunito": "^5.2.7",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@crewhall/config": "workspace:*",
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/chrome": "^0.1.40",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "eslint": "^10.13.0",
+    "jsdom": "^30.1.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.71.2",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5"
+  }
+}

@@ -1,0 +1,1 @@
+ALTER TABLE "shares" ADD COLUMN "token_enc" text;

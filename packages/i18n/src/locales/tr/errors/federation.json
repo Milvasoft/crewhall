@@ -1,0 +1,12 @@
+{
+  "federation_disabled": "Bu kurumda federasyon kapalı.",
+  "federation_domain_not_allowed": "Bu alan adı federasyon için izinli değil.",
+  "federation_domain_self": "Kendi kurumunu eş olarak ekleyemezsin.",
+  "federation_peer_unreachable": "Karşı kuruma ulaşılamadı. Adresi ve federasyonun açık olduğunu kontrol et.",
+  "federation_peer_not_active": "Bu kurumla federasyon henüz etkin değil; iki tarafın da birbirini eklemesi gerekiyor.",
+  "federation_user_not_found": "Karşı kurumda bu adreste bir kişi yok.",
+  "federation_signature_invalid": "İstek imzası doğrulanamadı.",
+  "federation_not_allowed": "Bu işlem federasyonlu sohbette yapılamaz.",
+  "federation_shared_channels_disabled": "Paylaşılan kanallar bu kurumda ya da karşı kurumda kapalı.",
+  "federation_share_closed": "Bu davet artık açık değil (yanıtlanmış, süresi dolmuş ya da geri çekilmiş)."
+}

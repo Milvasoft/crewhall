@@ -1,0 +1,12 @@
+{
+  "cardTitle": "{form} yanıtı",
+  "anonymous": "Anonim",
+  "driveFile": "{form} · Yanıtlar.csv",
+  "csv": {
+    "submittedAt": "Gönderim zamanı",
+    "respondent": "Yanıtlayan"
+  },
+  "notifications": {
+    "response": "{title} formuna yeni yanıt geldi"
+  }
+}

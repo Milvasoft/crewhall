@@ -1,0 +1,14 @@
+{
+  "portal_site_slug_taken": "A portal site with this short name already exists.",
+  "portal_slug_taken": "This address is already used by another page in this version and language.",
+  "portal_version_exists": "This version number already exists.",
+  "portal_version_invalid": "The version number must be greater than the existing versions.",
+  "portal_doc_conflict": "Someone else changed this content while you were editing. Reload and try again.",
+  "portal_nothing_to_publish": "There is nothing to publish.",
+  "portal_media_in_use": "This file is in use; remove it from where it is used first.",
+  "portal_token_invalid": "The portal content key is invalid.",
+  "portal_category_not_empty": "The category is not empty; move or delete its documents first.",
+  "portal_locale_unsupported": "This language is not enabled on the site.",
+  "portal_translation_source_missing": "The source document to translate was not found.",
+  "portal_redirect_loop": "The redirect points to itself or forms a loop."
+}

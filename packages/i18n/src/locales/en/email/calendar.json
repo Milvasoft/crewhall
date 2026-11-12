@@ -1,0 +1,31 @@
+{
+  "when": "When",
+  "where": "Where",
+  "repeats": "Repeats",
+  "recurring": "Recurring event",
+  "details": "Details",
+  "people": "Guests",
+  "meeting": "Meeting link",
+  "join": "Join the meeting",
+  "guestNote": "Open the link at the meeting time; no account needed, you join from the waiting room with your name.",
+  "icsNote": "Open the attached invite.ics to add it to your calendar or reply.",
+  "footer": "{inviterName} at {orgName} sent this invitation.",
+  "invite": {
+    "subject": "Invitation: {title} · {when}",
+    "title": "{inviterName} invited you to {title}",
+    "body": ""
+  },
+  "update": {
+    "subject": "Updated: {title} · {when}",
+    "title": "{title} was updated",
+    "body": "{inviterName} changed the event. The attached file updates it in your calendar."
+  },
+  "cancel": {
+    "subject": "Cancelled: {title} · {when}",
+    "title": "{title} was cancelled",
+    "body": "{inviterName} cancelled this event. The attached file removes it from your calendar."
+  },
+  "reminder": {
+    "title": "Reminder: {title}"
+  }
+}

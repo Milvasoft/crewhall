@@ -1,0 +1,19 @@
+{
+  "meet_unavailable": "The meeting server can't be reached right now. Try again in a moment.",
+  "meet_ended": "This meeting has ended.",
+  "meet_link_expired": "This invitation is no longer valid.",
+  "meet_guests_disabled": "Guests can't join this meeting. Ask the organiser.",
+  "meet_lobby_retry_later": "Your request was declined. You can ask again in a minute.",
+  "meet_not_moderator": "Only moderators can do this.",
+  "meet_recording_forbidden": "A moderator can start the recording.",
+  "meet_recording_active": "This meeting is already being recorded.",
+  "meet_recording_unavailable": "Recording can't start right now. Free up space in Drive or ask your admin.",
+  "meet_not_live": "Nobody is in the meeting right now.",
+  "meet_slug_taken": "This room address is taken. Pick another one.",
+  "meet_webhook_invalid": "The meeting server's signature could not be verified.",
+  "meet_call_unavailable": "Calls can only be made from direct and group chats you belong to.",
+  "meet_call_over": "This call has ended or is no longer ringing.",
+  "meet_remote_control_off": "Remote control is turned off for this meeting or organisation.",
+  "meet_room_live": "The meeting is going on right now. End it first.",
+  "meet_managed_by_calendar": "This meeting was created from the calendar; edit or cancel its calendar event."
+}

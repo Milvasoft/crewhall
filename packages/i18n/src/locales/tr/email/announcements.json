@@ -1,0 +1,26 @@
+{
+  "subject": "{orgName} duyurusu: {title}",
+  "byAuthor": "{author} · {orgName} duyurusu",
+  "byOrg": "{orgName} duyurusu",
+  "ackNeeded": "Bu duyuru için okuduğunu onaylaman isteniyor.",
+  "cta": "Duyuruyu aç",
+  "ackCta": "Aç ve okudum de",
+  "footerWhy": "{orgName} çalışma alanındaki yeni duyurular için bu e-postayı aldın.",
+  "footerManage": "Duyuru e-postalarını Hesabım › Bildirimler'den kapatabilirsin.",
+  "celebrate": {
+    "botName": "Kutlamalar",
+    "birthday": "🎂 Doğum günün kutlu olsun {names}! 🎉",
+    "anniversaryOne": "🎉 {name} bugün aramızdaki ilk yılını dolduruyor. Nice yıllara!",
+    "anniversary": "🎉 {name} bugün aramızdaki {years}. yılını dolduruyor. Nice yıllara!",
+    "kudos": "{emoji} {from} → {to} · {badge}",
+    "kudosWithMessage": "{emoji} {from} → {to} · {badge}\n“{message}”",
+    "badges": {
+      "teamwork": "Takım ruhu",
+      "helping": "Yardım eli",
+      "idea": "Parlak fikir",
+      "customer": "Müşteri dostu",
+      "quality": "Kaliteli iş",
+      "extraMile": "Fazlasını yaptı"
+    }
+  }
+}

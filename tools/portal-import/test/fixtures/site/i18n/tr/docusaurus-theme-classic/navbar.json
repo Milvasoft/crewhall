@@ -1,0 +1,5 @@
+{
+  "title": { "message": "Acme" },
+  "item.label.Docs": { "message": "Dokümanlar" },
+  "item.label.Blog": { "message": "Blog" }
+}

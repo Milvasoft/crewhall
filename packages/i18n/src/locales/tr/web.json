@@ -1,0 +1,1839 @@
+{
+  "ui": {
+    "saved": "Kaydedildi",
+    "more": "Diğer işlemler",
+    "picker": {
+      "datePlaceholder": "Tarih seç",
+      "rangePlaceholder": "Tarih aralığı seç",
+      "timePlaceholder": "--:--",
+      "chooseDate": "Tarih seç",
+      "chooseRange": "Tarih aralığı seç",
+      "chooseTime": "Saat seç",
+      "clear": "Temizle",
+      "previousMonth": "Önceki ay",
+      "nextMonth": "Sonraki ay",
+      "previousYear": "Önceki yıl",
+      "nextYear": "Sonraki yıl",
+      "previousYears": "Önceki yıllar",
+      "nextYears": "Sonraki yıllar",
+      "chooseMonthYear": "Ay ve yıl seç",
+      "chooseYear": "Yıl seç",
+      "hours": "Saat",
+      "minutes": "Dakika",
+      "pickEnd": "Başlangıç {from}, bitiş tarihini seç",
+      "presets": {
+        "today": "Bugün",
+        "yesterday": "Dün",
+        "last7": "Son 7 gün",
+        "last30": "Son 30 gün",
+        "thisMonth": "Bu ay",
+        "lastMonth": "Geçen ay",
+        "custom": "Özel"
+      }
+    },
+    "selectAll": "Tümünü seç",
+    "pageSelected": "Bu sayfadakiler seçildi",
+    "selectEvery": "Tümünü seç",
+    "selectEveryCount": "Tümünü ({count}) seç",
+    "selectedCount": "{count} seçildi",
+    "selectionActions": "Seçilenler için eylemler",
+    "clearSelection": "Seçimi bırak"
+  },
+  "prefs": {
+    "language": "Dil",
+    "theme": "Tema",
+    "languages": {
+      "tr": "Türkçe",
+      "en": "English"
+    },
+    "appearance": {
+      "system": "Sistem",
+      "light": "Açık",
+      "dark": "Koyu"
+    },
+    "density": {
+      "label": "Yoğunluk",
+      "comfortable": "Rahat",
+      "compact": "Sıkı"
+    }
+  },
+  "auth": {
+    "brand": {
+      "poweredBy": "Crewhall ile",
+      "titleLead": "{org} ekibinin",
+      "titleAccent": "çalışma alanı",
+      "description": "Dosyalar, sayfalar, panolar, sohbet, toplantı ve kasa tek yerde."
+    },
+    "fields": {
+      "email": "E-posta",
+      "emailInvalid": "Geçerli bir e-posta adresi gir.",
+      "password": "Şifre",
+      "name": "Ad soyad",
+      "showPassword": "Şifreyi göster",
+      "hidePassword": "Şifreyi gizle"
+    },
+    "errors": {
+      "network": "Sunucuya ulaşılamadı. Bağlantını kontrol edip tekrar dene."
+    },
+    "login": {
+      "title": "Giriş yap",
+      "subtitle": "{org} hesabınla devam et.",
+      "forgot": "Şifremi unuttum",
+      "capsLock": "Caps Lock açık olabilir.",
+      "remember": "Bu cihazda oturumu açık tut",
+      "submit": "Giriş yap",
+      "or": "ya da",
+      "passkey": "Passkey ile giriş yap",
+      "noAccount": "Hesabın yok mu? Kurumundaki bir yöneticiden davet iste.",
+      "invalid": "E-posta ya da şifre hatalı.",
+      "remaining": "Hesap kilitlenmeden önce {count} deneme hakkın kaldı."
+    },
+    "twoFactor": {
+      "title": "Doğrulama kodu",
+      "subtitle": "Kimlik doğrulama uygulamandaki 6 haneli kodu gir.",
+      "change": "Değiştir",
+      "codeLabel": "6 haneli doğrulama kodu",
+      "trust": "Bu cihazı 30 gün boyunca hatırla",
+      "submit": "Doğrula",
+      "useBackup": "Yedek kod kullan",
+      "usePasskey": "Passkey ile doğrula",
+      "invalid": "Kod hatalı ya da süresi geçti.",
+      "lostDevice": "Telefonuna erişemiyor musun? Yedek kodların da yoksa bir kurum yöneticisi 2FA'nı sıfırlayabilir."
+    },
+    "backup": {
+      "title": "Yedek kodla giriş",
+      "subtitle": "2FA kurulurken indirdiğin 10 yedek koddan birini gir.",
+      "label": "Yedek kod",
+      "hint": "Örn. 4F7K-92QD. Kod bir kez kullanıldıktan sonra geçersiz olur.",
+      "submit": "Doğrula ve giriş yap",
+      "invalid": "Yedek kod geçersiz ya da daha önce kullanılmış.",
+      "afterUse": "Girişten sonra Hesabım › Güvenlik'ten yeni kodlar oluşturabilirsin.",
+      "back": "Uygulama koduna dön",
+      "adminHelp": "Yedek kodların da yoksa kurum yöneticilerin 2FA'nı sıfırlayabilir."
+    },
+    "passkey": {
+      "title": "Passkey'ini doğrula",
+      "subtitle": "Tarayıcının açtığı pencerede parmak izi, yüz ya da cihaz PIN'i ile onayla.",
+      "waiting": "Tarayıcı penceresi bekleniyor",
+      "waitingHint": "Pencere görünmüyorsa açık sekmeleri kontrol et.",
+      "useEmail": "E-posta ve şifreyle giriş yap",
+      "where": "Passkey'ler Hesabım › Güvenlik'ten eklenir. Telefonundaki passkey için tarayıcı penceresindeki \"Başka bir cihaz\" seçeneğini kullan.",
+      "failed": "Passkey doğrulanamadı. Tekrar dene ya da e-posta ve şifreyle giriş yap."
+    },
+    "locked": {
+      "title": "Hesap geçici olarak kilitlendi",
+      "subtitle": "<b>{email}</b> için art arda hatalı deneme yapıldı. Güvenliğin için girişler bir süre durduruldu.",
+      "retryIn": "Tekrar deneyebileceğin süre",
+      "liftsAt": "Kilit {time}'da kalkar",
+      "unlockByEmail": "E-postayla kilidi aç",
+      "notYou": "<b>Bu sen değil miydin?</b> Şifreni değiştir ve kurum yöneticine haber ver.",
+      "passkeyHint": "Passkey ile giriş kilitten etkilenmez.",
+      "lastAttempt": "Son deneme {time} saatinde yapıldı.",
+      "lastAttemptIp": "Son deneme {time} saatinde {ip} adresinden yapıldı."
+    },
+    "forgot": {
+      "title": "Şifreni sıfırla",
+      "subtitle": "Hesabının e-posta adresini yaz, şifre yenileme bağlantısı gönderelim.",
+      "submit": "Bağlantı gönder",
+      "backToLogin": "Girişe dön",
+      "vaultNote": "<b>Şifre sıfırlamak kasanı açmaz.</b> Kasa şifren ayrıdır ve sunucuda saklanmaz; onu kurtarmak için kasa kurtarma anahtarın gerekir.",
+      "passkeyHint": "Passkey'in varsa şifreye gerek kalmadan giriş yapabilirsin.",
+      "sentTitle": "E-postanı kontrol et",
+      "sentBody": "<b>{email}</b> adresine kayıtlı bir hesap varsa, şifre yenileme bağlantısı birkaç dakika içinde gelir. Bağlantı 30 dakika geçerli.",
+      "notArrived": "Gelmedi mi?",
+      "checkSpam": "Gereksiz (spam) klasörüne bak",
+      "checkAddress": "Adresi doğru yazdığından emin ol",
+      "resend": "Yeniden gönder",
+      "resendIn": "Yeniden gönder · {time}",
+      "otherAddress": "Başka adres",
+      "closeTab": "Bu sekmeyi kapatabilirsin; bağlantı yeni bir sekmede açılır.",
+      "noEmailBody": "Bu sunucuda e-posta gönderimi ayarlı değil, sıfırlama bağlantısı gönderemiyoruz.",
+      "noEmailHint": "Şifreni bir kurum yöneticisine sıfırlat. Passkey'in varsa şifreye gerek kalmadan giriş yapabilirsin."
+    },
+    "reset": {
+      "title": "Yeni şifre belirle",
+      "subtitle": "Hesabın için yeni bir şifre seç.",
+      "newPassword": "Yeni şifre",
+      "repeat": "Yeni şifre (tekrar)",
+      "mismatch": "İki şifre aynı değil.",
+      "signOutAll": "Kaydedince tüm cihazlardaki oturumların kapanır.",
+      "submit": "Şifreyi kaydet",
+      "expiredTitle": "Bağlantının süresi doldu",
+      "expiredBody": "Şifre yenileme bağlantıları 30 dakika geçerlidir ve bir kez kullanılır.",
+      "newLink": "Yeni bağlantı iste"
+    },
+    "password": {
+      "ruleLength": "En az {min} karakter ({count})",
+      "rulePersonal": "Adını ya da e-postanı içermiyor",
+      "tooShort": "Çok kısa: en az {min} karakter (şu an {count}).",
+      "strength": {
+        "veryWeak": "Çok zayıf",
+        "weak": "Zayıf",
+        "fair": "Orta",
+        "good": "İyi",
+        "strong": "Güçlü"
+      }
+    },
+    "invite": {
+      "invitedBy": "<b>{name}</b> seni <b>{org}</b>'a davet etti",
+      "validFor": "{date} tarihine kadar · {days} gün daha geçerli",
+      "orgRole": "Kurum rolü",
+      "createTitle": "Hesabını oluştur",
+      "acceptTitle": "Bu hesapla katıl",
+      "accept": "Daveti kabul et",
+      "emailFixed": "E-posta davetten gelir, değiştirilemez.",
+      "submit": "Hesabı oluştur ve katıl",
+      "haveAccount": "Zaten hesabın var mı?",
+      "exists": "Bu e-postayla bir hesap var. Giriş yapıp daveti kabul et.",
+      "terms": "Devam ederek {org} kullanım koşullarını kabul edersin.",
+      "invalidTitle": "Bu davet artık geçerli değil",
+      "invalidBody": "Davetin süresi dolmuş ya da iptal edilmiş. Seni davet eden kişiden yenisini iste.",
+      "spaces": "Space'ler",
+      "signInTitle": "Hesabınla giriş yap",
+      "signInBody": "{email} adresinin zaten bir hesabı var. Giriş yapınca davet kabul edilir.",
+      "mismatch": "Bu davet {invited} için. Şu an {current} hesabıyla girişlisin.",
+      "switchAccount": "Çıkış yap ve davetli hesapla devam et"
+    }
+  },
+  "setup": {
+    "badge": "Crewhall kurulumu",
+    "stepOf": "Adım {step} / {total}",
+    "eta": {
+      "org": "~2 dakika",
+      "owner": "~1 dakika",
+      "spaces": "~1 dakika",
+      "invite": "son adım"
+    },
+    "org": {
+      "short": "Kurum",
+      "hint": "Ad, adres ve dil",
+      "title": "Kurumunu tanıt",
+      "subtitle": "Bu bilgiler giriş ekranında, e-postalarda ve uygulamanın sol üstünde görünür. Sonradan Yönetim › Marka'dan değişebilir.",
+      "name": "Kurum adı",
+      "slug": "Kurum kimliği",
+      "slugHint": "Küçük harf, rakam ve tire. API ve dışa aktarmalarda kullanılır, sonradan değişmez.",
+      "slugInvalid": "2-40 karakter; yalnız küçük harf, rakam ve tire.",
+      "locale": "Varsayılan dil",
+      "token": "Kurulum anahtarı",
+      "tokenHint": "Sunucu ilk açılışta loglara yazar (docker compose logs backend)."
+    },
+    "owner": {
+      "short": "İlk yönetici",
+      "hint": "Kurum sahibi hesabı",
+      "title": "Yönetici hesabını oluştur",
+      "subtitle": "Kurumun ilk hesabı. Tüm ayarlara ve üyelere erişir.",
+      "note": "Rol: <b>Kurum sahibi</b>. Kurulumun sonunda iki adımlı doğrulamayı kurman istenecek."
+    },
+    "spaces": {
+      "short": "Ortak space'ler",
+      "hint": "Ekiplerin çalışacağı alanlar",
+      "title": "İlk space'leri oluştur",
+      "subtitle": "Dosyalar, sayfalar, panolar, sohbetler ve kasa space'lere aittir. Ekip ya da proje başına bir space iyi bir başlangıç.",
+      "placeholder": "Space adı",
+      "default": "Varsayılan",
+      "add": "Space ekle",
+      "submit": "{count, plural, one {# space oluştur} other {# space oluştur}}"
+    },
+    "invite": {
+      "short": "Ekibi davet et",
+      "hint": "İstersen sonra da yapabilirsin",
+      "title": "Ekibini davet et",
+      "subtitle": "Davet edilenler hesaplarını kendileri oluşturur. Davetler 7 gün geçerli.",
+      "emails": "E-posta adresleri · {count}",
+      "skip": "Şimdilik atla",
+      "submit": "Davet et ve bitir"
+    },
+    "done": "Kurulum tamamlandı: {spaces} space, {invites} davet.",
+    "checks": {
+      "title": "Sistem kontrolü",
+      "database": "Veritabanı",
+      "storage": "Depolama",
+      "smtp": "E-posta (SMTP)",
+      "ok": "bağlı",
+      "missing": "ayarlanmadı"
+    },
+    "links": {
+      "title": "Davet bağlantıları",
+      "subtitle": "SMTP ayarlanmadığı için davetler e-postayla gitmedi. Bağlantıları kopyalayıp ekibine kendin ilet; 7 gün geçerli.",
+      "copied": "Bağlantı kopyalandı",
+      "copyAll": "Hepsini kopyala"
+    }
+  },
+  "setup2fa": {
+    "step1": "Uygulamayı bağla",
+    "step2": "Yedek kodlar",
+    "title": "İki adımlı doğrulamayı kur",
+    "subtitle": "Hesabını korumak için giriş yaparken şifrene ek olarak telefonundaki bir kod istenecek.",
+    "policy": "{org} yöneticileri iki adımlı doğrulamayı zorunlu kıldı. Kurmadan devam edemezsin.",
+    "confirmPassword": "Devam etmek için şifreni gir",
+    "scan": "1. Kimlik doğrulama uygulamanla QR kodu okut",
+    "qrAlt": "İki adımlı doğrulama QR kodu",
+    "manual": "QR okunmuyor mu? Anahtarı elle gir:",
+    "account": "Hesap adı: {org} ({email})",
+    "enterCode": "2. Uygulamadaki 6 haneli kodu gir",
+    "verify": "Doğrula ve devam et",
+    "passkeyInstead": "Bunun yerine passkey ekle",
+    "codes": {
+      "connected": "Uygulama bağlandı",
+      "title": "Yedek kodlarını sakla",
+      "subtitle": "Telefonuna erişemezsen bu kodlarla giriş yapabilirsin. Her kod bir kez kullanılır ve yalnız şimdi gösterilir.",
+      "download": "İndir (.txt)",
+      "copy": "Kopyala",
+      "copied": "Kodlar kopyalandı",
+      "print": "Yazdır",
+      "saved": "Kodları güvenli bir yere kaydettim",
+      "finish": "Bitir ve {app}'a geç",
+      "fileTitle": "iki adımlı doğrulama yedek kodları"
+    }
+  },
+  "session": {
+    "expired": {
+      "title": "Güvenlik için yeniden doğrula",
+      "subtitle": "Devam etmek için şifreni yeniden gir. Sayfadaki değişikliklerin bu sekmede bekliyor.",
+      "passkey": "Passkey",
+      "otherAccount": "Başka hesapla giriş yap"
+    }
+  },
+  "pages": {
+    "notFound": {
+      "title": "Bu sayfa bulunamadı",
+      "body": "Bağlantı hatalı olabilir, öğe taşınmış ya da silinmiş olabilir. Ya da bu öğeyi görme yetkin yok.",
+      "home": "Ana sayfaya dön",
+      "search": "Ara",
+      "hint": "Linki sana bir ekip arkadaşın gönderdiyse, sahibinden seni eklemesini iste."
+    },
+    "error": {
+      "title": "Bir şeyler ters gitti",
+      "subtitle": "Sunucu isteği tamamlayamadı ({status})",
+      "body": "Bu bizim tarafımızda bir hata. Birkaç saniye sonra tekrar dene; sürerse aşağıdaki kimliği yöneticine ilet.",
+      "idLabel": "Hata kimliği",
+      "copy": "Hata kimliğini kopyala",
+      "copied": "Hata kimliği kopyalandı",
+      "home": "Ana sayfa"
+    }
+  },
+  "shell": {
+    "rail": "Modüller",
+    "breadcrumb": "Konum",
+    "search": "Ara ya da komut yaz",
+    "searchIn": "{name} içinde ara",
+    "notifications": "Bildirimler",
+    "noNotifications": "Bildirim yok",
+    "noNotificationsHint": "Bahsetmeler, paylaşımlar ve atamalar burada görünecek.",
+    "account": "Hesap menüsü",
+    "signOut": "Çıkış yap",
+    "signOutConfirm": "Çıkış yapılsın mı?",
+    "darkMode": "Koyu temaya geç",
+    "lightMode": "Açık temaya geç",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "showSidebar": "Kenar çubuğunu göster",
+    "hideSidebar": "Kenar çubuğunu gizle",
+    "more": "Diğer",
+    "back": "Geri",
+    "modules": {
+      "home": "Ana sayfa",
+      "chat": "Chat",
+      "drive": "Drive",
+      "pages": "Sayfalar",
+      "boards": "Panolar",
+      "drawings": "Çizimler",
+      "meet": "Toplantılar",
+      "calendar": "Takvim",
+      "contacts": "Rehber",
+      "vault": "Kasa",
+      "tables": "Tablolar",
+      "forms": "Formlar",
+      "automations": "Otomasyonlar",
+      "mail": "Posta",
+      "portal": "Portal",
+      "admin": "Yönetim",
+      "tools": "Araçlar"
+    },
+    "resizeSidebar": "Kenar çubuğunu boyutlandır",
+    "resizePanel": "Paneli boyutlandır",
+    "sidebarCollapsed": "Kapalı",
+    "railMenu": {
+      "open": "Aç",
+      "order": "Sol menüyü düzenle",
+      "hide": "Sol menüden gizle"
+    },
+    "newVersion": {
+      "ready": "Yeni sürüm hazır",
+      "reload": "Yenile",
+      "later": "Sonra"
+    },
+    "version": {
+      "title": "Sürüm",
+      "web": "Crewhall {version}",
+      "dev": "geliştirme",
+      "server": "Sunucu {version}",
+      "api": "API {level}",
+      "desktop": "Masaüstü {version}",
+      "copy": "Sürüm bilgisini kopyala",
+      "copied": "Sürüm bilgisi kopyalandı"
+    },
+    "keys": {
+      "title": "Klavye kısayolları",
+      "subtitle": "Sol menü kısayollarını Hesabım › Görünüm › Sol menü bölümünden değiştirebilirsin. Yazı yazarken bu tuşlar çalışmaz.",
+      "navigation": "Sol menü",
+      "general": "Genel",
+      "palette": "Komut paleti",
+      "ask": "Asistana sor",
+      "status": "Durumunu ayarla",
+      "help": "Bu liste",
+      "lists": "Listeler",
+      "selectAll": "Tümünü seç",
+      "clear": "Seçimi bırak",
+      "drive": "Drive",
+      "preview": "Önizle",
+      "rename": "Yeniden adlandır",
+      "trash": "Çöpe at",
+      "details": "Ayrıntılar",
+      "newFolder": "Yeni klasör",
+      "upload": "Yükle",
+      "chat": "Sohbet",
+      "chatSearch": "Sohbette ara",
+      "reply": "Yanıtla",
+      "edit": "Düzenle",
+      "unread": "Okunmadı yap",
+      "mail": "Posta",
+      "next": "Sonraki ileti",
+      "previous": "Önceki ileti",
+      "vault": "Kasa",
+      "search": "Ara",
+      "newItem": "Yeni öğe",
+      "lock": "Kasayı kilitle"
+    }
+  },
+  "modules": {
+    "comingTitle": "{module} yakında burada",
+    "comingBody": "Bu modül sonraki sürümde geliyor. Space'in hazır: üyelerini ve ayarlarını şimdiden yönetebilirsin.",
+    "portalBody": "Portal içerikleri (dokümanlar, blog, menü) sonraki sürümde buradan yönetilecek."
+  },
+  "palette": {
+    "title": "Komut paleti",
+    "placeholder": "Ara ya da komut yaz",
+    "empty": "Sonuç yok. Başka bir kelime dene.",
+    "count": "{count} sonuç",
+    "kinds": {
+      "all": "Tümü",
+      "space": "Space",
+      "person": "Kişi",
+      "page": "Sayfa",
+      "command": "Komut",
+      "file": "Dosya",
+      "drawing": "Çizim"
+    },
+    "groups": {
+      "space": "Space'ler",
+      "person": "Kişiler",
+      "page": "Sayfalar ve ayarlar",
+      "command": "Komutlar",
+      "file": "Dosyalar ve klasörler",
+      "drawing": "Çizimler",
+      "recent": "Son gidilenler",
+      "shortcuts": "Kısayollar"
+    },
+    "hint": {
+      "move": "gez",
+      "open": "aç",
+      "filter": "türe göre süz",
+      "commands": "yalnız komutlar",
+      "pages": "yalnız sayfalar"
+    },
+    "cmd": {
+      "newSpace": "Yeni space oluştur",
+      "invite": "Ekibe kişi davet et",
+      "language": "Dili değiştir: {language}",
+      "addLink": "Mevcut yüzeye link ekle",
+      "scheduleMeeting": "Toplantı planla"
+    }
+  },
+  "home": {
+    "surfaces": "Hızlı erişim yüzeyleri",
+    "mine": "Benim",
+    "eyebrow": "Hızlı erişim",
+    "greeting": {
+      "night": "İyi geceler, {name}",
+      "morning": "Günaydın, {name}",
+      "afternoon": "İyi günler, {name}",
+      "evening": "İyi akşamlar, {name}"
+    },
+    "emptyTitle": "Yüzeyini kur, {name}",
+    "spaceSurfaceTitle": "{name} yüzeyi",
+    "emptyBody": "Burası senin başlangıç ekranın olacak: sık açtığın linkler, notların, sohbetlerin ve sana atanan işler. Kart yüzeyi bir sonraki sürümde geliyor; bu arada space'lerini kur ve ekibini davet et.",
+    "yourSpaces": "Space'lerin",
+    "steps": {
+      "space": "Yeni space",
+      "spaceBody": "Ekip ya da proje için ortak bir alan aç.",
+      "invite": "Ekibi davet et",
+      "inviteBody": "E-postayla davet gönder, rollerini seç.",
+      "security": "Güvenliğini gözden geçir",
+      "securityBody": "2FA, passkey ve açık oturumlar."
+    }
+  },
+  "spaces": {
+    "personal": "Kişisel",
+    "onlyYou": "Yalnız sen",
+    "memberCount": "{count} üye",
+    "switcher": "Space seç",
+    "search": "Space ara",
+    "yours": "Space'lerin",
+    "noMatch": "Eşleşen space yok.",
+    "archived": "Arşivlenmiş space'ler",
+    "settingsOf": "{name} ayarları",
+    "new": "Yeni space",
+    "sidebar": "Space kenar çubuğu",
+    "settings": "Space ayarları",
+    "storage": "Depolama",
+    "name": "Ad",
+    "color": "Renk",
+    "colorHint": "Kategori rengi, vurgu değil",
+    "colors": {
+      "s1": "Mavi",
+      "s2": "Camgöbeği",
+      "s3": "Pembe",
+      "s4": "Mor",
+      "s5": "Yeşil",
+      "s6": "Gri"
+    },
+    "badge": "Rozet",
+    "badgeLetter": "Harf",
+    "badgeIcon": "İkon",
+    "membersAndRoles": "Üyeler ve roller",
+    "addPerson": "Kişi ya da e-posta ekle",
+    "you": "sen",
+    "role": "Rol",
+    "roleOf": "{name} rolü",
+    "notify": "{count} kişiye davet bildirimi gider.",
+    "create": "Space oluştur",
+    "created": "{name} oluşturuldu",
+    "settingsTitle": "Space ayarları",
+    "settingsSub": "{name} · {count} üye · {date} tarihinde oluşturuldu",
+    "addMember": "Üye ekle",
+    "addMemberTitle": "{name} space'ine üye ekle",
+    "person": "Kişi",
+    "pickPerson": "Kurumdan bir kişi seç",
+    "add": "Ekle",
+    "searchMember": "Üye ara",
+    "columns": {
+      "member": "Üye",
+      "role": "Rol",
+      "added": "Eklendi"
+    },
+    "removeMember": "Space'ten çıkar",
+    "roleChanged": "Rol güncellendi",
+    "roleHelp": {
+      "owner": "Her şey; space'i silebilir, sahipliği devreder",
+      "admin": "Üyeleri ve ayarları yönetir",
+      "editor": "İçerik oluşturur, düzenler, paylaşır",
+      "viewer": "Görür, yorum yazar, indirir"
+    },
+    "general": "Genel",
+    "orgQuota": "kurum kotasından",
+    "address": "Adres",
+    "archive": "Space'i arşivle",
+    "archiveHint": "Salt okunur olur, aramadan çıkar.",
+    "archiveAction": "Arşivle",
+    "archiveConfirmTitle": "{name} arşivlensin mi?",
+    "archiveConfirmBody": "Space salt okunur olur ve aramadan çıkar. Depolaması sayılmaya devam eder.",
+    "archivedToast": "{name} arşivlendi"
+  },
+  "invite": {
+    "title": "Üye davet et",
+    "emails": "E-posta adresleri",
+    "placeholder": "Adresleri yapıştır ya da yaz",
+    "addMore": "Adres ekle…",
+    "guestNote": "{emails}: kurum alan adı dışında, Misafir olarak davet edilecek ve yalnız seçilen space'leri görecek.",
+    "orgRole": "Kurum rolü",
+    "orgAdmin": "Kurum yöneticisi",
+    "spaces": "Space'ler",
+    "validity": "Davet 7 gün geçerli",
+    "send": "{count, plural, =0 {Davet gönder} one {# davet gönder} other {# davet gönder}}",
+    "sent": "{count} davet gönderildi",
+    "resend": "Daveti yeniden gönder",
+    "resent": "Davet yeniden gönderildi",
+    "revoke": "Daveti iptal et",
+    "linksTitle": "Davet bağlantıları",
+    "linksBody": "E-posta gönderimi ayarlı değil. Bağlantıları kopyalayıp davet ettiğin kişilere kendin ilet.",
+    "defaultSpace": "varsayılan, herkes katılır"
+  },
+  "admin": {
+    "title": "Yönetim",
+    "subtitle": "{org} · kurum ayarları",
+    "backToApp": "Uygulamaya dön",
+    "searchSettings": "Ayarlarda ara",
+    "publish": "Yayınla",
+    "unsaved": "Kaydedilmemiş {count} değişiklik",
+    "leaveUnsaved": "Kaydedilmemiş değişiklikler var. Sayfadan çıkılsın mı?",
+    "groups": {
+      "org": "Kurum",
+      "brand": "Marka ve tema"
+    },
+    "nav": {
+      "general": "Genel",
+      "members": "Üyeler",
+      "spaces": "Space'ler",
+      "brand": "Marka",
+      "theme": "Tema",
+      "delivery": "Bildirim gönderimi"
+    },
+    "general": {
+      "title": "Genel",
+      "subtitle": "Kurum bilgileri ve bölgesel varsayılanlar",
+      "org": "Kurum",
+      "name": "Kurum adı",
+      "nameHint": "Giriş ekranında, e-postalarda ve sekme başlığında",
+      "slug": "Kurum kimliği",
+      "slugHint": "API ve dışa aktarmalarda kullanılır, değiştirilemez",
+      "region": "Bölge ve dil",
+      "locale": "Varsayılan dil",
+      "localeHint": "Yeni üyeler ve e-postalar",
+      "policies": "Politikalar",
+      "require2fa": "İki adımlı doğrulama zorunlu",
+      "require2faHint": "Kurmayan üye uygulamaya geçemez; sahip ve yöneticiler için her zaman zorunlu",
+      "membersCreate": "Üyeler space oluşturabilir",
+      "membersCreateHint": "Kapalıyken yalnız yöneticiler space açar",
+      "publicLinks": "Herkese açık linkler",
+      "publicLinksHint": "Kapalıyken kurum dışına link ile paylaşım yapılamaz",
+      "trashDays": "Çöp kutusu saklama süresi",
+      "trashDaysHint": "Çöpe atılan dosya, sayfa, pano kartı ve kasa öğesi bu süre sonunda kalıcı silinir (1-3650 gün)",
+      "trashDaysUnit": "gün"
+    },
+    "brand": {
+      "title": "Marka",
+      "subtitle": "Kurum ve uygulama adı, logolar ve ürün imzası",
+      "identity": "Kimlik",
+      "orgName": "Kurum adı",
+      "orgNameHint": "Genel ile ortak · giriş, e-posta, sekme",
+      "appName": "Uygulama adı",
+      "appNameHint": "Sekmede \"{org} · uygulama adı\"",
+      "logos": "Logolar",
+      "logosHint": "SVG önerilir · PNG en az 2×",
+      "logoLight": "Açık zemin logosu",
+      "logoDark": "Koyu zemin logosu",
+      "mark": "Amblem · kare",
+      "favicon": "Favicon",
+      "noFile": "Yüklenmedi",
+      "change": "Değiştir",
+      "fallback": "Crewhall varsayılanı",
+      "signature": "Ürün imzası",
+      "poweredBy": "\"Crewhall ile\" ibaresi",
+      "poweredByHint": "Giriş ekranı, e-posta alt bilgisi ve Hakkında",
+      "preview": "Nerede görünür",
+      "previewHint": "kaydetmeden önizlenir",
+      "published": "Marka yayınlandı",
+      "remove": "Kaldır"
+    },
+    "theme": {
+      "title": "Tema",
+      "subtitle": "Açık ve koyu tema için arka plan, yüzey ve vurgu; kalan tonlar türetilir",
+      "draft": "Taslak",
+      "reset": "Varsayılana dön",
+      "import": "İçe aktar",
+      "export": "Dışa aktar (JSON)",
+      "imported": "Tema taslak olarak açıldı",
+      "importInvalid": "Dosya geçerli bir tema değil",
+      "issues": "{count, plural, one {# kontrast sorunu} other {# kontrast sorunu}}",
+      "published": "Tema yayınlandı · v{version}",
+      "presets": "Tema seti",
+      "presetsHint": "Seçmek renkleri doldurur; sonra değiştirilebilir",
+      "preset": {
+        "milva": "Varsayılan",
+        "neutral": "Nötr",
+        "ocean": "Okyanus",
+        "forest": "Orman",
+        "custom": "Özel"
+      },
+      "colors": "Renkler",
+      "light": "Açık tema",
+      "dark": "Koyu tema",
+      "token": {
+        "bg": "Arka plan",
+        "surface": "Yüzey",
+        "accent": "Vurgu"
+      },
+      "auto": "Oto",
+      "derived": "Türetilen",
+      "contrast": "Kontrast denetimi",
+      "contrastHint": "WCAG 2.2 · metin için en az 4,5:1",
+      "pair": {
+        "fgBg": "Metin / zemin",
+        "fg2Bg": "İkincil metin / zemin",
+        "accentFgAccent": "Vurgu üstü metin",
+        "accentTextBg": "Vurgu metni / zemin"
+      },
+      "failed": "Geçmedi · {ratio}:1",
+      "failTitle": "{scheme} · {pair} okunmuyor",
+      "failBody": "Şu an {ratio}:1. Metin için en az 4,5:1 gerekir; geçmeyen tema yayınlanamaz.",
+      "autofix": "Otomatik düzelt",
+      "fixManually": "Zemin ya da vurgu rengini değiştirerek düzelt.",
+      "livePreview": "Canlı önizleme",
+      "livePreviewHint": "kaydedilmedi",
+      "card": "Kart",
+      "mention": "Buğra",
+      "shape": "Biçim",
+      "radius": "Köşe yarıçapı",
+      "radiusHint": "Kart 16 · düğme 12",
+      "radiusSharp": "Keskin",
+      "radiusDefault": "Varsayılan",
+      "radiusSoft": "Yumuşak",
+      "density": "Yoğunluk",
+      "densityHint": "Yeni üyelerin varsayılanı",
+      "versions": "Sürümler",
+      "live": "Yayında"
+    },
+    "members": {
+      "title": "Üyeler",
+      "subtitle": "{members} üye · {invites} bekleyen davet",
+      "invite": "Davet et",
+      "search": "Ad ya da e-posta",
+      "filter": {
+        "all": "Tümü",
+        "admins": "Yöneticiler",
+        "no2fa": "2FA eksik",
+        "invites": "Davetler",
+        "suspended": "Devre dışı"
+      },
+      "columns": {
+        "member": "Üye",
+        "role": "Kurum rolü",
+        "twoFactor": "2FA",
+        "lastSeen": "Son görülme",
+        "status": "Durum"
+      },
+      "role": {
+        "owner": "Kurum sahibi",
+        "admin": "Kurum yöneticisi",
+        "member": "Üye",
+        "guest": "Misafir"
+      },
+      "status": {
+        "active": "Etkin",
+        "invited": "Davet bekliyor",
+        "suspended": "Devre dışı",
+        "expired": "Süresi doldu"
+      },
+      "twoFactorOn": "Açık",
+      "twoFactorOff": "Yok",
+      "online": "Çevrimiçi",
+      "invitedBy": "{name} davet etti · {when}",
+      "expiredOn": "{date} tarihinde süresi doldu",
+      "panel": "Üye",
+      "since": "{date} tarihinden beri",
+      "suspend": "Devre dışı bırak",
+      "suspendHint": "Oturumlar düşer, giriş engellenir; içerikler space'lerde kalır.",
+      "suspendAction": "Devre dışı bırak",
+      "reactivate": "Yeniden etkinleştir",
+      "reactivateHint": "Kişi yeniden giriş yapabilir.",
+      "reactivateAction": "Etkinleştir",
+      "locked": "Kilitli · {time}",
+      "push": {
+        "title": "Push tanılama",
+        "hint": "Bu kişiye push neden gitti ya da gitmedi?",
+        "show": "Göster",
+        "refresh": "Yenile",
+        "inQuietHours": "sessiz saatlerde",
+        "sessions": "Açık oturumlar",
+        "devices": "Cihazlar",
+        "recent": "Son bildirimler",
+        "none": "Yok",
+        "attending": "Başında, push tutuluyor",
+        "notAttending": "Başında değil",
+        "idle": "{seconds} sn boşta",
+        "active": "Etkin",
+        "muted": "Bu cihazda susturulmuş",
+        "disabled": "Kapalı: {reason}",
+        "noPush": "Push istenmedi",
+        "waiting": "Sırada, henüz gönderilmedi",
+        "sent": "Gönderildi ({count} cihaz)",
+        "failed": "Gönderilemedi: {errors}",
+        "skip": {
+          "pref_off": "Kişinin tercihi kapalı",
+          "silent": "Gönderen sessiz istedi",
+          "busy": "Durumu Meşgul",
+          "dnd": "Rahatsız etmeyin açık",
+          "quiet_hours": "Sessiz saatlerde",
+          "attending": "O an bir oturumun başındaydı",
+          "no_devices": "Kayıtlı cihaz yok"
+        }
+      },
+      "lockedTitle": "Giriş kilitli",
+      "lockedHint": "Art arda hatalı deneme. Kilit {time} saatinde kendiliğinden kalkar.",
+      "unlock": "Kilidi kaldır",
+      "unlocked": "Kilit kaldırıldı",
+      "select": "{name} seç",
+      "bulk": {
+        "suspendTitle": "{count, plural, one {# üye devre dışı bırakılsın mı?} other {# üye devre dışı bırakılsın mı?}}",
+        "done": "{count, plural, one {# kayıt güncellendi} other {# kayıt güncellendi}}",
+        "revoke": "Daveti iptal et"
+      }
+    },
+    "spaces": {
+      "title": "Space'ler",
+      "subtitle": "{active} etkin ortak space · {archived} arşivde",
+      "kpiShared": "Ortak space",
+      "kpiStorage": "Toplam depolama",
+      "kpiQuota": "Kota uyarısı",
+      "columns": {
+        "space": "Space",
+        "members": "Üye",
+        "storage": "Depolama",
+        "yourRole": "Rolün",
+        "created": "Oluşturuldu",
+        "status": "Durum",
+        "owner": "Sahip"
+      },
+      "status": {
+        "active": "Etkin",
+        "archived": "Arşivde",
+        "quota": "Kota uyarısı"
+      },
+      "personalNote": "Kişisel space'lerin içeriği yöneticilere görünmez.",
+      "default": "Varsayılan · herkes katılır",
+      "byInvite": "Davetle",
+      "readOnly": "Salt okunur",
+      "notMember": "Üye değilsin"
+    },
+    "delivery": {
+      "title": "Bildirim gönderimi",
+      "subtitle": "E-postaların ve mobil bildirimlerin kurumdan nasıl çıktığı.",
+      "saved": "Gönderim ayarları kaydedildi",
+      "modes": {
+        "env": "Sunucu varsayılanı",
+        "notifike": "Notifike"
+      },
+      "email": {
+        "title": "E-posta",
+        "envOn": "Sunucunun SMTP'si kullanılır.",
+        "envOff": "Sunucuda e-posta ayarlı değil.",
+        "envMissing": "Sunucuda e-posta ayarlı değil: davet ve bildirim e-postaları gitmez. Kendi SMTP sunucunu ya da Notifike'yi seç.",
+        "smtp": "Kendi SMTP sunucum",
+        "smtpHint": "Kurumun posta sunucusu üzerinden.",
+        "notifikeHint": "Notifike hesabın üzerinden."
+      },
+      "smtp": {
+        "host": "Sunucu",
+        "port": "Port",
+        "security": "Güvenlik",
+        "securities": {
+          "tls": "TLS",
+          "starttls": "STARTTLS",
+          "none": "Yok"
+        },
+        "noneWarning": "Şifresiz bağlantı yalnız test ortamı içindir: şifre ve içerik ağda açık gider.",
+        "username": "Kullanıcı adı",
+        "password": "Şifre",
+        "from": "Gönderen",
+        "fromHint": "Ad ve adres, örneğin \"Crewhall '<'bildirim@ornek.com'>'\"."
+      },
+      "push": {
+        "title": "Mobil bildirim",
+        "envOn": "Sunucunun Firebase hesabı kullanılır.",
+        "envOff": "Sunucuda Firebase yok; yalnız Expo üzerinden gider.",
+        "direct": "Doğrudan (kendi Firebase'im)",
+        "directHint": "Kurumun Firebase projesiyle.",
+        "notifikeHint": "Notifike hesabın üzerinden.",
+        "serviceAccount": "Firebase hizmet hesabı (JSON)",
+        "serviceAccountHint": "Firebase konsolu › Proje ayarları › Hizmet hesapları › Yeni özel anahtar.",
+        "uploadFile": "JSON dosyası seç",
+        "project": "proje {name}",
+        "expoToken": "Expo erişim belirteci (isteğe bağlı)",
+        "expoTokenHint": "Yalnız Expo projesi erişim belirteci istiyorsa."
+      },
+      "notifike": {
+        "title": "Notifike",
+        "baseUrl": "Adres",
+        "baseUrlHint": "/api/v1.0 olmadan, örneğin https://api.notifike.com",
+        "apiKey": "API anahtarı",
+        "authFailed": "Notifike anahtarı reddedildi · {date}. Anahtarı yenile."
+      },
+      "secret": {
+        "stored": "Kayıtlı",
+        "changed": "son değiştirme {time}",
+        "replace": "Değiştir",
+        "remove": "Kaldır",
+        "replaceLabel": "{name}: değiştir",
+        "removeLabel": "{name}: kaldır",
+        "willRemove": "Kaydedince kaldırılacak.",
+        "emptyKeeps": "Boş bırakırsan kayıtlı değer kalır."
+      },
+      "test": {
+        "email": "Test e-postası gönder",
+        "push": "Test bildirimi gönder",
+        "to": "Alıcı",
+        "toHint": "Boşsa senin adresine gider.",
+        "toPlaceholder": "ad@ornek.com",
+        "saveFirst": "Test kayıtlı ayarlarla yapılır; önce değişiklikleri kaydet.",
+        "result": "Test sonucu",
+        "ok": "Gönderildi ({count, plural, one {# alıcı} other {# alıcı}})",
+        "failed": "Gönderilemedi"
+      },
+      "via": {
+        "env": "Sunucu varsayılanı",
+        "smtp": "Kendi SMTP",
+        "direct": "Kendi Firebase",
+        "notifike": "Notifike"
+      },
+      "notes": {
+        "title": "Bilmen gerekenler",
+        "expo": "Expo ve iOS bildirimleri her modda doğrudan Expo'ya gider; Notifike'nin Expo sağlayıcısı yok.",
+        "sender": "Notifike modunda gönderen adı ve adresi Notifike'deki sağlayıcı hesabından gelir.",
+        "required": "Bir mod için gereken alan boşken kaydedemezsin; eksik alan işaretlenir."
+      },
+      "errors": {
+        "required": "Bu gönderim yolu için gerekli.",
+        "serviceAccount": "Geçerli bir Firebase hizmet hesabı değil ({text}).",
+        "invalid": "Geçersiz değer."
+      }
+    },
+    "desktop": {
+      "nav": "Masaüstü sürümleri",
+      "title": "Masaüstü sürümleri",
+      "subtitle": "Kurulum dosyalarını yükle ve yayınla; masaüstü uygulamaları güncellemeleri bu sunucudan alır.",
+      "platform": "İşletim sistemi",
+      "platforms": {
+        "win": "Windows",
+        "mac": "macOS"
+      },
+      "upload": {
+        "title": "Yeni sürüm",
+        "drop": "Dosyaları buraya bırak",
+        "pick": "ya da seç",
+        "hint": {
+          "win": "Kurulum dosyası (.exe), isteğe bağlı olarak .blockmap ile.",
+          "mac": "Güncelleme arşivi (.zip) ve indirme için disk görüntüsü (.dmg); isteğe bağlı .blockmap."
+        },
+        "unsupported": "{name} bu platform için uygun bir dosya değil.",
+        "version": "Sürüm",
+        "versionHint": "Dosya adından okundu; gerekirse düzelt.",
+        "versionInvalid": "Sürüm 1.2.3 biçiminde olmalı.",
+        "missing": {
+          "win": "Yayınlamak için .exe kurulum dosyası gerekli.",
+          "mac": "Yayınlamak için .zip güncelleme arşivi gerekli."
+        },
+        "waiting": "Yüklemeler bitince yayınlayabilirsin.",
+        "publish": "Yayınla",
+        "published": "{version} yayında.",
+        "remove": "{name} listeden kaldır",
+        "cancel": "{name} yüklemesini iptal et",
+        "state": {
+          "uploading": "Yükleniyor",
+          "done": "Yüklendi",
+          "failed": "Yüklenemedi",
+          "cancelled": "İptal edildi",
+          "paused": "Bağlantı koptu; bağlantı gelince kaldığı yerden devam eder."
+        },
+        "progress": "{name} yükleme ilerlemesi",
+        "tooLarge": "{name} 1 GB sınırını aşıyor.",
+        "tooLargeForProxy": "{name} yüklenemedi: S3 adresinin önündeki ara katman (ör. Cloudflare, 100 MB sınırı) isteği çok büyük bulup reddetti (413). S3 kaydını proxy olmadan (DNS only) kullan ya da bu katmanın istek boyutu sınırını yükselt.",
+        "resume": "Devam et",
+        "resumeLabel": "{name} yüklemesine devam et",
+        "noEtag": "Parçanın ETag başlığı okunamadı: S3 kovasının CORS ayarında ETag başlığı dışarı açık olmalı (ExposeHeaders: ETag)."
+      },
+      "kind": {
+        "installer": "Kurulum",
+        "blockmap": "Blockmap",
+        "update_zip": "Güncelleme arşivi",
+        "dmg": "Disk görüntüsü"
+      },
+      "list": {
+        "title": "Sürümler",
+        "empty": "Bu platform için henüz sürüm yüklenmedi.",
+        "col": {
+          "version": "Sürüm",
+          "files": "Dosyalar",
+          "uploaded": "Yüklenme"
+        },
+        "live": "Yayında",
+        "menu": "{version} işlemleri",
+        "publish": "Bu sürümü yayınla",
+        "delete": "Sil",
+        "deleteLive": "Yayındaki sürüm silinemez"
+      },
+      "confirmPublish": {
+        "title": "{version} yayınlansın mı?",
+        "body": "Sunucu bu sürümü en güncel sürüm olarak sunar. Daha yeni bir sürümü kullananlar geri dönmez; yalnız daha eski sürümdekiler buna güncellenir.",
+        "confirm": "Yayınla"
+      },
+      "confirmDelete": {
+        "title": "{version} silinsin mi?",
+        "body": "Sürümün dosyaları sunucudan kaldırılır. Bu geri alınamaz.",
+        "confirm": "Sil",
+        "blockmaps": "Blockmap dosyalarını da sil",
+        "blockmapsHint": "Varsayılan olarak kalır: eski sürümdeki uygulamalar fark indirmesi için onları kullanır."
+      },
+      "deleted": "{version} silindi.",
+      "info": {
+        "check": "Uygulamalar açılışta ve birkaç saatte bir kontrol eder; yalnız daha yeni sürüme güncellenir.",
+        "smartscreen": "Kurulum dosyası imzalı değilse Windows ilk kurulumda SmartScreen uyarısı gösterir; kullanıcı \"Ek bilgi\" ve \"Yine de çalıştır\" ile devam eder. Güncellemeler bu uyarıyı göstermez."
+      },
+      "folder": "Bu platformun güncellemeleri sunucudaki klasörden (DESKTOP_UPDATES_DIR) sunuluyor; buradan yayınlanamaz. Klasördeki dosyalar kaldırılınca bu sayfadan yönetilir.",
+      "forbidden": "Masaüstü sürümlerini yalnız sunucunun birincil kurumunun sahibi yönetir."
+    }
+  },
+  "account": {
+    "title": "Hesabım",
+    "personal": "Kişisel ayarlar",
+    "nav": {
+      "profile": "Profil",
+      "security": "Güvenlik",
+      "appearance": "Görünüm",
+      "notifications": "Bildirimler",
+      "about": "Hakkında"
+    },
+    "profile": {
+      "title": "Profil",
+      "subtitle": "Ekip arkadaşlarının seni nasıl gördüğü",
+      "photo": "Profil fotoğrafı",
+      "photoHint": "Kare, en az 256 px. Yoksa baş harflerin kullanılır.",
+      "upload": "Yükle",
+      "verified": "Doğrulandı",
+      "preferences": "Tercihler",
+      "orgDefault": "Kurum varsayılanı: {language}",
+      "inOrg": "Kurumdaki yerin",
+      "since": "{date} tarihinden beri",
+      "roleNote": "Rolünü space sahibi ya da kurum yöneticisi değiştirir.",
+      "cropTitle": "Fotoğrafı kırp",
+      "cropHint": "Sürükleyerek kaydır, çubukla yakınlaştır. Kare olarak kaydedilir.",
+      "zoom": "Yakınlaştır",
+      "removePhoto": "Kaldır"
+    },
+    "security": {
+      "title": "Güvenlik",
+      "subtitle": "Giriş yöntemlerin ve açık oturumların",
+      "password": "Şifre",
+      "passwordHint": "Değiştirince istersen diğer oturumların kapanır",
+      "change": "Değiştir",
+      "changePassword": "Şifreyi değiştir",
+      "currentPassword": "Mevcut şifre",
+      "signOutOthers": "Diğer cihazlardaki oturumları kapat",
+      "passwordChanged": "Şifren değiştirildi",
+      "wrongPassword": "Şifre hatalı.",
+      "totp": "Kimlik doğrulama uygulaması",
+      "totpHint": "Girişte şifrene ek olarak 6 haneli kod istenir",
+      "totpRequired": "Kurum politikası gereği zorunlu",
+      "on": "Açık",
+      "off": "Kapalı",
+      "setup": "Kur",
+      "remove": "Kaldır",
+      "cannotRemove": "Politika zorunlu kıldığı için en az bir yöntem kalmalı",
+      "disableTitle": "İki adımlı doğrulama kaldırılsın mı?",
+      "disableBody": "Onaylamak için şifreni gir.",
+      "backupCodes": "Yedek kodlar",
+      "backupHint": "Telefonuna erişemediğinde giriş için",
+      "newCodes": "Yeni kodlar",
+      "generate": "Oluştur",
+      "passkeys": "Passkey'ler",
+      "passkey": "Passkey",
+      "addPasskey": "Passkey ekle",
+      "passkeyAdded": "Passkey eklendi",
+      "noPasskeys": "Henüz passkey yok. Parmak izi ya da yüzünle şifresiz giriş için ekle.",
+      "added": "Eklendi {date}",
+      "sessions": "Oturumlar ve cihazlar",
+      "thisDevice": "Bu cihaz",
+      "unknownDevice": "Bilinmeyen cihaz",
+      "close": "Kapat",
+      "closeOthers": "Diğer tüm oturumları kapat",
+      "othersClosed": "Diğer oturumlar kapatıldı",
+      "vaultNote": "Kasa şifresi ayrıdır ve sunucuya hiç gönderilmez. Değiştirmek ve kurtarma anahtarını yenilemek için Kasa › Ayarlar."
+    },
+    "appearance": {
+      "title": "Görünüm",
+      "subtitle": "Tema, yoğunluk, dil ve yazı boyutu",
+      "display": "Ekran",
+      "densityHint": "Sıkı, liste satırlarını ve tabloları daraltır",
+      "orgDefault": "Kurum",
+      "reducedMotion": "Hareketi azalt",
+      "reducedMotionHint": "Geçiş ve kayma animasyonlarını kapatır",
+      "fontSize": "Yazı boyutu",
+      "percent": "%{value}",
+      "language": "Dil ve biçimler",
+      "deviceNote": "Tema, yoğunluk ve yazı boyutu bu tarayıcıda saklanır; dil ve menü sırası hesabına yazılır: dil mobilde, menü sırası masaüstü uygulamasında ve diğer tarayıcılarda da geçerli olur.",
+      "menuOrder": "Sol menü",
+      "menuOrderHint": "Sürükle ya da oklarla sırala, gözle gizle, tuş düğmesiyle kısayol ata; hemen kaydedilir ve masaüstü uygulamasında da geçerli olur. Telefon uygulamasının kendi sırası vardır. Ana sayfa hep en üstte.",
+      "menuOrderReset": "Varsayılana dön",
+      "menuPhoneTab": "Telefonda alt sekme",
+      "menuDrag": "{label} taşı",
+      "menuUp": "{label} yukarı taşı",
+      "menuDown": "{label} aşağı taşı",
+      "menuHide": "{label} gizle",
+      "menuShow": "{label} göster",
+      "menuKey": "{label} kısayolu",
+      "menuKeyPress": "Tuşa bas",
+      "menuKeyReserved": "Bu tuşlar tarayıcı ya da sistemle çakışır. Bir harf (G ve o harf) ya da Alt Shift ile bir harf dene.",
+      "menuKeyTaken": "Bu kısayol {name} için kullanılıyor."
+    },
+    "mobile": {
+      "open": "Mobil uygulamayı bağla",
+      "title": "Mobil uygulamayı bağla",
+      "subtitle": "QR kod sunucu adresini ve e-postanı uygulamaya taşır. Şifren ve iki adımlı doğrulama telefonda yine sorulur.",
+      "step1": "Telefonunda Crewhall uygulamasını aç.",
+      "step2": "\"QR ile bağlan\"a dokun ve bu kodu okut.",
+      "step3": "Şifreni gir; 2FA açıksa kodu da gir.",
+      "qrAlt": "Mobil uygulama bağlantı QR kodu",
+      "validFor": "{time} geçerli",
+      "expired": "Kodun süresi doldu",
+      "refresh": "Yeni kod"
+    },
+    "about": {
+      "title": "Hakkında",
+      "subtitle": "Crewhall ve içindeki açık kaynak çalışmalar",
+      "credits": "Lisanslar ve atıflar",
+      "creditsHint": "Crewhall şu çalışmaları lisanslarına uygun olarak kullanır.",
+      "uses": {
+        "notoAnimated": "Sohbetteki hareketli emojiler (değiştirilmeden)",
+        "emojibase": "Emoji listesi ve İngilizce anahtar kelimeler",
+        "cldr": "Emojilerin Türkçe adları ve anahtar kelimeleri",
+        "lottie": "Hareketli emojileri oynatan kitaplık",
+        "tooMuchTools": "Araçlar modülündeki araçların kaynak kodu"
+      },
+      "others": "Diğer bağımlılıklar MIT, Apache-2.0, BSD veya ISC lisanslıdır; tam liste kaynak kodundaki THIRD_PARTY_NOTICES.md dosyasındadır."
+    }
+  },
+  "mobileSignIn": {
+    "title": "Mobil uygulamada oturum açılsın mı?",
+    "subtitle": "Crewhall mobil uygulaması bu hesapla oturum açmak istiyor. Bu isteği sen başlattıysan onayla.",
+    "confirm": "Onayla ve uygulamaya dön",
+    "extension": {
+      "title": "Tarayıcı eklentisinde oturum açılsın mı?",
+      "subtitle": "Crewhall tarayıcı eklentisi bu hesapla oturum açmak istiyor. Bu isteği sen başlattıysan onayla. Eklentinin kasa şifreni görmesi için ayrıca kasanı açman gerekir.",
+      "confirm": "Onayla ve eklentiye dön",
+      "returning": "Eklentiye dönülüyor",
+      "returningBody": "Bu pencere birazdan kapanır."
+    },
+    "otherAccount": "Başka hesapla giriş yap",
+    "note": "Onaylayınca telefonun için ayrı bir oturum açılır; Hesabım › Güvenlik › Oturumlar ve cihazlar'dan kapatabilirsin.",
+    "returning": "Uygulamaya dönülüyor",
+    "returningBody": "Uygulama açılmazsa bu pencereyi kapatıp uygulamaya kendin dön.",
+    "invalidTitle": "Bu bağlantı geçersiz",
+    "invalidBody": "Mobil giriş bağlantısı eksik ya da güvenilmeyen bir adrese yönlendiriyor. Girişi mobil uygulamadan yeniden başlat."
+  },
+  "quick": {
+    "conflict": "Yüzey başka bir yerde değişti; son hali yüklendi.",
+    "removed": "Kart kaldırıldı",
+    "undo": "Geri al",
+    "moved": "Kart {name} yüzeyine taşındı",
+    "edit": {
+      "start": "Düzenle",
+      "done": "Bitti",
+      "undo": "Geri al",
+      "editing": "düzenleniyor",
+      "cardMenu": "{name} kartının menüsü",
+      "removeCard": "{name} kartını kaldır"
+    },
+    "empty": {
+      "title": "Bu yüzey boş",
+      "body": "Kart ekle ile link, not ya da Drive dosyası koy; yüzeye URL yapıştırmak da link kartı oluşturur.",
+      "viewer": "Bu yüzeye henüz kart eklenmedi."
+    },
+    "error": {
+      "title": "Kartlar yüklenemedi",
+      "body": "Sunucu yanıt vermedi. Biraz sonra yeniden dene."
+    },
+    "firstRun": {
+      "body": "Burası senin başlangıç ekranın: sık açtığın linkler, notların ve Drive dosyaların. Bir kartla başla, sonra istediğin gibi sürükle.",
+      "link": "Link ekle",
+      "linkHint": "Bir adres yapıştır; başlık ve simge kendiliğinden gelir.",
+      "note": "Not ekle",
+      "noteHint": "Renkli, serbest metin. Yazdıkça kaydedilir.",
+      "gallery": "Kart galerisi",
+      "galleryHint": "Link grubu, yapılacaklar, dosya ve klasör kartları.",
+      "pinFrom": "Ya da {name} yüzeyinden tek tek sabitle",
+      "pin": "Sabitle"
+    },
+    "gallery": {
+      "title": "Kart ekle",
+      "to": "{name} yüzeyine",
+      "search": "Kart türü ara",
+      "soon": "Yakında",
+      "tip": "Bir türü yüzeye sürükleyip istediğin yere bırakabilirsin.",
+      "newGroup": "Yeni grup",
+      "kinds": {
+        "link": "Link",
+        "link_group": "Link grubu",
+        "note": "Yapışkan not",
+        "todo": "Yapılacaklar",
+        "node": "Dosya / klasör",
+        "page": "Sayfa",
+        "chat": "Sohbet",
+        "meeting": "Toplantı",
+        "board": "Pano kartları",
+        "vault": "Kasa öğesi"
+      },
+      "hints": {
+        "link": "Tek site",
+        "link_group": "Liste ya da ızgara",
+        "note": "Renkli, serbest metin",
+        "todo": "Kişisel liste",
+        "node": "Drive'dan",
+        "page": "Önizlemeli",
+        "chat": "Son mesajlar",
+        "meeting": "Sıradaki, katıl",
+        "board": "Bana atananlar",
+        "vault": "Tek tıkla kopyala"
+      }
+    },
+    "group": {
+      "count": "Grup · {count}",
+      "links": "{count, plural, one {# link} other {# link}}",
+      "addLink": "Link ekle"
+    },
+    "note": {
+      "title": "Not",
+      "style": "Not rengi ve yazı boyutu",
+      "color": "Not rengi",
+      "fontSize": "Yazı boyutu",
+      "normal": "Normal",
+      "large": "Büyük",
+      "text": "Not metni",
+      "edit": "Notu düzenle",
+      "placeholder": "Bir şey yaz…",
+      "saved": "Kaydedildi · {time}"
+    },
+    "todo": {
+      "progress": "{done} / {total}",
+      "add": "Yeni madde…",
+      "removeItem": "\"{text}\" maddesini sil",
+      "editItem": "\"{text}\" maddesini düzenle",
+      "itemText": "Madde metni (Enter kaydeder, Esc vazgeçer; boş bırakırsan silinir)",
+      "defaultTitle": "Yapılacaklar"
+    },
+    "node": {
+      "locked": "Erişimin yok",
+      "lockedHint": "Bu karttaki öğe silinmiş ya da seninle paylaşılmamış.",
+      "removeCard": "Kartı kaldır",
+      "emptyFolder": "Klasör boş",
+      "openFolder": "Klasörü aç",
+      "updated": "{name} düzenledi, {when}"
+    },
+    "nodePicker": {
+      "title": "Drive'dan dosya ya da klasör",
+      "add": "Kart olarak ekle"
+    },
+    "pin": {
+      "done": "Kart Benim yüzeyine sabitlendi",
+      "sourceMissing": "Kaynak kaldırıldı"
+    },
+    "menu": {
+      "openLink": "Linki aç",
+      "newTab": "Yeni sekmede aç",
+      "size": "Boyut",
+      "sizeOption": "{size} boyutu, {w} × {h}",
+      "duplicate": "Kopyasını oluştur",
+      "copyLink": "Linki kopyala",
+      "copied": "Link kopyalandı",
+      "move": "Başka space'e taşı",
+      "pinMine": "Benim yüzeyime sabitle",
+      "detach": "Bağımsız karta dönüştür",
+      "remove": "Kaldır",
+      "open": {
+        "folder": "Klasörü aç",
+        "file": "Dosyayı aç",
+        "page": "Sayfayı aç",
+        "board": "Panoyu aç",
+        "drawing": "Çizimi aç",
+        "chat": "Sohbeti aç",
+        "meeting": "Toplantılara git",
+        "vault_item": "Kasada aç"
+      },
+      "edit": "Düzenle"
+    },
+    "moveDialog": {
+      "title": "Başka space'e taşı",
+      "body": "Kart seçtiğin yerin ana sayfasına gider. Gösterdiği içerik yerinde kalır, izinleri değişmez.",
+      "search": "Space ara",
+      "none": "Eşleşen space yok.",
+      "empty": "Bu kartı taşıyabileceğin başka bir ana sayfa yok.",
+      "warning": "Burada {count} kişi kartın gösterdiği içeriği açamayabilir. Kart onlara kilitli görünür; açabilmeleri için içeriği onlarla paylaş.",
+      "cancel": "Vazgeç",
+      "confirm": "Taşı"
+    },
+    "health": {
+      "up": "Erişilebilir",
+      "down": "Erişilemiyor",
+      "warn": "Uyarı",
+      "slow": "Yavaş yanıt",
+      "tls": "Sertifika bitiyor",
+      "unknown": "Kontrol edilmiyor",
+      "lastResponse": "Son yanıt",
+      "duration": "Süre",
+      "since": "{ago} · {time} itibarıyla",
+      "lastOk": "Son başarılı",
+      "last24h": "Son 24 saat",
+      "availability": "{value} erişilebilir",
+      "dayAgo": "24 saat önce",
+      "now": "Şimdi",
+      "openAnyway": "Yine de aç",
+      "checkNow": "Şimdi dene",
+      "enableCheck": "Kontrolü aç",
+      "notChecked": "Henüz kontrol edilmedi",
+      "checkOff": "Bu linkin kontrolü kapalı.",
+      "internal": "Kontrol edilemiyor (iç ağ)",
+      "internalHint": "Bu adres kurumun iç ağında. Sunucu güvenlik için iç ağ adreslerine istek atmaz; link açılır ama durumu izlenmez."
+    },
+    "addLink": {
+      "title": "Link ekle",
+      "to": "{name} yüzeyine",
+      "url": "Adres",
+      "invalidUrl": "Geçerli bir web adresi yaz.",
+      "fetched": "{title} · başlık ve simge siteden alındı",
+      "notFetched": "Site yanıt vermedi; alan adı kullanılacak",
+      "name": "Görünen ad",
+      "description": "Açıklama · isteğe bağlı",
+      "where": "Nereye eklensin?",
+      "target": {
+        "card": "Tekil kart",
+        "cardHint": "Yüzeyde kendi kartı olur, 2 × 1",
+        "group": "Var olan gruba",
+        "groupHint": "Bir link grubunun içine"
+      },
+      "group": "Grup",
+      "groupOption": "{name} · {count} link",
+      "section": "Alt bölüm",
+      "health": "Sağlık kontrolü",
+      "healthHint": "Dakikada bir istek. Üst üste 3 hata olursa \"erişilemiyor\" der ve bildirir.",
+      "duplicate": "Bu adres burada zaten var. Yine de eklenebilir.",
+      "pasteTip": "İpucu: yüzeye Ctrl V ile URL yapıştırınca da bu pencere açılır.",
+      "submit": "Ekle",
+      "added": "{name} eklendi"
+    },
+    "settings": {
+      "title": "Kart ayarları",
+      "name": "Başlık",
+      "dot": "Nokta",
+      "noDot": "Yok",
+      "view": "Görünüm",
+      "list": "Liste",
+      "grid": "Izgara",
+      "sections": "Alt bölümler",
+      "addSection": "Ekle",
+      "newSection": "Bölüm {n}",
+      "toggleSection": "{name} bölümünü aç ya da kapat",
+      "sectionName": "Bölüm adı",
+      "untitled": "Başlıksız",
+      "removeSection": "{name} bölümünü sil",
+      "removeLink": "{name} linkini çıkar",
+      "asTabs": "Sekme olarak göster",
+      "sort": "Sıralama",
+      "sorts": {
+        "manual": "Elle",
+        "name": "Ada göre (A → Z)",
+        "popular": "En çok açılan · son 30 gün"
+      },
+      "showUrls": "Adresleri göster",
+      "showHealth": "Sağlık durumunu göster",
+      "removeCard": "Kartı kaldır",
+      "autosave": "Değişiklikler kaydedilir",
+      "editLink": "{name} linkini düzenle",
+      "density": "Boyut",
+      "densities": {
+        "compact": "Küçük",
+        "normal": "Normal",
+        "large": "Büyük"
+      }
+    },
+    "strip": {
+      "editors": "Space üyeleri görür · düzenleyebilenler: Sahip, Yönetici, Düzenleyen",
+      "viewer": "Yalnız görüntüleyebilirsin; kartları kendi yüzeyine sabitleyebilirsin.",
+      "lastChange": "Son değişiklik: {name} · {when}"
+    },
+    "page": {
+      "empty": "Bu sayfa henüz boş.",
+      "open": "Sayfayı aç",
+      "edited": "{when} düzenlendi"
+    },
+    "chat": {
+      "empty": "Henüz mesaj yok.",
+      "locked": "Bu sohbete erişimin yok",
+      "lockedHint": "Sohbet kaldırılmış ya da üyesi değilsin.",
+      "reply": "{name} sohbetine yanıt yaz",
+      "send": "Gönder",
+      "open": "Sohbeti aç",
+      "deleted": "Bu mesaj silindi",
+      "attachment": "Ek"
+    },
+    "meeting": {
+      "title": "Toplantı",
+      "live": "Şu an sürüyor",
+      "next": "Sıradaki",
+      "today": "Bugün {time}",
+      "at": "{date} {time}",
+      "none": "Planlanmış toplantı yok.",
+      "join": "Katıl",
+      "people": "{count, plural, one {# kişi} other {# kişi}} içeride",
+      "all": "Tüm toplantılar"
+    },
+    "vault": {
+      "title": "Kasa öğesi",
+      "locked": "Kasa kilitli",
+      "lockedHint": "Kopyalamak için kasanı aç.",
+      "unlock": "Kasayı aç",
+      "missing": "Öğe bulunamadı",
+      "missingHint": "Silinmiş ya da bu kasaya erişimin yok.",
+      "noSecret": "Kopyalanacak bir şifre yok",
+      "open": "Kasada aç"
+    },
+    "picker": {
+      "search": "Ara",
+      "add": "Ekle",
+      "empty": "Sonuç yok.",
+      "pageTitle": "Sayfa seç",
+      "chatTitle": "Sohbet seç",
+      "vaultTitle": "Kasa öğesi seç",
+      "vaultLocked": "Kasa öğesi eklemek için önce kasanı aç. Öğenin adı ve şifresi karta yazılmaz; yalnız kasan açıkken görünür."
+    },
+    "editLink": {
+      "title": "Linki düzenle",
+      "healthHint": "Adres kurum genelinde bir kez kontrol edilir; bu ayar onu gösteren bütün kartlara yansır.",
+      "movedHint": "Kaydedince kart yeni adrese geçer; simge ve sağlık durumu yeni adresten alınır.",
+      "icon": "Simge",
+      "iconAuto": "Sitenin simgesi",
+      "iconCustom": "Özel",
+      "iconUrl": "Simge adresi",
+      "iconHttps": "Simge adresi https ile başlamalı."
+    },
+    "dnd": {
+      "picked": "{name} tutuldu",
+      "over": "{name}, {target} üzerinde",
+      "dropped": "{name} bırakıldı",
+      "cancelled": "{name} taşınmadı",
+      "instructions": "Taşımak için Boşluk tuşuna bas, oklarla yerini değiştir, bırakmak için yine Boşluk tuşuna bas. Vazgeçmek için Escape.",
+      "moveSection": "{name} alt bölümünü taşı",
+      "moveLink": "{name} linkini taşı"
+    },
+    "editCard": {
+      "title": "Kartı düzenle",
+      "name": "Başlık",
+      "folderItems": "Gösterilecek öğe sayısı",
+      "show": "Gösterilenler",
+      "space": "Space",
+      "allSpaces": "Tüm space'ler",
+      "boardCards": "Gösterilecek kart sayısı",
+      "messages": "Gösterilecek mesaj sayısı"
+    }
+  },
+  "drive": {
+    "types": {
+      "folder": "Klasör",
+      "file": "Dosya",
+      "page": "Sayfa",
+      "board": "Pano",
+      "drawing": "Çizim"
+    },
+    "picker": {
+      "spaces": "Space'ler",
+      "path": "Konum",
+      "root": "{name} kökü",
+      "search": "Ada göre ara",
+      "items": "Öğeler",
+      "empty": "Burada öğe yok",
+      "open": "{name} içine gir",
+      "hint": "Space'i seç, klasörlere gir ve öğeyi işaretle."
+    },
+    "comingModule": "{type} düzenleyicisi sonraki sürümde geliyor.",
+    "linkCopied": "Link kopyalandı",
+    "favoriteAdded": "Favorilere eklendi",
+    "favoriteRemoved": "Favorilerden çıkarıldı",
+    "trashed": "{count, plural, one {Öğe çöp kutusuna taşındı} other {# öğe çöp kutusuna taşındı}}",
+    "pinned": "{name} hızlı erişime sabitlendi",
+    "pastedImage": "yapistirilan-gorsel",
+    "keys": {
+      "space": "Boşluk"
+    },
+    "kinds": {
+      "image": "Görsel",
+      "pdf": "PDF",
+      "video": "Video",
+      "audio": "Ses",
+      "code": "Kod",
+      "text": "Metin",
+      "sheet": "Tablo",
+      "doc": "Belge",
+      "slides": "Sunum",
+      "archive": "Arşiv",
+      "design": "Tasarım dosyası",
+      "other": "Dosya"
+    },
+    "nav": {
+      "recent": "Son açılanlar",
+      "favorites": "Favoriler",
+      "all": "Tüm içerik",
+      "trash": "Çöp kutusu",
+      "expand": "{name} klasörünü aç",
+      "collapse": "{name} klasörünü kapat"
+    },
+    "filters": {
+      "all": "Tümü"
+    },
+    "sorts": {
+      "name": "Sıralama: klasörler önce, ada göre",
+      "updatedAt": "Sıralama: değiştirilme",
+      "size": "Sıralama: boyut",
+      "type": "Sıralama: tür"
+    },
+    "view": {
+      "list": "Liste görünümü",
+      "grid": "Izgara görünümü"
+    },
+    "folder": {
+      "summary": "{count, plural, one {# öğe} other {# öğe}} · {size}",
+      "emptySummary": "Boş klasör",
+      "upload": "Yükle",
+      "new": "Yeni",
+      "uploadFiles": "Dosya yükle",
+      "uploadFolder": "Klasör yükle",
+      "emptyTitle": "Bu klasör boş",
+      "emptyBody": "Dosyaları buraya sürükle, Ctrl V ile panodaki görseli yapıştır ya da \"Yeni\" ile klasör oluştur.",
+      "emptyViewer": "Bu klasöre henüz bir şey eklenmedi.",
+      "loadError": "Klasör yüklenemedi"
+    },
+    "drop": {
+      "title": "{name} klasörüne bırak",
+      "body": "{count, plural, one {# dosya} other {# dosya}} · {members} üye erişebilir"
+    },
+    "list": {
+      "label": "Klasör içeriği",
+      "name": "Ad",
+      "type": "Tür",
+      "owner": "Sahibi",
+      "updated": "Değiştirilme",
+      "size": "Boyut",
+      "select": "{name} öğesini seç",
+      "shared": "Space dışına paylaşıldı",
+      "processing": "İşleniyor…",
+      "system": "Otomatik",
+      "more": "{name} için diğer eylemler",
+      "noPreview": "önizleme yok",
+      "empty": "Boş"
+    },
+    "menu": {
+      "preview": "Önizle",
+      "open": "Aç",
+      "share": "Paylaş…",
+      "copyLink": "Linki kopyala",
+      "favorite": "Favorilere ekle",
+      "unfavorite": "Favorilerden çıkar",
+      "pin": "Hızlı erişime sabitle",
+      "rename": "Yeniden adlandır",
+      "move": "Taşı…",
+      "copy": "Kopyasını oluştur…",
+      "download": "İndir",
+      "versions": "Sürüm geçmişi · {count}",
+      "details": "Ayrıntılar",
+      "trash": "Çöp kutusuna taşı",
+      "noEdit": "Bu öğeyi düzenleme yetkin yok",
+      "noTrash": "Bu öğeyi silme yetkin yok",
+      "noShare": "Paylaşma yetkin yok"
+    },
+    "selection": {
+      "label": "Seçili öğeler",
+      "count": "{count} öğe seçili",
+      "delete": "Sil",
+      "clear": "Seçimi temizle"
+    },
+    "details": {
+      "title": "Ayrıntılar",
+      "type": "Tür",
+      "location": "Konum",
+      "owner": "Sahibi",
+      "updated": "Değiştirilme",
+      "size": "Boyut",
+      "access": "Erişim",
+      "accessValue": "{members} üye · {people, plural, =0 {kişiye özel erişim yok} other {# kişi}} · {links, plural, =0 {herkese açık link yok} one {1 herkese açık link} other {# herkese açık link}}"
+    },
+    "preview": {
+      "label": "{name} önizlemesi",
+      "loading": "Önizleme yükleniyor",
+      "version": "Sürüm {n}",
+      "prev": "Önceki dosya",
+      "next": "Sonraki dosya",
+      "tabs": {
+        "info": "Bilgi",
+        "versions": "Sürümler"
+      },
+      "unsupported": "Bu dosya türü tarayıcıda önizlenemiyor; indirip açabilirsin.",
+      "wrap": "Satır kaydır",
+      "copy": "Kopyala",
+      "copied": "İçerik kopyalandı",
+      "outline": "Anahat",
+      "truncated": "Dosya büyük: ilk {count} satır gösteriliyor."
+    },
+    "versions": {
+      "current": "Güncel",
+      "view": "Görüntüle",
+      "restore": "Geri yükle",
+      "restored": "Sürüm {n} olarak geri yüklendi",
+      "viewing": "Sürüm {n}'yi görüntülüyorsun",
+      "backToCurrent": "Güncel sürüme dön",
+      "policy": "Her yükleme yeni sürüm olur. Son 50 sürüm ya da 1 yıl saklanır; sürümler de kotaya sayılır."
+    },
+    "rename": {
+      "title": "Yeniden adlandır",
+      "name": "Ad",
+      "taken": "Bu klasörde aynı adlı bir öğe var."
+    },
+    "newFolder": {
+      "title": "Yeni klasör",
+      "default": "Yeni klasör",
+      "create": "Oluştur",
+      "created": "{name} oluşturuldu"
+    },
+    "move": {
+      "title": "{count, plural, one {Öğeyi taşı} other {# öğeyi taşı}}",
+      "copyTitle": "{count, plural, one {Öğeyi kopyala} other {# öğeyi kopyala}}",
+      "move": "Taşı",
+      "copy": "Kopyala",
+      "submitMove": "Buraya taşı",
+      "submitCopy": "Buraya kopyala",
+      "moved": "{count, plural, one {Öğe taşındı} other {# öğe taşındı}}",
+      "movedTo": "{count, plural, one {Öğe} other {# öğe}} {name} klasörüne taşındı",
+      "copied": "{count, plural, one {Kopya oluşturuldu} other {# kopya oluşturuldu}}",
+      "target": "Hedef: {path}",
+      "crossSpace": "Space değişiyor: öğeleri {name} space'inin {count} üyesi görecek. Kişiye özel erişimler kaldırılır, herkese açık linkler çalışmaya devam eder.",
+      "crossSpaceCopy": "Kopyalar {name} space'inin izinlerini alır; {count} üye görecek.",
+      "taken": "Hedef klasörde aynı adlı bir öğe var."
+    },
+    "conflict": {
+      "title": "Bu adla bir dosya zaten var",
+      "subtitle": "{folder} klasörüne yükleniyor · {count, plural, one {1 çakışma} other {# çakışma}}",
+      "existing": "Mevcut",
+      "incoming": "Yüklenen",
+      "fromComputer": "bilgisayarından",
+      "version": "Yeni sürüm olarak ekle",
+      "versionHint": "Sürüm {version} olur. Linkler, yorumlar ve kartlar aynı dosyada kalır.",
+      "replace": "Değiştir",
+      "replaceHint": "Eski dosya 30 gün çöp kutusunda bekler.",
+      "rename": "İkisini de tut",
+      "renameHint": "Yeni dosya \"{name}\" adıyla kaydedilir.",
+      "recommended": "Önerilen",
+      "applyRest": "{count, plural, one {Kalan 1 çakışmaya da uygula} other {Kalan # çakışmaya da uygula}}",
+      "skip": "Bu dosyayı atla",
+      "cancelAll": "Yüklemeyi iptal et"
+    },
+    "upload": {
+      "panel": "Yüklemeler",
+      "uploading": "{count, plural, one {1 dosya yükleniyor} other {# dosya yükleniyor}}",
+      "finished": "{count, plural, one {1 yükleme} other {# yükleme}}",
+      "summary": "{done} tamamlandı · {failed} hata",
+      "eta": "yaklaşık {seconds} sn",
+      "done": "{size} · {folder}",
+      "paused": "Bağlantı koptu · %{pct}, kaldığı yerden sürecek",
+      "interrupted": "Yarım kaldı; aynı dosyayı yeniden seç, kaldığı yerden sürsün",
+      "conflict": "Ad çakışması: seçim bekliyor",
+      "canceled": "İptal edildi",
+      "resume": "Sürdür",
+      "pickAgain": "Dosyayı seç",
+      "otherFile": "Bu başka bir dosya; aynı ad ve boyutta dosyayı seç.",
+      "cancel": "{name} yüklemesini iptal et",
+      "collapse": "Daralt",
+      "expand": "Genişlet"
+    },
+    "share": {
+      "title": "\"{name}\" paylaş",
+      "withAccess": "Erişimi olanlar",
+      "spaceMembers": "{name} üyeleri",
+      "spaceMembersHint": "{count} kişi · space'ten miras",
+      "byRole": "Space rolüne göre",
+      "addPerson": "Kişi ya da e-posta ekle",
+      "role": "Yetki",
+      "roles": {
+        "viewer": "Görüntüleyebilir",
+        "editor": "Düzenleyebilir"
+      },
+      "expiry": "Geçerlilik",
+      "expiries": {
+        "none": "Süresiz",
+        "days": "{count} gün"
+      },
+      "until": "{date} tarihine kadar",
+      "addedBy": "{name} ekledi",
+      "inherited": "Üstteki öğeden: {name}",
+      "remove": "{name} erişimini kaldır",
+      "publicLink": "Herkese açık link",
+      "publicOff": "Kapalı · yalnız erişimi olanlar açabilir",
+      "publicOn": "Linki bilen herkes, giriş yapmadan · {count} görüntülenme",
+      "noLinkRight": "Herkese açık linki yalnız Sahip ve Yöneticiler açabilir.",
+      "inheritedLink": "\"{name}\" öğesinin herkese açık linki bunu da kapsıyor.",
+      "urlLost": "Bu link adresler saklanmadan önce açıldı; adresi gösterilemez. Kopyalamak için yeni adres üret (eski adres çalışmaz olur).",
+      "urlNoRight": "Linkin adresini yalnız paylaşan ve link paylaşma yetkisi olanlar görür.",
+      "regenerate": "Yeni adres üret",
+      "copy": "Kopyala",
+      "password": "Şifre",
+      "passwordNone": "Şifre yok",
+      "removePassword": "Kaldır",
+      "allowDownload": "İndirmeye izin ver",
+      "allowDownloadHint": "Kapalıyken yalnız tarayıcıda önizlenir",
+      "done": "Bitti",
+      "yourAccess": "Senin yetkin: {role}",
+      "membersHidden": "Bu space'in üyelerini görme yetkin yok.",
+      "widenOnly": "Space üyeleri bu öğeyi her zaman görür. Onlardan gizli kalması gereken içerik için ayrı bir space kullan."
+    },
+    "trash": {
+      "summary": "{count, plural, one {1 öğe} other {# öğe}} · {size} · 30 gün sonra kalıcı silinir",
+      "restoreSelected": "Seçilenleri geri yükle",
+      "empty": "Çöp kutusunu boşalt",
+      "from": "Önceki konum",
+      "by": "Silen",
+      "deleted": "Silinme",
+      "left": "Kalan",
+      "root": "Kök",
+      "days": "{count} gün",
+      "restore": "Geri yükle",
+      "purge": "Kalıcı sil",
+      "purgeOne": "{name} öğesini kalıcı sil",
+      "restored": "{count, plural, one {Öğe geri yüklendi} other {# öğe geri yüklendi}}",
+      "purged": "Kalıcı olarak silindi",
+      "nothing": "Çöp kutusu boş",
+      "nothingBody": "Silinen öğeler 30 gün burada bekler.",
+      "emptyTitle": "Çöp kutusu boşaltılsın mı?",
+      "emptyBody": "{count, plural, one {1 öğe} other {# öğe}} kalıcı olarak silinir. Bu geri alınamaz.",
+      "purgeTitle": "\"{name}\" kalıcı olarak silinsin mi?",
+      "purgeBody": "Bu geri alınamaz.",
+      "rules": "Yalnız Sahip ve Yöneticiler çöp kutusunu boşaltabilir. Geri yükleme öğeyi eski yerine, klasörü de silindiyse köke koyar.",
+      "purgeSelected": "{count, plural, one {Seçileni kalıcı sil} other {Seçilen # öğeyi kalıcı sil}}",
+      "purgeManyTitle": "{count, plural, one {1 öğe} other {# öğe}} kalıcı olarak silinsin mi?"
+    },
+    "quota": {
+      "warning": "Kurum depolaması {pct} dolu · {used} / {total}",
+      "full": "Kurum depolaması doldu · {used} / {total}. Yeni dosya yüklenemiyor; sayfa ve sohbet çalışmaya devam eder.",
+      "trash": "Çöp kutusu {size} yer tutuyor.",
+      "manage": "Depolamayı yönet"
+    },
+    "recent": {
+      "title": "Son açılanlar",
+      "searchAll": "Her yerde ara",
+      "favorites": "Favoriler · {count}",
+      "noFavorites": "Yıldızladığın öğeler burada durur; sürükleyerek sıralanır.",
+      "location": "Konum",
+      "opened": "Açtığın",
+      "lastEdit": "Son değiştiren",
+      "groups": {
+        "today": "Bugün",
+        "yesterday": "Dün",
+        "week": "Bu hafta",
+        "older": "Daha eski"
+      },
+      "empty": "Henüz bir şey açmadın",
+      "emptyBody": "Drive'da açtığın dosya ve klasörler burada listelenir."
+    },
+    "search": {
+      "title": "Drive'da ara",
+      "placeholder": "Ada göre ara",
+      "thisSpace": "{name} içinde",
+      "thisSpaceShort": "Bu space",
+      "allSpaces": "Tüm space'ler",
+      "start": "Aramak istediğini yaz",
+      "startBody": "Klasör, dosya ve sayfa adlarında ve dosyaların içinde (PDF, Office, metin) arar; yalnız erişebildiklerin listelenir.",
+      "inContent": "İçerikte",
+      "none": "\"{q}\" için sonuç yok",
+      "noneBody": "Başka bir kelime dene ya da tüm space'lerde ara.",
+      "count": "{count, plural, one {1 sonuç} other {# sonuç}}"
+    },
+    "text": {
+      "source": "Kaynak",
+      "preview": "Önizleme",
+      "split": "Yan yana",
+      "viewMode": "Görünüm",
+      "save": "Kaydet",
+      "saved": "Sürüm {n} olarak kaydedildi",
+      "unsaved": "Kaydedilmemiş değişiklik",
+      "discard": "Değişiklikleri at",
+      "editorLabel": "{name} içeriği",
+      "readOnlyLarge": "{size} üstündeki dosyalar yalnız görüntülenir.",
+      "readOnlyRights": "Bu dosyayı yalnız görüntüleyebilirsin.",
+      "oldVersion": "Eski sürümler düzenlenemez; geri yükleyip düzenleyebilirsin.",
+      "conflictTitle": "Dosya sen düzenlerken değişti",
+      "conflictBody": "{name} bu arada değiştirildi (şimdi sürüm {n}). Kaydedersen senin metnin yeni sürüm olur; araya giren sürüm geçmişte kalır.",
+      "conflictSave": "Yine de kaydet",
+      "conflictReload": "Benimkini at, son sürümü aç",
+      "leaveTitle": "Kaydedilmemiş değişiklikler var",
+      "leaveBody": "Kapatırsan {name} dosyasındaki değişiklikler kaybolur.",
+      "leave": "Kaydetmeden çık"
+    }
+  },
+  "publicShare": {
+    "poweredBy": "Crewhall ile paylaşıldı",
+    "signIn": "Giriş yap",
+    "footer": "© {year} {org}",
+    "viewOnly": "Yalnız görüntüleme",
+    "noPreview": "Bu dosyanın önizlemesi yok.",
+    "backToFolder": "Klasöre dön",
+    "facts": {
+      "sharedBy": "Paylaşan",
+      "expires": "Geçerlilik",
+      "access": "Erişim",
+      "anyone": "Linki bilen herkes",
+      "download": "İndirme",
+      "on": "Açık",
+      "off": "Kapalı"
+    },
+    "password": {
+      "title": "Bu link şifre korumalı",
+      "body": "{name} ({org}) seninle bir dosya paylaştı. Açmak için sana ilettiği şifreyi gir.",
+      "label": "Şifre",
+      "open": "Aç",
+      "wrong": "{count, plural, =0 {Şifre yanlış.} one {Şifre yanlış. 1 deneme hakkın kaldı.} other {Şifre yanlış. # deneme hakkın kaldı.}}",
+      "hint": "Şifreyi bilmiyorsan paylaşan kişiden iste. Şifreler linkle aynı e-postada değil, ayrı bir kanaldan iletilmeli."
+    },
+    "locked": {
+      "title": "Çok fazla hatalı deneme",
+      "body": "Link bu tarayıcı için kilitlendi; {time} itibarıyla yeniden deneyebilirsin.",
+      "later": "Link bu tarayıcı için bir süre kilitlendi. Biraz sonra yeniden dene."
+    },
+    "expired": {
+      "title": "Bu linkin süresi doldu",
+      "body": "{name} kişisinin paylaştığı link {date} tarihinde sona erdi.",
+      "bodyNoDate": "{name} kişisinin paylaştığı linkin süresi doldu."
+    },
+    "invalid": {
+      "title": "Bu link geçerli değil",
+      "body": "Paylaşım kaldırılmış ya da link yanlış kopyalanmış olabilir. Linki sana gönderen kişiye yeniden sor."
+    },
+    "member": "{org} üyesi misin? Giriş yaparsan öğeye kendi erişiminle ulaşırsın; giriş sonrası buraya döneriz.",
+    "memberSignIn": "{org} hesabınla giriş yap",
+    "folder": {
+      "meta": "{name} paylaştı · {org} · {count, plural, one {# öğe} other {# öğe}} · {size}",
+      "search": "Bu klasörde ara",
+      "download": "{count, plural, one {İndir} other {# dosyayı indir}}"
+    },
+    "kind": {
+      "page": "Sayfa",
+      "board": "Pano",
+      "drawing": "Çizim"
+    },
+    "board": {
+      "empty": "Bu sütunda kart yok"
+    },
+    "contentError": "İçerik açılamadı. Sayfayı yenileyip yeniden dene."
+  },
+  "viewer": {
+    "close": "Kapat",
+    "prev": "Önceki",
+    "next": "Sonraki",
+    "zoomIn": "Yakınlaştır",
+    "zoomOut": "Uzaklaştır",
+    "download": "İndir",
+    "openInTab": "Yeni sekmede aç",
+    "copyLink": "Linki kopyala",
+    "linkCopied": "Link kopyalandı",
+    "counter": "{n} / {total}",
+    "noPreview": "Bu dosyanın önizlemesi yok. İndirerek açabilirsin.",
+    "failed": "Dosya açılamadı."
+  },
+  "openInApp": {
+    "region": "Mobil uygulama",
+    "title": "Uygulamada aç",
+    "body": "Bu sayfayı uygulamada sürdürün.",
+    "open": "Aç",
+    "close": "Kapat",
+    "continue": {
+      "title": "{org} hazır, uygulamada devam edin",
+      "body": "Uygulama bu sunucuya bağlanır; orada hesabınızla giriş yaparsınız.",
+      "open": "Uygulamada devam et",
+      "install": "Uygulamayı indir",
+      "stay": "Tarayıcıda devam et"
+    }
+  }
+}

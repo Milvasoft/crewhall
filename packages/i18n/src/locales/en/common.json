@@ -1,0 +1,30 @@
+{
+  "appName": "Crewhall",
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "close": "Close",
+    "continue": "Continue",
+    "back": "Back",
+    "retry": "Try again"
+  },
+  "roles": {
+    "org": {
+      "owner": "Owner",
+      "admin": "Admin",
+      "member": "Member",
+      "guest": "Guest"
+    },
+    "space": {
+      "owner": "Owner",
+      "admin": "Admin",
+      "editor": "Editor",
+      "viewer": "Viewer"
+    }
+  },
+  "quick": {
+    "todoTitle": "To do",
+    "groupTitle": "Links"
+  }
+}

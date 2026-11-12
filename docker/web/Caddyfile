@@ -1,0 +1,46 @@
+# Static file server inside the web image. SPA routes fall back to index.html; hashed
+# assets are cached for a year, index.html never.
+:8080 {
+	root * /srv
+	encode zstd gzip
+
+	@assets path /assets/*
+	header @assets Cache-Control "public, max-age=31536000, immutable"
+
+	# Windows' WebClient probes the site root with OPTIONS before mapping /dav as a drive. Behind
+	# Dokploy the root reaches this container (only /dav goes to the api), so answer it here with
+	# the api's DAV headers (apps/backend/src/services/drive/webdav/handler.ts).
+	@davprobe {
+		method OPTIONS
+		path /
+	}
+	handle @davprobe {
+		header DAV "1, 2"
+		header MS-Author-Via DAV
+		header Allow "OPTIONS, PROPFIND, PROPPATCH, GET, HEAD, PUT, MKCOL, DELETE, MOVE, COPY, LOCK, UNLOCK"
+		respond 200
+	}
+
+	# Everything but the hashed assets is revalidated. index.html is also served for every SPA route
+	# through try_files, so matching only / and /index.html left those responses without
+	# Cache-Control and browsers cached them heuristically.
+	@notassets not path /assets/*
+	header @notassets Cache-Control "no-cache"
+
+	# The edge proxy sends these paths to the api; they only land here while the api is out of the
+	# proxy (unhealthy or restarting). Answer with an uncached JSON error instead of index.html, which
+	# the client could not parse and which the browser kept serving after the api came back.
+	@api path /api /api/* /ws /ws/* /mcp /mcp/* /healthz /readyz /.well-known/* /oauth/authorize /oauth/register /oauth/token /oauth/revoke /dav /dav/* /caldav /caldav/* /carddav /carddav/* /wopi/*
+	handle @api {
+		header Cache-Control "no-store"
+		header Retry-After "5"
+		header Content-Type "application/json"
+		# "internal" is one of the shared ERROR_CODES, so the api client parses this like an api error.
+		respond `{"code":"internal","message":"Service temporarily unavailable"}` 503
+	}
+
+	handle {
+		try_files {path} /index.html
+		file_server
+	}
+}

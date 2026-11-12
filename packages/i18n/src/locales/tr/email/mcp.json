@@ -1,0 +1,56 @@
+{
+  "newConnection": {
+    "subject": "{orgName}: yeni MCP bağlantısı · {client}",
+    "title": "Yeni MCP bağlantısı",
+    "intro": "Merhaba {name}, {client} artık {orgName} hesabına senin adına erişebilir.",
+    "adminIntro": "{person} ({email}) {orgName} hesabına yeni bir MCP istemcisi bağladı: {client}.",
+    "client": "İstemci",
+    "redirect": "Geri dönüş adresi",
+    "scopes": "Kapsamlar",
+    "spaces": "Space'ler",
+    "allSpaces": "Tüm space'ler",
+    "expires": "Geçerlilik",
+    "never": "Süresiz",
+    "when": "Zaman",
+    "ip": "IP adresi",
+    "cta": "Bağlantıyı yönet",
+    "notMe": "Bu bağlantıyı sen kurmadıysan hemen kes: Hesabım › MCP ve API › Bağlantıyı kes. Kesilen bağlantının erişimi en geç 30 saniyede biter.",
+    "vault": "Kasa MCP'ye her zaman kapalıdır."
+  },
+  "approval": {
+    "subject": "{client} onay istiyor: {title}",
+    "title": "{client} onay istiyor",
+    "intro": "{client}, senin adına şu işlemi yapmak istiyor: {title}.",
+    "items": "Öğe sayısı",
+    "expires": "İstek {time} saatinde düşer.",
+    "cta": "Gözden geçir",
+    "note": "Onay, gördüğün içeriğe verilir ve passkey ya da şifreyle doğrulanır. İstemcinin notu doğrulanmamış metindir."
+  },
+  "scopeNames": {
+    "hub:read": "Okuma ve arama",
+    "pages:write": "Sayfalar yaz",
+    "quick:write": "Hızlı erişim yaz",
+    "drive:write": "Drive yaz",
+    "boards:write": "Panolar yaz",
+    "chat:send": "Chat mesaj gönder",
+    "portal:draft": "Portal taslak",
+    "portal:publish": "Portal yayınla",
+    "meetings:write": "Toplantı planla",
+    "calendar:write": "Takvim yaz",
+    "contacts:write": "Kişiler yaz",
+    "tables:write": "Tablolar yaz"
+  },
+  "openapi": {
+    "title": "Crewhall REST API",
+    "description": "Kurumun Crewhall çalışma alanına HTTP ile erişim. Her uç sözleşme tablosundan üretilir; şemalar sunucunun doğruladığı zod şemalarıdır.\n\n**Kimlik doğrulama:** Hesabım › MCP ve API'den oluşturduğun kişisel token'ı `Authorization: Bearer mhp_…` başlığıyla gönder. Token, sahibinin yetkileriyle ve seçtiğin kapsam ve space'lerle sınırlı çalışır; hesap, güvenlik ve kasa uçları token'a hiçbir zaman açık değildir.\n\n**Hatalar** `{ code, message, details? }` gövdesiyle döner. **Sayfalama** imleçlidir: `cursor` ve `limit` gönderilir, yanıt `{ items, nextCursor }` biçimindedir. Yazan uçlar `Idempotency-Key` başlığını kabul eder.",
+    "public": "Oturum gerektirmez.",
+    "tokenScope": "Kişisel token ile `{scope}` kapsamı gerekir.",
+    "noToken": "Yalnız oturumla çağrılır; kişisel token ile kullanılamaz.",
+    "idempotency": "Aynı anahtarla tekrarlanan istek ilk yanıtı döndürür (24 saat).",
+    "ok": "Başarılı",
+    "error": "Hata (`code` alanı i18n anahtarı `errors.<code>` ile eşleşir)",
+    "personalToken": "Kişisel erişim token'ı (`mhp_` ile başlar); yalnız açıklamasında kapsamı yazan uçlarda geçer.",
+    "sessionCookie": "Web oturum çerezi (HTTPS'te `__Secure-` önekiyle).",
+    "sessionToken": "Mobil uygulamanın oturum token'ı (better-auth bearer)."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "identities": [
+    {
+      "name": "crewhall",
+      "credentials": [{ "accessKey": "crewhall", "secretKey": "crewhall-dev-secret" }],
+      "actions": ["Admin", "Read", "Write", "List", "Tagging"]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+ALTER TABLE "node_user_state" ADD COLUMN "follow_descendants" boolean DEFAULT false NOT NULL;

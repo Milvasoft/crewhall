@@ -1,0 +1,3 @@
+ALTER TABLE "portal_docs" ADD COLUMN "source_node_id" uuid;--> statement-breakpoint
+ALTER TABLE "portal_docs" ADD CONSTRAINT "portal_docs_source_node_id_nodes_id_fk" FOREIGN KEY ("source_node_id") REFERENCES "public"."nodes"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
+CREATE INDEX "portal_docs_source_idx" ON "portal_docs" USING btree ("site_id","source_node_id") WHERE "portal_docs"."source_node_id" is not null;

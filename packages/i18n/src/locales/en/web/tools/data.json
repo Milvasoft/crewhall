@@ -1,0 +1,129 @@
+{
+  "csv-viewer": {
+    "name": "CSV Viewer",
+    "description": "View and sort CSV data as a table, parsed locally in your browser.",
+    "keywords": "table, spreadsheet, viewer, delimited, tsv",
+    "open": "Open CSV…",
+    "rows": "{count, plural, one {# row} other {# rows}}",
+    "empty": "No data."
+  },
+  "fake-data": {
+    "name": "Fake Data Generator",
+    "description": "Generate realistic fake data from a field schema and export as JSON, CSV or SQL, locally.",
+    "keywords": "fake data, test data, sample data, seed, generator, mock, dummy, faker",
+    "copyRow": "Copy this row",
+    "fields": "Fields",
+    "add": "Add",
+    "remove": "Remove field",
+    "rows": "Rows",
+    "format": "Format",
+    "plain": "Plain",
+    "table": "table",
+    "multiRow": "Multi-row insert",
+    "copyAll": "Copy all",
+    "empty": "No data yet. Add at least one field, then Generate.",
+    "types": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "fullName": "Full name",
+      "email": "Email",
+      "username": "Username",
+      "phone": "Phone",
+      "uuid": "UUID",
+      "int": "Integer",
+      "decimal": "Decimal",
+      "boolean": "Boolean",
+      "date": "Date",
+      "datetime": "Date and time",
+      "company": "Company",
+      "city": "City",
+      "country": "Country",
+      "street": "Street",
+      "url": "URL",
+      "ipv4": "IPv4 address",
+      "word": "Word",
+      "sentence": "Sentence",
+      "color": "Color",
+      "tckn": "Turkish ID number (TCKN)",
+      "vkn": "Turkish tax ID (VKN)",
+      "iban": "IBAN"
+    }
+  },
+  "iban-validator": {
+    "name": "IBAN Validator & Parser",
+    "description": "Validate an IBAN's checksum and break it into country, check digits and BBAN, locally.",
+    "keywords": "bank, account, validate, parser, checksum, mod97, bban, sepa",
+    "valid": "Valid IBAN",
+    "formatted": "Formatted",
+    "country": "Country",
+    "checkDigits": "Check digits",
+    "expectedLength": "Expected length",
+    "errors": {
+      "malformed": "Not a well-formed IBAN.",
+      "length": "{code} IBANs are {length} characters (got {count}).",
+      "checksum": "Checksum failed, the IBAN is invalid."
+    }
+  },
+  "json-excel": {
+    "name": "JSON ↔ Excel",
+    "description": "Turn a JSON array of objects into an Excel (.xlsx) file, or read a spreadsheet back to JSON, locally.",
+    "keywords": "spreadsheet, sheet, convert, export, xlsx, csv",
+    "writeFailed": "Could not generate the spreadsheet.",
+    "readFailed": "Could not read that spreadsheet.",
+    "downloadXlsx": "Download .xlsx",
+    "fileName": "File name",
+    "open": "Open spreadsheet…",
+    "rows": "{count, plural, one {# row} other {# rows}}",
+    "inputLabel": "JSON (array of objects)",
+    "placeholder": "Paste a JSON array of objects, or open a spreadsheet…",
+    "localNote": "Everything runs locally: the spreadsheet is generated in your browser and never uploaded."
+  },
+  "json-toml": {
+    "name": "JSON ↔ TOML",
+    "description": "Convert JSON to TOML and TOML back to JSON, locally.",
+    "keywords": "convert, converter, config, cargo"
+  },
+  "phone-parser": {
+    "name": "Phone Parser & Formatter",
+    "description": "Parse a phone number into country, type and E.164, and format it, locally.",
+    "keywords": "phone, number, parse, format, international, country, msisdn, telephone, e164",
+    "number": "Phone number",
+    "defaultCountry": "Default country",
+    "auto": "Auto (+ prefix)",
+    "valid": "Valid number",
+    "possible": "Possible but not a valid number.",
+    "unparsable": "Could not parse this number.",
+    "unknown": "Unknown",
+    "fields": {
+      "international": "International",
+      "national": "National",
+      "country": "Country",
+      "callingCode": "Calling code",
+      "nationalNumber": "National number",
+      "type": "Type"
+    }
+  },
+  "xml-formatter": {
+    "name": "XML Formatter",
+    "description": "Pretty-print or minify XML, with validation, all local.",
+    "keywords": "format, beautify, prettify, minify, viewer, tree, soap",
+    "invalid": "Invalid XML",
+    "tree": "Tree",
+    "noElements": "No elements."
+  },
+  "yaml-toml": {
+    "name": "YAML ↔ TOML",
+    "description": "Convert YAML to TOML and TOML back to YAML, locally.",
+    "keywords": "convert, converter, config"
+  },
+  "yaml-viewer": {
+    "name": "YAML Viewer & Formatter",
+    "description": "Validate and pretty-print YAML, optionally sort keys, or view it as JSON, locally.",
+    "keywords": "viewer, format, prettify, validate, lint, beautify, sort",
+    "invalid": "Invalid YAML",
+    "asJson": "As JSON",
+    "formatted": "Formatted",
+    "sortKeys": "Sort keys",
+    "formattedYaml": "Formatted YAML"
+  }
+}

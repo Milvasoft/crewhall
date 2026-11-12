@@ -1,0 +1,1 @@
+ALTER TABLE "chat_scheduled_messages" ADD COLUMN "refs" jsonb DEFAULT '[]'::jsonb NOT NULL;

@@ -1,0 +1,19 @@
+{
+  "meet_unavailable": "Toplantı sunucusuna şu an ulaşılamıyor. Biraz sonra yeniden dene.",
+  "meet_ended": "Bu toplantı sona erdi.",
+  "meet_link_expired": "Bu davet artık geçerli değil.",
+  "meet_guests_disabled": "Bu toplantıya misafir katılamaz. Toplantı sahibine sor.",
+  "meet_lobby_retry_later": "İsteğin reddedildi. Bir dakika sonra yeniden isteyebilirsin.",
+  "meet_not_moderator": "Bunu yalnız moderatörler yapabilir.",
+  "meet_recording_forbidden": "Kaydı moderatör başlatabilir.",
+  "meet_recording_active": "Bu toplantı zaten kaydediliyor.",
+  "meet_recording_unavailable": "Kayıt şu an başlatılamıyor. Drive'da yer aç ya da yöneticine sor.",
+  "meet_not_live": "Toplantıda şu an kimse yok.",
+  "meet_slug_taken": "Bu oda adresi kullanılıyor. Başka bir adres seç.",
+  "meet_webhook_invalid": "Toplantı sunucusunun imzası doğrulanamadı.",
+  "meet_call_unavailable": "Arama yalnız üyesi olduğun birebir ve grup sohbetlerinden yapılabilir.",
+  "meet_call_over": "Bu arama bitti ya da artık çalmıyor.",
+  "meet_remote_control_off": "Ekran denetimi bu toplantıda ya da kurumda kapalı.",
+  "meet_room_live": "Toplantı şu an sürüyor. Önce toplantıyı bitir.",
+  "meet_managed_by_calendar": "Bu toplantı takvimden oluşturuldu; takvimdeki etkinliğinden düzenle ya da iptal et."
+}

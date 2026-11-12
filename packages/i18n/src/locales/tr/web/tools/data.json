@@ -1,0 +1,129 @@
+{
+  "csv-viewer": {
+    "name": "CSV görüntüleyici",
+    "description": "CSV verisini tablo olarak gör ve sırala; tarayıcında yerelde çözümlenir.",
+    "keywords": "tablo, elektronik tablo, görüntüle, görüntüleyici, ayraçlı, tsv",
+    "open": "CSV aç…",
+    "rows": "{count} satır",
+    "empty": "Veri yok."
+  },
+  "fake-data": {
+    "name": "Sahte veri üretici",
+    "description": "Alan şemasından gerçekçi sahte veri üret, JSON, CSV ya da SQL olarak dışa aktar, yerelde.",
+    "keywords": "sahte veri, test verisi, örnek veri, tohum, seed, üretici, mock, tckn, vkn",
+    "copyRow": "Bu satırı kopyala",
+    "fields": "Alanlar",
+    "add": "Ekle",
+    "remove": "Alanı kaldır",
+    "rows": "Satır",
+    "format": "Biçim",
+    "plain": "Düz metin",
+    "table": "tablo",
+    "multiRow": "Çok satırlı INSERT",
+    "copyAll": "Tümünü kopyala",
+    "empty": "Henüz veri yok. En az bir alan ekle, sonra Üret'e bas.",
+    "types": {
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "fullName": "Ad soyad",
+      "email": "E-posta",
+      "username": "Kullanıcı adı",
+      "phone": "Telefon",
+      "uuid": "UUID",
+      "int": "Tam sayı",
+      "decimal": "Ondalık sayı",
+      "boolean": "Doğru/yanlış",
+      "date": "Tarih",
+      "datetime": "Tarih ve saat",
+      "company": "Şirket",
+      "city": "Şehir",
+      "country": "Ülke",
+      "street": "Sokak",
+      "url": "URL",
+      "ipv4": "IPv4 adresi",
+      "word": "Kelime",
+      "sentence": "Cümle",
+      "color": "Renk",
+      "tckn": "TC Kimlik No",
+      "vkn": "Vergi Kimlik No",
+      "iban": "IBAN"
+    }
+  },
+  "iban-validator": {
+    "name": "IBAN doğrulayıcı ve çözümleyici",
+    "description": "IBAN'ın sağlama toplamını doğrula; ülke, kontrol basamakları ve BBAN olarak ayır, yerelde.",
+    "keywords": "banka, hesap, hesap numarası, doğrula, sağlama, mod97, bban, sepa",
+    "valid": "Geçerli IBAN",
+    "formatted": "Biçimli",
+    "country": "Ülke",
+    "checkDigits": "Kontrol basamakları",
+    "expectedLength": "Beklenen uzunluk",
+    "errors": {
+      "malformed": "Geçerli biçimde bir IBAN değil.",
+      "length": "{code} IBAN'ları {length} karakterdir ({count} karakter girildi).",
+      "checksum": "Sağlama toplamı tutmadı, IBAN geçersiz."
+    }
+  },
+  "json-excel": {
+    "name": "JSON ↔ Excel",
+    "description": "Nesnelerden oluşan JSON dizisini Excel (.xlsx) dosyasına çevir ya da tabloyu yeniden JSON olarak oku, yerelde.",
+    "keywords": "elektronik tablo, tablo, sayfa, dönüştür, dışa aktar, xlsx",
+    "writeFailed": "Tablo oluşturulamadı.",
+    "readFailed": "Bu tablo okunamadı.",
+    "downloadXlsx": ".xlsx indir",
+    "fileName": "Dosya adı",
+    "open": "Tablo aç…",
+    "rows": "{count} satır",
+    "inputLabel": "JSON (nesne dizisi)",
+    "placeholder": "Nesnelerden oluşan bir JSON dizisi yapıştır ya da bir tablo aç…",
+    "localNote": "Her şey yerelde çalışır: tablo tarayıcında oluşturulur, hiçbir yere yüklenmez."
+  },
+  "json-toml": {
+    "name": "JSON ↔ TOML",
+    "description": "JSON'u TOML'a, TOML'u JSON'a çevir, yerelde.",
+    "keywords": "dönüştür, dönüştürücü, yapılandırma, ayar dosyası, cargo"
+  },
+  "phone-parser": {
+    "name": "Telefon çözümleyici ve biçimlendirici",
+    "description": "Telefon numarasını ülke, tür ve E.164 olarak ayır ve biçimlendir, yerelde.",
+    "keywords": "telefon, numara, çözümle, biçimlendir, uluslararası, ülke, gsm, e164",
+    "number": "Telefon numarası",
+    "defaultCountry": "Varsayılan ülke",
+    "auto": "Otomatik (+ önekiyle)",
+    "valid": "Geçerli numara",
+    "possible": "Olası ama geçerli bir numara değil.",
+    "unparsable": "Bu numara çözümlenemedi.",
+    "unknown": "Bilinmiyor",
+    "fields": {
+      "international": "Uluslararası",
+      "national": "Ulusal",
+      "country": "Ülke",
+      "callingCode": "Ülke kodu",
+      "nationalNumber": "Ulusal numara",
+      "type": "Tür"
+    }
+  },
+  "xml-formatter": {
+    "name": "XML biçimlendirici",
+    "description": "XML'i doğrulayarak okunur biçime getir ya da küçült, tamamen yerelde.",
+    "keywords": "biçimlendir, güzelleştir, küçült, görüntüle, ağaç, soap",
+    "invalid": "Geçersiz XML",
+    "tree": "Ağaç",
+    "noElements": "Öğe yok."
+  },
+  "yaml-toml": {
+    "name": "YAML ↔ TOML",
+    "description": "YAML'ı TOML'a, TOML'u YAML'a çevir, yerelde.",
+    "keywords": "dönüştür, dönüştürücü, yapılandırma, ayar dosyası"
+  },
+  "yaml-viewer": {
+    "name": "YAML görüntüleyici ve biçimlendirici",
+    "description": "YAML'ı doğrula ve okunur biçime getir, istersen anahtarları sırala ya da JSON olarak gör, yerelde.",
+    "keywords": "görüntüle, biçimlendir, doğrula, güzelleştir, sırala, lint",
+    "invalid": "Geçersiz YAML",
+    "asJson": "JSON olarak",
+    "formatted": "Biçimli",
+    "sortKeys": "Anahtarları sırala",
+    "formattedYaml": "Biçimli YAML"
+  }
+}

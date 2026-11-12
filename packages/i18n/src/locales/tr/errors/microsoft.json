@@ -1,0 +1,12 @@
+{
+  "integration_disabled": "Bu entegrasyon kapalı. Yönetim › Entegrasyonlar'dan açılabilir.",
+  "microsoft_app_missing": "Microsoft uygulama kaydı yapılmamış. Yönetim › Entegrasyonlar › Microsoft'tan ekle.",
+  "microsoft_graph_failed": "Microsoft'a ulaşılamadı ya da istek reddedildi. Biraz sonra yeniden dene.",
+  "microsoft_permission_missing": "Microsoft uygulama kaydında gereken izin verilmemiş.",
+  "mount_unreachable": "Dış depolamaya ulaşılamadı.",
+  "mount_read_only": "Bu dış depolama salt okunur.",
+  "mount_item_not_found": "Dosya ya da klasör dış depolamada bulunamadı.",
+  "upload_request_closed": "Bu yükleme linkinin süresi doldu ya da kapatıldı.",
+  "teams_link_invalid": "Teams bağlantı kodu geçersiz ya da süresi dolmuş.",
+  "sso_blocked_by_policy": "Kurumunun erişim kuralları (koşullu erişim) bu girişi engelledi. BT ekibine danış."
+}

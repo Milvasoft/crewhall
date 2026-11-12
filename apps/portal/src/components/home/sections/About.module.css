@@ -1,0 +1,125 @@
+.about {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: 6vw;
+  height: 100%;
+  min-height: 100svh;
+  padding: calc(var(--navbar) + 3svh) 6vw 7svh;
+  box-sizing: border-box;
+}
+
+.about:not([data-video]) {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.solo {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+
+.solo .media {
+  width: min(1100px, 88vw);
+}
+
+.copy {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.text {
+  margin-top: 28px;
+  color: var(--fg);
+}
+
+.media {
+  position: relative;
+  z-index: 2;
+}
+
+.videoCam {
+  --radius: 18px;
+  position: relative;
+  transform-origin: 60% 70%;
+}
+
+/* the brand glow under the video, faded with --glow */
+.videoCam::before {
+  content: '';
+  position: absolute;
+  inset: -12% -8%;
+  background: radial-gradient(closest-side, rgba(217, 123, 53, 0.5), transparent 75%);
+  opacity: var(--glow, 1);
+  filter: blur(24px);
+  pointer-events: none;
+}
+
+.videoFrame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: #000;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.65);
+}
+
+.iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.trace {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6svh;
+  height: 24svh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 1000px) {
+  .about {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: 5svh;
+    padding: calc(var(--navbar) + 1svh) 40px 5svh;
+  }
+  .copy {
+    max-width: 680px;
+  }
+  .media {
+    width: min(100%, 680px);
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    gap: 2.5svh;
+    padding: calc(var(--navbar) - 10px) 20px 3svh;
+  }
+  .text {
+    margin-top: 14px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+  .trace {
+    display: none;
+  }
+}
+
+/* phones: plain flow at the height of the content (no pinned stage) */
+@media (max-width: 768px) {
+  .about {
+    height: auto;
+    min-height: 0;
+    gap: 28px;
+    padding: 64px 20px 56px;
+  }
+}
