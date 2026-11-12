@@ -225,26 +225,34 @@ async function outdatedView(): Promise<void> {
       h(
         'div',
         { class: 'row' },
-        u.state === 'downloaded'
+        u.state === 'store'
           ? h(
               'button',
-              { class: 'primary', onclick: () => void api.installUpdate() },
-              t('desktop.settings.installUpdate'),
+              { class: 'primary', onclick: () => void api.openStoreUpdates() },
+              t('desktop.settings.openStore'),
             )
-          : h(
-              'button',
-              {
-                class: 'primary',
-                onclick: () => void api.checkUpdates(),
-                disabled: u.state === 'disabled' || u.state === 'checking',
-              },
-              t('desktop.settings.checkUpdates'),
-            ),
+          : u.state === 'downloaded'
+            ? h(
+                'button',
+                { class: 'primary', onclick: () => void api.installUpdate() },
+                t('desktop.settings.installUpdate'),
+              )
+            : h(
+                'button',
+                {
+                  class: 'primary',
+                  onclick: () => void api.checkUpdates(),
+                  disabled: u.state === 'disabled' || u.state === 'checking',
+                },
+                t('desktop.settings.checkUpdates'),
+              ),
         h('button', { onclick: () => void api.retry() }, t('desktop.offline.retry')),
       ),
-      u.state === 'disabled' || u.state === 'error'
-        ? h('p', { class: 'muted small' }, t('desktop.outdated.manual'))
-        : null,
+      u.state === 'store'
+        ? h('p', { class: 'muted small' }, t('desktop.outdated.store'))
+        : u.state === 'disabled' || u.state === 'error'
+          ? h('p', { class: 'muted small' }, t('desktop.outdated.manual'))
+          : null,
     );
   };
   draw(await api.getSettings());
@@ -661,9 +669,20 @@ function generalTab(s: SettingsView): HTMLElement {
         'div',
         {},
         h('div', { class: 'label' }, t('desktop.settings.autostart')),
-        h('div', { class: 'muted small' }, t('desktop.settings.autostartHint')),
+        h(
+          'div',
+          { class: 'muted small' },
+          t(s.store ? 'desktop.settings.autostartStoreHint' : 'desktop.settings.autostartHint'),
+        ),
       ),
-      toggle(s.autostart, (on) => void api.setSettings({ autostart: on })),
+      // The Store build's startup task belongs to Windows: its page, not a switch that could lie.
+      s.store
+        ? h(
+            'button',
+            { onclick: () => void api.openStartupSettings() },
+            t('desktop.settings.openStartupSettings'),
+          )
+        : toggle(s.autostart, (on) => void api.setSettings({ autostart: on })),
     ),
     shortcutSetting(s),
     s.platform === 'win32'
@@ -674,9 +693,20 @@ function generalTab(s: SettingsView): HTMLElement {
             'div',
             {},
             h('div', { class: 'label' }, t('desktop.settings.explorerMenu')),
-            h('div', { class: 'muted small' }, t('desktop.settings.explorerMenuHint')),
+            h(
+              'div',
+              { class: 'muted small' },
+              t(
+                s.store
+                  ? 'desktop.settings.explorerMenuStoreHint'
+                  : 'desktop.settings.explorerMenuHint',
+              ),
+            ),
           ),
-          toggle(s.explorerMenu, (on) => void api.setSettings({ explorerMenu: on })),
+          // A Store package cannot add these menus (common/store): said, not offered.
+          s.store
+            ? null
+            : toggle(s.explorerMenu, (on) => void api.setSettings({ explorerMenu: on })),
         )
       : null,
   );
@@ -1149,14 +1179,20 @@ function aboutTab(s: SettingsView): HTMLElement {
     h(
       'div',
       { class: 'row' },
-      h(
-        'button',
-        {
-          onclick: () => void api.checkUpdates(),
-          disabled: u.state === 'disabled' || u.state === 'checking',
-        },
-        t('desktop.settings.checkUpdates'),
-      ),
+      u.state === 'store'
+        ? h(
+            'button',
+            { onclick: () => void api.openStoreUpdates() },
+            t('desktop.settings.openStore'),
+          )
+        : h(
+            'button',
+            {
+              onclick: () => void api.checkUpdates(),
+              disabled: u.state === 'disabled' || u.state === 'checking',
+            },
+            t('desktop.settings.checkUpdates'),
+          ),
       u.state === 'downloaded'
         ? h(
             'button',
@@ -1165,7 +1201,8 @@ function aboutTab(s: SettingsView): HTMLElement {
           )
         : null,
     ),
-    h('p', { class: 'muted small' }, t('desktop.settings.unsignedNote')),
+    // The Store signs its packages.
+    s.store ? null : h('p', { class: 'muted small' }, t('desktop.settings.unsignedNote')),
   );
 }
 

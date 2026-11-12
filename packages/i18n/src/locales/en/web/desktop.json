@@ -29,7 +29,8 @@
   "outdated": {
     "title": "Update the app",
     "body": "{name} does not work with this version ({version}). Install the update, then try again.",
-    "manual": "The update cannot be installed from here. Download the new version from your organization's Crewhall page: My account › Security › Desktop app."
+    "manual": "The update cannot be installed from here. Download the new version from your organization's Crewhall page: My account › Security › Desktop app.",
+    "store": "Microsoft Store updates this version. Update Crewhall in the Store under Library › Get updates, then try again."
   },
   "tray": {
     "open": "Open",
@@ -40,6 +41,7 @@
     "syncProblem": "Sync needs attention",
     "settings": "Settings…",
     "autostart": "Start when I sign in",
+    "autostartStore": "Start at sign-in…",
     "installUpdate": "Install update and restart",
     "quit": "Quit"
   },
@@ -104,8 +106,11 @@
     "notificationsHint": "Shown for messages, mentions and calls. While the window is in front they appear inside the app.",
     "autostart": "Start when I sign in",
     "autostartHint": "The app opens in the background, in the tray.",
+    "autostartStoreHint": "In the Microsoft Store version, Windows turns this on and off: Settings › Apps › Startup.",
+    "openStartupSettings": "Open Windows settings",
     "explorerMenu": "File Explorer menus",
     "explorerMenuHint": "Adds \"Upload to Crewhall\" to the right-click menu of files and folders, and Crewhall to the Send to menu.",
+    "explorerMenuStoreHint": "The Microsoft Store version has no \"Upload to Crewhall\" in the right-click menu and no Send to entry: Windows does not show File Explorer these entries from apps installed from the Store. Install the app with the installer to get these menus.",
     "shortcut": "Shortcut that opens Crewhall",
     "shortcutHint": "Brings Crewhall to the front from any program. To change it, click the button and press the keys.",
     "shortcutPress": "Press the keys…",
@@ -124,8 +129,10 @@
     "version": "Version {version}",
     "updates": "Updates",
     "checkUpdates": "Check for updates",
+    "openStore": "Open Microsoft Store",
     "update": {
       "disabled": "Automatic updates are off in this build.",
+      "store": "Microsoft Store installs the updates.",
       "idle": "Not checked yet.",
       "checking": "Checking…",
       "none": "The app is up to date.",

@@ -24,7 +24,10 @@ async function conversationAllowed(
   return personal !== null && ctx.spaceIds.includes(personal);
 }
 
-async function assertConversation(ctx: ToolContext, c: { spaceId: string | null; type: string }) {
+export async function assertConversation(
+  ctx: ToolContext,
+  c: { spaceId: string | null; type: string },
+) {
   if (!(await conversationAllowed(ctx, c))) {
     throw new ToolError(
       'space_not_in_connection',
@@ -212,6 +215,7 @@ export const readMessages = defineTool({
     const items = page.items
       .filter((x) => x.kind !== 'system' && !x.deletedAt)
       .map((x) => ({
+        message_id: x.id,
         seq: x.seq,
         author: x.author?.name ?? x.webhook?.name ?? null,
         text: x.text,

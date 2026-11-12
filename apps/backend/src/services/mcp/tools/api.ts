@@ -10,6 +10,7 @@ import type { Deps } from '../../../deps';
 import type { DriveActor } from '../../drive/access';
 import {
   callOperation,
+  inverseOf,
   operationRule,
   operations,
   personPrincipal,
@@ -334,6 +335,16 @@ export const callWriteOperation = defineTool({
       data: { operation: name, result },
       target: { type: 'operation', id: name, label: null },
       summary: name,
+      undo: inverseOf(name, op, result),
     };
   },
 });
+
+/** An ISO 8601 time from a tool input, as the API wants it (UTC, milliseconds). */
+export function isoTime(value: string, field: string): string {
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) {
+    throw new ToolError('validation_failed', `${field} ISO 8601 zaman olmalı.`);
+  }
+  return d.toISOString();
+}

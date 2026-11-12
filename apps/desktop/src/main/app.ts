@@ -50,6 +50,7 @@ import {
 import { realtimeEffects, ringAction } from '../common/window-policy';
 import { RealtimeClient, type SocketLike } from '../common/realtime';
 import { checkServer } from '../common/server';
+import { distribution, isStorePackage } from '../common/store';
 import { SyncEngine, type PairStatus } from '../sync/engine';
 import { createApiDrive } from '../sync/remote';
 import type { SyncPlatform } from '../sync/names';
@@ -78,6 +79,9 @@ import {
 
 /** Everything the desktop app keeps between windows: settings, sockets, sync, tray. */
 export class DesktopApp {
+  /** Installed from the Microsoft Store (an MSIX package); see common/store. */
+  readonly store = isStorePackage(process.platform, process.windowsStore);
+  readonly dist = distribution(this.store);
   readonly settings = new SettingsStore(join(app.getPath('userData'), 'settings.json'));
   locale: DesktopLocale = 'tr';
   t: Translate = (k) => k;
@@ -490,7 +494,8 @@ export class DesktopApp {
     this.storeBrand(check.origin, check.bootstrap);
     const s = this.settings.get();
     // Packaged builds only: a development run must not register itself to start at login.
-    if (!s.autostartInitialized && app.isPackaged) {
+    // The Store build's startup task is in its manifest, on from the first launch.
+    if (!s.autostartInitialized && app.isPackaged && this.dist.loginItem === 'app') {
       this.setAutostart(true);
       this.settings.update({ autostartInitialized: true });
     }
@@ -785,10 +790,13 @@ export class DesktopApp {
   // ---- settings -----------------------------------------------------------------------------
 
   get autostart(): boolean {
+    // Windows keeps the Store build's startup task; the app cannot read it without WinRT.
+    if (this.dist.loginItem === 'system') return false;
     return app.getLoginItemSettings().openAtLogin;
   }
 
   setAutostart(on: boolean): void {
+    if (this.dist.loginItem === 'system') return;
     app.setLoginItemSettings({ openAtLogin: on, args: ['--hidden'] });
     this.tray.refresh();
   }
@@ -800,6 +808,7 @@ export class DesktopApp {
       brand: this.brand,
       notifications: s.notifications,
       autostart: this.autostart,
+      store: this.store,
       // Again each time: the program that held the shortcut may have gone.
       globalShortcut: this.shortcut.apply(s.globalShortcut),
       explorerMenu: s.explorerMenu,

@@ -184,6 +184,17 @@ function seed(s: MockState): McpMockState {
       },
     ],
     calls: [
+      call(7, 'call_write_operation', ago(MIN), {
+        write: true,
+        canUndo: true,
+        target: { type: 'operation', id: 'createBoardCard', label: null },
+        summary: 'createBoardCard',
+        params: {
+          operation: 'createBoardCard',
+          params: { boardId: '…' },
+          body: { title: 'Sürüm' },
+        },
+      }),
       call(6, 'trash_nodes', ago(5 * MIN), {
         write: true,
         result: 'pending_approval',
@@ -238,7 +249,7 @@ function seed(s: MockState): McpMockState {
       },
     ],
     verifiedAt: 0,
-    nextCall: 7,
+    nextCall: 8,
   };
 }
 

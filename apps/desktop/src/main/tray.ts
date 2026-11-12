@@ -3,10 +3,12 @@ import {
   Tray,
   nativeImage,
   nativeTheme,
+  shell,
   type MenuItemConstructorOptions,
   type NativeImage,
 } from 'electron';
 import { badgeBitmap, badgeLabel, withDot } from '../common/badge';
+import { STARTUP_SETTINGS_URL } from '../common/store';
 import { TRAY_SCALES, trayVariant } from '../common/tray-icon';
 import type { DesktopApp } from './app';
 import { asset } from './paths';
@@ -130,12 +132,18 @@ export class TrayController {
     items.push(
       { type: 'separator' },
       { label: t('desktop.tray.settings'), click: () => d.openSettings() },
-      {
-        label: t('desktop.tray.autostart'),
-        type: 'checkbox',
-        checked: d.autostart,
-        click: (item) => d.setAutostart(item.checked),
-      },
+      // The Store build's startup task is Windows' to switch: the item opens its page.
+      d.dist.loginItem === 'system'
+        ? {
+            label: t('desktop.tray.autostartStore'),
+            click: () => void shell.openExternal(STARTUP_SETTINGS_URL),
+          }
+        : {
+            label: t('desktop.tray.autostart'),
+            type: 'checkbox',
+            checked: d.autostart,
+            click: (item) => d.setAutostart(item.checked),
+          },
     );
     if (d.updater.state.state === 'downloaded') {
       items.push({ label: t('desktop.tray.installUpdate'), click: () => d.updater.install() });

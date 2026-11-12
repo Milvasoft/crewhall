@@ -29,7 +29,8 @@
   "outdated": {
     "title": "Uygulamayı güncelleyin",
     "body": "{name} bu sürümle ({version}) çalışmıyor. Güncellemeyi kurun, sonra yeniden deneyin.",
-    "manual": "Güncelleme burada kurulamıyor. Yeni sürümü kurumunuzun Crewhall sayfasından indirin: Hesabım › Güvenlik › Masaüstü uygulaması."
+    "manual": "Güncelleme burada kurulamıyor. Yeni sürümü kurumunuzun Crewhall sayfasından indirin: Hesabım › Güvenlik › Masaüstü uygulaması.",
+    "store": "Bu sürümü Microsoft Store güncelliyor. Store'da Kitaplık › Güncellemeleri al ile Crewhall'ı güncelleyin, sonra yeniden deneyin."
   },
   "tray": {
     "open": "Aç",
@@ -40,6 +41,7 @@
     "syncProblem": "Senkronda sorun var",
     "settings": "Ayarlar…",
     "autostart": "Oturum açılınca başlat",
+    "autostartStore": "Oturum açılınca başlat…",
     "installUpdate": "Güncellemeyi kur ve yeniden başlat",
     "quit": "Çık"
   },
@@ -104,8 +106,11 @@
     "notificationsHint": "Mesaj, bahsetme ve aramalar için bildirim gösterilir. Pencere öndeyken uygulama içinde gösterilir.",
     "autostart": "Oturum açılınca başlat",
     "autostartHint": "Uygulama arka planda, tepside açılır.",
+    "autostartStoreHint": "Microsoft Store sürümünde bunu Windows açıp kapatır: Ayarlar › Uygulamalar › Başlangıç.",
+    "openStartupSettings": "Windows ayarlarını aç",
     "explorerMenu": "Dosya Gezgini menüleri",
     "explorerMenuHint": "Dosya ve klasörlerin sağ tık menüsünde \"Crewhall'a yükle\", Gönder menüsünde Crewhall görünür.",
+    "explorerMenuStoreHint": "Microsoft Store sürümünde sağ tık menüsündeki \"Crewhall'a yükle\" ve Gönder menüsü yok: Windows, Store'dan kurulan uygulamaların bu kayıtlarını Dosya Gezgini'ne göstermez. Bu menüler için uygulamayı kurulum dosyasıyla kurun.",
     "shortcut": "Crewhall'ı açan kısayol",
     "shortcutHint": "Hangi programda olursan ol Crewhall'ı öne getirir. Değiştirmek için düğmeye tıkla ve tuşlara bas.",
     "shortcutPress": "Tuşlara bas…",
@@ -124,8 +129,10 @@
     "version": "Sürüm {version}",
     "updates": "Güncellemeler",
     "checkUpdates": "Güncellemeleri denetle",
+    "openStore": "Microsoft Store'u aç",
     "update": {
       "disabled": "Bu kurulumda otomatik güncelleme kapalı.",
+      "store": "Güncellemeleri Microsoft Store kuruyor.",
       "idle": "Güncelleme denetlenmedi.",
       "checking": "Denetleniyor…",
       "none": "Uygulama güncel.",

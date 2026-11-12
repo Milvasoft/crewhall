@@ -490,6 +490,8 @@ const APPLY: Record<
   call_write_operation: applyOperation,
   share_node: applyOperation,
   schedule_meeting: applyOperation,
+  send_mail: applyOperation,
+  post_announcement: applyOperation,
   // Actions proposed by the AI assistant (yol haritası #18, services/ai/actions.ts).
   ...AI_APPLIERS,
 };

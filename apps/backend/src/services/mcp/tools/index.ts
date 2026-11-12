@@ -4,13 +4,17 @@ import { z } from 'zod';
 import * as api from './api';
 import * as boards from './boards';
 import * as chat from './chat';
+import * as comms from './comms';
+import * as contacts from './contacts';
 import * as drive from './drive';
+import * as forms from './forms';
 import * as pages from './pages';
 import * as personal from './personal';
 import * as portal from './portal';
 import * as quick from './quick';
 import * as read from './read';
 import * as tables from './tables';
+import * as tablesSchema from './tables-schema';
 import { defineTool, ToolError, type ToolDef } from './types';
 
 const getApproval = defineTool({
@@ -67,6 +71,12 @@ export const TOOLS: ToolDef[] = [
   chat.sendMessageTool,
   chat.readMessages,
   chat.listNotifications,
+  comms.markNotificationsRead,
+  comms.reactToMessage,
+  comms.pinMessage,
+  comms.createChatReminder,
+  comms.listAnnouncements,
+  comms.postAnnouncement,
   pages.createPage,
   pages.appendToPage,
   pages.readPage,
@@ -75,10 +85,21 @@ export const TOOLS: ToolDef[] = [
   boards.getBoard,
   boards.createBoardCard,
   boards.updateBoardCard,
+  boards.listBoardSprints,
+  boards.manageBoardSprint,
+  boards.logCardTime,
   personal.listCalendarEvents,
   personal.createCalendarEvent,
   personal.scheduleMeeting,
+  personal.findFreeResources,
+  personal.bookResource,
   personal.listUnreadMail,
+  personal.readMail,
+  personal.sendMail,
+  contacts.searchDirectory,
+  contacts.createContact,
+  forms.listForms,
+  forms.listFormResponses,
   portal.listPortalDocs,
   portal.upsertPortalDoc,
   portal.createPortalCategory,
@@ -89,6 +110,9 @@ export const TOOLS: ToolDef[] = [
   tables.queryTableRowsTool,
   tables.addTableRows,
   tables.updateTableRowTool,
+  tablesSchema.createTableField,
+  tablesSchema.updateTableField,
+  tablesSchema.createTableView,
   // The rest of Crewhall through the operation bridge (services/mcp/bridge.ts).
   api.findOperations,
   api.callReadOperation,

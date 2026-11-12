@@ -6,7 +6,7 @@ import {
   type MoveResult,
 } from '@crewhall/shared';
 import { z } from 'zod';
-import { operate } from './api';
+import { isoTime, operate } from './api';
 import { defineTool, ToolError, type ToolContext } from './types';
 
 /**
@@ -237,6 +237,191 @@ export const updateBoardCard = defineTool({
       },
       target: { type: 'board_card', id: card.id, label: card.title },
       summary: column ? `${card.title} → ${column}` : card.title,
+    };
+  },
+});
+
+interface SprintOut {
+  id: string;
+  name: string;
+  goal: string;
+  startsOn: string;
+  endsOn: string;
+  status: string;
+  cardCount: number;
+  result: { unit: string; done: number; total: number } | null;
+}
+
+const sprintOut = (s: SprintOut) => ({
+  sprint_id: s.id,
+  name: s.name,
+  goal: s.goal,
+  starts_on: s.startsOn,
+  ends_on: s.endsOn,
+  status: s.status,
+  cards: s.cardCount,
+  result: s.result,
+});
+
+export const listBoardSprints = defineTool({
+  name: 'list_board_sprints',
+  title: 'List board sprints',
+  description: 'Planned, active and closed sprints of a board with their dates and results.',
+  scope: 'hub:read',
+  module: 'boards',
+  write: false,
+  approval: null,
+  annotations: { readOnly: true, destructive: false, idempotent: true },
+  input: z.object({ board_id: z.uuid() }),
+  async run(ctx, input) {
+    const out = (await operate(ctx, 'listBoardSprints', {
+      params: { boardId: input.board_id },
+    })) as { items: SprintOut[] };
+    return { data: { items: out.items.map(sprintOut) }, summary: String(out.items.length) };
+  },
+});
+
+export const manageBoardSprint = defineTool({
+  name: 'manage_board_sprint',
+  title: 'Manage board sprint',
+  description:
+    'Plans a sprint on a board (action "create"), starts a planned one ("start"; one active at a time) or closes the active one ("close"; unfinished cards go to move_to_sprint_id or the backlog).',
+  scope: 'boards:write',
+  module: 'boards',
+  write: true,
+  approval: null,
+  annotations: { readOnly: false, destructive: false, idempotent: false },
+  input: z.object({
+    action: z.enum(['create', 'start', 'close']),
+    board_id: z.uuid().optional().describe('create'),
+    name: z.string().trim().min(1).max(80).optional().describe('create'),
+    goal: z.string().max(500).optional().describe('create'),
+    starts_on: z.iso.date().optional().describe('create: YYYY-MM-DD'),
+    ends_on: z.iso.date().optional().describe('create: YYYY-MM-DD'),
+    sprint_id: z.uuid().optional().describe('start, close'),
+    move_to_sprint_id: z.uuid().nullable().optional().describe('close: planned sprint'),
+  }),
+  example: {
+    action: 'create',
+    board_id: '0192f1c4-0000-7000-8000-000000000000',
+    name: 'Sprint 12',
+    starts_on: '2030-01-13',
+    ends_on: '2030-01-24',
+  },
+  async run(ctx, input) {
+    if (input.action === 'create') {
+      if (!input.board_id || !input.name || !input.starts_on || !input.ends_on) {
+        throw new ToolError(
+          'validation_failed',
+          'create: board_id, name, starts_on ve ends_on gerekli.',
+        );
+      }
+      const s = (await operate(ctx, 'createBoardSprint', {
+        params: { boardId: input.board_id },
+        body: {
+          name: input.name,
+          startsOn: input.starts_on,
+          endsOn: input.ends_on,
+          ...(input.goal ? { goal: input.goal } : {}),
+        },
+      })) as SprintOut;
+      return {
+        data: sprintOut(s),
+        target: { type: 'board_sprint', id: s.id, label: s.name },
+        summary: s.name,
+        undo: { kind: 'api_call', operation: 'deleteBoardSprint', params: { sprintId: s.id } },
+      };
+    }
+    if (!input.sprint_id)
+      throw new ToolError('validation_failed', `${input.action}: sprint_id gerekli.`);
+    if (input.action === 'start') {
+      const s = (await operate(ctx, 'startBoardSprint', {
+        params: { sprintId: input.sprint_id },
+      })) as SprintOut;
+      return {
+        data: sprintOut(s),
+        target: { type: 'board_sprint', id: s.id, label: s.name },
+        summary: `${s.name} ▶`,
+      };
+    }
+    const closed = (await operate(ctx, 'closeBoardSprint', {
+      params: { sprintId: input.sprint_id },
+      body: { moveTo: input.move_to_sprint_id ?? null },
+    })) as { sprint: SprintOut; moved: number };
+    return {
+      data: { ...sprintOut(closed.sprint), moved_cards: closed.moved },
+      target: { type: 'board_sprint', id: closed.sprint.id, label: closed.sprint.name },
+      summary: `${closed.sprint.name} ■`,
+    };
+  },
+});
+
+export const logCardTime = defineTool({
+  name: 'log_card_time',
+  title: 'Log time on card',
+  description:
+    'Records time spent on a board card: minutes (with an optional note and start time), or starts / stops the person\'s running timer (timer "start" | "stop").',
+  scope: 'boards:write',
+  module: 'boards',
+  write: true,
+  approval: null,
+  annotations: { readOnly: false, destructive: false, idempotent: false },
+  input: z.object({
+    card_id: z.uuid().optional().describe('Not needed to stop the timer'),
+    minutes: z
+      .number()
+      .int()
+      .min(1)
+      .max(24 * 60)
+      .optional(),
+    note: z.string().trim().max(500).optional(),
+    started_at: z.string().max(40).optional().describe('When the work was done; now when omitted'),
+    timer: z.enum(['start', 'stop']).optional(),
+  }),
+  example: { card_id: '0192f1c4-0000-7000-8000-000000000000', minutes: 90, note: 'API testleri' },
+  async run(ctx, input) {
+    interface Entry {
+      id: string;
+      cardId: string;
+      minutes: number;
+      startedAt: string;
+    }
+    if (input.timer === 'stop') {
+      const out = (await operate(ctx, 'stopMyBoardTimer', {})) as { entry: Entry | null };
+      return {
+        data: {
+          entry_id: out.entry?.id ?? null,
+          card_id: out.entry?.cardId ?? null,
+          minutes: out.entry?.minutes ?? 0,
+        },
+        summary: `■ ${out.entry?.minutes ?? 0} dk`,
+      };
+    }
+    if (!input.card_id) throw new ToolError('validation_failed', 'card_id gerekli.');
+    if (input.timer === 'start') {
+      const entry = (await operate(ctx, 'startBoardCardTimer', {
+        params: { cardId: input.card_id },
+      })) as Entry;
+      return {
+        data: { entry_id: entry.id, card_id: entry.cardId, started_at: entry.startedAt },
+        target: { type: 'board_card', id: entry.cardId, label: null },
+        summary: '▶',
+      };
+    }
+    if (!input.minutes) throw new ToolError('validation_failed', 'minutes ya da timer ver.');
+    const entry = (await operate(ctx, 'addBoardCardTime', {
+      params: { cardId: input.card_id },
+      body: {
+        minutes: input.minutes,
+        ...(input.note ? { note: input.note } : {}),
+        ...(input.started_at ? { startedAt: isoTime(input.started_at, 'started_at') } : {}),
+      },
+    })) as Entry;
+    return {
+      data: { entry_id: entry.id, card_id: entry.cardId, minutes: entry.minutes },
+      target: { type: 'board_card', id: entry.cardId, label: null },
+      summary: `${entry.minutes} dk`,
+      undo: { kind: 'api_call', operation: 'deleteBoardTimeEntry', params: { entryId: entry.id } },
     };
   },
 });

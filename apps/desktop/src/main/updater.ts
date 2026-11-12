@@ -25,6 +25,9 @@ export class Updater {
 
   start(): void {
     if (!app.isPackaged) return;
+    // The Microsoft Store installs its own updates; a downloaded installer could not replace a
+    // package anyway.
+    if (!this.d.dist.selfUpdate) return this.set({ state: 'store' });
     if (!this.wired) {
       this.wired = true;
       autoUpdater.autoDownload = true;

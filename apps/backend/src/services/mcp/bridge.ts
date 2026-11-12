@@ -1,5 +1,5 @@
 import { eq } from 'drizzle-orm';
-import { users } from '@crewhall/db';
+import { users, type ToolCallUndo } from '@crewhall/db';
 import {
   MCP_SCOPES,
   MODULE_OF_ENDPOINT,
@@ -157,6 +157,7 @@ const TRIVIAL = new Set<string>([
   'deleteBoardCardComment',
   'deletePageComment',
   'deleteTableRowComment',
+  'unpinMessage',
 ]);
 
 /**
@@ -181,6 +182,90 @@ export const isReadOperation = (name: string) => {
   const rule = operationRule(name);
   return rule !== null && rule.scope === 'hub:read' && rule.approval === null;
 };
+
+// ---- undo of direct bridge writes -------------------------------------------------------------
+
+type Ids = Record<string, string>;
+interface Inverse {
+  operation: EndpointName;
+  /** Path parameters of the reverse, from the call's own parameters and its answer. */
+  params: (params: Ids, result: Ids) => Ids;
+  body?: (body: Record<string, unknown>, params: Ids, result: Ids) => unknown;
+}
+
+const byId =
+  (key: string) =>
+  (_p: Ids, r: Ids): Ids => ({ [key]: r.id! });
+
+/**
+ * The reverse of frequent writes made through call_write_operation: what one "Geri al" in
+ * Hesabım › Etkinlik runs, as the person. Updates need the earlier values, so only creations,
+ * reactions and pins are reversible here; dedicated tools keep their own undo.
+ */
+export const INVERSES: Partial<Record<EndpointName, Inverse>> = {
+  createBoardColumn: { operation: 'deleteBoardColumn', params: byId('columnId') },
+  createBoardCard: { operation: 'deleteBoardCard', params: byId('cardId') },
+  addBoardCardComment: { operation: 'deleteBoardCardComment', params: byId('activityId') },
+  createBoardSprint: { operation: 'deleteBoardSprint', params: byId('sprintId') },
+  addBoardCardTime: { operation: 'deleteBoardTimeEntry', params: byId('entryId') },
+  createContact: { operation: 'deleteContact', params: byId('contactId') },
+  createTableField: {
+    operation: 'deleteTableField',
+    params: (p, r) => ({ tableId: p.tableId!, fieldId: r.id! }),
+  },
+  createTableView: {
+    operation: 'deleteTableView',
+    params: (p, r) => ({ tableId: p.tableId!, viewId: r.id! }),
+  },
+  createTableRow: {
+    operation: 'deleteTableRows',
+    params: (p) => ({ tableId: p.tableId! }),
+    body: (_b, _p, r) => ({ rowIds: [r.id] }),
+  },
+  addTableRowComment: {
+    operation: 'deleteTableRowComment',
+    params: (p, r) => ({ tableId: p.tableId!, commentId: r.id! }),
+  },
+  createCalendarEvent: { operation: 'deleteCalendarEvent', params: byId('eventId') },
+  createMeeting: { operation: 'cancelMeeting', params: byId('meetingId') },
+  createBooking: { operation: 'cancelBooking', params: byId('bookingId') },
+  createChatReminder: { operation: 'deleteChatReminder', params: byId('reminderId') },
+  addReaction: {
+    operation: 'removeReaction',
+    params: (p) => ({ messageId: p.messageId! }),
+    body: (b) => ({ emoji: b.emoji }),
+  },
+  pinMessage: { operation: 'unpinMessage', params: (p) => ({ messageId: p.messageId! }) },
+  createForm: { operation: 'deleteForm', params: byId('formId') },
+  createKudos: { operation: 'deleteKudos', params: byId('kudosId') },
+  createPortalPost: { operation: 'deletePortalPost', params: byId('postId') },
+  createPortalDoc: { operation: 'deletePortalDoc', params: byId('docId') },
+  createPageComment: { operation: 'deletePageComment', params: (_p, r) => ({ commentId: r.id! }) },
+};
+
+/** The undo entry of a direct bridge write, when its reverse is known. */
+export function inverseOf(
+  name: EndpointName,
+  input: OperationInput,
+  result: unknown,
+): ToolCallUndo | undefined {
+  const inverse = INVERSES[name];
+  if (!inverse || !result || typeof result !== 'object') return undefined;
+  const r = result as Ids;
+  const params = inverse.params(input.params ?? {}, r);
+  if (Object.values(params).some((v) => typeof v !== 'string' || !v)) return undefined;
+  const body = inverse.body?.(
+    (input.body && typeof input.body === 'object' ? input.body : {}) as Record<string, unknown>,
+    input.params ?? {},
+    r,
+  );
+  return {
+    kind: 'api_call',
+    operation: inverse.operation,
+    params,
+    ...(body !== undefined ? { body } : {}),
+  };
+}
 
 // ---- the in-process call --------------------------------------------------------------------
 

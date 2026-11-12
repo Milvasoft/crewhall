@@ -6,6 +6,7 @@ import { app, dialog, ipcMain, session, shell, type IpcMainInvokeEvent } from 'e
 import { z } from 'zod';
 import { API_METHODS, type DesktopApi, type FolderView, type ServerCheckView } from '../common/ipc';
 import { checkServer } from '../common/server';
+import { STARTUP_SETTINGS_URL, STORE_UPDATES_URL } from '../common/store';
 import { foldersOverlap } from '../common/virtual-drive';
 import type { SyncPair } from '../sync/engine';
 import type { DesktopApp } from './app';
@@ -201,6 +202,12 @@ export function registerIpc(d: DesktopApp): void {
 
     checkUpdates: async () => d.updater.check(),
     installUpdate: async () => d.updater.install(),
+    openStartupSettings: async () => {
+      if (d.dist.loginItem === 'system') await shell.openExternal(STARTUP_SETTINGS_URL);
+    },
+    openStoreUpdates: async () => {
+      if (!d.dist.selfUpdate) await shell.openExternal(STORE_UPDATES_URL);
+    },
     screenSources: async () => screenSources(),
     chooseSource: async (id: string | null) => chooseScreen(id === null ? null : Str.parse(id)),
     screenAccess: async () => screenAccess(),

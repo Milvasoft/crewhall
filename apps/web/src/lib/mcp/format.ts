@@ -81,3 +81,22 @@ export function callTime(at: string, locale: AppLocale, now = new Date()): strin
     ? formatDate(d, locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' })
     : formatDate(d, locale, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
 }
+
+/** MCP tools that run a Crewhall API operation by name (backend services/mcp/bridge.ts). */
+const BRIDGE_TOOLS = new Set(['call_read_operation', 'call_write_operation']);
+
+/** The operation a bridge call ran, e.g. `createBoardCard`; null for other tools. */
+export function operationOf(call: Pick<ToolCall, 'tool' | 'params'>): string | null {
+  if (!BRIDGE_TOOLS.has(call.tool)) return null;
+  const op = call.params.operation;
+  return typeof op === 'string' && /^[A-Za-z0-9]+$/.test(op) ? op : null;
+}
+
+/** "Pano kartı oluştur" for the frequent operations, else the name split into words. */
+export function operationLabel(t: I18nValue['t'], operation: string): string {
+  const key = `mcp.operations.${operation}` as Parameters<I18nValue['t']>[0];
+  const text = t(key);
+  if (text !== key) return text;
+  const words = operation.replace(/([a-z0-9])([A-Z])/g, '$1 $2').toLowerCase();
+  return words.charAt(0).toUpperCase() + words.slice(1);
+}

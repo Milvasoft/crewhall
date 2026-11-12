@@ -46,7 +46,7 @@ export function ConversationHeader({
       className={cn(
         'flex h-full items-stretch gap-4',
         // A narrow window squeezes the tabs (they scroll), never the call buttons.
-        phone ? 'px-4' : 'ml-4 min-w-0 shrink overflow-x-auto',
+        phone ? 'px-4' : 'ml-4 min-w-0 shrink overflow-x-auto [scrollbar-width:none]',
       )}
     >
       {tabs.map((x) => (

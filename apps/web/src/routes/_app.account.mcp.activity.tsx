@@ -26,7 +26,7 @@ import { ResultBadge } from '@/components/mcp/ResultBadge';
 import { Workspace } from '@/components/shell/Workspace';
 import { api, isApiError } from '@/lib/api';
 import { useI18n } from '@/lib/i18n/I18nContext';
-import { callState, callTime } from '@/lib/mcp/format';
+import { callState, callTime, operationLabel, operationOf } from '@/lib/mcp/format';
 import { grantsQuery, mcpKeys, overviewQuery, tokensQuery } from '@/lib/mcp/queries';
 
 const RANGES = { h24: 24, d7: 24 * 7, d30: 24 * 30 } as const;
@@ -226,9 +226,7 @@ function ActivityPage() {
                       </Td>
                       <Td className="text-cap whitespace-nowrap">{c.via.name}</Td>
                       <Td className="font-mono text-xs">{c.tool}</Td>
-                      <Td className="max-w-[320px] truncate text-cap">
-                        {c.target?.label ?? c.summary ?? '—'}
-                      </Td>
+                      <Td className="max-w-[320px] truncate text-cap">{callLabel(t, c) ?? '—'}</Td>
                       <Td>
                         {state === 'error' && c.errorCode ? (
                           <span className="font-mono text-xs text-danger">{c.errorCode}</span>
@@ -291,6 +289,13 @@ function ActivityPage() {
   );
 }
 
+/** What a row says it did: the operation of a bridge call, else the target or summary. */
+function callLabel(t: ReturnType<typeof useI18n>['t'], call: ToolCall): string | null {
+  const op = operationOf(call);
+  if (op) return operationLabel(t, op);
+  return call.target?.label ?? call.summary ?? null;
+}
+
 function CallDetail({ call }: { call: ToolCall }) {
   const { t } = useI18n();
   return (
@@ -304,7 +309,7 @@ function CallDetail({ call }: { call: ToolCall }) {
       <div className="flex min-w-0 flex-col gap-1.5">
         <span className="eyebrow">{t('mcp.activity.summary')}</span>
         <div className="flex flex-col gap-1 rounded-lg bg-surface p-3 text-cap shadow-line">
-          <span className="font-semibold">{call.summary ?? call.target?.label ?? call.tool}</span>
+          <span className="font-semibold">{callLabel(t, call) ?? call.tool}</span>
           {call.errorCode ? (
             <span className="font-mono text-xs text-danger">{call.errorCode}</span>
           ) : null}

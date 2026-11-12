@@ -26,6 +26,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   forwardRef,
   useImperativeHandle,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -654,6 +655,18 @@ export const Composer = forwardRef<
     }
   };
 
+  // The box grows with what is typed (wrapped lines too) up to its max height; only then it
+  // scrolls, so a short message or the placeholder never shows a scrollbar.
+  useLayoutEffect(() => {
+    const el = area.current;
+    if (!el) return;
+    const max = 200;
+    el.style.height = 'auto';
+    const full = text ? el.scrollHeight : 0;
+    el.style.height = full ? `${Math.min(full, max)}px` : '';
+    el.style.overflowY = full > max ? 'auto' : 'hidden';
+  }, [text]);
+
   if (!conv.permissions.write) {
     return (
       <div className="mx-6 mb-5 rounded-xl bg-bg2 px-4 py-3 text-center text-cap text-fg2">
@@ -957,7 +970,7 @@ export const Composer = forwardRef<
                   setRefPopup(null);
                   setCmdQuery(null);
                 }}
-                className="max-h-[200px] min-h-9 flex-1 resize-none bg-transparent py-2 text-[14px] leading-5 outline-none placeholder:text-fg3 focus-visible:shadow-none focus-visible:outline-none"
+                className="max-h-[200px] min-h-9 min-w-0 flex-1 resize-none overflow-y-hidden bg-transparent py-2 text-[14px] leading-5 outline-none placeholder:truncate placeholder:text-fg3 focus-visible:shadow-none focus-visible:outline-none"
               />
               <EmojiPicker onPick={insert}>
                 <IconButton size="sm" tone="plain" aria-label={t('chat.composer.emoji')}>

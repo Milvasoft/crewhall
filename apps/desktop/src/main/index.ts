@@ -3,6 +3,7 @@ import { getCACertificates, setDefaultCACertificates } from 'node:tls';
 import { app, globalShortcut } from 'electron';
 import { appUserModelId } from '../common/app-id';
 import { PROTOCOL, findDeepLinkArg } from '../common/deeplink';
+import { distribution, isStorePackage } from '../common/store';
 import { REMOVE_DRIVE_FLAG } from '../common/virtual-drive';
 import { macWebAuthnOptions } from '../common/webauthn';
 import { DesktopApp } from './app';
@@ -23,7 +24,11 @@ function trustSystemCertificates(): void {
   }
 }
 
+const dist = distribution(isStorePackage(process.platform, process.windowsStore));
+
 function registerProtocol(): void {
+  // A Store package declares crewhall:// in its manifest; the registry key would stay its own.
+  if (!dist.registerProtocol) return;
   if (!process.defaultApp) {
     app.setAsDefaultProtocolClient(PROTOCOL);
   } else if (process.env.CREWHALL_REGISTER_PROTOCOL === '1' && process.argv[1]) {
@@ -51,7 +56,8 @@ if (process.argv.includes(REMOVE_DRIVE_FLAG)) {
 } else if (!app.requestSingleInstanceLock()) {
   app.quit();
 } else {
-  app.setAppUserModelId(appUserModelId(app.isPackaged));
+  // A Store package keeps the id Windows gave it, the one its Start entry and taskbar pin carry.
+  if (dist.ownAppUserModelId) app.setAppUserModelId(appUserModelId(app.isPackaged));
   let desktop: DesktopApp | null = null;
   let pendingLink = findDeepLinkArg(process.argv);
 

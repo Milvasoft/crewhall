@@ -23,6 +23,36 @@
   }
 }
 
+/* Scrollbars: thin, no arrow buttons, a thumb in the theme's colors (the default Windows bars
+   with arrows crowd narrow windows such as a popped-out chat). Chromium and the desktop app use
+   the ::-webkit-scrollbar parts; Firefox the standard properties. A `scrollbar-width` set on an
+   element (none on tab strips) still wins there. */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--fg3) 45%, transparent) padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--fg3) padding-box;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--fg3) 45%, transparent) transparent;
+  }
+}
+
 /* H10: a table wider than its rounded card (members, logs on a phone) scrolls sideways inside
    the card instead of being cut off. Unlayered on purpose: it must beat `overflow-hidden`. */
 main :where(.overflow-hidden):has(> table) {

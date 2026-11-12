@@ -137,6 +137,13 @@ describe('MCP and API (design 18)', () => {
     expect(screen.getByText('insufficient_scope')).toBeInTheDocument();
   });
 
+  it('activity names bridge operations in words', async () => {
+    signedInAs(USER.bugra);
+    renderApp('/account/mcp/activity?filter=all');
+    expect(await screen.findByText('Pano kartı oluştur')).toBeInTheDocument();
+    expect(screen.getByText('call_write_operation')).toBeInTheDocument();
+  });
+
   it('admins turn personal tokens off in the policy', async () => {
     signedInAs(USER.bugra);
     renderApp('/admin/mcp', 'en');

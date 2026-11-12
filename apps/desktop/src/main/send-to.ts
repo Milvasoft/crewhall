@@ -94,6 +94,8 @@ export class SendTo {
   }
 
   private get canRegister(): boolean {
+    // A Store package writes the registry and SendTo only for itself: Explorer would see nothing.
+    if (!this.d.dist.explorerMenu) return false;
     return process.platform === 'win32' && (app.isPackaged || !!process.env.CREWHALL_EXPLORER_NAME);
   }
 

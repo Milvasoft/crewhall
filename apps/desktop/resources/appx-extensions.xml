@@ -1,0 +1,10 @@
+
+        <!--
+          Start at sign-in. A packaged app cannot use the Run registry key (setLoginItemSettings):
+          Windows starts it through this task instead, after the first launch, and the person turns
+          it off in Settings > Apps > Startup. The parameter opens it in the tray, as the installer
+          build's login item does (src/main/index.ts reads it).
+        -->
+        <desktop:Extension Category="windows.startupTask" Executable="app\Crewhall.exe" EntryPoint="Windows.FullTrustApplication" uap10:Parameters="--hidden">
+          <desktop:StartupTask TaskId="CrewhallStartup" Enabled="true" DisplayName="Crewhall" />
+        </desktop:Extension>

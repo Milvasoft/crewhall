@@ -86,6 +86,17 @@ export function ConversationPane({ conv, seq }: { conv: Conversation; seq?: numb
     return () => setVisibleConversation(null);
   }, [conv.id]);
 
+  // Opening a chat puts the cursor in the message box, ready to type. Not on touch screens (the
+  // keyboard would cover the chat) and not out of an open dialog.
+  useEffect(() => {
+    if (window.matchMedia?.('(pointer: coarse)').matches) return;
+    const frame = requestAnimationFrame(() => {
+      if (document.activeElement?.closest('[role="dialog"], [role="alertdialog"]')) return;
+      composer.current?.focus();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [conv.id]);
+
   const scrollToBottom = useCallback(() => {
     const el = scroller.current;
     if (el) el.scrollTop = el.scrollHeight;

@@ -19,6 +19,8 @@
     "test:watch": "vitest",
     "dist:win": "node scripts/build-native.mjs && node scripts/build.mjs && electron-builder --config electron-builder.config.cjs --win nsis --publish never",
     "dist:mac": "node scripts/build.mjs && electron-builder --config electron-builder.config.cjs --mac --publish never",
+    "dist:store": "node scripts/store-env.mjs && node scripts/build-native.mjs && node scripts/build.mjs && electron-builder --config electron-builder.config.cjs --win appx --publish never",
+    "store:assets": "electron scripts/store-assets.mjs",
     "publish:updates": "node scripts/publish-updates.mjs"
   },
   "devDependencies": {

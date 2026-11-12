@@ -24,7 +24,8 @@ export type ServerCheckView =
   | { ok: false; error: 'invalid' | 'unreachable' | 'notCrewhall' | 'needsSetup' };
 
 export type UpdateState =
-  | { state: 'disabled' | 'idle' | 'checking' | 'none' | 'error' }
+  /** `store`: the Microsoft Store build, which the Store updates (common/store). */
+  | { state: 'disabled' | 'store' | 'idle' | 'checking' | 'none' | 'error' }
   | { state: 'available' | 'downloaded'; version: string };
 
 export interface SettingsView {
@@ -32,6 +33,11 @@ export interface SettingsView {
   brand: BrandView | null;
   notifications: boolean;
   autostart: boolean;
+  /**
+   * The Microsoft Store build: Windows starts it at sign-in through the package's startup task
+   * (`autostart` means nothing then), and it has no Explorer menu (common/store).
+   */
+  store: boolean;
   globalShortcut: ShortcutStatus;
   explorerMenu: boolean;
   version: string;
@@ -124,6 +130,10 @@ export interface DesktopApi {
   confirmVirtualDriveDeletes(id: string): Promise<void>;
   checkUpdates(): Promise<void>;
   installUpdate(): Promise<void>;
+  /** Store build: Windows' startup apps page, where its startup task is turned on or off. */
+  openStartupSettings(): Promise<void>;
+  /** Store build: the Store's downloads and updates page. */
+  openStoreUpdates(): Promise<void>;
   screenSources(): Promise<ScreenSource[]>;
   chooseSource(id: string | null): Promise<void>;
   /** macOS only asks for screen recording in System Settings; whether the app has it. */
@@ -178,6 +188,8 @@ export const API_METHODS = [
   'screenAccess',
   'openScreenSettings',
   'relaunch',
+  'openStartupSettings',
+  'openStoreUpdates',
   'retry',
   'answerControl',
   'stopControl',
