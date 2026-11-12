@@ -2,7 +2,7 @@ import { paths } from '@crewhall/shared';
 import { randomUUID } from 'node:crypto';
 import { stat } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { dialog, ipcMain, session, shell, type IpcMainInvokeEvent } from 'electron';
+import { app, dialog, ipcMain, session, shell, type IpcMainInvokeEvent } from 'electron';
 import { z } from 'zod';
 import { API_METHODS, type DesktopApi, type FolderView, type ServerCheckView } from '../common/ipc';
 import { checkServer } from '../common/server';
@@ -10,7 +10,7 @@ import { foldersOverlap } from '../common/virtual-drive';
 import type { SyncPair } from '../sync/engine';
 import type { DesktopApp } from './app';
 import { RENDERER_URL_PREFIX } from './paths';
-import { chooseScreen, screenSources } from './windows';
+import { chooseScreen, openScreenSettings, screenAccess, screenSources } from './windows';
 
 type Handlers = {
   [K in (typeof API_METHODS)[number]]: (...args: never[]) => ReturnType<DesktopApi[K]>;
@@ -203,6 +203,12 @@ export function registerIpc(d: DesktopApp): void {
     installUpdate: async () => d.updater.install(),
     screenSources: async () => screenSources(),
     chooseSource: async (id: string | null) => chooseScreen(id === null ? null : Str.parse(id)),
+    screenAccess: async () => screenAccess(),
+    openScreenSettings: async () => openScreenSettings(),
+    relaunch: async () => {
+      app.relaunch();
+      app.exit(0);
+    },
 
     answerControl: async (yes: boolean) => d.remote.answer(yes === true),
     stopControl: async () => d.remote.stop(),

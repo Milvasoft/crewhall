@@ -1,3 +1,5 @@
+import type { ScreenAccess } from './ipc';
+
 /**
  * Which web permissions the organization's pages get in the desktop app (main and meeting
  * windows share the default session, so one decision covers both).
@@ -87,4 +89,21 @@ export function macMediaAccess(
   if (!mediaTypes || mediaTypes.includes('video')) out.push('camera');
   if (!mediaTypes || mediaTypes.includes('audio')) out.push('microphone');
   return out;
+}
+
+/**
+ * Screen recording: macOS keeps it in System Settings (`getMediaAccessStatus('screen')`), and
+ * the app cannot ask for it; Windows and Linux let the picker share directly.
+ */
+export function screenAccessFor(platform: string, macStatus: string | null): ScreenAccess {
+  if (platform !== 'darwin') return { needsSystemGrant: false, granted: true };
+  return { needsSystemGrant: true, granted: macStatus === 'granted' };
+}
+
+/**
+ * Whether the picker shows the macOS steps instead of the list: no grant yet, or an empty list
+ * (an old grant from another build of the app does not count for this one).
+ */
+export function showMacScreenGrant(access: ScreenAccess, sourceCount: number): boolean {
+  return access.needsSystemGrant && (!access.granted || sourceCount === 0);
 }

@@ -3,6 +3,8 @@ import {
   allowPermissionCheck,
   allowPermissionRequest,
   macMediaAccess,
+  screenAccessFor,
+  showMacScreenGrant,
 } from '../src/common/permissions';
 
 const server = 'https://go.crewhall.app';
@@ -95,5 +97,26 @@ describe('plugin frames (eklentiler.md › Tarayıcı yetenekleri)', () => {
   it('keeps the rules for the server page itself (no location there)', () => {
     expect(allowPermissionRequest('media', `${server}/meetings`, server)).toBe(true);
     expect(allowPermissionRequest('geolocation', `${server}/`, server)).toBe(false);
+  });
+});
+
+describe('screen recording on macOS', () => {
+  it('Windows and Linux share from the picker without a system grant', () => {
+    const access = screenAccessFor('win32', null);
+    expect(access).toEqual({ needsSystemGrant: false, granted: true });
+    expect(showMacScreenGrant(access, 0)).toBe(false);
+  });
+
+  it('macOS without the grant shows the System Settings steps', () => {
+    const access = screenAccessFor('darwin', 'denied');
+    expect(access).toEqual({ needsSystemGrant: true, granted: false });
+    expect(showMacScreenGrant(access, 3)).toBe(true);
+    expect(showMacScreenGrant(screenAccessFor('darwin', 'not-determined'), 0)).toBe(true);
+  });
+
+  it('macOS with the grant shows the list, and the steps again when the list is empty', () => {
+    const access = screenAccessFor('darwin', 'granted');
+    expect(showMacScreenGrant(access, 2)).toBe(false);
+    expect(showMacScreenGrant(access, 0)).toBe(true);
   });
 });

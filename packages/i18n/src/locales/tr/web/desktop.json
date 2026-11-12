@@ -214,7 +214,10 @@
     "windows": "Pencereler",
     "share": "Paylaş",
     "cancel": "Vazgeç",
-    "empty": "Paylaşılabilecek ekran bulunamadı. Ekran kaydı izni verilmemiş olabilir."
+    "empty": "Paylaşılabilecek ekran bulunamadı. Ekran kaydı izni verilmemiş olabilir.",
+    "macGrant": "macOS'ta ekran paylaşımı için Crewhall'a ekran kaydı izni ver: Sistem Ayarları › Gizlilik ve Güvenlik › Ekran ve Sistem Sesi Kaydı'nda Crewhall'u aç. Listede yoksa + ile Uygulamalar'dan ekle. macOS izni ancak uygulama yeniden açılınca uygular.",
+    "openSettings": "Sistem Ayarları'nı aç",
+    "relaunch": "Crewhall'u yeniden başlat"
   },
   "download": {
     "title": "Masaüstü uygulaması",

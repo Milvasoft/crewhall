@@ -80,6 +80,12 @@ export interface ScreenSource {
   thumbnail: string;
 }
 
+export interface ScreenAccess {
+  /** True on macOS, where the person grants it in System Settings and restarts the app. */
+  needsSystemGrant: boolean;
+  granted: boolean;
+}
+
 export interface DesktopApi {
   i18n(): Promise<{ locale: DesktopLocale; messages: Dictionary }>;
   /** What the current page is for (set when the window opened it). */
@@ -120,6 +126,12 @@ export interface DesktopApi {
   installUpdate(): Promise<void>;
   screenSources(): Promise<ScreenSource[]>;
   chooseSource(id: string | null): Promise<void>;
+  /** macOS only asks for screen recording in System Settings; whether the app has it. */
+  screenAccess(): Promise<ScreenAccess>;
+  /** macOS: open Privacy › Screen & System Audio Recording. */
+  openScreenSettings(): Promise<void>;
+  /** Quits and starts the app again (macOS applies a new screen recording grant only then). */
+  relaunch(): Promise<void>;
   retry(): Promise<void>;
   /** Remote control consent window: "Ver" (true) or "Reddet". */
   answerControl(yes: boolean): Promise<void>;
@@ -163,6 +175,9 @@ export const API_METHODS = [
   'installUpdate',
   'screenSources',
   'chooseSource',
+  'screenAccess',
+  'openScreenSettings',
+  'relaunch',
   'retry',
   'answerControl',
   'stopControl',

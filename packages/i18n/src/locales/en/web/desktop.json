@@ -214,7 +214,10 @@
     "windows": "Windows",
     "share": "Share",
     "cancel": "Cancel",
-    "empty": "No screen can be shared. Screen recording permission may be missing."
+    "empty": "No screen can be shared. Screen recording permission may be missing.",
+    "macGrant": "To share your screen on macOS, give Crewhall screen recording access: System Settings › Privacy & Security › Screen & System Audio Recording, then turn on Crewhall. If it is not listed, add it from Applications with +. macOS applies the access only after the app restarts.",
+    "openSettings": "Open System Settings",
+    "relaunch": "Restart Crewhall"
   },
   "download": {
     "title": "Desktop app",

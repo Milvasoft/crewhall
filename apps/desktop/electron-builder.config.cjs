@@ -5,6 +5,12 @@
 // first install); macOS builds are ad-hoc signed, cannot be notarized and Squirrel.Mac will not
 // auto-update them. Set CSC_LINK / CSC_KEY_PASSWORD (Windows) or an Apple Developer ID
 // (macOS: CSC_LINK, APPLE_ID, APPLE_APP_SPECIFIC_PASSWORD, APPLE_TEAM_ID) once they exist.
+//
+// The ad-hoc signature is required, not cosmetic: an unsigned app has a broken signature after
+// packaging, and macOS then cannot remember the camera and microphone answers, so it asks on
+// every call. Hardened runtime stays for a real Developer ID only: under it, ad-hoc signed code
+// fails library validation and the app does not start.
+const macDeveloperId = Boolean(process.env.CSC_LINK || process.env.CSC_NAME);
 
 /** @type {import('electron-builder').Configuration} */
 module.exports = {
@@ -57,7 +63,9 @@ module.exports = {
     ],
     icon: 'resources/icon.png',
     category: 'public.app-category.productivity',
-    hardenedRuntime: true,
+    // '-' is ad-hoc signing; undefined lets electron-builder use the Developer ID it finds.
+    identity: macDeveloperId ? undefined : '-',
+    hardenedRuntime: macDeveloperId,
     entitlements: 'resources/entitlements.mac.plist',
     entitlementsInherit: 'resources/entitlements.mac.plist',
     extendInfo: {

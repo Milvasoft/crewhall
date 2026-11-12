@@ -11,7 +11,7 @@ import {
   type Session,
   type WebContents,
 } from 'electron';
-import type { ScreenSource, View } from '../common/ipc';
+import type { ScreenAccess, ScreenSource, View } from '../common/ipc';
 import { isServerUrl } from '../common/server';
 import type { DesktopApp } from './app';
 import { attachContextMenu } from './menu';
@@ -20,6 +20,7 @@ import {
   allowPermissionCheck,
   allowPermissionRequest,
   macMediaAccess,
+  screenAccessFor,
 } from '../common/permissions';
 import { asksForNewWindow, windowOpenDecision } from '../common/window-policy';
 import { reloadShortcut } from '../common/shortcuts';
@@ -408,6 +409,21 @@ export function chooseScreen(id: string | null): void {
   pending = null;
   resolve?.(id);
   if (picker && !picker.isDestroyed()) picker.close();
+}
+
+/** Screen recording: macOS keeps it in System Settings; elsewhere the picker is enough. */
+export function screenAccess(): ScreenAccess {
+  return screenAccessFor(
+    process.platform,
+    process.platform === 'darwin' ? systemPreferences.getMediaAccessStatus('screen') : null,
+  );
+}
+
+export function openScreenSettings(): void {
+  if (process.platform !== 'darwin') return;
+  void shell.openExternal(
+    'x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture',
+  );
 }
 
 export async function screenSources(): Promise<ScreenSource[]> {

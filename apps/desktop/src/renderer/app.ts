@@ -13,6 +13,7 @@ import type {
   SpaceView,
   View,
 } from '../common/ipc';
+import { showMacScreenGrant } from '../common/permissions';
 import { overallState, type VirtualDriveView } from '../common/virtual-drive';
 import type { PairStatus, SyncPair } from '../sync/engine';
 import { h, mount } from './dom';
@@ -423,7 +424,11 @@ async function sendView(): Promise<void> {
 
 async function pickerView(): Promise<void> {
   document.title = t('desktop.screenShare.title');
-  const sources = await api.screenSources().catch((): ScreenSource[] => []);
+  const [sources, access] = await Promise.all([
+    api.screenSources().catch((): ScreenSource[] => []),
+    api.screenAccess().catch(() => ({ needsSystemGrant: false, granted: true })),
+  ]);
+  const macGrant = showMacScreenGrant(access, sources.length);
   let chosen: string | null = sources.find((s) => s.kind === 'screen')?.id ?? null;
   const share = h('button', { class: 'primary' }, t('desktop.screenShare.share'));
   share.disabled = !chosen;
@@ -466,7 +471,29 @@ async function pickerView(): Promise<void> {
       'div',
       { class: 'picker' },
       h('h1', {}, t('desktop.screenShare.title')),
-      sources.length === 0 ? h('p', { class: 'muted' }, t('desktop.screenShare.empty')) : null,
+      macGrant
+        ? h(
+            'div',
+            { class: 'stack' },
+            h('p', {}, t('desktop.screenShare.macGrant')),
+            h(
+              'div',
+              { class: 'row' },
+              h(
+                'button',
+                { class: 'primary', onclick: () => void api.openScreenSettings() },
+                t('desktop.screenShare.openSettings'),
+              ),
+              h(
+                'button',
+                { onclick: () => void api.relaunch() },
+                t('desktop.screenShare.relaunch'),
+              ),
+            ),
+          )
+        : sources.length === 0
+          ? h('p', { class: 'muted' }, t('desktop.screenShare.empty'))
+          : null,
       group('screen', t('desktop.screenShare.screens')),
       group('window', t('desktop.screenShare.windows')),
       h(
