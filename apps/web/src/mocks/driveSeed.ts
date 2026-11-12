@@ -196,7 +196,7 @@ volumes:
 const SUNUM_LINES = [
   'Urun yol haritasi',
   'Milvaion 1.5 · SSO ve is akislari',
-  'Crewhall · acik kaynak cekirdek',
+  'Crewhall · kaynagi acik cekirdek',
   'Dumpapp · mobil surum',
   'Portal · cok dilli dokuman',
 ];
