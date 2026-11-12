@@ -198,13 +198,18 @@ export interface ToolCallUndo {
     | 'remove_group_link'
     | 'delete_message'
     | 'delete_portal_doc'
-    | 'delete_portal_post';
+    | 'delete_portal_post'
+    /** The reverse as an API operation, run through the MCP bridge as the person. */
+    | 'api_call';
   nodeIds?: string[];
   cardId?: string;
   itemId?: string;
   messageId?: string;
   docId?: string;
   postId?: string;
+  operation?: string;
+  params?: Record<string, string>;
+  body?: unknown;
   /** updated_at of the targets right after the call; a later change blocks one-click undo. */
   revs?: Record<string, string>;
 }

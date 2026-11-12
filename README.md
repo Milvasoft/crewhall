@@ -18,6 +18,7 @@
 </p>
 
 <p align="center">
+  <a href="https://portal.milvasoft.com/docs/1.0.1/crewhall/introduction">Docs</a> ·
   <a href="#run-it-on-a-server">Run it</a> ·
   <a href="#develop">Develop</a> ·
   <a href="#license">License</a> ·
@@ -42,11 +43,11 @@
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/screenshots/chat.png" alt="Chat: channels, threads, mentions, files and reactions"></td>
+    <td width="50%"><img src="docs/screenshots/chat.png" alt="Chat: channels, replies, mentions, files and reactions"></td>
     <td width="50%"><img src="docs/screenshots/drive.png" alt="Drive: a folder tree beside the list of files, pages and drawings"></td>
   </tr>
   <tr>
-    <td><b>Chat</b>: channels, direct messages, threads, reactions, file previews and calls.</td>
+    <td><b>Chat</b>: channels, direct and group messages, replies, reactions, file previews and calls.</td>
     <td><b>Drive</b>: folders, sharing, versions, trash and previews, with pages, boards and drawings beside the files.</td>
   </tr>
   <tr>
@@ -67,7 +68,7 @@ development setup loads.</sub>
 | Area         | What you get                                                                                  |
 | ------------ | --------------------------------------------------------------------------------------------- |
 | **Home**     | Quick access cards, links, notes, announcements and team celebrations.                        |
-| **Chat**     | Channels, direct messages, threads, reactions, calls, bots and webhooks.                      |
+| **Chat**     | Channels, direct and group messages, replies, reactions, calls, bots and webhooks.            |
 | **Drive**    | Folders, sharing, versions, trash and previews; Office editing through an optional service.   |
 | **Pages**    | A wiki with real-time collaboration, templates and imports from Markdown, Notion and Outline. |
 | **Boards**   | Task boards with sprints, timeline, workload and card dependencies.                           |
@@ -81,10 +82,20 @@ development setup loads.</sub>
 | **MCP**      | Connect AI assistants to the workspace with per-connection scopes and approvals.              |
 | **Clients**  | The web app and a Windows and macOS desktop app. The interface is in English and Turkish.     |
 
+## Documentation
+
+The user and admin guide is on the documentation portal, in English and Turkish:
+
+- [Introduction](https://portal.milvasoft.com/docs/1.0.1/crewhall/introduction) and [Getting started](https://portal.milvasoft.com/docs/1.0.1/crewhall/getting-started)
+- One page per module: [Chat](https://portal.milvasoft.com/docs/1.0.1/crewhall/chat), [Drive](https://portal.milvasoft.com/docs/1.0.1/crewhall/drive), [Pages](https://portal.milvasoft.com/docs/1.0.1/crewhall/pages),
+  [Boards](https://portal.milvasoft.com/docs/1.0.1/crewhall/boards), [Meetings](https://portal.milvasoft.com/docs/1.0.1/crewhall/meetings), [Vault](https://portal.milvasoft.com/docs/1.0.1/crewhall/vault) and more
+- [Administration](https://portal.milvasoft.com/docs/1.0.1/crewhall/administration), [Self-hosting](https://portal.milvasoft.com/docs/1.0.1/crewhall/self-hosting),
+  [Plugins and MCP](https://portal.milvasoft.com/docs/1.0.1/crewhall/plugins-and-mcp), [Desktop app](https://portal.milvasoft.com/docs/1.0.1/crewhall/desktop-app)
+
 ## Run it on a server
 
-Crewhall runs on one Linux server with Docker Compose. The full guide, currently in Turkish, is in
-[docs/kurulum.md](docs/kurulum.md).
+Crewhall runs on one Linux server with Docker Compose. See [Self-hosting](https://portal.milvasoft.com/docs/1.0.1/crewhall/self-hosting) on the
+documentation portal; the detailed guide in Turkish is in [docs/kurulum.md](docs/kurulum.md).
 
 ```bash
 git clone https://github.com/Milvasoft/crewhall.git && cd crewhall

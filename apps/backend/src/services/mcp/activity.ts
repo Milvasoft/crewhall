@@ -10,7 +10,7 @@ import {
   type DbOrTx,
   type ToolCallUndo,
 } from '@crewhall/db';
-import { MCP_LIMITS, type ToolCall } from '@crewhall/shared';
+import { MCP_LIMITS, type EndpointName, type ToolCall } from '@crewhall/shared';
 import { z } from 'zod';
 import type { Deps } from '../../deps';
 import { AppError } from '../../http/errors';
@@ -22,6 +22,7 @@ import { deleteDoc } from '../portal/docs';
 import { deletePost } from '../portal/posts';
 import { auditVia } from '../audit';
 import { mcpAudit } from './audit';
+import { callOperation, personPrincipal } from './bridge';
 
 type ToolCallRow = typeof toolCalls.$inferSelect;
 
@@ -217,6 +218,23 @@ export async function undoToolCall(deps: Deps, a: DriveActor, callNo: string) {
         : deletePost(db, a, undo.postId!, req),
     );
     await db.update(toolCalls).set({ undoneAt: new Date() }).where(eq(toolCalls.id, row.id));
+  } else if (undo.kind === 'api_call') {
+    // The reverse operation, through the router as the person (tools/api.ts).
+    const via = { kind: 'mcp_undo', toolCall: row.id };
+    await auditVia.run(via, () =>
+      callOperation(
+        deps,
+        {
+          principal: personPrincipal({ userId: a.userId, orgId: a.org.id, name: row.viaName }),
+          via,
+          locale: null,
+          ip: null,
+        },
+        undo.operation as EndpointName,
+        { params: undo.params ?? {}, body: undo.body },
+      ),
+    );
+    await db.update(toolCalls).set({ undoneAt: new Date() }).where(eq(toolCalls.id, row.id));
   } else if (undo.kind === 'delete_message') {
     // Chat deletes in its own transaction and tells the open clients (WS).
     await auditVia.run({ kind: 'mcp_undo', toolCall: row.id }, () =>
@@ -240,6 +258,7 @@ export async function undoToolCall(deps: Deps, a: DriveActor, callNo: string) {
             await quick.removeGroupLink(tx, a, undo.cardId!, undo.itemId!);
             break;
           case 'delete_message':
+          case 'api_call':
           case 'delete_portal_doc':
           case 'delete_portal_post':
             break;

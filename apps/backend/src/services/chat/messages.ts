@@ -20,6 +20,7 @@ import {
   CHAT_LIMITS,
   isReactionEmoji,
   type AlertCard,
+  type AlertSeverity,
   type Message,
   type MessageGif,
   type MessageRef,
@@ -366,6 +367,8 @@ export async function writeMessage(
     refs?: MessageRef[];
     /** Automation bot messages (kind webhook, no webhook row). */
     automation?: NonNullable<MessageBodyData['automation']>;
+    /** A webhook's chosen severity for text without a card (kept only when there is none). */
+    severity?: AlertSeverity | undefined;
   },
 ) {
   const conv = m.conv;
@@ -394,6 +397,7 @@ export async function writeMessage(
       body: {
         ...(input.card ? { card: input.card as unknown as Record<string, unknown> } : {}),
         ...(input.automation ? { automation: input.automation } : {}),
+        ...(input.severity && !input.card ? { severity: input.severity } : {}),
         ...(input.emote ? { emote: true } : {}),
         ...(input.pollId ? { poll: input.pollId } : {}),
         ...(input.gif ? { gif: input.gif } : {}),

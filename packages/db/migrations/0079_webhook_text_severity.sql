@@ -1,0 +1,1 @@
+ALTER TABLE "incoming_webhooks" ADD COLUMN "text_severity" text;

@@ -1,7 +1,8 @@
-import { MCP_LIMITS, NodeName } from '@crewhall/shared';
+import { MCP_LIMITS, NodeName, ShareRole } from '@crewhall/shared';
 import { z } from 'zod';
 import * as files from '../../drive/files';
 import * as tree from '../../drive/nodes';
+import { operate, requestOperation } from './api';
 import { nodeInGrant } from './read';
 import { defineTool, ToolError } from './types';
 
@@ -231,5 +232,147 @@ export const trashNodes = defineTool({
       targetRevs: revs,
       clientNote: input.note ?? null,
     });
+  },
+});
+
+export const moveNodes = defineTool({
+  name: 'move_nodes',
+  title: 'Move nodes',
+  description:
+    'Moves files, folders or pages into a folder (or a space root), also across spaces the person may edit.',
+  scope: 'drive:write',
+  write: true,
+  approval: null,
+  annotations: { readOnly: false, destructive: false, idempotent: true },
+  input: z.object({
+    node_ids: z.array(z.uuid()).min(1).max(20),
+    space_id: z.uuid().describe('Target space'),
+    parent_id: z.uuid().nullable().optional().describe('Target folder; omit for the space root'),
+  }),
+  example: {
+    node_ids: ['0192f1c4-0000-7000-8000-000000000000'],
+    space_id: '0192f1c4-0000-7000-8000-000000000001',
+    parent_id: '0192f1c4-0000-7000-8000-000000000002',
+  },
+  async run(ctx, input) {
+    ctx.assertSpace(input.space_id);
+    const ids = [...new Set(input.node_ids)];
+    const before = new Map<string, { spaceId: string; parentId: string | null }>();
+    for (const id of ids) {
+      const access = await nodeInGrant(ctx, id);
+      before.set(id, { spaceId: access.node.spaceId, parentId: access.node.parentId });
+    }
+    const out = (await operate(ctx, 'moveNodes', {
+      body: {
+        nodeIds: ids,
+        target: { spaceId: input.space_id, parentId: input.parent_id ?? null },
+      },
+    })) as { items: { id: string; name: string; spaceId: string; parentId: string | null }[] };
+    const first = ids[0]!;
+    const from = before.get(first)!;
+    // One undo for a move from a single folder: back where they were.
+    const sameOrigin = [...before.values()].every(
+      (b) => b.spaceId === from.spaceId && b.parentId === from.parentId,
+    );
+    return {
+      data: { moved: out.items.map((n) => ({ node_id: n.id, name: n.name })) },
+      target: { type: 'node', id: first, label: out.items[0]?.name ?? null },
+      summary: out.items.map((n) => n.name).join(', '),
+      undo: sameOrigin
+        ? {
+            kind: 'api_call',
+            operation: 'moveNodes',
+            body: { nodeIds: ids, target: { spaceId: from.spaceId, parentId: from.parentId } },
+          }
+        : undefined,
+    };
+  },
+});
+
+export const renameNode = defineTool({
+  name: 'rename_node',
+  title: 'Rename node',
+  description: 'Renames a file, folder or page.',
+  scope: 'drive:write',
+  write: true,
+  approval: null,
+  annotations: { readOnly: false, destructive: false, idempotent: true },
+  input: z.object({ node_id: z.uuid(), name: NodeName }),
+  async run(ctx, input) {
+    const access = await nodeInGrant(ctx, input.node_id);
+    const old = access.node.name;
+    const node = (await operate(ctx, 'updateNode', {
+      params: { nodeId: input.node_id },
+      body: { name: input.name },
+    })) as { id: string; name: string };
+    return {
+      data: { node_id: node.id, name: node.name, old_name: old },
+      target: { type: 'node', id: node.id, label: node.name },
+      summary: `${old} → ${node.name}`,
+      undo: {
+        kind: 'api_call',
+        operation: 'updateNode',
+        params: { nodeId: node.id },
+        body: { name: old },
+      },
+    };
+  },
+});
+
+export const shareNode = defineTool({
+  name: 'share_node',
+  title: 'Share node',
+  description:
+    'Shares a file, folder or page with an org member (kind "user", at most the person\'s own role), or makes a public link (kind "link"). A public link always waits for the person\'s approval: the answer is then {status: "pending_approval"}.',
+  scope: 'drive:write',
+  write: true,
+  approval: 'always',
+  annotations: { readOnly: false, destructive: false, idempotent: false },
+  input: z.object({
+    node_id: z.uuid(),
+    kind: z.enum(['user', 'link']),
+    user_id: z.uuid().optional().describe('kind "user": who'),
+    role: ShareRole.default('viewer'),
+    expires_at: z.string().max(40).optional().describe('ISO 8601; omit for no end'),
+    allow_download: z.boolean().default(true).describe('kind "link"'),
+    note: z.string().max(1000).optional().describe('Why, shown to the person with the approval'),
+  }),
+  example: {
+    node_id: '0192f1c4-0000-7000-8000-000000000000',
+    kind: 'user',
+    user_id: '0192f1c4-0000-7000-8000-000000000001',
+    role: 'editor',
+  },
+  async run(ctx, input) {
+    const access = await nodeInGrant(ctx, input.node_id);
+    const expiresAt = input.expires_at ? new Date(input.expires_at).toISOString() : null;
+    if (input.kind === 'link') {
+      return requestOperation(
+        ctx,
+        'createShare',
+        {
+          params: { nodeId: input.node_id },
+          body: { kind: 'link', role: 'viewer', expiresAt, allowDownload: input.allow_download },
+        },
+        {
+          action: 'share.external',
+          title: access.node.name,
+          detail: expiresAt ? `→ ${expiresAt}` : null,
+          note: input.note ?? null,
+        },
+      );
+    }
+    if (!input.user_id)
+      throw new ToolError('validation_failed', 'kind "user" için user_id gerekli.');
+    const share = (await operate(ctx, 'createShare', {
+      params: { nodeId: input.node_id },
+      body: { kind: 'user', userId: input.user_id, role: input.role, expiresAt },
+    })) as { id: string };
+    return {
+      data: { share_id: share.id, node_id: input.node_id, role: input.role },
+      target: { type: 'node', id: input.node_id, label: access.node.name },
+      summary: access.node.name,
+      undo: { kind: 'api_call', operation: 'deleteShare', params: { shareId: share.id } },
+    };
   },
 });

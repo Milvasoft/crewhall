@@ -9,6 +9,7 @@ export const ACTION_ICON: Record<string, IconName> = {
   'portal.publish': 'arrowUR',
   'chat.space_message': 'chat',
   'ai.action': 'sparkle',
+  'api.call': 'sparkle',
 };
 
 export const STATUS_TONE = {

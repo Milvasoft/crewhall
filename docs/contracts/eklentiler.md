@@ -104,6 +104,9 @@ Her adım denetim kaydına yazılır: `plugin.install`, `plugin.upgrade`, `plugi
 
 Verilmeyen bir izne dayanan özelliği gizlemeli. Crewhall o izni isteyen çağrıyı `403 token_scope` ile reddeder. Konuklar eklenti görmez.
 
+İzin kümesi MCP ve token kapsamlarıyla aynıdır; yalnız MCP'ye özel `mail:send` ve `admin:write` (`MCP_ONLY_SCOPES`,
+her işlemi insan onaylı) eklentilere verilmez (bkz. `kararlar.md` 2026-11-12).
+
 ## Köprü (iframe ↔ Crewhall)
 
 - **iframe ayarları:** `sandbox="allow-scripts allow-forms allow-popups allow-downloads allow-same-origin"`,

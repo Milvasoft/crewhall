@@ -404,7 +404,8 @@ function NoteCard({ card }: { card: Of<'note'> }) {
                   size="xs"
                   tone="plain"
                   aria-label={t('quick.note.style')}
-                  className={NO_DRAG}
+                  // Kept on the 18 px header line, level with the edit buttons beside it.
+                  className={cn(NO_DRAG, '-my-[5px]')}
                 >
                   <span className={cn('size-3.5 rounded-full', DOT_BG[c.color])} />
                 </IconButton>

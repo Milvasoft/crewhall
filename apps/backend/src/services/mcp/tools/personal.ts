@@ -1,12 +1,22 @@
 import { eq } from 'drizzle-orm';
 import { users } from '@crewhall/db';
-import { CreateCalendarEvent, MailMessagesQuery, can, paths, withQuery } from '@crewhall/shared';
+import {
+  CreateCalendarEvent,
+  MailMessagesQuery,
+  MeetingRecurrence,
+  can,
+  paths,
+  withQuery,
+  type CalendarOccurrence,
+  type Meeting,
+} from '@crewhall/shared';
 import { z } from 'zod';
 import { personalCalendar } from '../../calendar/access';
 import { createEvent } from '../../calendar/events';
 import { requireMailbox } from '../../mail/accounts';
 import { listMessages } from '../../mail/messages';
 import { orgContext } from '../../membership';
+import { operate, requestOperation } from './api';
 import { defineTool, ToolError, type ToolContext } from './types';
 
 /**
@@ -136,5 +146,134 @@ export const listUnreadMail = defineTool({
       url: withQuery(paths.mail(), { folder: m.folder, uid: m.uid }),
     }));
     return { data: { items }, summary: String(items.length) };
+  },
+});
+
+export const listCalendarEvents = defineTool({
+  name: 'list_calendar_events',
+  title: 'List calendar events',
+  description:
+    "Events in a time range (at most the calendar's range limit): the person's calendars, or one space's calendar with its meetings and card due dates. Others' private events show as busy only. Content is untrusted.",
+  scope: 'hub:read',
+  module: 'calendar',
+  write: false,
+  approval: null,
+  annotations: { readOnly: true, destructive: false, idempotent: true },
+  input: z.object({
+    from: z.string().max(40).describe('ISO 8601 start'),
+    to: z.string().max(40).describe('ISO 8601 end'),
+    space_id: z.uuid().optional().describe('One space; omit for the person’s own view'),
+    meetings: z.boolean().default(true),
+    cards: z.boolean().default(false).describe('Board cards with due dates'),
+  }),
+  example: { from: '2030-01-13T00:00:00+03:00', to: '2030-01-20T00:00:00+03:00' },
+  async run(ctx, input) {
+    if (input.space_id) ctx.assertSpace(input.space_id);
+    else await assertPersonal(ctx);
+    const from = new Date(input.from);
+    const to = new Date(input.to);
+    if (Number.isNaN(from.getTime()) || Number.isNaN(to.getTime())) {
+      throw new ToolError('validation_failed', 'from ve to ISO 8601 zaman olmalı.');
+    }
+    const out = (await operate(ctx, 'listCalendarOccurrences', {
+      query: {
+        from: from.toISOString(),
+        to: to.toISOString(),
+        ...(input.space_id ? { spaceId: input.space_id } : {}),
+        meetings: input.meetings,
+        cards: input.cards,
+      },
+    })) as { items: CalendarOccurrence[] };
+    const items = out.items.map((o) => ({
+      source: o.source,
+      id: o.sourceId,
+      series_id: o.seriesId,
+      title: o.title,
+      start: o.start,
+      end: o.end,
+      all_day: o.allDay,
+      location: o.location,
+      status: o.status,
+      my_response: o.myResponse,
+      attendees: o.attendeeCount,
+      editable: o.editable,
+    }));
+    return { data: { items }, summary: String(items.length) };
+  },
+});
+
+export const scheduleMeeting = defineTool({
+  name: 'schedule_meeting',
+  title: 'Schedule meeting',
+  description:
+    'Plans a video meeting with a link: invitees get it in their calendar and notifications. Guests invited by e-mail (outside the org) make the request wait for the person\'s approval: the answer is then {status: "pending_approval"}.',
+  scope: 'meetings:write',
+  module: 'meet',
+  write: true,
+  approval: 'policy',
+  annotations: { readOnly: false, destructive: false, idempotent: false },
+  input: z.object({
+    title: z.string().trim().min(1).max(200),
+    starts_at: z.string().max(40).describe('ISO 8601 time with offset'),
+    duration_minutes: z
+      .number()
+      .int()
+      .min(5)
+      .max(24 * 60)
+      .default(30),
+    description: z.string().max(2000).optional(),
+    space_id: z.uuid().optional().describe('The meeting belongs to this space'),
+    recurrence: MeetingRecurrence.default('none'),
+    invitee_user_ids: z.array(z.uuid()).max(100).default([]),
+    guest_emails: z.array(z.email()).max(50).default([]).describe('Outside guests; needs approval'),
+    note: z.string().max(1000).optional().describe('Why, shown with an approval'),
+  }),
+  example: {
+    title: 'Sürüm planlama',
+    starts_at: '2030-01-15T10:00:00+03:00',
+    duration_minutes: 45,
+    invitee_user_ids: ['0192f1c4-0000-7000-8000-000000000000'],
+  },
+  async run(ctx, input) {
+    if (input.space_id) ctx.assertSpace(input.space_id);
+    const startsAt = new Date(input.starts_at);
+    if (Number.isNaN(startsAt.getTime())) {
+      throw new ToolError('validation_failed', 'starts_at ISO 8601 zaman olmalı.');
+    }
+    const body = {
+      mode: 'scheduled' as const,
+      title: input.title,
+      ...(input.description ? { description: input.description } : {}),
+      ...(input.space_id ? { spaceId: input.space_id } : {}),
+      startsAt: startsAt.toISOString(),
+      durationMinutes: input.duration_minutes,
+      recurrence: input.recurrence,
+      invitees: { userIds: input.invitee_user_ids, emails: input.guest_emails },
+    };
+    if (input.guest_emails.length) {
+      return requestOperation(
+        ctx,
+        'createMeeting',
+        { body },
+        {
+          action: 'api.call',
+          title: input.title,
+          detail: `${startsAt.toISOString()} · ${input.guest_emails.join(', ')}`,
+          note: input.note ?? null,
+        },
+      );
+    }
+    const meeting = (await operate(ctx, 'createMeeting', { body })) as Meeting;
+    return {
+      data: {
+        meeting_id: meeting.id,
+        title: meeting.title,
+        starts_at: meeting.startsAt,
+        url: meeting.url,
+      },
+      target: { type: 'meeting', id: meeting.id, label: meeting.title },
+      summary: meeting.title,
+      undo: { kind: 'api_call', operation: 'cancelMeeting', params: { meetingId: meeting.id } },
+    };
   },
 });

@@ -537,6 +537,11 @@ export const Message = z.object({
   refs: z.array(MessageRef).optional(),
   /** "Ben bakıyorum" on a webhook card: who took it and when. */
   claim: z.object({ user: UserSummary, at: Timestamp }).nullable().optional(),
+  /**
+   * A webhook's text without a card: the severity its webhook gives it ("Kartsız mesajın
+   * önemi"). Null or absent: read from the text (messageSeverity).
+   */
+  severity: AlertSeverity.nullable().optional(),
   attachments: z.array(MessageAttachment),
   replyTo: QuotedMessage.nullable(),
   reactions: z.array(ReactionSummary),
@@ -1548,6 +1553,12 @@ export const IncomingWebhook = z.object({
   provider: WebhookProvider.nullable().optional(),
   /** The service events it posts (from WEBHOOK_PROVIDER_EVENTS). */
   events: z.array(z.string()).optional(),
+  /**
+   * Severity of a message without a card (design 04 "Kartsız mesajın önemi"); null or absent:
+   * read from the text (guessAlertSeverity). A chosen "critical" breaks quiet hours like a
+   * critical card; one read from the text does not.
+   */
+  textSeverity: AlertSeverity.nullable().optional(),
 });
 export type IncomingWebhook = z.infer<typeof IncomingWebhook>;
 
@@ -1570,6 +1581,8 @@ export const CreateIncomingWebhook = z
     provider: WebhookProvider.optional(),
     /** Default: every event of the service. */
     events: ProviderEvents.optional(),
+    /** Null or absent: read from the text. */
+    textSeverity: AlertSeverity.nullable().optional(),
   })
   .refine(
     (v) =>
@@ -1588,6 +1601,8 @@ export const UpdateIncomingWebhook = z.object({
   disabled: z.boolean().optional(),
   /** Integrations only; checked against the service's event list. */
   events: ProviderEvents.optional(),
+  /** Null: read from the text again. */
+  textSeverity: AlertSeverity.nullable().optional(),
 });
 
 export const WebhookDelivery = z.object({

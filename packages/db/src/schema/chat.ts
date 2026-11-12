@@ -199,6 +199,8 @@ export interface MessageBodyData {
   refs?: { kind: 'node' | 'card'; id: string }[];
   /** "Ben bakıyorum" on a webhook card: who took it (ISO time). */
   claim?: { userId: string; at: string };
+  /** A webhook's text without a card: the severity its webhook gives it (text_severity). */
+  severity?: 'critical' | 'warning' | 'success' | 'info';
 }
 
 export const messages = pgTable(
@@ -352,6 +354,11 @@ export const incomingWebhooks = pgTable(
       .default(sql`'{}'::text[]`),
     /** Signing secret (encrypted with the org key): HMAC for GitHub/Jira, Basic auth for Azure. */
     secretEnc: text('secret_enc'),
+    /**
+     * Severity of a message without a card (design 04 "Kartsız mesajın önemi"); null reads it
+     * from the text (status emoji, then words).
+     */
+    textSeverity: text('text_severity', { enum: ['critical', 'warning', 'success', 'info'] }),
     rateLimit: integer('rate_limit').notNull().default(60),
     lastUsedAt: tz('last_used_at'),
     mutedUntil: tz('muted_until'),

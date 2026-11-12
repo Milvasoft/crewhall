@@ -31,4 +31,16 @@ describe('messageSeverity', () => {
     expect(messageSeverity({ kind: 'user', text: '❌ x', card: null })).toBeNull();
     expect(messageSeverity({ kind: 'webhook', text: '', card: null })).toBeNull();
   });
+
+  it("prefers the webhook's chosen severity over the words", () => {
+    expect(messageSeverity({ kind: 'webhook', text: '❌ x', card: null, severity: 'info' })).toBe(
+      'info',
+    );
+    expect(
+      messageSeverity({ kind: 'webhook', text: 'Gece yedeği', card: null, severity: 'critical' }),
+    ).toBe('critical');
+    expect(messageSeverity({ kind: 'webhook', text: '❌ x', card: null, severity: null })).toBe(
+      'critical',
+    );
+  });
 });

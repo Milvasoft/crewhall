@@ -1,5 +1,6 @@
 import {
   type AlertCard,
+  type AlertSeverity,
   type ConversationFederation,
   type ConversationType,
   type MessageAttachment,
@@ -91,6 +92,8 @@ export interface MockMessage {
   refs?: MessageRef[];
   /** "Ben bakıyorum" on a webhook card. */
   claim?: { userId: string; at: string } | null;
+  /** A webhook's text without a card: the severity its webhook gives it. */
+  severity?: AlertSeverity | null;
 }
 
 export interface MockPoll {
@@ -141,6 +144,8 @@ export interface MockWebhook {
   createdAt: string;
   provider?: WebhookProvider | null;
   events?: string[];
+  /** "Kartsız mesajın önemi"; null reads it from the text. */
+  textSeverity?: AlertSeverity | null;
 }
 
 export interface MockDelivery {

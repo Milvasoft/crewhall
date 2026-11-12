@@ -17,6 +17,7 @@ import {
   GoogleChatPayload,
   guessAlertSeverity,
   HookPayload,
+  type AlertSeverity,
   type IncomingWebhook,
   paths,
   WEBHOOK_PROVIDER_EVENTS,
@@ -141,6 +142,7 @@ async function toWebhooks(deps: Pick<Deps, 'db' | 'env'>, rows: WebhookRow[]) {
       deliveries24h: s.day,
       provider: r.provider ?? null,
       events: r.events,
+      textSeverity: r.textSeverity ?? null,
     };
   });
 }
@@ -188,6 +190,7 @@ export async function createWebhook(
     avatarNodeId?: string | undefined;
     provider?: WebhookProvider | undefined;
     events?: string[] | undefined;
+    textSeverity?: AlertSeverity | null | undefined;
   },
 ) {
   const { db } = deps;
@@ -210,6 +213,7 @@ export async function createWebhook(
         tokenHash: hashKey(key),
         provider,
         events,
+        textSeverity: input.textSeverity ?? null,
         secretEnc: secret ? sealSecret(deps, a.org.id, secret) : null,
         rateLimit: CHAT_LIMITS.webhookPerMinute,
         createdBy: a.userId,
@@ -237,6 +241,7 @@ export async function updateWebhook(
     mutedUntil?: string | null | undefined;
     disabled?: boolean | undefined;
     events?: string[] | undefined;
+    textSeverity?: AlertSeverity | null | undefined;
   },
 ) {
   const { hook } = await requireWebhook(deps, a, webhookId);
@@ -247,6 +252,7 @@ export async function updateWebhook(
     patch.events = input.events;
   }
   if (input.name !== undefined) patch.name = input.name;
+  if (input.textSeverity !== undefined) patch.textSeverity = input.textSeverity;
   if (input.avatarNodeId !== undefined) {
     patch.avatarBlobId = await avatarBlob(deps.db, a, input.avatarNodeId);
   }
@@ -658,6 +664,8 @@ export async function receiveHook(deps: Deps, req: HookRequest): Promise<HookRes
         kind: 'webhook',
         text: payload.text.slice(0, CHAT_LIMITS.messageChars),
         card: payload.card,
+        // "Kartsız mesajın önemi": text without a card takes the webhook's severity.
+        severity: hook.textSeverity ?? undefined,
         // "Sessize al" keeps the message but silences its notifications.
         silent: muted,
       }),

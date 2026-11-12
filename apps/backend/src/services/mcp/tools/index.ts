@@ -1,6 +1,8 @@
 import { and, eq } from 'drizzle-orm';
 import { approvalRequests } from '@crewhall/db';
 import { z } from 'zod';
+import * as api from './api';
+import * as boards from './boards';
 import * as chat from './chat';
 import * as drive from './drive';
 import * as pages from './pages';
@@ -51,6 +53,9 @@ export const TOOLS: ToolDef[] = [
   read.listSpaces,
   read.getNode,
   read.listChildren,
+  drive.moveNodes,
+  drive.renameNode,
+  drive.shareNode,
   quick.listLinks,
   quick.addLink,
   quick.addQuickCard,
@@ -64,16 +69,30 @@ export const TOOLS: ToolDef[] = [
   chat.listNotifications,
   pages.createPage,
   pages.appendToPage,
+  pages.readPage,
+  pages.replacePage,
+  boards.listBoards,
+  boards.getBoard,
+  boards.createBoardCard,
+  boards.updateBoardCard,
+  personal.listCalendarEvents,
   personal.createCalendarEvent,
+  personal.scheduleMeeting,
   personal.listUnreadMail,
   portal.listPortalDocs,
   portal.upsertPortalDoc,
+  portal.createPortalCategory,
+  portal.movePortalDoc,
   portal.createBlogPost,
   portal.requestPortalPublish,
   tables.listTablesTool,
   tables.queryTableRowsTool,
   tables.addTableRows,
   tables.updateTableRowTool,
+  // The rest of Crewhall through the operation bridge (services/mcp/bridge.ts).
+  api.findOperations,
+  api.callReadOperation,
+  api.callWriteOperation,
   getApproval,
 ];
 

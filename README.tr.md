@@ -18,6 +18,7 @@
 </p>
 
 <p align="center">
+  <a href="https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/introduction">Dokümanlar</a> ·
   <a href="#sunucuya-kurulum">Kurulum</a> ·
   <a href="#geliştirme">Geliştirme</a> ·
   <a href="#lisans">Lisans</a> ·
@@ -42,11 +43,11 @@
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/screenshots/chat.png" alt="Sohbet: kanallar, yanıt dizileri, etiketler, dosyalar ve tepkiler"></td>
+    <td width="50%"><img src="docs/screenshots/chat.png" alt="Sohbet: kanallar, yanıtlar, etiketler, dosyalar ve tepkiler"></td>
     <td width="50%"><img src="docs/screenshots/drive.png" alt="Drive: dosya, sayfa ve çizim listesinin yanında klasör ağacı"></td>
   </tr>
   <tr>
-    <td><b>Sohbet</b>: kanallar, özel mesajlar, yanıt dizileri, tepkiler, dosya önizlemeleri ve aramalar.</td>
+    <td><b>Sohbet</b>: kanallar, özel ve grup mesajları, yanıtlar, tepkiler, dosya önizlemeleri ve aramalar.</td>
     <td><b>Drive</b>: klasörler, paylaşım, sürümler, çöp kutusu ve önizleme; dosyaların yanında sayfa, pano ve çizimler.</td>
   </tr>
   <tr>
@@ -67,7 +68,7 @@ gösterir.</sub>
 | Alan            | Neler var                                                                                      |
 | --------------- | ---------------------------------------------------------------------------------------------- |
 | **Ana sayfa**   | Hızlı erişim kartları, bağlantılar, notlar, duyurular ve ekip kutlamaları.                     |
-| **Sohbet**      | Kanallar, özel mesajlar, yanıt dizileri, tepkiler, aramalar, botlar ve webhook'lar.            |
+| **Sohbet**      | Kanallar, özel ve grup mesajları, yanıtlar, tepkiler, aramalar, botlar ve webhook'lar.         |
 | **Drive**       | Klasörler, paylaşım, sürümler, çöp kutusu, önizleme; isteğe bağlı servisle Office düzenleme.   |
 | **Sayfalar**    | Gerçek zamanlı ortak düzenlemeli wiki, şablonlar; Markdown, Notion ve Outline'dan içe aktarma. |
 | **Panolar**     | Sprint, zaman çizelgesi, iş yükü ve kart bağımlılıklarıyla görev panoları.                     |
@@ -81,9 +82,20 @@ gösterir.</sub>
 | **MCP**         | Yapay zekâ asistanlarını bağlantı başına yetki ve onayla çalışma alanına bağlama.              |
 | **İstemciler**  | Web ile Windows ve macOS masaüstü uygulaması. Arayüz Türkçe ve İngilizce.                      |
 
+## Dokümanlar
+
+Kullanıcı ve yönetici rehberi, Türkçe ve İngilizce olarak doküman portalındadır:
+
+- [Giriş](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/introduction) ve [Başlarken](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/getting-started)
+- Her modüle bir sayfa: [Sohbet](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/chat), [Drive](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/drive), [Sayfalar](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/pages),
+  [Panolar](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/boards), [Toplantılar](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/meetings), [Kasa](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/vault) ve diğerleri
+- [Yönetim](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/administration), [Kendi sunucunda çalıştırma](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/self-hosting),
+  [Eklentiler ve MCP](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/plugins-and-mcp), [Masaüstü uygulaması](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/desktop-app)
+
 ## Sunucuya kurulum
 
-Crewhall tek bir Linux sunucuda Docker Compose ile çalışır. Adım adım anlatım
+Crewhall tek bir Linux sunucuda Docker Compose ile çalışır. Kısa anlatım portaldaki
+[Kendi sunucunda çalıştırma](https://portal.milvasoft.com/tr/docs/1.0.1/crewhall/self-hosting) sayfasında, adım adım anlatım
 [docs/kurulum.md](docs/kurulum.md) dosyasındadır.
 
 ```bash

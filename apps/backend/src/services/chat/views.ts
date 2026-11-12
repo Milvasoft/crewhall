@@ -238,6 +238,7 @@ export async function toMessages(
           ? { id: r.body.automation.ruleId, name: r.body.automation.ruleName, avatarUrl: null }
           : null,
       automation: r.body.automation ?? null,
+      ...(r.body.severity ? { severity: r.body.severity } : {}),
       text: deleted ? '' : r.text,
       mentions: parsed
         ? [

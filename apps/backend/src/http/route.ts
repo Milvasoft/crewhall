@@ -35,6 +35,7 @@ import {
   tokenModuleCheck,
 } from '../services/mcp/rest';
 import { deprecationHeaders } from '../services/compat';
+import { internalAuth } from '../services/mcp/bridge';
 import { authenticateIntegration, isIntegrationRequest } from '../services/microsoft/token-auth';
 import { clientIp } from './client-ip';
 import { AppError, validationError } from './errors';
@@ -369,11 +370,15 @@ export class Router {
       // Plugin session tokens (EdDSA JWT, our `typ`) act like personal tokens within the
       // installation's permissions (services/plugins/rest.ts); checked before other JWTs.
       const pluginToken = isPluginTokenRequest(c);
-      const token = isTokenRequest(c)
-        ? await authenticateToken(deps, c, name)
-        : pluginToken
-          ? await authenticatePluginToken(deps, c, name)
-          : null;
+      // MCP's operation bridge calls in process as the person (services/mcp/bridge.ts).
+      const internal = await internalAuth(deps, c);
+      const token = internal
+        ? internal
+        : isTokenRequest(c)
+          ? await authenticateToken(deps, c, name)
+          : pluginToken
+            ? await authenticatePluginToken(deps, c, name)
+            : null;
       // The Outlook add-in and the Teams app: Crewhall OIDC access tokens (services/microsoft).
       const integration =
         !token && isIntegrationRequest(c) ? await authenticateIntegration(deps, c, name) : null;

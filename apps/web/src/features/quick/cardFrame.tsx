@@ -90,7 +90,7 @@ function EditChrome({ card, label }: { card: Card; label: string }) {
   const { t } = useI18n();
   const q = useQuick();
   return (
-    <div className={cn('absolute top-2 right-2 z-[1] flex gap-1', NO_DRAG)}>
+    <div className={cn('absolute top-[9px] right-2 z-[1] flex gap-1', NO_DRAG)}>
       <CardDropdown card={card}>
         <IconButton size="xs" tone="plain" aria-label={t('quick.edit.cardMenu', { name: label })}>
           <Icon name="settings" size={14} />

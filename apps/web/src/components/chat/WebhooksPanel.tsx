@@ -1,5 +1,6 @@
 import { type AppLocale } from '@crewhall/i18n';
 import {
+  AlertSeverity,
   WEBHOOK_PROVIDER_EVENTS,
   WEBHOOK_PROVIDERS,
   type IncomingWebhookSecret,
@@ -16,6 +17,11 @@ import {
   IconButton,
   Input,
   Segmented,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
   Skeleton,
   toast,
 } from '@crewhall/ui';
@@ -182,6 +188,7 @@ function HookRow({
     mutedUntil?: string | null;
     disabled?: boolean;
     events?: string[];
+    textSeverity?: AlertSeverity | null;
   }) => {
     try {
       await api.call('updateIncomingWebhook', { params: { webhookId: hook.id }, body });
@@ -245,6 +252,12 @@ function HookRow({
                 {t('common.actions.save')}
               </Button>
             </form>
+          ) : null}
+          {editing && !hook.provider ? (
+            <TextSeverityField
+              value={hook.textSeverity ?? null}
+              onChange={(textSeverity) => void patch({ textSeverity })}
+            />
           ) : null}
           {editing && hook.provider ? (
             <EventChoice
@@ -345,6 +358,40 @@ export const PROVIDER_NAMES: Record<WebhookProvider, string> = {
   jira: 'Jira',
 };
 
+/**
+ * Design 04 "Kartsız mesajın önemi": how serious a message without a card is. "Metinden oku"
+ * (null) looks at its status emoji and words; a chosen "Kritik" breaks quiet hours.
+ */
+function TextSeverityField({
+  value,
+  onChange,
+}: {
+  value: AlertSeverity | null;
+  onChange: (v: AlertSeverity | null) => void;
+}) {
+  const { t } = useI18n();
+  return (
+    <Field label={t('chat.hooks.textSeverity')} hint={t('chat.hooks.textSeverityHint')}>
+      <Select
+        value={value ?? 'auto'}
+        onValueChange={(v) => onChange(v === 'auto' ? null : AlertSeverity.parse(v))}
+      >
+        <SelectTrigger aria-label={t('chat.hooks.textSeverity')}>
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="auto">{t('chat.hooks.textSeverityAuto')}</SelectItem>
+          {AlertSeverity.options.map((s) => (
+            <SelectItem key={s} value={s}>
+              {t(`chat.severity.${s}`)}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </Field>
+  );
+}
+
 /** Event choice of an integration (the service's keys, labelled from i18n). */
 function EventChoice({
   provider,
@@ -390,6 +437,7 @@ function CreateForm({
   const [provider, setProvider] = useState<WebhookProvider>('github');
   const [events, setEvents] = useState<string[]>([...WEBHOOK_PROVIDER_EVENTS.github]);
   const [name, setName] = useState(integration ? PROVIDER_NAMES.github : '');
+  const [textSeverity, setTextSeverity] = useState<AlertSeverity | null>(null);
   const [busy, setBusy] = useState(false);
   const pick = (p: WebhookProvider) => {
     if (name === PROVIDER_NAMES[provider] || !name.trim()) setName(PROVIDER_NAMES[p]);
@@ -407,7 +455,9 @@ function CreateForm({
           onCreated(
             await api.call('createIncomingWebhook', {
               params: { conversationId: conv.id },
-              body: integration ? { name: name.trim(), provider, events } : { name: name.trim() },
+              body: integration
+                ? { name: name.trim(), provider, events }
+                : { name: name.trim(), textSeverity },
             }),
           );
           void qc.invalidateQueries({ queryKey: chatKeys.webhooks(conv.id) });
@@ -442,7 +492,9 @@ function CreateForm({
       </Field>
       {integration ? (
         <EventChoice provider={provider} events={events} onChange={setEvents} />
-      ) : null}
+      ) : (
+        <TextSeverityField value={textSeverity} onChange={setTextSeverity} />
+      )}
       <div className="flex justify-end gap-2">
         <Button variant="gh" onClick={onCancel}>
           {t('common.actions.cancel')}

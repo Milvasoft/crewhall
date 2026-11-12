@@ -23,6 +23,8 @@
     "contacts:write": "Write contacts",
     "tables:write": "Write tables",
     "notifications:write": "Send notifications",
+    "mail:send": "Manage and send my mail (every send approved)",
+    "admin:write": "Manage spaces, members and settings (every change approved)",
     "offline:access": "Work for a person while they are away (each person also agrees)"
   },
   "scopeShort": {
@@ -39,6 +41,8 @@
     "contacts:write": "Contacts",
     "tables:write": "Tables",
     "notifications:write": "Notifications",
+    "mail:send": "Mail",
+    "admin:write": "Administration",
     "offline:access": "Background work"
   },
   "common": {
@@ -215,7 +219,8 @@
       "share_external": "External share link",
       "portal_publish": "Publish to portal",
       "chat_space_message": "Message to a space chat",
-      "ai_action": "{count, plural, one {AI suggestion} other {# AI suggestions}}"
+      "ai_action": "{count, plural, one {AI suggestion} other {# AI suggestions}}",
+      "api_call": "{count, plural, one {Crewhall operation} other {# Crewhall operations}}"
     },
     "headline": "{client} wants to do this: {action}",
     "via": "{client} · on behalf of {name} · {time}",
@@ -310,7 +315,23 @@
       "list_tables": "Tables and their fields",
       "query_table_rows": "Table rows, with search and saved views",
       "add_table_rows": "Adds up to 20 rows to a table",
-      "update_table_row": "Changes the given fields of a row"
+      "update_table_row": "Changes the given fields of a row",
+      "move_nodes": "Moves files, folders and pages to another folder or space",
+      "rename_node": "Renames a file, folder or page",
+      "share_node": "Shares with a person; a public link always needs approval",
+      "read_page": "Reads a page body as Markdown",
+      "replace_page": "Replaces a page body; saves a version first",
+      "list_boards": "Boards of a space",
+      "get_board": "Board columns and open cards",
+      "create_board_card": "Adds a card to a board column",
+      "update_board_card": "Changes a card or moves it to another column",
+      "list_calendar_events": "Events in a time range",
+      "schedule_meeting": "Plans a meeting with a link; outside guests need approval",
+      "create_portal_category": "Opens a category in a portal doc version (draft)",
+      "move_portal_doc": "Moves or renames a portal doc or category",
+      "find_operations": "Searches Crewhall API operations and shows their schemas",
+      "call_read_operation": "Calls a reading Crewhall operation",
+      "call_write_operation": "Calls a writing Crewhall operation; deletes, outside sharing, mail and administration need approval"
     }
   },
   "consent": {

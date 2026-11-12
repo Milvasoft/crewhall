@@ -12,9 +12,10 @@ import { paths, withQuery } from '@crewhall/shared';
  * - direct messages and replies to one's own message
  * - alert cards: critical (urgent push) at "all"/"critical", warning at "all";
  *   success and info only move the counter
- * - a webhook's plain text (no card) is read for its severity (emoji and words, shared
- *   guessAlertSeverity): critical notifies at "all"/"critical" and warning at "all", as a normal
- *   push (a guess never breaks quiet hours); anything else follows the level like a message
+ * - a webhook's plain text (no card) takes the severity its webhook sets ("Kartsız mesajın
+ *   önemi"), else the one read from its words (shared guessAlertSeverity): critical notifies at
+ *   "all"/"critical" and warning at "all"; a chosen critical is urgent like a card, a guessed one
+ *   is a normal push (a guess never breaks quiet hours); anything else follows the level
  * - other messages only at level "all"
  */
 export async function messageNotifications(
@@ -65,9 +66,12 @@ export async function messageNotifications(
   }
   if (!authorName && msg.body.automation) authorName = msg.body.automation.ruleName;
   if (!authorName && msg.body.guest) authorName = msg.body.guest.name;
-  // A webhook's text without a card (Google Chat "text", Milvaion, scripts): its words decide.
+  // A webhook's text without a card (Google Chat "text", Milvaion, scripts): the webhook's
+  // chosen severity, else its words.
+  const chosenSeverity = msg.kind === 'webhook' && !ctx.card ? (msg.body.severity ?? null) : null;
   const textSeverity =
-    msg.kind === 'webhook' && !ctx.card && msg.text ? guessAlertSeverity(msg.text) : null;
+    chosenSeverity ??
+    (msg.kind === 'webhook' && !ctx.card && msg.text ? guessAlertSeverity(msg.text) : null);
   const text =
     msg.text ||
     ctx.card?.title ||
@@ -135,6 +139,7 @@ export async function messageNotifications(
           type: 'chat.alert',
           category: 'alert',
           groupKey: `chat:${conv.id}:alert:${textSeverity}`,
+          urgent: critical && chosenSeverity === 'critical',
         });
       }
       continue;

@@ -8,6 +8,7 @@ import {
   type DbOrTx,
 } from '@crewhall/db';
 import {
+  MCP_ALWAYS_APPROVED_SCOPES,
   MCP_LIMITS,
   MCP_REQUIRED_SCOPE,
   MCP_SCOPES,
@@ -348,7 +349,7 @@ export async function getConsent(ctx: ConsentCtx, q: ConsentRequest): Promise<Co
         (scope !== 'chat:send' || moduleOn(ctx.org, 'chat'))),
     required: scope === MCP_REQUIRED_SCOPE,
     // Publishing always waits for a person; trash/bulk show on their own row (18.2).
-    approval: scope === 'portal:publish',
+    approval: MCP_ALWAYS_APPROVED_SCOPES.includes(scope),
   }));
   const spaces = await listMySpaces(ctx.deps.db, ctx.org.id, ctx.user.id, false);
   const durations = allowedDurations(policy.maxTokenDays);

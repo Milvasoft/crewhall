@@ -23,6 +23,8 @@
     "contacts:write": "Kişiler yaz",
     "tables:write": "Tablolar yaz",
     "notifications:write": "Bildirim gönder",
+    "mail:send": "Postamı yönet ve gönder (her gönderim onaylı)",
+    "admin:write": "Space, üye ve ayar yönetimi (her değişiklik onaylı)",
     "offline:access": "Sen yokken senin adına çalış (kişi ayrıca onaylar)"
   },
   "scopeShort": {
@@ -39,6 +41,8 @@
     "contacts:write": "Kişiler",
     "tables:write": "Tablolar",
     "notifications:write": "Bildirimler",
+    "mail:send": "Posta",
+    "admin:write": "Yönetim",
     "offline:access": "Arka planda çalışma"
   },
   "common": {
@@ -215,7 +219,8 @@
       "share_external": "Dış paylaşım linki",
       "portal_publish": "Portal'da yayınla",
       "chat_space_message": "Space sohbetine mesaj",
-      "ai_action": "{count, plural, one {Yapay zekâ önerisi} other {# yapay zekâ önerisi}}"
+      "ai_action": "{count, plural, one {Yapay zekâ önerisi} other {# yapay zekâ önerisi}}",
+      "api_call": "{count, plural, one {Crewhall işlemi} other {# Crewhall işlemi}}"
     },
     "headline": "{client}, şu işlemi yapmak istiyor: {action}",
     "via": "{client} · {name} adına · {time}",
@@ -310,7 +315,23 @@
       "list_tables": "Tablolar ve alanları",
       "query_table_rows": "Tablo satırları; arama ve kayıtlı görünümle",
       "add_table_rows": "Tabloya en çok 20 satır ekler",
-      "update_table_row": "Bir satırın verilen alanlarını değiştirir"
+      "update_table_row": "Bir satırın verilen alanlarını değiştirir",
+      "move_nodes": "Dosya, klasör ve sayfaları başka klasöre ya da space’e taşır",
+      "rename_node": "Dosya, klasör ya da sayfanın adını değiştirir",
+      "share_node": "Kişiyle paylaşır; herkese açık link her zaman onaylı",
+      "read_page": "Sayfa gövdesini Markdown olarak okur",
+      "replace_page": "Sayfa gövdesini değiştirir; önce sürüm kaydeder",
+      "list_boards": "Space panoları",
+      "get_board": "Pano sütunları ve açık kartlar",
+      "create_board_card": "Pano sütununa kart ekler",
+      "update_board_card": "Kartı değiştirir ya da başka sütuna taşır",
+      "list_calendar_events": "Bir zaman aralığındaki etkinlikler",
+      "schedule_meeting": "Linkli toplantı planlar; dış misafir onaylı",
+      "create_portal_category": "Portal doküman sürümünde kategori açar (taslak)",
+      "move_portal_doc": "Portal dokümanını ya da kategorisini taşır, adlandırır",
+      "find_operations": "Crewhall API işlemlerini arar, şemalarını gösterir",
+      "call_read_operation": "Okuyan bir Crewhall işlemini çağırır",
+      "call_write_operation": "Yazan bir Crewhall işlemini çağırır; silme, dış paylaşım, posta ve yönetim onaylı"
     }
   },
   "consent": {

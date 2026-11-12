@@ -49,6 +49,41 @@ describe('service integrations', () => {
     expect(hook.events).toEqual(['jira:issue_created', 'jira:issue_updated', 'comment_created']);
   });
 
+  it('sets the severity of messages without a card, and back to reading the text', async () => {
+    signedInAs(USER.bugra);
+    renderApp(`/chat/c/${CONV.prod}?panel=webhooks`);
+    const user = userEvent.setup();
+    const panel = await screen.findByRole('complementary', { name: "Uygulamalar ve webhook'lar" });
+    await user.click(await within(panel).findByRole('button', { name: 'Gelen webhook ekle' }));
+    const field = within(panel).getByRole('combobox', { name: 'Kartsız mesajın önemi' });
+    expect(field).toHaveTextContent('Metinden oku');
+    await user.click(field);
+    await user.click(await screen.findByRole('option', { name: 'Kritik' }));
+    await user.type(within(panel).getByRole('textbox'), 'Yedek betiği{Enter}');
+    expect(await within(panel).findByText('Oluşturuldu')).toBeInTheDocument();
+    const hook = chatState(db()).webhooks.find((w) => w.name === 'Yedek betiği')!;
+    expect(hook.textSeverity).toBe('critical');
+
+    // A plain line from it carries the chosen severity; a card keeps its own.
+    const res = await fetch(`http://localhost/api/hooks/${hook.id}?key=${hook.key}`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ text: 'Gece yedeği alınamadı' }),
+    });
+    expect(res.status).toBe(200);
+    const { messageId } = (await res.json()) as { messageId: string };
+    expect(chatState(db()).messages.find((m) => m.id === messageId)?.severity).toBe('critical');
+
+    await user.click(within(panel).getByRole('button', { name: 'Tamam' }));
+    await user.click(await within(panel).findByRole('button', { name: /Yedek betiği/ }));
+    await user.click(within(panel).getByRole('button', { name: 'Düzenle' }));
+    const edit = within(panel).getByRole('combobox', { name: 'Kartsız mesajın önemi' });
+    expect(edit).toHaveTextContent('Kritik');
+    await user.click(edit);
+    await user.click(await screen.findByRole('option', { name: 'Metinden oku' }));
+    await waitFor(() => expect(hook.textSeverity).toBeNull());
+  });
+
   it('takes a card with "Ben bakıyorum" and lets go of it', async () => {
     signedInAs(USER.bugra);
     renderApp(`/chat/c/${CONV.prod}`);

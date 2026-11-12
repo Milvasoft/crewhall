@@ -196,6 +196,42 @@ describe('incoming webhooks', () => {
     });
   });
 
+  it("gives text without a card the webhook's chosen severity (Kartsız mesajın önemi)", async () => {
+    const send = async (text: string) => {
+      const res = await hook(url, { text });
+      expect(res.status).toBe(200);
+      const { messageId } = (await res.json()) as { messageId: string };
+      const rows = await app.deps.db
+        .select()
+        .from(notifications)
+        .where(and(eq(notifications.targetId, messageId), eq(notifications.userId, elifId)));
+      return { messageId, rows };
+    };
+    const set = (textSeverity: 'critical' | 'info' | null) =>
+      owner.api.call('updateIncomingWebhook', { params: { webhookId }, body: { textSeverity } });
+
+    expect((await set('critical')).textSeverity).toBe('critical');
+    // Chosen by an admin: a critical line is urgent (breaks quiet hours) like a critical card.
+    const chosen = await send('Gece yedeği alınamadı');
+    expect(chosen.rows).toEqual([
+      expect.objectContaining({ type: 'chat.alert', category: 'alert', urgent: true }),
+    ]);
+    expect(chosen.rows[0]!.payload).toMatchObject({ severity: 'critical' });
+    const page = await elif.api.call('listMessages', { params: { conversationId: alertId } });
+    const written = page.items.find((m) => m.id === chosen.messageId);
+    expect(written?.severity).toBe('critical');
+
+    // "Bilgi": a red emoji no longer reaches a critical-only chat.
+    await set('info');
+    expect((await send('❌ Job Execution Failed')).rows).toEqual([]);
+
+    // Back to reading the text.
+    expect((await set(null)).textSeverity).toBeNull();
+    expect((await send('❌ Job Execution Failed')).rows).toEqual([
+      expect.objectContaining({ type: 'chat.alert', urgent: false }),
+    ]);
+  });
+
   it('rejects bad keys, bad bodies and big bodies, and logs every request', async () => {
     const wrong = await hook(url.replace(/key=.*/, 'key=wrong'), { text: 'x' });
     expect(wrong.status).toBe(401);

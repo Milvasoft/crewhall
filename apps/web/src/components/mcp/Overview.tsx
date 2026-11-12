@@ -1,4 +1,10 @@
-import { MCP_SCOPES, type McpGrant, type McpScope, type McpSpaceRef } from '@crewhall/shared';
+import {
+  MCP_ALWAYS_APPROVED_SCOPES,
+  MCP_SCOPES,
+  type McpGrant,
+  type McpScope,
+  type McpSpaceRef,
+} from '@crewhall/shared';
 import {
   Badge,
   Button,
@@ -454,7 +460,7 @@ function ClientPanel({ grantId, spaces }: { grantId: string; spaces: McpSpaceRef
     scope,
     allowed: scope === 'hub:read' || allowed.includes(scope),
     required: scope === 'hub:read',
-    approval: scope === 'portal:publish',
+    approval: MCP_ALWAYS_APPROVED_SCOPES.includes(scope),
   }));
   const fact = (label: string, value: ReactNode, aside?: ReactNode) => (
     <div className="flex items-center justify-between gap-3 border-t border-line py-2 first:border-t-0">

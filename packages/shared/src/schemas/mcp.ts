@@ -23,6 +23,10 @@ export const MCP_SCOPES = [
   'tables:write',
   /** Plugins only for now: notify people who opened the plugin (no REST endpoint needs it). */
   'notifications:write',
+  /** Sending and filing the person's own mail; every outgoing message waits for approval. */
+  'mail:send',
+  /** Space, member, invitation and org settings over MCP; every change waits for approval. */
+  'admin:write',
 ] as const;
 export const McpScope = z.enum(MCP_SCOPES);
 export type McpScope = z.infer<typeof McpScope>;
@@ -30,7 +34,14 @@ export type McpScope = z.infer<typeof McpScope>;
 export const MCP_REQUIRED_SCOPE: McpScope = 'hub:read';
 
 /** Scopes whose every risky call goes through the approval queue regardless of policy. */
-export const MCP_ALWAYS_APPROVED_SCOPES: readonly McpScope[] = ['portal:publish'];
+export const MCP_ALWAYS_APPROVED_SCOPES: readonly McpScope[] = [
+  'portal:publish',
+  'mail:send',
+  'admin:write',
+];
+
+/** Scopes only the MCP operation bridge uses; plugins and REST tokens never get them. */
+export const MCP_ONLY_SCOPES: readonly McpScope[] = ['mail:send', 'admin:write'];
 
 /** Personal access tokens start with this prefix (design 18.4). */
 export const PAT_PREFIX = 'mhp_';
@@ -234,6 +245,8 @@ export const ApprovalAction = z.enum([
   'ai.action',
   /** A plugin's assistant tool that writes (docs/contracts/eklentiler.md). */
   'plugin.tool',
+  /** A Crewhall operation through the MCP operation bridge (delete, send, administer). */
+  'api.call',
 ]);
 export type ApprovalAction = z.infer<typeof ApprovalAction>;
 

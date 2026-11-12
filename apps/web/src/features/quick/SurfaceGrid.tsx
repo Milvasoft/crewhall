@@ -7,6 +7,7 @@ import { useShellLayout } from '@/lib/shell';
 import { type Layout } from './api';
 import { NO_DRAG } from './cardFrame';
 import { CardView } from './cards';
+import { useEdgeAutoScroll } from './edgeAutoScroll';
 import { GRID_COLS, GRID_GAP, ROW_HEIGHT, minSize } from './sizes';
 
 /** Card type dragged out of the gallery; dataTransfer is unreadable during dragover. */
@@ -40,6 +41,7 @@ export function SurfaceGrid({
 }) {
   const { width, containerRef, mounted } = useContainerWidth({ initialWidth: 1100 });
   const phone = useShellLayout() === 'phone';
+  const autoScroll = useEdgeAutoScroll(containerRef);
   // The layout just dropped, held in this render: the optimistic cache write reaches `cards`
   // a tick later, and in between the grid would snap the card back to its old slot.
   const [dropped, setDropped] = useState<{ base: Card[]; at: Record<string, Layout> } | null>(null);
@@ -83,6 +85,8 @@ export function SurfaceGrid({
     <div
       ref={containerRef}
       className={cn('quick-grid relative min-h-[240px] w-full', editable && 'is-editing')}
+      // Room below the last card while editing: a card at the bottom can be pulled further down.
+      style={editable ? { paddingBottom: 2 * ROW_HEIGHT + GRID_GAP } : undefined}
       onDoubleClick={(e) => {
         const target = e.target as HTMLElement;
         if (
@@ -110,8 +114,16 @@ export function SurfaceGrid({
             defaultItem: { w: 3, h: 2 },
             onDragOver: () => (draggingType ? { w: draggingType.w, h: draggingType.h } : false),
           }}
-          onDragStop={(next) => commit(next)}
-          onResizeStop={(next) => commit(next)}
+          onDragStart={() => autoScroll.start()}
+          onResizeStart={() => autoScroll.start()}
+          onDragStop={(next) => {
+            autoScroll.stop();
+            commit(next);
+          }}
+          onResizeStop={(next) => {
+            autoScroll.stop();
+            commit(next);
+          }}
           onDrop={(_next, item) => {
             const dropped = draggingType;
             draggingType = null;

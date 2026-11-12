@@ -1,16 +1,23 @@
 import { z } from 'zod';
-import { ListNodesQuery, NodeType } from '@crewhall/shared';
+import { ListNodesQuery, MCP_LIMITS, NodeType } from '@crewhall/shared';
 import { loadNode } from '../../drive/access';
 import { downloadUrl } from '../../drive/files';
 import * as tree from '../../drive/nodes';
 import { searchNodes } from '../../drive/personal';
 import { requireNodeModule } from '../../identity/node-types';
 import { listMySpaces } from '../../spaces';
+import { pageContent } from '../../wiki/pages';
 import { defineTool, ToolError, type ToolContext } from './types';
 
 const Cursor = z.string().max(500).optional().describe('nextCursor from the previous page');
 const Limit = (max: number, def: number) =>
   z.number().int().min(1).max(max).default(def).describe(`Page size, at most ${max}`);
+
+/** Page Markdown in an answer: the MCP limit (doc 17 §13), with a marker when cut. */
+export const clip = (markdown: string) =>
+  markdown.length > MCP_LIMITS.pageMarkdownChars
+    ? `${markdown.slice(0, MCP_LIMITS.pageMarkdownChars)}\n\n… (kesildi)`
+    : markdown;
 
 /** Text files small enough to return inline with get_node. */
 const INLINE_TEXT_BYTES = 100 * 1024;
@@ -135,8 +142,8 @@ export const getNode = defineTool({
       version: detail.version,
     };
     if (detail.type === 'page') {
-      // Page bodies arrive with the pages module (Tiptap → Markdown); the resource is ready.
-      data.markdown = null;
+      const content = await pageContent(ctx.deps.db, ctx.a, detail.id, 'markdown');
+      data.markdown = clip(content.markdown);
       data.resource = `crewhall://page/${detail.id}`;
     }
     if (detail.type === 'file' && ctx.deps.storage) {
@@ -200,6 +207,7 @@ export const pageResource = {
     if (!z.uuid().safeParse(id).success) throw new ToolError('not_found', 'Sayfa bulunamadı.');
     const access = await nodeInGrant(ctx, id);
     if (access.node.type !== 'page') throw new ToolError('not_found', 'Bu düğüm bir sayfa değil.');
-    return `# ${access.node.name}\n`;
+    const content = await pageContent(ctx.deps.db, ctx.a, id, 'markdown');
+    return `# ${access.node.name}\n\n${clip(content.markdown)}`;
   },
 };

@@ -41,8 +41,14 @@ import { notify } from '../notifications/notify';
 import { mcpAudit } from './audit';
 import { approvalMail } from './mail';
 import { isFresh, requireFresh } from './reauth';
-import type { ApprovalRequestInput, ToolContext, ToolOutcome } from './tools/types';
+import {
+  ToolError,
+  type ApprovalRequestInput,
+  type ToolContext,
+  type ToolOutcome,
+} from './tools/types';
 import { applyPluginTool } from '../plugins/tools';
+import { applyOperation } from './tools/api';
 
 type ApprovalRow = typeof approvalRequests.$inferSelect;
 
@@ -479,7 +485,12 @@ const APPLY: Record<
       result: { message_id: msg.id, conversation_id: msg.conversationId },
       undo: { kind: 'delete_message', messageId: msg.id, revs: { [msg.id]: rev } },
     };
-  }, // Actions proposed by the AI assistant (yol haritası #18, services/ai/actions.ts).
+  },
+  // Operations frozen by the bridge tools (tools/api.ts requestOperation).
+  call_write_operation: applyOperation,
+  share_node: applyOperation,
+  schedule_meeting: applyOperation,
+  // Actions proposed by the AI assistant (yol haritası #18, services/ai/actions.ts).
   ...AI_APPLIERS,
 };
 
@@ -549,8 +560,8 @@ export async function applyApproval(deps: JobDeps, approvalId: string) {
       via: viaInfo,
     });
   } catch (err) {
-    const code = err instanceof AppError ? err.code : 'internal';
-    if (!(err instanceof AppError)) logger.error({ err, approvalId }, 'approval apply failed');
+    const code = err instanceof AppError || err instanceof ToolError ? err.code : 'internal';
+    if (code === 'internal') logger.error({ err, approvalId }, 'approval apply failed');
     await fail(code);
   }
 }

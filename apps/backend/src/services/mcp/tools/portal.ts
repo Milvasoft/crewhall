@@ -295,3 +295,110 @@ export const requestPortalPublish = defineTool({
     });
   },
 });
+
+export const createPortalCategory = defineTool({
+  name: 'create_portal_category',
+  title: 'Create portal category',
+  description:
+    'Opens a category (sidebar group) in a portal doc version, at the root or inside parent_group_id, as a draft. Give translation_of to add the same category in another language. Docs go into it with upsert_portal_doc (parent_group_id) or move_portal_doc.',
+  scope: 'portal:draft',
+  module: 'portal',
+  write: true,
+  approval: null,
+  annotations: { readOnly: false, destructive: false, idempotent: false },
+  input: z.object({
+    site_id: SiteId,
+    version: z.string().max(60).optional().describe('Version name; omit for the current one'),
+    lang: PortalLocale,
+    title: z.string().trim().min(1).max(200),
+    slug: PortalDocSlug.optional().describe('Derived from the parent path and title when omitted'),
+    parent_group_id: z.uuid().nullable().optional().describe('Parent category group id'),
+    position: z.number().optional().describe('Order among siblings'),
+    translation_of: z.uuid().optional().describe('Category doc id this one translates'),
+  }),
+  example: { lang: 'tr', title: 'Kurulum', parent_group_id: null },
+  async run(ctx, input) {
+    requireEditor(ctx);
+    const site = await pickSite(ctx, input.site_id);
+    const version = await versionOf(ctx.deps.db, site, input.version);
+    const doc = await createDoc(ctx.deps.db, ctx.a, site.id, {
+      kind: 'category',
+      version: version.name,
+      locale: input.lang,
+      title: input.title,
+      ...(input.translation_of
+        ? { translationOf: input.translation_of }
+        : {
+            parentGroupId: input.parent_group_id ?? null,
+            ...(input.slug ? { slug: input.slug } : {}),
+            ...(input.position !== undefined ? { position: input.position } : {}),
+          }),
+    });
+    const label = `${version.name} · ${input.lang} · ${doc.title}`;
+    return {
+      data: {
+        doc_id: doc.id,
+        group_id: doc.groupId,
+        slug: doc.slug,
+        status: 'draft',
+        next: 'Use group_id as parent_group_id for docs and sub-categories.',
+      },
+      target: { type: 'portal_doc', id: doc.id, label },
+      summary: label,
+      undo: { kind: 'delete_portal_doc', docId: doc.id, revs: { [doc.id]: String(doc.rev) } },
+    };
+  },
+});
+
+export const movePortalDoc = defineTool({
+  name: 'move_portal_doc',
+  title: 'Move or rename portal doc',
+  description:
+    'Moves a portal doc or category under another category (parent_group_id, null = root), changes its order, title, sidebar label, slug or description. Writes a draft; nothing goes live without request_portal_publish.',
+  scope: 'portal:draft',
+  module: 'portal',
+  write: true,
+  approval: null,
+  annotations: { readOnly: false, destructive: false, idempotent: true },
+  input: z.object({
+    doc_id: z.uuid(),
+    parent_group_id: z.uuid().nullable().optional(),
+    position: z.number().optional(),
+    title: z.string().trim().min(1).max(200).optional(),
+    sidebar_label: z.string().max(120).nullable().optional(),
+    slug: PortalDocSlug.optional(),
+    description: z.string().max(500).nullable().optional(),
+  }),
+  example: {
+    doc_id: '0192f1c4-0000-7000-8000-000000000000',
+    parent_group_id: '0192f1c4-0000-7000-8000-000000000001',
+  },
+  async run(ctx, input) {
+    requireEditor(ctx);
+    const patch = {
+      ...(input.parent_group_id !== undefined ? { parentGroupId: input.parent_group_id } : {}),
+      ...(input.position !== undefined ? { position: input.position } : {}),
+      ...(input.title !== undefined ? { title: input.title } : {}),
+      ...(input.sidebar_label !== undefined ? { sidebarLabel: input.sidebar_label } : {}),
+      ...(input.slug !== undefined ? { slug: input.slug } : {}),
+      ...(input.description !== undefined ? { description: input.description } : {}),
+    };
+    if (Object.keys(patch).length === 0) {
+      throw new ToolError('validation_failed', 'Değiştirilecek bir alan ver.');
+    }
+    const doc = await updateDoc(ctx.deps.db, ctx.a, input.doc_id, patch);
+    const label = `${doc.version} · ${doc.locale} · ${doc.title}`;
+    return {
+      data: {
+        doc_id: doc.id,
+        parent_group_id: doc.parentGroupId,
+        position: doc.position,
+        slug: doc.slug,
+        rev: doc.rev,
+        status: 'draft',
+      },
+      target: { type: 'portal_doc', id: doc.id, label },
+      summary: label,
+    };
+  },
+});

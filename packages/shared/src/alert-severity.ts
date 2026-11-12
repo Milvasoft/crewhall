@@ -31,15 +31,18 @@ export function guessAlertSeverity(text: string): AlertSeverity {
 }
 
 /**
- * The severity a message carries for notifications: its card's, or for a webhook's plain text
- * the one read from the words. Null for people's messages.
+ * The severity a message carries for notifications: its card's; for a webhook's plain text the
+ * one its webhook sets ("Kartsız mesajın önemi"), else the one read from the words. Null for
+ * people's messages.
  */
 export function messageSeverity(m: {
   kind: string;
   text: string;
   card?: { severity: AlertSeverity } | null;
+  severity?: AlertSeverity | null;
 }): AlertSeverity | null {
   if (m.card) return m.card.severity;
-  if (m.kind !== 'webhook' || !m.text) return null;
-  return guessAlertSeverity(m.text);
+  if (m.kind !== 'webhook') return null;
+  if (m.severity) return m.severity;
+  return m.text ? guessAlertSeverity(m.text) : null;
 }

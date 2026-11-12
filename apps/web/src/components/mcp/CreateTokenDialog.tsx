@@ -1,4 +1,5 @@
 import {
+  MCP_ALWAYS_APPROVED_SCOPES,
   MCP_SCOPES,
   type CreatedApiToken,
   type McpPolicy,
@@ -106,7 +107,7 @@ export function CreateTokenDialog({
     scope,
     allowed: scope === 'hub:read' || (allowedScopes?.includes(scope) ?? true),
     required: scope === 'hub:read',
-    approval: scope === 'portal:publish',
+    approval: MCP_ALWAYS_APPROVED_SCOPES.includes(scope),
   }));
   const until = (days: number) => formatDateLong(new Date(now + days * 86_400_000), locale);
 

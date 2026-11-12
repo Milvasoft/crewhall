@@ -15,6 +15,7 @@ import { registerDrive } from './routes/drive';
 import { registerQuick } from './routes/quick';
 import { registerPortal } from './routes/portal';
 import { registerMcp } from './routes/mcp';
+import { registerInternalApp } from './services/mcp/bridge';
 import { registerChat } from './routes/chat';
 import { registerAnnouncements } from './routes/announcements';
 import { registerVault } from './routes/vault';
@@ -284,6 +285,8 @@ export function createApp(deps: Deps) {
     );
   });
 
+  // MCP tools reach every contract endpoint in process through this router.
+  registerInternalApp(deps, app);
   return app;
 }
 

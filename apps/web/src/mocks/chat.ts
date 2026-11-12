@@ -25,6 +25,7 @@ import {
   isGiphyMediaUrl,
   isReactionEmoji,
   HookPayload,
+  messageSeverity,
   type NOTIFICATION_TYPES,
   NotificationCategory,
   NotificationSource,
@@ -376,6 +377,7 @@ function toMessage(s: MockState, m: MockMessage, userId: string): Message {
     text: deleted ? '' : m.text,
     mentions: deleted ? [] : mentionsOf(m.text),
     card: deleted ? null : m.card,
+    ...(m.severity ? { severity: m.severity } : {}),
     system: m.system,
     attachments: deleted
       ? []
@@ -611,7 +613,7 @@ function notifyFor(s: MockState, conv: MockConversation, m: MockMessage) {
     } else if (reply?.authorId === uid) {
       type = 'chat.reply';
       category = 'direct_reply';
-    } else if (m.card?.severity === 'critical' && row.notify !== 'mentions') {
+    } else if (messageSeverity(m) === 'critical' && row.notify !== 'mentions') {
       type = 'chat.alert';
       category = 'alert';
     }
@@ -638,7 +640,7 @@ function notifyFor(s: MockState, conv: MockConversation, m: MockMessage) {
           null,
         excerpt: excerptOf(s, m),
         webhookName: c.webhooks.find((w) => w.id === m.webhookId)?.name ?? null,
-        severity: m.card?.severity ?? null,
+        severity: messageSeverity(m),
       },
       url: `/chat/c/${conv.id}?seq=${m.seq}`,
     });
@@ -817,6 +819,7 @@ function toWebhook(s: MockState, h: MockWebhook, request: Request): IncomingWebh
     disabledAt: h.disabledAt,
     provider: h.provider ?? null,
     events: h.events ?? [],
+    textSeverity: h.textSeverity ?? null,
     createdBy: summaryOf(s, h.createdBy),
     createdAt: h.createdAt,
     deliveries24h: recent.length,
@@ -2135,6 +2138,7 @@ ${node.name}: ${url}`
       createdAt: now(),
       provider: body.provider ?? null,
       events: body.provider ? (body.events ?? [...WEBHOOK_PROVIDER_EVENTS[body.provider]]) : [],
+      textSeverity: body.textSeverity ?? null,
     };
     c.webhooks.push(h);
     systemLine(s, conv, { type: 'webhook_added', actorId: u.id, name: h.name });
@@ -2150,6 +2154,7 @@ ${node.name}: ${url}`
     const u = requireUser(s);
     const { h } = webhookOf(s, u, params.webhookId!);
     if (body.name !== undefined) h.name = body.name;
+    if (body.textSeverity !== undefined) h.textSeverity = body.textSeverity;
     if (body.mutedUntil !== undefined) h.mutedUntil = body.mutedUntil;
     if (body.disabled !== undefined) h.disabledAt = body.disabled ? now() : null;
     if (body.events !== undefined) {
@@ -2590,6 +2595,7 @@ const hookHandler = http.post('*/api/hooks/:webhookId', async ({ request, params
       muted && card
         ? { ...card, severity: card.severity === 'critical' ? 'warning' : card.severity }
         : card,
+    ...(!card && h.textSeverity ? { severity: h.textSeverity } : {}),
     system: null,
     attachments: [],
     replyToId: null,
