@@ -603,6 +603,9 @@ export const quickResolvers = {
       host: url.host,
       title: known?.siteTitle ?? fetchTitle(url),
       faviconUrl: known?.faviconUrl ?? null,
+      // What a page bookmark shows: a summary, and an image served by the app itself.
+      description: `${url.host} sayfasının kısa özeti.`,
+      imageUrl: typeof location === 'undefined' ? null : `${location.origin}/favicon.svg`,
       existingCardIds,
     };
   },

@@ -58,6 +58,7 @@
   "slashColumns3": "3 sütun",
   "slashColumnsDesc": "Blokları yan yana dizer",
   "blockAddColumn": "Sütun ekle",
+  "columnResize": "Sütun genişliği: sürükle ya da ← → tuşlarına bas, çift tıklayınca eşitlenir",
   "slashToggle": "Açılır blok",
   "slashToggleDesc": "Tıklayınca açılan, içeriği gizlenebilen blok",
   "slashToggleHeading1": "Açılır başlık 1",

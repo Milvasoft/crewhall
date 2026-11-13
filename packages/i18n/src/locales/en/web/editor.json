@@ -58,6 +58,7 @@
   "slashColumns3": "3 columns",
   "slashColumnsDesc": "Lay blocks out side by side",
   "blockAddColumn": "Add a column",
+  "columnResize": "Column width: drag or press ← →, double-click to make them equal",
   "slashToggle": "Toggle",
   "slashToggleDesc": "A block whose content opens on click",
   "slashToggleHeading1": "Toggle heading 1",

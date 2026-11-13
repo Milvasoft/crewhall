@@ -10,6 +10,7 @@ import {
 } from '@tiptap/react';
 import { useEffect, useId, useRef, useState, type JSX } from 'react';
 import {
+  httpUrl,
   isAdmonitionType,
   videoSource,
   webUrl,
@@ -18,6 +19,7 @@ import {
 } from '../../model';
 import { outlineDepth, scrollToHeading, useOutline } from '../outline';
 import type { ViewNodeName } from '../extensions';
+import { columnView } from '../extensions/columns';
 import type { EditorLabels } from '../labels';
 import { useEditorUi, useIsEditable, type PickedVideo } from './context';
 import { Icon } from './icons';
@@ -850,13 +852,22 @@ function BookmarkView({
   const url = str(node.attrs.url);
   const title = str(node.attrs.title);
   const favicon = str(node.attrs.favicon);
+  const description = str(node.attrs.description);
+  const image = httpUrl(node.attrs.image);
   const [autoFocus] = useState(() => justInserted(editor, getPos(), node.nodeSize));
   const [iconFailed, setIconFailed] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
 
   const submit = (next: string) => {
     updateAttributes({ url: next });
     void previewLink?.(next).then(
-      (meta) => updateAttributes({ title: meta.title, favicon: meta.faviconUrl }),
+      (meta) =>
+        updateAttributes({
+          title: meta.title,
+          favicon: meta.faviconUrl,
+          description: meta.description ?? null,
+          image: httpUrl(meta.imageUrl),
+        }),
       () => undefined,
     );
   };
@@ -883,8 +894,19 @@ function BookmarkView({
           )}
           <span className="ch-bookmark-text">
             <span className="ch-bookmark-title">{title ?? hostOf(safe)}</span>
+            {description ? <span className="ch-bookmark-desc">{description}</span> : null}
             <span className="ch-bookmark-host">{hostOf(safe)}</span>
           </span>
+          {image && !imageFailed ? (
+            <img
+              className="ch-bookmark-image"
+              src={image}
+              alt=""
+              loading="lazy"
+              referrerPolicy="no-referrer"
+              onError={() => setImageFailed(true)}
+            />
+          ) : null}
         </a>
       ) : editable ? (
         <UrlPrompt
@@ -1058,9 +1080,12 @@ function VideoSourcePrompt({
   );
 }
 
-/** React node views for `createExtensions({ nodeViews })`. */
-export function createNodeViews(): Record<ViewNodeName, NodeViewRenderer> {
+/** React node views for `createExtensions({ nodeViews })`; `labels` reads the host's current ones. */
+export function createNodeViews(
+  labels: () => EditorLabels,
+): Record<ViewNodeName, NodeViewRenderer> {
   return {
+    column: columnView(() => labels().columnResize),
     admonition: ReactNodeViewRenderer(AdmonitionView),
     tabs: ReactNodeViewRenderer(TabsView),
     mermaid: ReactNodeViewRenderer(MermaidView),

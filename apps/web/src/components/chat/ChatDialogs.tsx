@@ -41,7 +41,7 @@ import {
 } from '@/lib/federation/queries';
 import { formatDate, formatTime } from '@/lib/i18n/format';
 import { useI18n } from '@/lib/i18n/I18nContext';
-import { membersQuery } from '@/lib/queries';
+import { membersQuery, spaceMembersQuery } from '@/lib/queries';
 import { useSpaces } from '@/lib/useSpaces';
 import { ConversationAvatar, PersonAvatar, useMyId } from './common';
 import { EmojiField } from './EmojiField';
@@ -57,6 +57,7 @@ export function ChatDialogs() {
       {d?.kind === 'addPeople' ? <AddPeopleBody conv={d.conv} /> : null}
       {d?.kind === 'members' ? <MembersBody conv={d.conv} /> : null}
       {d?.kind === 'linkSpace' ? <LinkSpaceBody conv={d.conv} /> : null}
+      {d?.kind === 'privacy' ? <PrivacyBody conv={d.conv} /> : null}
       {d?.kind === 'leave' ? <LeaveBody conv={d.conv} /> : null}
       {d?.kind === 'clear' ? <ClearBody conv={d.conv} /> : null}
       {d?.kind === 'addRemote' ? <AddRemoteBody conv={d.conv} /> : null}
@@ -230,23 +231,41 @@ function RenameBody({ conv }: { conv: Conversation }) {
   );
 }
 
-/** Org people with search; `exclude` hides people who are already in. */
+/**
+ * Org people with search; `exclude` hides people who are already in. With `spaceId` only that
+ * space's members are offered (private channels take people from their space).
+ */
 export function PeoplePicker({
   selected,
   onToggle,
   exclude = [],
+  spaceId,
 }: {
   selected: string[];
   onToggle: (u: UserSummary) => void;
   exclude?: string[];
+  spaceId?: string | null | undefined;
 }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const me = useMyId();
   const [q, setQ] = useState('');
-  const { data } = useQuery(membersQuery({ q: q.trim() || undefined, status: 'active' }));
-  const people = (data?.items ?? [])
-    .map((m) => m.user)
-    .filter((u) => u.id !== me && !exclude.includes(u.id));
+  const org = useQuery({
+    ...membersQuery({ q: q.trim() || undefined, status: 'active' }),
+    enabled: !spaceId,
+  });
+  const space = useQuery({ ...spaceMembersQuery(spaceId ?? ''), enabled: Boolean(spaceId) });
+  const needle = q.trim().toLocaleLowerCase(locale);
+  const pool = spaceId
+    ? (space.data?.items ?? [])
+        .map((m) => m.user)
+        .filter(
+          (u) =>
+            !needle ||
+            u.name.toLocaleLowerCase(locale).includes(needle) ||
+            u.email.toLocaleLowerCase(locale).includes(needle),
+        )
+    : (org.data?.items ?? []).map((m) => m.user);
+  const people = pool.filter((u) => u.id !== me && !exclude.includes(u.id));
   return (
     <div className="flex flex-col gap-2">
       <Input
@@ -320,13 +339,14 @@ function AddPeopleBody({ conv }: { conv: Conversation }) {
       <PeoplePicker
         selected={picked.map((u) => u.id)}
         exclude={(members ?? []).map((m) => m.user.id)}
+        spaceId={conv.private ? conv.spaceId : null}
         onToggle={(u) =>
           setPicked((cur) =>
             cur.some((x) => x.id === u.id) ? cur.filter((x) => x.id !== u.id) : [...cur, u],
           )
         }
       />
-      {conv.type === 'group' ? (
+      {conv.type === 'group' || conv.private ? (
         <div className="flex flex-col gap-2">
           <span className="text-cap font-semibold">{t('chat.dialogs.add.history')}</span>
           <RadioGroup
@@ -687,7 +707,24 @@ function MembersBody({ conv }: { conv: Conversation }) {
   const fail = useFail();
   const me = useMyId();
   const { data } = useQuery(chatMembersQuery(conv.id));
-  const canRemove = conv.permissions.manage && conv.type !== 'space';
+  const canRemove = conv.permissions.manage && (conv.type !== 'space' || conv.private === true);
+  // Private channels: owners (and space admins) make others owners; one owner always stays.
+  const owners = (data ?? []).filter((m) => m.role === 'owner').length;
+  const setRole = async (userId: string, role: 'owner' | 'member') => {
+    try {
+      qc.setQueryData(
+        chatKeys.members(conv.id),
+        (
+          await api.call('updateConversationMember', {
+            params: { conversationId: conv.id, userId },
+            body: { role },
+          })
+        ).items,
+      );
+    } catch (e) {
+      fail(e);
+    }
+  };
   return (
     <DialogContent width={460}>
       <DialogHeader
@@ -708,6 +745,20 @@ function MembersBody({ conv }: { conv: Conversation }) {
                 {m.isGuest ? ` · ${t('chat.person.guest')}` : ''}
               </span>
             </span>
+            {m.role === 'owner' ? <Badge>{t('chat.dialogs.members.owner')}</Badge> : null}
+            {conv.private && conv.permissions.manage && !m.isGuest ? (
+              m.role === 'owner' ? (
+                owners > 1 ? (
+                  <Button size="xs" variant="gh" onClick={() => void setRole(m.user.id, 'member')}>
+                    {t('chat.dialogs.members.makeMember')}
+                  </Button>
+                ) : null
+              ) : (
+                <Button size="xs" variant="gh" onClick={() => void setRole(m.user.id, 'owner')}>
+                  {t('chat.dialogs.members.makeOwner')}
+                </Button>
+              )
+            ) : null}
             {canRemove && m.user.id !== me ? (
               <Button
                 size="xs"
@@ -718,6 +769,10 @@ function MembersBody({ conv }: { conv: Conversation }) {
                       params: { conversationId: conv.id, userId: m.user.id },
                     });
                     void qc.invalidateQueries({ queryKey: chatKeys.members(conv.id) });
+                    upsertConversation(
+                      qc,
+                      await api.call('getConversation', { params: { conversationId: conv.id } }),
+                    );
                   } catch (e) {
                     fail(e);
                   }
@@ -778,7 +833,8 @@ function MembersBody({ conv }: { conv: Conversation }) {
         })}
       </ul>
       <DialogFooter>
-        {(conv.type === 'group' || conv.type === 'alert') && conv.permissions.manage ? (
+        {(conv.type === 'group' || conv.type === 'alert' || conv.private) &&
+        conv.permissions.manage ? (
           <Button
             variant="out"
             className="mr-auto"
@@ -862,6 +918,62 @@ function LinkSpaceBody({ conv }: { conv: Conversation }) {
           }}
         >
           {t('chat.dialogs.link.submit')}
+        </Button>
+      </DialogFooter>
+    </DialogContent>
+  );
+}
+
+/**
+ * Open ↔ private (Teams-like). Going private adds everyone in the space now, who can then be
+ * removed; going open hands the channel and its history to the whole space.
+ */
+function PrivacyBody({ conv }: { conv: Conversation }) {
+  const { t } = useI18n();
+  const qc = useQueryClient();
+  const fail = useFail();
+  const [busy, setBusy] = useState(false);
+  const toPrivate = !conv.private;
+  return (
+    <DialogContent width={460}>
+      <DialogHeader
+        title={t(
+          toPrivate ? 'chat.dialogs.privacy.privateTitle' : 'chat.dialogs.privacy.openTitle',
+          {
+            name: conv.title,
+          },
+        )}
+        description={t(
+          toPrivate ? 'chat.dialogs.privacy.privateBody' : 'chat.dialogs.privacy.openBody',
+        )}
+      />
+      <DialogFooter>
+        <Button variant="gh" onClick={close}>
+          {t('common.actions.cancel')}
+        </Button>
+        <Button
+          variant="inv"
+          loading={busy}
+          onClick={async () => {
+            setBusy(true);
+            try {
+              upsertConversation(
+                qc,
+                await api.call('updateConversation', {
+                  params: { conversationId: conv.id },
+                  body: { private: toPrivate },
+                }),
+              );
+              void qc.invalidateQueries({ queryKey: chatKeys.members(conv.id) });
+              close();
+            } catch (e) {
+              fail(e);
+            } finally {
+              setBusy(false);
+            }
+          }}
+        >
+          {t(toPrivate ? 'chat.dialogs.privacy.privateSubmit' : 'chat.dialogs.privacy.openSubmit')}
         </Button>
       </DialogFooter>
     </DialogContent>

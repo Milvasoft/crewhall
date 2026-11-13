@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type KeyboardEvent, type ReactElement } fr
 import { ActionContextMenu, type ActionEntry } from '@/components/common/ActionMenu';
 import { useDriveDialog, useNodeActions } from '@/features/drive/actions';
 import { invalidateDrive, nodeQuery } from '@/features/drive/api';
-import { useNodeMenu } from '@/features/drive/nodeMenu';
+import { menuShortcutOf, useNodeMenu } from '@/features/drive/nodeMenu';
 import { api } from '@/lib/api';
 import { errorKey } from '@/lib/errors';
 import { useI18n } from '@/lib/i18n/I18nContext';
@@ -43,15 +43,6 @@ function asNode(item: ListedNode, type: ListedType, myRole: SpaceRole): DriveNod
     createdAt: item.updatedAt,
     deletedAt: null,
   };
-}
-
-/** The key a menu shortcut is written with (`useNodeMenu`), for a key press. */
-function shortcutOf(e: KeyboardEvent): string | null {
-  if (e.key === 'F2') return 'F2';
-  if (e.key === 'Delete') return 'Del';
-  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'c') return 'Ctrl Shift C';
-  if (e.ctrlKey || e.metaKey || e.altKey || e.key.length !== 1) return null;
-  return e.key.toUpperCase();
 }
 
 /**
@@ -126,7 +117,7 @@ export function useNodeListMenu(type: ListedType, listKey: QueryKey) {
 
   /** F2, Del, M, I and Ctrl Shift C on a focused tile do what its menu says (Enter opens). */
   const onKeyDown = (n: DriveNode, e: KeyboardEvent) => {
-    const key = shortcutOf(e);
+    const key = menuShortcutOf(e);
     if (!key) return;
     const hit = entries(n).find((x) => x.kind === 'item' && x.shortcut === key);
     if (hit?.kind !== 'item') return;

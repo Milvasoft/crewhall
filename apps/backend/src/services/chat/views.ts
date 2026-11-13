@@ -32,6 +32,7 @@ import {
 import {
   defaultNotify,
   permissionsOf,
+  isMemberOf,
   spaceBound,
   spaceRoomChats,
   type ChatActor,
@@ -270,6 +271,7 @@ export async function toMessages(
       poll: !deleted && r.body.poll ? (polls.get(r.body.poll) ?? null) : null,
       gif: !deleted && r.body.gif ? r.body.gif : null,
       refs: !deleted && r.body.refs ? r.body.refs : [],
+      linkPreview: !deleted && r.body.linkPreview ? r.body.linkPreview : null,
       claim:
         !deleted && r.body.claim && people.get(r.body.claim.userId)
           ? { user: people.get(r.body.claim.userId)!, at: r.body.claim.at }
@@ -374,15 +376,18 @@ export async function conversationViews(
     : [];
   const spaceInfo = new Map(spaceRows.map((s) => [s.id, s]));
   const roomChats = await spaceRoomChats(db, convs);
-  const myRoles = new Map(
-    (spaceIds.length
-      ? await db
-          .select({ spaceId: spaceMembers.spaceId, role: spaceMembers.role })
-          .from(spaceMembers)
-          .where(and(eq(spaceMembers.userId, a.userId), inArray(spaceMembers.spaceId, spaceIds)))
-      : []
-    ).map((r) => [r.spaceId, r.role]),
-  );
+  const mySpaceRows = spaceIds.length
+    ? await db
+        .select({
+          spaceId: spaceMembers.spaceId,
+          role: spaceMembers.role,
+          joinedAt: spaceMembers.createdAt,
+        })
+        .from(spaceMembers)
+        .where(and(eq(spaceMembers.userId, a.userId), inArray(spaceMembers.spaceId, spaceIds)))
+    : [];
+  const myRoles = new Map(mySpaceRows.map((r) => [r.spaceId, r.role]));
+  const joinedAt = new Map(mySpaceRows.map((r) => [r.spaceId, r.joinedAt]));
   const spaceCounts = new Map(
     (spaceIds.length
       ? await db
@@ -483,9 +488,13 @@ export async function conversationViews(
       conv: c,
       row,
       spaceRole,
-      isMember: spaceBound(c)
-        ? spaceRole !== null
-        : row !== null || (spaceRole !== null && roomChats.has(c.id)),
+      isMember: isMemberOf(
+        c,
+        row,
+        spaceRole,
+        roomChats.has(c.id),
+        c.spaceId ? (joinedAt.get(c.spaceId) ?? null) : null,
+      ),
     };
     const people = membersOf.get(c.id) ?? [];
     const others = people.filter((u) => u.id !== a.userId);
@@ -534,6 +543,7 @@ export async function conversationViews(
       meetingId: c.meetingId,
       name: c.name,
       emoji: c.emoji,
+      ...(c.spaceId && (c.type === 'space' || c.type === 'alert') ? { private: c.private } : {}),
       title,
       avatarUrl: null,
       peer,

@@ -84,22 +84,29 @@ export function AvatarStack({
   max?: number;
   size?: 'xs' | 'sm';
 }) {
-  const small = size === 'xs' ? 'size-[22px] text-[9px]' : '';
+  // Each avatar overlaps the one before by 2 px plus its 1.5 px ring: the covered one keeps
+  // 18.5 of its 22 px, enough for two centred initials up to 15 px wide ("MÖ", "AK").
+  const box = size === 'xs' ? 'size-[22px] text-[9px]' : 'size-6 text-[10px]';
   if (!people.length) return null;
   const shown = people.slice(0, max);
   return (
-    <span className="flex -space-x-1.5">
+    <span className="flex shrink-0 items-center -space-x-0.5">
       {shown.map((p) => (
         <Avatar
           key={p.id}
           name={p.name}
           src={p.imageUrl}
           size="sm"
-          className={cn('ring-2 ring-surface', small)}
+          className={cn('leading-none tracking-[-0.02em] ring-[1.5px] ring-surface', box)}
         />
       ))}
       {people.length > max ? (
-        <span className="flex size-5 items-center justify-center rounded-full bg-bg2 text-[10px] font-bold text-fg2 ring-2 ring-surface">
+        <span
+          className={cn(
+            'flex shrink-0 items-center justify-center rounded-full bg-bg2 leading-none font-bold text-fg2 ring-[1.5px] ring-surface',
+            box,
+          )}
+        >
           +{people.length - max}
         </span>
       ) : null}

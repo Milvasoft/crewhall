@@ -497,9 +497,11 @@ function Starter({ conv, onPick }: { conv: Conversation; onPick: (text: string) 
       <p className="m-0 text-sm text-fg2">
         {conv.type === 'direct'
           ? t('chat.starter.direct')
-          : conv.type === 'space'
-            ? t('chat.starter.space', { space: conv.spaceName ?? '' })
-            : t('chat.starter.group')}
+          : conv.private
+            ? t('chat.starter.private', { space: conv.spaceName ?? '' })
+            : conv.type === 'space'
+              ? t('chat.starter.space', { space: conv.spaceName ?? '' })
+              : t('chat.starter.group')}
       </p>
       <div className="flex flex-wrap justify-center gap-2 pt-1">
         <Chip size="sm" onClick={() => onPick(t('chat.starter.hello'))}>

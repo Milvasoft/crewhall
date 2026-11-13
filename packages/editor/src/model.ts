@@ -14,11 +14,12 @@
  * - toggle: collapsible block, content `block+`, attrs `ToggleAttrs`; markdown
  *   `:::toggle[Summary]` … `:::`, as a heading `:::toggle[Summary]{level=2}`.
  * - columns: side by side blocks, 2 to `MAX_COLUMNS` `column` nodes, each `block+`; markdown
- *   `::::columns` with a `:::column` for each. Narrow screens stack them.
+ *   `::::columns` with a `:::column` for each, `:::column{width="40"}` once resized
+ *   (`ColumnAttrs`, `columnWidths`). Narrow screens stack them.
  * - mathBlock, mathInline: LaTeX drawn with KaTeX, attrs `MathAttrs`; markdown `$$` on its own
  *   lines and `$$x$$` in text. A single `$` stays text, so prices do not turn into formulas.
  * - bookmark: block atom, a card for a web page, attrs `BookmarkAttrs`; markdown
- *   `::bookmark{url="…" title="…"}`.
+ *   `::bookmark{url="…" title="…" description="…" image="…"}`.
  * - video: block atom, attrs `VideoAttrs`, see `videoSource`; markdown `::video{src="…"}`.
  * - embed: block atom showing another Hub node (file, board …), attrs `EmbedAttrs`; markdown
  *   `::embed{node="<id>" type="<type>"}` (a leaf directive).
@@ -165,6 +166,15 @@ export interface BookmarkAttrs {
   url: string;
   title: string | null;
   favicon: string | null;
+  /** The page's own summary (`og:description` / `description`). */
+  description: string | null;
+  /** Its preview image (`og:image`), an http(s) address. */
+  image: string | null;
+}
+
+export interface ColumnAttrs {
+  /** Share of the set in percent (`columnWidths`); null = equal columns. */
+  width: number | null;
 }
 
 export interface VideoAttrs {
@@ -182,6 +192,17 @@ export function webUrl(input: string): string | null {
   try {
     const url = new URL(hasScheme ? text : `https://${text}`);
     return url.hostname.includes('.') || url.hostname === 'localhost' ? url.href : null;
+  } catch {
+    return null;
+  }
+}
+
+/** `v` when it is an absolute http(s) address (a bookmark's image), else null. */
+export function httpUrl(v: unknown): string | null {
+  if (typeof v !== 'string' || !/^https?:\/\//i.test(v)) return null;
+  try {
+    new URL(v);
+    return v;
   } catch {
     return null;
   }
@@ -235,6 +256,29 @@ export function videoSource(src: string): VideoSource | null {
 }
 
 export const MAX_COLUMNS = 4;
+
+/** The narrowest a column may be, in percent of its set. */
+export const MIN_COLUMN_WIDTH = 10;
+
+/** A column's share of its set in percent, from a stored attribute; null when it has none. */
+export function columnWidth(v: unknown): number | null {
+  const n = typeof v === 'string' && v.trim() !== '' ? Number(v) : v;
+  if (typeof n !== 'number' || !Number.isFinite(n)) return null;
+  const width = Math.round(n);
+  return width >= MIN_COLUMN_WIDTH && width <= 100 - MIN_COLUMN_WIDTH ? width : null;
+}
+
+/**
+ * The widths of a set of columns as stored: every column with a width, scaled to add up to 100,
+ * or all null (equal columns) as soon as one has none. A column added next to resized ones thus
+ * resets the set to equal widths instead of squeezing beside them.
+ */
+export function columnWidths(values: readonly unknown[]): (number | null)[] {
+  const widths = values.map(columnWidth);
+  if (widths.length < 2 || widths.some((w) => w === null)) return widths.map(() => null);
+  const sum = (widths as number[]).reduce((a, b) => a + b, 0);
+  return (widths as number[]).map((w) => Math.round((w / sum) * 100));
+}
 
 export const emptyDoc = (): EditorDoc => ({ type: 'doc', content: [{ type: 'paragraph' }] });
 

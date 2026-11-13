@@ -62,6 +62,8 @@ export interface EditorLabels {
   slashColumns3: string;
   slashColumnsDesc: string;
   blockAddColumn: string;
+  /** The handle between two columns (drag or ← / → to resize). */
+  columnResize: string;
   slashToggle: string;
   slashToggleDesc: string;
   slashToggleHeading1: string;
@@ -238,6 +240,7 @@ const keys = {
   slashColumns3: 1,
   slashColumnsDesc: 1,
   blockAddColumn: 1,
+  columnResize: 1,
   slashToggle: 1,
   slashToggleDesc: 1,
   slashToggleHeading1: 1,

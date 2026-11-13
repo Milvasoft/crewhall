@@ -53,6 +53,7 @@ import {
 } from './access';
 import { messageNotifications } from './notify-rules';
 import { checkMessageGif } from './gif';
+import { queueLinkPreview } from './link-preview';
 import { checkRefs } from './refs';
 import { parseMentions } from './text';
 import { toMessage, toMessages, unreadCounts, usersById } from './views';
@@ -451,6 +452,7 @@ export async function afterWrite(
   await publishMessage(deps, fresh, 'message.created', msg);
   if (msg.authorId) await publishOwnRead(deps, conv.orgId, conv.id, msg.authorId, msg.seq);
   await deliverNotifications(deps, notes);
+  queueLinkPreview(deps, msg);
 }
 
 export async function sendMessage(
@@ -640,6 +642,7 @@ export async function updateMessage(
   await publishMessage(deps, m.conv, 'message.updated', row);
   await deliverNotifications(deps, notes);
   await federateEdit(deps, m.conv, row);
+  queueLinkPreview(deps, row);
   return toMessage(db, a.userId, row);
 }
 

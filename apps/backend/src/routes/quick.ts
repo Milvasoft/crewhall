@@ -121,6 +121,8 @@ export function registerQuick(r: Router) {
       host: new URL(url).host,
       title: meta.title,
       faviconUrl: meta.faviconUrl,
+      description: meta.description,
+      imageUrl: meta.imageUrl,
       existingCardIds: existing,
     };
   });

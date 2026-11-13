@@ -28,6 +28,7 @@ import {
 } from './nodes';
 import { PasteHandler, type PasteOptions } from './paste';
 import { BlockKeys, ColumnKeys, ListItemDrop } from './blocks';
+import { ColumnWidths } from './columns';
 import { FindReplace } from './find';
 import { TouchBlockDrag } from './touch-drag';
 import { SlashCommand, type SlashOptions } from './slash';
@@ -50,7 +51,8 @@ export type ViewNodeName =
   | 'mathBlock'
   | 'mathInline'
   | 'bookmark'
-  | 'video';
+  | 'video'
+  | 'column';
 
 export interface CollaborationOptions {
   /** The shared document. The provider (Hocuspocus, y-websocket …) is the host's job. */
@@ -138,7 +140,8 @@ export function createExtensions(options: CreateExtensionsOptions = {}): Extensi
     withView(Toggle, views.toggle),
     withView(Embed, views.embed),
     Columns,
-    Column,
+    withView(Column, views.column),
+    ColumnWidths,
     withView(MathBlock, views.mathBlock),
     withView(MathInline, views.mathInline),
     withView(Bookmark, views.bookmark),

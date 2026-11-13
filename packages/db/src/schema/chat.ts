@@ -25,7 +25,8 @@ import { id, textTr, timestamps, tz } from './types';
  *
  * Space conversations (and space-bound alert ones) take their members from space_members;
  * their conversation_members rows only carry the person's own settings. Every other
- * conversation's members are its conversation_members rows.
+ * conversation's members are its conversation_members rows. A private space channel
+ * (`private`) is one of those others: its members are its rows, each also in the space.
  */
 
 const tsvector = customType<{ data: string }>({ dataType: () => 'tsvector' });
@@ -75,6 +76,11 @@ export const conversations = pgTable(
     lastSeq: bigint('last_seq', { mode: 'number' }).notNull().default(0),
     lastMessageAt: tz('last_message_at'),
     archivedAt: tz('archived_at'),
+    /**
+     * Private space channel (Teams-like): only the people added (conversation_members, who must
+     * also be in the space) see it. Off: the whole space sees it, as before.
+     */
+    private: boolean('private').notNull().default(false),
     createdBy: uuid('created_by').references(() => users.id, { onDelete: 'set null' }),
     ...timestamps(),
   },
@@ -110,6 +116,8 @@ export const conversationMembers = pgTable(
     notify: notifyLevel('notify').notNull(),
     mutedUntil: tz('muted_until'),
     addedBy: uuid('added_by').references(() => users.id, { onDelete: 'set null' }),
+    /** Private channels: owners add and remove people (with the space's admins). */
+    role: text('role').$type<'owner' | 'member'>().notNull().default('member'),
     ...timestamps(),
   },
   (t) => [
@@ -201,6 +209,16 @@ export interface MessageBodyData {
   claim?: { userId: string; at: string };
   /** A webhook's text without a card: the severity its webhook gives it (text_severity). */
   severity?: 'critical' | 'warning' | 'success' | 'info';
+  /** Preview card of the first external link (Message.linkPreview), set by the worker. */
+  linkPreview?: {
+    url: string;
+    title: string | null;
+    description: string | null;
+    siteName: string | null;
+    imageUrl: string | null;
+  };
+  /** The author removed the preview: it is not fetched again, also not after an edit. */
+  linkPreviewRemoved?: boolean;
 }
 
 export const messages = pgTable(

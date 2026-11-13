@@ -4,7 +4,7 @@ import { api, isApiError } from '@/lib/api';
 import { applyReaction, firstGap, mergeMessages, sortConversations } from '@/lib/chat/cache';
 import { chatKeys, type MessageWindow } from '@/lib/chat/queries';
 import { bindRuntimeForTests, handleEvent } from '@/lib/chat/runtime';
-import { parseText, splitBlocks } from '@/lib/chat/text';
+import { plainText } from '@/lib/chat/text';
 import { type Conversation, type Message } from '@/lib/chat/types';
 import { CONV, WEBHOOK, WEBHOOK_KEY } from '@/mocks/chatSeed';
 import { db } from '@/mocks/db';
@@ -108,6 +108,49 @@ describe('chat contract mock', () => {
       api.call('updateMessage', { params: { messageId: others.id }, body: { text: 'x' } }),
     );
     expect(isApiError(denied, 'chat_message_not_editable')).toBe(true);
+  });
+
+  it('private space channels: only the people added see them, owners manage', async () => {
+    signedInAs(USER.bugra);
+    const s = db();
+    const spaceId = s.spaceMembers.find(
+      (m) => m.userId === USER.bugra && (m.role === 'owner' || m.role === 'admin'),
+    )!.spaceId;
+    // Plain members first (space admins may manage any private channel they are in).
+    const others = s.spaceMembers
+      .filter((m) => m.spaceId === spaceId && m.userId !== USER.bugra)
+      .sort((x, y) => Number(x.role === 'admin') - Number(y.role === 'admin'))
+      .map((m) => m.userId);
+    expect(others.length).toBeGreaterThanOrEqual(2);
+    const [inside, outside] = others as [string, string];
+    const ch = await api.call('createConversation', {
+      body: { type: 'space', spaceId, name: 'Gizli', private: true, userIds: [inside] },
+    });
+    expect(ch.private).toBe(true);
+    expect(ch.memberCount).toBe(2);
+    const members = await api.call('listConversationMembers', {
+      params: { conversationId: ch.id },
+    });
+    expect(members.items.find((m) => m.user.id === USER.bugra)?.role).toBe('owner');
+
+    signedInAs(outside);
+    const hidden = await rejects(
+      api.call('getConversation', { params: { conversationId: ch.id } }),
+    );
+    expect(isApiError(hidden, 'not_found')).toBe(true);
+    signedInAs(inside);
+    const seen = await api.call('getConversation', { params: { conversationId: ch.id } });
+    expect(seen.permissions.manage).toBe(false);
+
+    signedInAs(USER.bugra);
+    await api.call('addConversationMembers', {
+      params: { conversationId: ch.id },
+      body: { userIds: [outside], history: 'all' },
+    });
+    signedInAs(outside);
+    expect((await api.call('getConversation', { params: { conversationId: ch.id } })).id).toBe(
+      ch.id,
+    );
   });
 
   it('adds a person with 7 days of history to a group', async () => {
@@ -315,20 +358,10 @@ describe('chat cache', () => {
 });
 
 describe('chat text', () => {
-  it('splits mentions, links, inline code and fenced blocks', () => {
-    expect(parseText('Bak <@u1> `x` https://a.io/b.')).toEqual([
-      { kind: 'text', text: 'Bak ' },
-      { kind: 'mention', userId: 'u1' },
-      { kind: 'text', text: ' ' },
-      { kind: 'code', text: 'x' },
-      { kind: 'text', text: ' ' },
-      { kind: 'link', url: 'https://a.io/b' },
-      { kind: 'text', text: '.' },
-    ]);
-    expect(splitBlocks('Önce\n```csharp\nvar x = 1;\n```\nsonra')).toEqual([
-      { kind: 'text', text: 'Önce' },
-      { kind: 'code', text: 'var x = 1;', lang: 'csharp' },
-      { kind: 'text', text: 'sonra' },
-    ]);
+  it('drops format markers and fences from previews, keeps mentions as labels', () => {
+    const text = '*Bak* <@u1> `x`\n- _bir_\n```csharp\nvar x = 1;\n```';
+    expect(plainText({ text, card: null }, (id) => (id === 'u1' ? '@Ayşe' : '@…'))).toBe(
+      'Bak @Ayşe x • bir var x = 1;',
+    );
   });
 });

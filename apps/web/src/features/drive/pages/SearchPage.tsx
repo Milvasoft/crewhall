@@ -24,7 +24,7 @@ import { useNodeActions } from '@/features/drive/actions';
 import { searchQuery } from '@/features/drive/api';
 import { DriveSidebar } from '@/features/drive/DriveSidebar';
 import { NodeSelectionBar } from '@/features/drive/NodeSelectionBar';
-import { useNodeMenu } from '@/features/drive/nodeMenu';
+import { useNodeMenu, useNodeMenuKeys } from '@/features/drive/nodeMenu';
 import { NodeIconBox, typeLabel, when } from '@/features/drive/NodeViews';
 
 const TYPES: NodeType[] = ['folder', 'file', 'page', 'board', 'drawing'];
@@ -112,6 +112,7 @@ export function SearchPage({
   const selection = useSelection(hits.map((h) => h.node.id));
   useSelectionKeys(selection);
   const chosen = hits.filter((h) => selection.has(h.node.id)).map((h) => h.node);
+  useNodeMenuKeys(menu, chosen);
   return (
     <Workspace
       sidebar={here ? <DriveSidebar space={here} activeFolderId={undefined} /> : undefined}

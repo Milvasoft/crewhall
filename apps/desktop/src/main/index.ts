@@ -116,6 +116,7 @@ if (process.argv.includes(REMOVE_DRIVE_FLAG)) {
     desktop.vaultDevice.register();
     desktop.system.start();
     desktop.viewer.register();
+    desktop.notifySound.register();
     await desktop.start();
     desktop.sendTo.receive(process.argv);
     if (pendingLink) {

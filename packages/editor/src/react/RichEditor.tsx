@@ -262,7 +262,7 @@ class HostBridge {
       extensions,
       resolveImageUrl: (src) => this.props.resolveImageUrl?.(src) ?? src,
       ...this.uploadOptions(),
-      nodeViews: createNodeViews(),
+      nodeViews: createNodeViews(() => this.props.labels),
       slash: {
         store: this.slash,
         getItems: (query, editor) =>

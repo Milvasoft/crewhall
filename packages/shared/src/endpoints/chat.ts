@@ -7,6 +7,7 @@ import {
   AttachmentUrlQuery,
   ChatFilesPage,
   ChatMember,
+  UpdateConversationMember,
   ChatReminder,
   ChatSettings,
   CreateChatReminder,
@@ -185,7 +186,10 @@ export const chatEndpoints = {
     auth: 'session',
     response: items(ChatMember),
   }),
-  /** Groups and alert conversations; space conversations take members from the space. */
+  /**
+   * Groups, alert conversations and private space channels (each added person must be in the
+   * space); open space conversations take members from the space.
+   */
   addConversationMembers: def({
     method: 'POST',
     path: '/api/v1/chat/conversations/:conversationId/members',
@@ -198,6 +202,14 @@ export const chatEndpoints = {
     path: '/api/v1/chat/conversations/:conversationId/members/:userId',
     auth: 'session',
     response: Empty,
+  }),
+  /** Private channels: owner or member (channel owners and space admins; one owner stays). */
+  updateConversationMember: def({
+    method: 'PATCH',
+    path: '/api/v1/chat/conversations/:conversationId/members/:userId',
+    auth: 'session',
+    body: UpdateConversationMember,
+    response: items(ChatMember),
   }),
   /** Others' read positions ("Görüldü", avatars under the last read message). */
   listReadReceipts: def({
@@ -317,6 +329,16 @@ export const chatEndpoints = {
   unclaimMessage: def({
     method: 'DELETE',
     path: '/api/v1/chat/messages/:messageId/claim',
+    auth: 'session',
+    response: Message,
+  }),
+  /**
+   * The author takes the link preview card off their message; it does not come back (also not
+   * after an edit). Returns the message without `linkPreview`.
+   */
+  removeChatLinkPreview: def({
+    method: 'DELETE',
+    path: '/api/v1/chat/messages/:messageId/link-preview',
     auth: 'session',
     response: Message,
   }),

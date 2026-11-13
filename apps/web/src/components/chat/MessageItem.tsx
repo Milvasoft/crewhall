@@ -35,6 +35,7 @@ import { jumboEmojis } from '@/lib/emoji/jumbo';
 import { useMessageActions } from './actions';
 import { JumboEmojis } from './AnimatedEmoji';
 import { CardActions } from './CardActions';
+import { LinkPreviewCard } from './LinkPreview';
 import { RefCards } from './RefCards';
 import { PersonAvatar } from './common';
 import { openChatDialog } from './dialogs';
@@ -321,6 +322,13 @@ export const MessageItem = memo(function MessageItem({
         <MessageText text={m.text} me={me} />
       ) : null}
       {m.refs?.length ? <RefCards refs={m.refs} /> : null}
+      {m.linkPreview ? (
+        <LinkPreviewCard
+          messageId={m.id}
+          preview={m.linkPreview}
+          canRemove={m.kind === 'user' && !!m.author && m.author.id === me}
+        />
+      ) : null}
       {m.attachments.length ? (
         <div data-no-quick-react="">
           <Attachments m={m} />

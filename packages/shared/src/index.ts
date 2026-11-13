@@ -2,6 +2,7 @@ export * from './errors';
 export * from './permissions';
 export * from './endpoints';
 export * from './chat-commands';
+export * from './chat-format';
 export * from './alert-severity';
 export * from './schemas/common';
 export * from './schemas/branding';

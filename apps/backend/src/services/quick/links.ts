@@ -14,6 +14,12 @@ export interface SiteMeta {
   faviconUrl: string | null;
 }
 
+/** SiteMeta plus what a page bookmark shows (wiki): the page's summary and preview image. */
+export interface PageMeta extends SiteMeta {
+  description: string | null;
+  imageUrl: string | null;
+}
+
 const TITLE_SEPARATOR = /\s+([·|—–-])\s+/;
 
 /**
@@ -72,8 +78,57 @@ async function imageExists(url: string) {
   }
 }
 
-/** Title and favicon of a page, fetched once (design 2.4); nulls when the site does not answer. */
-export async function fetchSiteMeta(url: string): Promise<SiteMeta> {
+const ATTRIBUTE = /([a-z][\w:-]*)\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
+
+/** `content` of the first `<meta property|name="…">` among `keys`, in the order of `keys`. */
+function metaContent(head: string, keys: string[]): string | null {
+  const found = new Map<string, string>();
+  for (const tag of head.match(/<meta\s[^>]*>/gi) ?? []) {
+    const attrs = new Map<string, string>();
+    for (const m of tag.matchAll(ATTRIBUTE)) attrs.set(m[1]!.toLowerCase(), m[2] ?? m[3] ?? '');
+    const key = (attrs.get('property') ?? attrs.get('name') ?? '').toLowerCase();
+    const content = attrs.get('content');
+    if (key && content?.trim() && !found.has(key)) found.set(key, content);
+  }
+  for (const key of keys) {
+    const value = found.get(key);
+    if (value) return decodeEntities(value).replace(/\s+/g, ' ').trim();
+  }
+  return null;
+}
+
+/** An http(s) address from a page, resolved against `base`; null for anything else. */
+function absoluteHttp(href: string | null, base: string): string | null {
+  if (!href) return null;
+  try {
+    const url = new URL(href, base);
+    return url.protocol === 'https:' || url.protocol === 'http:' ? url.href.slice(0, 2048) : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Summary and preview image from a page's `<head>` (Open Graph, Twitter, plain meta). */
+export function readPageExtras(html: string, base: string) {
+  const head = html.split(/<\/head>/i)[0] ?? html;
+  const description = metaContent(head, ['og:description', 'twitter:description', 'description']);
+  const image = metaContent(head, [
+    'og:image:secure_url',
+    'og:image',
+    'og:image:url',
+    'twitter:image',
+  ]);
+  return {
+    description: description ? description.slice(0, 300) : null,
+    imageUrl: absoluteHttp(image, base),
+  };
+}
+
+/**
+ * Title, favicon, summary and preview image of a page, fetched once (design 2.4); nulls when the
+ * site does not answer.
+ */
+export async function fetchSiteMeta(url: string): Promise<PageMeta> {
   let html = '';
   let base: string;
   try {
@@ -86,7 +141,7 @@ export async function fetchSiteMeta(url: string): Promise<SiteMeta> {
     if ((res.headers.get('content-type') ?? '').includes('html')) html = await readText(res);
     else await res.body?.cancel().catch(() => undefined);
   } catch {
-    return { title: null, faviconUrl: null };
+    return { title: null, faviconUrl: null, description: null, imageUrl: null };
   }
   const head = html.split(/<\/head>/i)[0] ?? html;
   const ogTitle = /<meta[^>]+property\s*=\s*["']og:title["'][^>]*>/i
@@ -109,6 +164,86 @@ export async function fetchSiteMeta(url: string): Promise<SiteMeta> {
   return {
     title: title ? cleanTitle(decodeEntities(title)) : null,
     faviconUrl: favicon && /^https?:/.test(favicon) ? favicon : null,
+    ...readPageExtras(html, base),
+  };
+}
+
+export interface PagePreview {
+  /** The address after redirects. */
+  url: string;
+  title: string | null;
+  description: string | null;
+  siteName: string | null;
+  /** https only (clients load it straight from the site). */
+  imageUrl: string | null;
+}
+
+const ATTR_RE = /([a-zA-Z_:][-\w:.]*)\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
+
+/** `<meta property|name="key" content="…">` values of a page head, by lower-cased key. */
+function metaTags(head: string) {
+  const out = new Map<string, string>();
+  for (const tag of head.match(/<meta\b[^>]*>/gi) ?? []) {
+    const attrs = new Map<string, string>();
+    for (const m of tag.matchAll(ATTR_RE)) attrs.set(m[1]!.toLowerCase(), m[2] ?? m[3] ?? '');
+    const key = (attrs.get('property') ?? attrs.get('name'))?.toLowerCase();
+    const content = attrs.get('content');
+    if (key && content?.trim() && !out.has(key)) out.set(key, content);
+  }
+  return out;
+}
+
+const clip = (s: string | undefined, max: number) => {
+  const text = s ? decodeEntities(s).replace(/\s+/g, ' ').trim() : '';
+  if (!text) return null;
+  return text.length > max ? `${text.slice(0, max - 1).trimEnd()}…` : text;
+};
+
+/**
+ * Open Graph card of a page for chat link previews: the same guarded request as fetchSiteMeta
+ * (net/outbound: no private addresses unless PRIVATE_FETCH_ALLOWLIST, time and size limits).
+ * Null when the site does not answer with an HTML page.
+ */
+export async function fetchPagePreview(url: string): Promise<PagePreview | null> {
+  let html: string;
+  let base: string;
+  try {
+    const res = await outboundFetch(url, {
+      timeoutMs: META_TIMEOUT_MS,
+      headers: { 'user-agent': 'Crewhall/1.0 (link preview)', accept: 'text/html,*/*' },
+    });
+    base = res.url || url;
+    if (!res.ok || !(res.headers.get('content-type') ?? '').includes('html')) {
+      await res.body?.cancel().catch(() => undefined);
+      return null;
+    }
+    html = await readText(res);
+  } catch {
+    return null;
+  }
+  const head = html.split(/<\/head>/i)[0] ?? html;
+  const meta = metaTags(head);
+  const rawTitle =
+    meta.get('og:title') ??
+    meta.get('twitter:title') ??
+    /<title[^>]*>([\s\S]*?)<\/title>/i.exec(head)?.[1];
+  let imageUrl: string | null = null;
+  const image =
+    meta.get('og:image:secure_url') ?? meta.get('og:image') ?? meta.get('twitter:image');
+  if (image) {
+    try {
+      const abs = new URL(decodeEntities(image.trim()), base);
+      if (abs.protocol === 'https:' && abs.href.length <= 2000) imageUrl = abs.href;
+    } catch {
+      imageUrl = null;
+    }
+  }
+  return {
+    url: base.length <= 2000 ? base : url,
+    title: rawTitle ? cleanTitle(decodeEntities(rawTitle)) : null,
+    description: clip(meta.get('og:description') ?? meta.get('description'), 400),
+    siteName: clip(meta.get('og:site_name'), 100) ?? new URL(base).host.replace(/^www\./, ''),
+    imageUrl,
   };
 }
 

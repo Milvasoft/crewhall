@@ -1,6 +1,7 @@
 import { type DriveNode } from '@crewhall/shared';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
+import { useEffect } from 'react';
 import { type ActionEntry } from '@/components/common/ActionMenu';
 import { surfacesQuery } from '@/features/quick/api';
 import { useChatEnabled } from '@/lib/chat/enabled';
@@ -183,4 +184,51 @@ export function useNodeMenu(actions: NodeActions) {
     });
     return entries;
   };
+}
+
+/** The shortcut label a key press matches in the node menu ("M", "F2", "Ctrl Shift C"…). */
+export function menuShortcutOf(e: {
+  key: string;
+  ctrlKey: boolean;
+  metaKey: boolean;
+  shiftKey: boolean;
+  altKey: boolean;
+}): string | null {
+  if (e.key === 'F2') return 'F2';
+  if (e.key === 'Delete') return 'Del';
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && !e.altKey && e.key.toLowerCase() === 'c') {
+    return 'Ctrl Shift C';
+  }
+  if (e.ctrlKey || e.metaKey || e.altKey || e.key.length !== 1) return null;
+  return e.key.toUpperCase();
+}
+
+/**
+ * The shortcuts the node menu shows work on the selected items without opening it: a key runs
+ * the menu entry with that shortcut (if it is allowed). `only` limits the keys, for pages that
+ * handle some of them themselves.
+ */
+export function useNodeMenuKeys(
+  menu: (nodes: DriveNode[]) => ActionEntry[],
+  chosen: DriveNode[],
+  only?: readonly string[],
+): void {
+  useEffect(() => {
+    if (!chosen.length) return;
+    const onKey = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement | null;
+      if (el && (el.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName))) {
+        return;
+      }
+      if (document.querySelector('[role="dialog"],[role="menu"]')) return;
+      const key = menuShortcutOf(e);
+      if (!key || (only && !only.includes(key))) return;
+      const hit = menu(chosen).find((x) => x.kind === 'item' && x.shortcut === key);
+      if (hit?.kind !== 'item') return;
+      e.preventDefault();
+      if (!hit.disabledReason) hit.onSelect();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  });
 }

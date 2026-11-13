@@ -68,6 +68,10 @@ export const LinkPreview = z.object({
   host: z.string(),
   title: z.string().nullable(),
   faviconUrl: z.url().nullable(),
+  /** The page's summary (`og:description` / `description`), for a page bookmark. */
+  description: z.string().nullable().optional(),
+  /** Its preview image (`og:image`), an http(s) address. */
+  imageUrl: z.url().nullable().optional(),
   /** The same URL already sits in this group / surface (2.x: "uyarı çıkar"). */
   existingCardIds: z.array(Id),
 });

@@ -56,6 +56,18 @@ export class NoteGuard {
   }
 }
 
+/**
+ * The chime a chat notification gets: the brighter one for mentions, replies and direct
+ * messages (the web's `toneFor` rule), the soft one otherwise.
+ */
+export function notificationTone(n: Pick<Notification, 'type' | 'target'>): {
+  tone: 'mention' | 'message';
+  conversationId: string | null;
+} {
+  const bright = n.type === 'chat.mention' || n.type === 'chat.direct' || n.type === 'chat.reply';
+  return { tone: bright ? 'mention' : 'message', conversationId: n.target.conversationId };
+}
+
 /** Title (the bell's line for this type) and body (the message excerpt) of a native notification. */
 export function notificationContent(n: Notification, t: Translate, origin: string): NativeContent {
   const values: Record<string, string | number> = {

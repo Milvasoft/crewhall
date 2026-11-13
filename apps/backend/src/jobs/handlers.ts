@@ -53,6 +53,7 @@ import type { Mailer } from '../mail/mailer';
 import type { Bus } from '../realtime/bus';
 import { publishBlobNodes } from '../realtime/events';
 import { chatCleanup } from '../services/chat/cleanup';
+import { runLinkPreview } from '../services/chat/link-preview';
 import { fireDueReminders } from '../services/chat/commands';
 import { deliver, deliverDue } from '../services/chat/scheduled';
 import { postCelebrations } from '../services/announcements/kudos';
@@ -157,6 +158,8 @@ export async function runJob<N extends JobName>(deps: JobDeps, name: N, data: Jo
       return applyApproval(deps, (data as JobPayloads['approval.apply']).approvalId);
     case 'mcp.cleanup':
       return mcpCleanup(deps.db);
+    case 'chat.link_preview':
+      return runLinkPreview(deps, (data as JobPayloads['chat.link_preview']).messageId);
     case 'drawing.thumbnail':
       return renderDrawingThumbnail(deps, (data as JobPayloads['drawing.thumbnail']).nodeId);
     case 'boards.sweep':

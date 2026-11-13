@@ -1,3 +1,5 @@
+import { chatPlainText } from '@crewhall/shared';
+
 /**
  * Message text: plain UTF-8 with mention tokens `<@userId>`, `<@all>`, `<@here>`
  * (schemas/chat Mention). Clients render markdown-ish code blocks themselves.
@@ -33,8 +35,12 @@ export function plainText(text: string, names: Map<string, string>) {
   });
 }
 
+/**
+ * One line for notifications, e-mails, the chat list and reply quotes: format markers
+ * (`*bold*`, `_italic_`, lists) are dropped, mentions become names.
+ */
 export function excerpt(text: string, names: Map<string, string>, max = 200) {
-  const flat = plainText(text, names).replace(/\s+/g, ' ').trim();
+  const flat = plainText(chatPlainText(text), names).replace(/\s+/g, ' ').trim();
   return flat.length > max ? `${flat.slice(0, max - 1)}…` : flat;
 }
 

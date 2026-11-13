@@ -100,9 +100,13 @@ function mapNode(ctx: ExportContext, from: ExportPage, n: PMNode): PMNode {
     if (!target) return { type: 'paragraph' };
     const href = resolveHref(ctx, from, target);
     const label = String(n.attrs?.title ?? '') || (target.startsWith('node:') ? href : target);
+    const description = n.type === 'bookmark' ? String(n.attrs?.description ?? '') : '';
     return {
       type: 'paragraph',
-      content: [text(`${n.type === 'video' ? '▶ ' : ''}${label}`, withLink(undefined, href))],
+      content: [
+        text(`${n.type === 'video' ? '▶ ' : ''}${label}`, withLink(undefined, href)),
+        ...(description ? [text(` — ${description}`)] : []),
+      ],
     };
   }
   if (n.type === 'embed') {

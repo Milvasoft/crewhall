@@ -1,4 +1,4 @@
-import { and, eq, inArray, isNull, sql } from 'drizzle-orm';
+import { and, eq, inArray, isNull, sql, type SQL } from 'drizzle-orm';
 import {
   conversationMembers,
   conversations,
@@ -26,8 +26,36 @@ export type MemberRow = typeof conversationMembers.$inferSelect;
 export type MessageRow = typeof messages.$inferSelect;
 
 /** Space conversations and space-bound alert ones take their members from the space. */
-export const spaceBound = (c: Pick<ConversationRow, 'type' | 'spaceId'>) =>
-  c.spaceId !== null && (c.type === 'space' || c.type === 'alert');
+export const spaceBound = (c: Pick<ConversationRow, 'type' | 'spaceId' | 'private'>) =>
+  c.spaceId !== null && (c.type === 'space' || c.type === 'alert') && !c.private;
+
+/**
+ * A private space channel (Teams-like): its members are its conversation_members rows, and
+ * each must be in the space since before their row was written. Leaving the space ends access;
+ * coming back to the space does not bring it back (someone adds them again).
+ */
+export const privateChannel = (c: Pick<ConversationRow, 'type' | 'spaceId' | 'private'>) =>
+  c.spaceId !== null && (c.type === 'space' || c.type === 'alert') && c.private;
+
+/** The one membership rule (requireMember and list views agree on it). */
+export function isMemberOf(
+  conv: Pick<ConversationRow, 'type' | 'spaceId' | 'private'>,
+  row: MemberRow | null,
+  spaceRole: SpaceRole | null,
+  spaceRoomChat: boolean,
+  /** When the person joined the conversation's space (private channels). */
+  spaceJoinedAt: Date | null = null,
+) {
+  if (spaceBound(conv)) return spaceRole !== null;
+  if (privateChannel(conv)) {
+    return (
+      row !== null &&
+      spaceRole !== null &&
+      (spaceJoinedAt === null || row.createdAt.getTime() >= spaceJoinedAt.getTime())
+    );
+  }
+  return row !== null || (spaceRole !== null && spaceRoomChat);
+}
 
 /**
  * Notification level for a member without a saved one (doc 17 §10). Groups are small and chosen
@@ -38,6 +66,15 @@ export function defaultNotify(type: ConversationType): NotifyLevel {
   if (type === 'alert') return 'critical';
   return 'mentions';
 }
+
+/**
+ * Private channel rows that count: the person is in the space and was already in it when the
+ * row was written (conversation_members in scope as the outer table).
+ */
+export const inSpaceSinceAdded = (spaceId: string | SQL) =>
+  sql`exists (select 1 from ${spaceMembers} sm
+    where sm.space_id = ${spaceId}::uuid and sm.user_id = ${conversationMembers.userId}
+      and sm.created_at <= ${conversationMembers.createdAt})`;
 
 /** Everyone who belongs to the conversation (active org members only). */
 export async function memberIds(db: DbOrTx, conv: ConversationRow): Promise<string[]> {
@@ -67,7 +104,12 @@ export async function memberIds(db: DbOrTx, conv: ConversationRow): Promise<stri
         eq(orgMembers.status, 'active'),
       ),
     )
-    .where(eq(conversationMembers.conversationId, conv.id));
+    .where(
+      and(
+        eq(conversationMembers.conversationId, conv.id),
+        privateChannel(conv) ? inSpaceSinceAdded(conv.spaceId!) : undefined,
+      ),
+    );
   return rows.map((r) => r.userId);
 }
 
@@ -119,9 +161,10 @@ export async function membershipOf(
       and(eq(conversationMembers.conversationId, conv.id), eq(conversationMembers.userId, userId)),
     );
   let spaceRole: SpaceRole | null = null;
+  let spaceJoinedAt: Date | null = null;
   if (conv.spaceId) {
     const [sm] = await db
-      .select({ role: spaceMembers.role })
+      .select({ role: spaceMembers.role, joinedAt: spaceMembers.createdAt })
       .from(spaceMembers)
       .innerJoin(spaces, eq(spaces.id, spaceMembers.spaceId))
       .where(
@@ -132,10 +175,15 @@ export async function membershipOf(
         ),
       );
     spaceRole = sm?.role ?? null;
+    spaceJoinedAt = sm?.joinedAt ?? null;
   }
-  const isMember = spaceBound(conv)
-    ? spaceRole !== null
-    : !!row || (spaceRole !== null && (await spaceRoomChats(db, [conv])).has(conv.id));
+  const roomChat =
+    !spaceBound(conv) &&
+    !privateChannel(conv) &&
+    !row &&
+    spaceRole !== null &&
+    (await spaceRoomChats(db, [conv])).has(conv.id);
+  const isMember = isMemberOf(conv, row ?? null, spaceRole, roomChat, spaceJoinedAt);
   return { conv, row: row ?? null, spaceRole, isMember };
 }
 
@@ -177,10 +225,33 @@ export function permissionsOf(a: ChatActor, m: Membership) {
       moderate: m.isMember && spaceCan(a, m, 'space.update_settings'),
       manageWebhooks: live && spaceCan(a, m, 'space.chat_create'),
       archive: m.isMember && spaceCan(a, m, 'space.update_settings'),
+      // Make it private: the space's admins, or whoever opened it (still an editor there).
+      changePrivacy:
+        live &&
+        a.actor.orgRole !== 'guest' &&
+        (spaceCan(a, m, 'space.update_settings') ||
+          (conv.createdBy === a.userId && spaceCan(a, m, 'space.chat_create'))),
     };
   }
   const direct = conv.type === 'direct';
   const guest = a.actor.orgRole === 'guest';
+  if (privateChannel(conv)) {
+    // Owners and the space's admins manage people; writing still follows the space role.
+    const spaceAdmin = m.isMember && spaceCan(a, m, 'space.update_settings');
+    const owner = m.isMember && m.row?.role === 'owner';
+    return {
+      clearForMe: false,
+      deleteForEveryone:
+        m.isMember && deleteAllowed && (orgAdmin || owner || conv.createdBy === a.userId),
+      write: live && spaceCan(a, m, 'space.chat_write'),
+      manage: live && !guest && (owner || spaceAdmin),
+      pin: live && spaceCan(a, m, 'space.chat_write'),
+      moderate: spaceAdmin,
+      manageWebhooks: live && !guest && (owner || spaceAdmin),
+      archive: m.isMember && !guest && (owner || spaceAdmin),
+      changePrivacy: live && !guest && (owner || spaceAdmin),
+    };
+  }
   return {
     clearForMe: m.isMember,
     // Meeting chats: moderators too; the server checks the meeting itself (deleteConversation).
@@ -192,6 +263,7 @@ export function permissionsOf(a: ChatActor, m: Membership) {
     moderate: false,
     manageWebhooks: live && !direct && !guest && (conv.type === 'group' || conv.type === 'alert'),
     archive: m.isMember && !direct && !guest,
+    changePrivacy: false,
   };
 }
 

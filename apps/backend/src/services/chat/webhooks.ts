@@ -38,6 +38,7 @@ import {
 import { appendSystem, publishMessage, writeMessage } from './messages';
 import { chatEnabled } from './module';
 import { eventOf, providerMessage, verifySignature, type HeaderOf } from './providers';
+import { genericMessages, type HookMessage } from './webhook-generic';
 import { usersById } from './views';
 
 /**
@@ -623,7 +624,7 @@ export async function receiveHook(deps: Deps, req: HookRequest): Promise<HookRes
     await record(deps, hook, started, req, 400, 'invalid_json', null);
     return { status: 400, body: { code: 'webhook_payload_invalid', reason: 'invalid_json' } };
   }
-  let payload: { text: string; card: AlertCard | null } | null;
+  let payloads: HookMessage[];
   if (hook.provider) {
     const event = eventOf(hook.provider, json, header);
     // Not chosen, or nothing the channel needs (a ping, a draft, a run still going): 202.
@@ -634,11 +635,14 @@ export async function receiveHook(deps: Deps, req: HookRequest): Promise<HookRes
       await record(deps, hook, started, { ...req, body: '' }, 202, null, null);
       return { status: 200, body: { ignored: true, event } };
     }
-    payload = message;
+    payloads = [message];
   } else {
-    payload = normalizePayload(json);
+    // A known body (Crewhall, Google Chat) as it is; anything else is read field by field.
+    const known = normalizePayload(json);
+    payloads = known ? [known] : genericMessages(json, await orgLocale(db, hook.orgId));
   }
-  if (!payload || (!payload.text && !payload.card)) {
+  payloads = payloads.filter((p) => p.text || p.card);
+  if (payloads.length === 0) {
     await record(deps, hook, started, req, 400, 'webhook_payload_invalid', null);
     return { status: 400, body: { code: 'webhook_payload_invalid' } };
   }
@@ -655,34 +659,45 @@ export async function receiveHook(deps: Deps, req: HookRequest): Promise<HookRes
     isMember: true,
   };
   const muted = !!hook.mutedUntil && hook.mutedUntil.getTime() > Date.now();
-  let result: Awaited<ReturnType<typeof writeMessage>>;
+  // An array body becomes several messages, written in order.
+  const results: Awaited<ReturnType<typeof writeMessage>>[] = [];
   try {
-    result = await db.transaction((tx) =>
-      writeMessage(deps, tx, m, {
-        authorId: null,
-        webhookId: hook.id,
-        kind: 'webhook',
-        text: payload.text.slice(0, CHAT_LIMITS.messageChars),
-        card: payload.card,
-        // "Kartsız mesajın önemi": text without a card takes the webhook's severity.
-        severity: hook.textSeverity ?? undefined,
-        // "Sessize al" keeps the message but silences its notifications.
-        silent: muted,
-      }),
-    );
+    for (const payload of payloads) {
+      results.push(
+        await db.transaction((tx) =>
+          writeMessage(deps, tx, m, {
+            authorId: null,
+            webhookId: hook.id,
+            kind: 'webhook',
+            text: payload.text.slice(0, CHAT_LIMITS.messageChars),
+            card: payload.card,
+            // "Kartsız mesajın önemi": text without a card takes the webhook's severity.
+            severity: hook.textSeverity ?? undefined,
+            // "Sessize al" keeps the message but silences its notifications.
+            silent: muted,
+          }),
+        ),
+      );
+    }
   } catch (err) {
     deps.logger.error({ err, webhookId: hook.id }, 'webhook message failed');
-    await record(deps, hook, started, req, 500, 'internal', null);
+    await record(deps, hook, started, req, 500, 'internal', results[0]?.msg.id ?? null);
     return { status: 500, body: { code: 'internal' } };
   }
   await db
     .update(incomingWebhooks)
     .set({ lastUsedAt: new Date() })
     .where(eq(incomingWebhooks.id, hook.id));
-  await record(deps, hook, started, req, 200, null, result.msg.id);
-  await publishMessage(deps, { ...conv, lastSeq: result.msg.seq }, 'message.created', result.msg);
-  await deliverNotifications(deps, result.notes);
-  return { status: 200, body: { messageId: result.msg.id, seq: result.msg.seq } };
+  const first = results[0]!;
+  await record(deps, hook, started, req, 200, null, first.msg.id);
+  for (const result of results) {
+    await publishMessage(deps, { ...conv, lastSeq: result.msg.seq }, 'message.created', result.msg);
+    await deliverNotifications(deps, result.notes);
+  }
+  return {
+    status: 200,
+    body: { messageId: first.msg.id, seq: first.msg.seq, messages: results.length },
+  };
 }
 
 /** Housekeeping: delivery rows 30 days (doc 17 §4). */

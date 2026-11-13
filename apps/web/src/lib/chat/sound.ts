@@ -4,7 +4,7 @@ import { desktopBridge } from '@/lib/desktop';
 import { isMeetingWindow } from '@/lib/meet/window';
 import { readStorage, StorageKey, writeStorage } from '@/lib/storage';
 import { findConversation } from './cache';
-import { chatKeys } from './queries';
+import { chatKeys, conversationQuery } from './queries';
 import { getPresence, getVisibleConversation, isLooking } from './stores';
 import { type ChatSettings, type Message } from './types';
 import { messageSeverity, type NotificationPrefs } from '@crewhall/shared';
@@ -220,8 +220,51 @@ const RESUME_WAIT_MS = 1000;
 export function soundForMessage(qc: QueryClient, m: Message, meId: string): void {
   // The main tab chimes; a meeting's own tab stays quiet (lib/meet/window).
   if (isMeetingWindow()) return;
+  if (!findConversation(qc, m.conversationId) && m.author?.id !== meId && m.kind !== 'system') {
+    // The first message of a chat new to me (a direct or group chat exists for others from its
+    // first message): load the chat, then decide. Without it the chime never came.
+    void qc
+      .fetchQuery(conversationQuery(m.conversationId))
+      .then(() => {
+        const tone = toneFor(qc, m, meId);
+        if (tone) playTone(tone);
+      })
+      .catch(() => undefined);
+    return;
+  }
   const tone = toneFor(qc, m, meId);
   if (tone) playTone(tone);
+}
+
+/**
+ * The desktop app showed a native notification and left its toast silent (bridge
+ * `onNotificationSound`): the chime comes from here, the same wooden tone as in the page. A burst
+ * with the message's own chime sounds once (GAP_MS); sound off, a muted chat, do not disturb and a
+ * meeting window stay quiet. The server already left out my own messages, quiet hours and the
+ * chat open in front of me.
+ */
+export function soundForNotification(
+  qc: QueryClient,
+  sound: { tone: Tone; conversationId: string | null },
+  meId: string,
+  now: Date = new Date(),
+): boolean {
+  if (isMeetingWindow() || !isMessageSoundOn()) return false;
+  if (getPresence(meId)?.state === 'dnd') return false;
+  const conv = sound.conversationId ? findConversation(qc, sound.conversationId) : undefined;
+  if (conv) {
+    const muted = conv.my.mutedUntil !== null && Date.parse(conv.my.mutedUntil) > now.getTime();
+    if (muted || conv.my.notify === 'none') return false;
+  }
+  return playTone(sound.tone);
+}
+
+/** In the desktop app: chime for its native notifications. Returns the cleanup. */
+export function armNotificationSound(qc: QueryClient, meId: string): () => void {
+  const off = desktopBridge()?.onNotificationSound?.((s) => {
+    soundForNotification(qc, s, meId);
+  });
+  return off ?? (() => undefined);
 }
 
 export function setAudioFactoryForTests(f: AudioFactory | null): void {

@@ -51,6 +51,7 @@
   },
   "integrations": {
     "open": "Open",
+    "openPost": "Open post",
     "push": "{actor} pushed {count} commit(s)",
     "prOpened": "PR opened: #{number} {title}",
     "prMerged": "PR merged: #{number} {title}",

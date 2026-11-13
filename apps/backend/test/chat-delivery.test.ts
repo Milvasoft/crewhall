@@ -159,6 +159,52 @@ describe('incoming webhooks', () => {
     });
   });
 
+  it('turns any other JSON into messages: one per array element (a Postiz body)', async () => {
+    const post = (id: string, content: string) => ({
+      id,
+      content,
+      publishDate: '2025-02-06T13:09:00.000Z',
+      releaseURL: `https://facebook.com/release/${id}`,
+      state: 'PUBLISHED',
+      integration: {
+        id: 'cm6s',
+        name: 'Milvasoft Instagram',
+        providerIdentifier: 'instagram',
+        picture: 'https://cdn.example.com/x.jpeg',
+        type: 'social',
+      },
+    });
+    const res = await hook(url, [post('a1', 'İlk paylaşım'), post('a2', 'İkinci paylaşım')]);
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { messageId: string; messages: number };
+    expect(body.messages).toBe(2);
+    const page = await elif.api.call('listMessages', { params: { conversationId: alertId } });
+    const first = page.items.find((x) => x.id === body.messageId)!;
+    expect(first.kind).toBe('webhook');
+    expect(first.card).toMatchObject({
+      severity: 'success',
+      title: 'Milvasoft Instagram',
+      text: 'İlk paylaşım',
+      iconUrl: 'https://cdn.example.com/x.jpeg',
+      buttons: [{ url: 'https://facebook.com/release/a1' }],
+    });
+    expect(first.card!.buttons[0]!.text).toMatch(/Paylaşımı aç|Open post/);
+    expect(first.card!.fields).toEqual(
+      expect.arrayContaining([
+        { label: 'state', value: 'PUBLISHED' },
+        { label: 'integration.providerIdentifier', value: 'instagram' },
+      ]),
+    );
+    expect(page.items.some((x) => x.card?.text === 'İkinci paylaşım')).toBe(true);
+
+    // Nothing readable: the JSON itself, as a code block.
+    const odd = await hook(url, { a: { b: { c: [1, 2] } } });
+    expect(odd.status).toBe(200);
+    const { messageId } = (await odd.json()) as { messageId: string };
+    const again = await elif.api.call('listMessages', { params: { conversationId: alertId } });
+    expect(again.items.find((x) => x.id === messageId)!.text.startsWith('```json\n')).toBe(true);
+  });
+
   it('reads plain-text alerts for their severity (no card), by the chat level', async () => {
     const heard = async (text: string) => {
       const res = await hook(url, { text });
@@ -237,7 +283,8 @@ describe('incoming webhooks', () => {
     expect(wrong.status).toBe(401);
     expect(((await wrong.json()) as { code: string }).code).toBe('webhook_key_invalid');
     expect((await hook(url, null, '{nope')).status).toBe(400);
-    expect((await hook(url, { foo: 1 })).status).toBe(400);
+    expect((await hook(url, {})).status).toBe(400);
+    expect((await hook(url, [])).status).toBe(400);
     expect((await hook(url, { text: 'x'.repeat(40 * 1024) })).status).toBe(413);
     const log = await owner.api.call('listWebhookDeliveries', {
       params: { webhookId },

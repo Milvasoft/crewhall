@@ -1,10 +1,11 @@
+import { parseChatInline, parseChatText, type ChatInline } from '@crewhall/shared';
 import { Badge, cn, Icon, IconButton, Spinner, toast, Tooltip } from '@crewhall/ui';
 import { useQuery, useQueryClient, type QueryClient } from '@tanstack/react-query';
 import { Fragment, useMemo, useState } from 'react';
 import { badgeOf } from '@/features/drive/fileKinds';
 import { api } from '@/lib/api';
 import { nameOf } from '@/lib/chat/names';
-import { ALL, HERE, parseText, splitBlocks } from '@/lib/chat/text';
+import { ALL, HERE } from '@/lib/chat/text';
 import {
   type AlertCard,
   type Message,
@@ -19,29 +20,67 @@ import { useArrivals, useChangeCount, useReducedMotion } from '@/lib/motion';
 import { canView, openViewer, type ViewerSource } from '@/lib/viewer';
 import { PersonHover } from './PersonCard';
 
-/** Message text: fenced code blocks, inline code, links and mention tags; never HTML. */
+/**
+ * Message text: fenced code, paragraphs, lists and inline formatting (parseChatText); never
+ * HTML, every node is a React element.
+ */
 export function MessageText({ text, me }: { text: string; me: string }) {
+  const blocks = useMemo(() => parseChatText(text), [text]);
   return (
     <div className="flex flex-col gap-2">
-      {splitBlocks(text).map((b, i) =>
-        b.kind === 'code' ? (
-          <CodeBlock key={i} code={b.text} lang={b.lang} />
-        ) : (
-          <p key={i} className="m-0 text-[14px] leading-[21px] break-words whitespace-pre-wrap">
-            <Inline text={b.text} me={me} />
-          </p>
-        ),
-      )}
+      {blocks.map((b, i) => {
+        if (b.kind === 'code') return <CodeBlock key={i} code={b.text} lang={b.lang} />;
+        if (b.kind === 'paragraph') {
+          return (
+            <p key={i} className="m-0 text-[14px] leading-[21px] break-words whitespace-pre-wrap">
+              <InlineNodes nodes={b.children} me={me} />
+            </p>
+          );
+        }
+        const List = b.ordered ? 'ol' : 'ul';
+        return (
+          <List
+            key={i}
+            start={b.ordered && b.start !== 1 ? b.start : undefined}
+            className={cn(
+              'm-0 flex flex-col gap-0.5 pl-5 text-[14px] leading-[21px] break-words',
+              b.ordered ? 'list-decimal' : 'list-disc',
+            )}
+          >
+            {b.items.map((item, j) => (
+              <li key={j} className="pl-0.5 whitespace-pre-wrap">
+                <InlineNodes nodes={item} me={me} />
+              </li>
+            ))}
+          </List>
+        );
+      })}
     </div>
   );
 }
 
+/** One line of message-like text (announcements, quotes): inline formatting only. */
 export function Inline({ text, me }: { text: string; me: string }) {
+  const nodes = useMemo(() => parseChatInline(text), [text]);
+  return <InlineNodes nodes={nodes} me={me} />;
+}
+
+const MARK_TAG = { bold: 'strong', italic: 'em', strike: 's' } as const;
+
+function InlineNodes({ nodes, me }: { nodes: ChatInline[]; me: string }) {
   const { t } = useI18n();
   return (
     <>
-      {parseText(text).map((p, i) => {
+      {nodes.map((p, i) => {
         if (p.kind === 'text') return <Fragment key={i}>{p.text}</Fragment>;
+        if ('children' in p) {
+          const Tag = MARK_TAG[p.kind];
+          return (
+            <Tag key={i} className={p.kind === 'bold' ? 'font-bold' : undefined}>
+              <InlineNodes nodes={p.children} me={me} />
+            </Tag>
+          );
+        }
         if (p.kind === 'code') {
           return (
             <code key={i} className="rounded-[5px] bg-fg/[.07] px-1 py-px font-mono text-[12.5px]">

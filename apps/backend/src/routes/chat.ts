@@ -7,6 +7,7 @@ import { createWsTicket } from '../realtime/tickets';
 import { orgContext } from '../services/membership';
 import type { ChatActor } from '../services/chat/access';
 import { attachmentFolder, attachmentUrl, listChatFiles } from '../services/chat/attachments';
+import { removeLinkPreview } from '../services/chat/link-preview';
 import {
   addMembers,
   createConversation,
@@ -21,6 +22,7 @@ import {
   reorderPinned,
   unreadSummary,
   updateConversation,
+  updateMemberRole,
   updateMyConversation,
 } from '../services/chat/conversations';
 import {
@@ -182,6 +184,15 @@ export function registerChat(r: Router): void {
     await removeMember(ctx.deps, chatActor(ctx), ctx.params.conversationId, ctx.params.userId);
     return {};
   });
+  r.org('updateConversationMember', async (ctx) => ({
+    items: await updateMemberRole(
+      ctx.deps,
+      chatActor(ctx),
+      ctx.params.conversationId,
+      ctx.params.userId,
+      ctx.body.role,
+    ),
+  }));
   r.org('listReadReceipts', async (ctx) => ({
     items: await listReadReceipts(ctx.deps.db, chatActor(ctx), ctx.params.conversationId),
   }));
@@ -222,6 +233,9 @@ export function registerChat(r: Router): void {
   }));
   r.org('claimMessage', (ctx) => setClaim(ctx.deps, chatActor(ctx), ctx.params.messageId, true));
   r.org('unclaimMessage', (ctx) => setClaim(ctx.deps, chatActor(ctx), ctx.params.messageId, false));
+  r.org('removeChatLinkPreview', (ctx) =>
+    removeLinkPreview(ctx.deps, chatActor(ctx), ctx.params.messageId),
+  );
   r.org('listPinnedMessages', async (ctx) => ({
     items: await listPinned(ctx.deps.db, chatActor(ctx), ctx.params.conversationId),
   }));

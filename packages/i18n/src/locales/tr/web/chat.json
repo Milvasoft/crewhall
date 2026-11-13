@@ -43,7 +43,8 @@
     "meeting": "Toplantı sohbeti · {count, plural, one {# katılımcı} other {# katılımcı}}",
     "localTime": "yerel saat {time}",
     "menu": "Sohbet menüsü",
-    "archived": "Arşivlendi"
+    "archived": "Arşivlendi",
+    "private": "Özel kanal"
   },
   "tabs": {
     "label": "Sohbet sekmeleri",
@@ -73,7 +74,9 @@
     "archiveMine": "Arşivle",
     "unarchiveMine": "Arşivden çıkar",
     "clear": "Benim için sil",
-    "deleteAll": "Herkes için sil"
+    "deleteAll": "Herkes için sil",
+    "makePrivate": "Özel kanal yap",
+    "makeOpen": "Space'teki herkese aç"
   },
   "notify": {
     "all": "Tümü",
@@ -164,7 +167,9 @@
     "call_busy": "Reddedilen sesli arama · {actor} · Meşgul",
     "call_busyVideo": "Reddedilen görüntülü arama · {actor} · Meşgul",
     "call_ended": "Sesli arama · {duration} · {people}",
-    "call_endedVideo": "Görüntülü arama · {duration} · {people}"
+    "call_endedVideo": "Görüntülü arama · {duration} · {people}",
+    "made_private": "{actor} kanalı özel yaptı",
+    "made_open": "{actor} kanalı space'teki herkese açtı"
   },
   "severity": {
     "critical": "Kritik",
@@ -231,7 +236,8 @@
     "space": "{space} space'indeki herkes bu sohbeti görür. Ekler space'in Ekler klasörüne düşer.",
     "group": "Gruba eklenen kişiler, ekleme sırasında seçilen geçmişi görür.",
     "hello": "Merhaba",
-    "welcome": "Hoş geldin {name}!"
+    "welcome": "Hoş geldin {name}!",
+    "private": "Özel kanal: yalnız eklenen kişiler görür. Sahipler, {space} space'inin üyelerinden kişi ekleyip çıkarabilir."
   },
   "files": {
     "filter": {
@@ -280,7 +286,16 @@
     "openExisting": "Mevcut sohbete git",
     "firstMessageHint": "İlk mesajı gönderdiğinde sohbet oluşur ve herkesin listesine düşer.",
     "firstMessage": "İlk mesajı yaz",
-    "open": "Sohbeti aç"
+    "open": "Sohbeti aç",
+    "visibility": "Kimler görür",
+    "visibilityPrivate": "Yalnız eklediğim kişiler",
+    "visibilityPrivateHint": "Özel kanal. Sen ve seçtiğin space üyeleri görür; sonradan kişi ekleyip çıkarabilirsin.",
+    "visibilityOpen": "Space'teki herkes",
+    "visibilityOpenHint": "Space'in bütün üyeleri görür, sonradan katılanlar da.",
+    "privateSummary": "Özel kanal · sen ve {count, plural, one {# kişi} other {# kişi}}",
+    "privateAlone": "Özel kanal · şimdilik yalnız sen. Space üyelerinden kişi ekle.",
+    "privateTo": "Ekle:",
+    "notInSpace": "Bu space'te değil"
   },
   "dialogs": {
     "rename": {
@@ -316,7 +331,10 @@
     "members": {
       "title": "Üyeler · {count}",
       "you": "(sen)",
-      "remove": "Çıkar"
+      "remove": "Çıkar",
+      "owner": "Kanal sahibi",
+      "makeOwner": "Sahip yap",
+      "makeMember": "Sahipliği al"
     },
     "link": {
       "title": "Space'e bağla",
@@ -349,6 +367,14 @@
       "body": "Bütün mesajlar ve ekler herkesten silinir; ekler Drive çöp kutusuna gider ve süresi dolunca kalıcı olarak kalkar. Bu işlem geri alınamaz ve denetim kaydına yazılır.",
       "confirm": "Onaylamak için sohbetin adını yaz",
       "submit": "Herkes için sil"
+    },
+    "privacy": {
+      "privateTitle": "{name} özel kanal olsun mu?",
+      "privateBody": "Şu an space'te olan herkes kanala üye olarak eklenir. Sonra istemediğin kişileri çıkarabilirsin. Space'e yeni katılanlar kanalı görmez; onları sen eklersin. Başka kurumlarla paylaşım varsa sona erer.",
+      "privateSubmit": "Özel yap",
+      "openTitle": "{name} space'teki herkese açılsın mı?",
+      "openBody": "Space'in bütün üyeleri kanalı ve geçmişini görür, sonradan katılanlar da.",
+      "openSubmit": "Herkese aç"
     }
   },
   "hooks": {
@@ -795,7 +821,9 @@
   },
   "admin": {
     "deleteForEveryone": "Sohbetleri herkes için silme",
-    "deleteForEveryoneHint": "Açıkken grup sahibi ve kurum yöneticileri bir sohbeti mesajları ve ekleriyle birlikte herkes için silebilir. Birebir ve space sohbetleri hiçbir durumda herkes için silinmez."
+    "deleteForEveryoneHint": "Açıkken grup sahibi ve kurum yöneticileri bir sohbeti mesajları ve ekleriyle birlikte herkes için silebilir. Birebir ve space sohbetleri hiçbir durumda herkes için silinmez.",
+    "linkPreviews": "Bağlantı önizlemeleri",
+    "linkPreviewsHint": "Açıkken mesajdaki ilk dış bağlantının başlığı, açıklaması ve görseli kart olarak gösterilir. Sayfayı sunucu okur; iç ağ adresleri okunmaz."
   },
   "commands": {
     "title": "Komutlar",
@@ -1018,5 +1046,9 @@
       "drawing": "Çizim",
       "card": "Kart"
     }
+  },
+  "linkPreview": {
+    "label": "{name} bağlantı önizlemesi",
+    "remove": "Önizlemeyi kaldır"
   }
 }

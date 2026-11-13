@@ -20,6 +20,8 @@ import { math } from 'micromark-extension-math';
 import {
   isAdmonitionType,
   isMentionKind,
+  columnWidths,
+  httpUrl,
   MAX_COLUMNS,
   videoSource,
   webUrl,
@@ -494,11 +496,15 @@ function columnsNode(children: RootContent[], ctx: Ctx): JSONNode[] {
   const rest = children.filter((c) => !columns.includes(c));
   const after = flowToBlocks(rest, ctx);
   if (columns.length < 2) return [...flowToBlocks(columns, ctx), ...after];
+  const widths = columnWidths(
+    columns.map((c) => (c as ContainerDirective).attributes?.width ?? null),
+  );
   return [
     {
       type: 'columns',
-      content: columns.map((c) => ({
+      content: columns.map((c, i) => ({
         type: 'column',
+        ...(widths[i] === null ? {} : { attrs: { width: widths[i] } }),
         content: ensureBlocks(
           flowToBlocks((c as ContainerDirective).children as RootContent[], ctx),
         ),
@@ -567,7 +573,13 @@ function leafDirectiveNode(node: LeafDirective, ctx: Ctx): JSONNode[] {
     return [
       {
         type: 'bookmark',
-        attrs: { url, title: attribute('title'), favicon: attribute('favicon') },
+        attrs: {
+          url,
+          title: attribute('title'),
+          favicon: attribute('favicon'),
+          description: attribute('description'),
+          image: httpUrl(attribute('image')),
+        },
       },
     ];
   }

@@ -1,6 +1,6 @@
 import type { PMDoc, PMMark, PMNode } from '../doc';
 import type { ExportFile } from './collect';
-import { imageWidth, isImageAlign } from '@crewhall/editor';
+import { columnWidth, imageWidth, isImageAlign } from '@crewhall/editor';
 import katex from 'katex';
 
 /**
@@ -137,8 +137,12 @@ export class HtmlRenderer {
         return `<div class="math">${math(a.latex, true)}</div>`;
       case 'columns':
         return `<div class="columns">${kids()}</div>`;
-      case 'column':
-        return `<div class="column">${kids()}</div>`;
+      case 'column': {
+        // A resized column keeps its share of the set (a number, so nothing to escape).
+        const width = columnWidth(a.width);
+        const style = width ? ` style="flex-grow:${width}"` : '';
+        return `<div class="column"${style}>${kids()}</div>`;
+      }
       case 'tabs':
         return `<div class="tabs">${kids()}</div>`;
       case 'tabItem':

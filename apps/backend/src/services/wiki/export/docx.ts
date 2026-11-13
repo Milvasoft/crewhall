@@ -20,7 +20,7 @@ import {
 import type { PMDoc, PMMark, PMNode } from '../doc';
 import type { ExportFile } from './collect';
 import { prepareImage, type PreparedImage } from './images';
-import { imageWidth } from '@crewhall/editor';
+import { columnWidth, imageWidth } from '@crewhall/editor';
 
 /** Width of a page's text in Word, in the pixels ImageRun measures in. */
 const DOCX_TEXT_WIDTH = 600;
@@ -288,8 +288,10 @@ export class DocxRenderer {
         new TableRow({
           children: (n.content ?? []).map((column) => {
             const children = this.blocks(column.content, ctx);
+            const width = columnWidth(column.attrs?.width);
             return new TableCell({
               borders,
+              ...(width ? { width: { size: width, type: WidthType.PERCENTAGE } } : {}),
               children: children.length ? children : [new Paragraph('')],
             });
           }),

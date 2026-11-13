@@ -19,6 +19,7 @@ export const DESKTOP_FEATURES = [
   'systemLock',
   'openFile',
   'openWindow',
+  'notifySound',
 ] as const;
 export type DesktopFeature = (typeof DESKTOP_FEATURES)[number] | 'webauthn' | 'vaultDevice';
 

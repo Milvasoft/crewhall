@@ -74,6 +74,8 @@ export const OrgSettings = z.object({
   modules: z.partialRecord(ModuleKey, z.boolean()).optional(),
   /** "Herkes için sil" in chat (H19); absent = allowed (group owners and org admins). */
   chatDeleteForEveryone: z.boolean().optional(),
+  /** Preview cards of links in chat messages; absent = on. */
+  chatLinkPreviews: z.boolean().optional(),
   /** Federation (roadmap 26): off by default; edited on Yönetim › Güvenlik › Federasyon. */
   federationEnabled: z.boolean().optional(),
   /** Domains allowed to federate (`*.example.com` covers subdomains). */

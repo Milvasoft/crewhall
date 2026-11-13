@@ -27,6 +27,10 @@ export interface PickedVideo {
 export interface LinkPreview {
   title: string | null;
   faviconUrl: string | null;
+  /** The page's summary; hosts whose server does not read it leave it out. */
+  description?: string | null;
+  /** Its preview image (an http(s) address). */
+  imageUrl?: string | null;
 }
 
 /** Host settings for node views (they render inside <EditorContent>, so context reaches them). */

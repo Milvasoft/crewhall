@@ -10,6 +10,7 @@ export type ChatDialog =
   | { kind: 'sharedFolders'; conv: Conversation }
   | { kind: 'members'; conv: Conversation }
   | { kind: 'linkSpace'; conv: Conversation }
+  | { kind: 'privacy'; conv: Conversation }
   | { kind: 'leave'; conv: Conversation }
   | { kind: 'clear'; conv: Conversation }
   | { kind: 'deleteAll'; conv: Conversation }

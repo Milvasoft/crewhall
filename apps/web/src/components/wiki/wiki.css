@@ -487,6 +487,9 @@
   flex: 1 1 200px;
   min-width: 0;
 }
+.wk-render-desc {
+  color: var(--fg3);
+}
 
 /* The page, centred, and its outline in the free column on the right. */
 .wk-page {

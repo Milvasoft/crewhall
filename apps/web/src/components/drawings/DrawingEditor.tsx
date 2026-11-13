@@ -7,12 +7,13 @@ import type {
   SocketId,
 } from '@excalidraw/excalidraw/types';
 import '@excalidraw/excalidraw/index.css';
-import { type Drawing, paths } from '@crewhall/shared';
+import { type Drawing } from '@crewhall/shared';
 import { Avatar, Button, cn, Icon, IconButton, Kbd, toast } from '@crewhall/ui';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { invalidateDrive } from '@/features/drive/api';
+import { openDriveDialog } from '@/features/drive/actions';
+import { invalidateDrive, nodeQuery } from '@/features/drive/api';
 import { api } from '@/lib/api';
 import { boardKeys, libraryQuery } from '@/lib/boards/api';
 import { type SceneElement } from '@/lib/boards/sceneSync';
@@ -249,12 +250,13 @@ export function DrawingEditor({ drawing, isNew }: { drawing: Drawing; isNew: boo
           <Button
             size="xs"
             variant="inv"
-            onClick={() => {
-              void navigator.clipboard?.writeText(
-                `${window.location.origin}${paths.drawing(drawing.id)}`,
-              );
-              toast(t('boards.detail.linkCopied'));
-            }}
+            onClick={() =>
+              // The drawing is a Drive node: the same share dialog as Drive (people, link).
+              void qc
+                .fetchQuery(nodeQuery(drawing.id))
+                .then((node) => openDriveDialog({ kind: 'share', node }))
+                .catch((e: unknown) => toast.error(t(errorKey(e))))
+            }
           >
             <Icon name="share" size={14} />
             {t('boards.toolbar.share')}

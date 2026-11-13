@@ -1,5 +1,6 @@
 import { InputRule, Mark, mergeAttributes, Node } from '@tiptap/core';
 import {
+  columnWidth,
   isAdmonitionType,
   isBlockColor,
   isMentionKind,
@@ -408,6 +409,8 @@ export const Bookmark = Node.create({
       url: { default: '', rendered: false },
       title: { default: null, rendered: false },
       favicon: { default: null, rendered: false },
+      description: { default: null, rendered: false },
+      image: { default: null, rendered: false },
     };
   },
 
@@ -418,6 +421,8 @@ export const Bookmark = Node.create({
         getAttrs: (el: HTMLElement) => ({
           url: el.getAttribute('href') ?? '',
           title: el.textContent || null,
+          description: el.getAttribute('data-description') || null,
+          image: el.getAttribute('data-image') || null,
         }),
       },
     ];
@@ -425,7 +430,18 @@ export const Bookmark = Node.create({
 
   renderHTML({ node }) {
     const url = str(node.attrs.url) ?? '';
-    return ['a', { 'data-type': 'bookmark', href: url }, str(node.attrs.title) ?? url];
+    const description = str(node.attrs.description);
+    const image = str(node.attrs.image);
+    return [
+      'a',
+      {
+        'data-type': 'bookmark',
+        href: url,
+        ...(description ? { 'data-description': description } : {}),
+        ...(image ? { 'data-image': image } : {}),
+      },
+      str(node.attrs.title) ?? url,
+    ];
   },
 });
 
@@ -479,6 +495,16 @@ export const Column = Node.create({
   // Backspace at the start of a column does not pull it into its neighbour.
   isolating: true,
 
+  addAttributes() {
+    return {
+      width: {
+        default: null,
+        parseHTML: (el: HTMLElement) => columnWidth(el.getAttribute('data-width')),
+        renderHTML: (attrs: Record<string, unknown>) => columnWidthAttrs(attrs.width),
+      },
+    };
+  },
+
   parseHTML() {
     return [{ tag: 'div[data-type="column"]' }];
   },
@@ -487,6 +513,12 @@ export const Column = Node.create({
     return ['div', mergeAttributes(HTMLAttributes, { 'data-type': 'column' }), 0];
   },
 });
+
+/** A resized column's DOM attributes: its width for the markup and its share for the layout. */
+export function columnWidthAttrs(value: unknown): Record<string, string> {
+  const width = columnWidth(value);
+  return width === null ? {} : { 'data-width': String(width), style: `--ch-col: ${width}` };
+}
 
 /** Wiki embed of another Hub node (`::embed{node="…" type="…"}`); the host draws the preview. */
 export const Embed = Node.create({

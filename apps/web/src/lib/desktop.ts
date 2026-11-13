@@ -34,7 +34,8 @@ export type DesktopFeature =
   | 'vaultDevice'
   | 'systemLock'
   | 'openFile'
-  | 'openWindow';
+  | 'openWindow'
+  | 'notifySound';
 
 export interface DesktopBridge {
   isDesktop: true;
@@ -61,6 +62,13 @@ export interface DesktopBridge {
   onOpenFile?(listener: (file: { url: string; name: string }) => void): () => void;
   /** Windows locked, screen saver or sleep: the vault locks at once (lib/vault/autolock). */
   onSystemLock?(listener: () => void): () => void;
+  /**
+   * The app just showed a native chat notification: play the chime (feature `notifySound`).
+   * Registering tells the app this page has one, so its toast stays silent (lib/chat/sound).
+   */
+  onNotificationSound?(
+    listener: (sound: { tone: 'mention' | 'message'; conversationId: string | null }) => void,
+  ): () => void;
   /** Vault unlock with Windows Hello / Touch ID (lib/vault/desktop-device). */
   vaultDevice?: DesktopVaultDeviceBridge;
 }

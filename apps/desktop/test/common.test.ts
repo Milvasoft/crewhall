@@ -8,6 +8,7 @@ import {
   callContent,
   notificationContent,
   NoteGuard,
+  notificationTone,
   wantsNativeNotification,
 } from '../src/common/notify';
 import { RealtimeClient, type SocketLike } from '../src/common/realtime';
@@ -212,6 +213,22 @@ describe('native notification texts', () => {
     expect(wantsNativeNotification(notification({ readAt: '2026-10-22T10:01:00.000Z' }))).toBe(
       false,
     );
+  });
+
+  it('picks the chime: the bright one for mentions, replies and direct messages', () => {
+    expect(notificationTone(notification({}))).toEqual({ tone: 'mention', conversationId: 'c1' });
+    expect(notificationTone(notification({ type: 'chat.direct' })).tone).toBe('mention');
+    expect(notificationTone(notification({ type: 'chat.reply' })).tone).toBe('mention');
+    expect(notificationTone(notification({ type: 'chat.message' })).tone).toBe('message');
+    expect(notificationTone(notification({ type: 'chat.alert' })).tone).toBe('message');
+    expect(
+      notificationTone(
+        notification({
+          type: 'boards.assigned',
+          target: { type: 'card', id: 'k1', conversationId: null, seq: null, spaceId: null },
+        }),
+      ),
+    ).toEqual({ tone: 'message', conversationId: null });
   });
 
   it('announces calls', () => {

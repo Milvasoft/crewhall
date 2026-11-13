@@ -6,12 +6,15 @@ import { chatKeys, conversationsQuery, messagesQuery } from '@/lib/chat/queries'
 import { bindRuntimeForTests, handleEvent } from '@/lib/chat/runtime';
 import {
   armMessageSound,
+  armNotificationSound,
   inQuietHours,
   playTone,
   setAudioFactoryForTests,
   setMessageSoundOn,
+  soundForNotification,
   toneFor,
 } from '@/lib/chat/sound';
+import { type Conversation } from '@/lib/chat/types';
 import { setPresence, setVisibleConversation } from '@/lib/chat/stores';
 import { type Message } from '@/lib/chat/types';
 import { createQueryClient } from '@/lib/queryClient';
@@ -245,6 +248,60 @@ describe('message sound (H6)', () => {
       quietHours: { from: '00:00', to: '23:59' },
     });
     expect(toneFor(qc, msg(), USER.bugra, new Date('2026-10-21T10:00:00Z'))).toBeNull();
+  });
+
+  it('chimes for the first message of a chat that is not in the list yet', async () => {
+    const { qc, msg } = await setup();
+    // A group chat someone just started: it reaches me with its first message.
+    qc.setQueryData<Conversation[]>(chatKeys.conversations, (list) =>
+      list?.filter((c) => c.id !== CONV.selinCan),
+    );
+    qc.removeQueries({ queryKey: chatKeys.conversation(CONV.selinCan) });
+    setVisibleConversation(CONV.elif);
+    interact();
+    handleEvent({
+      type: 'message.created',
+      conversationId: CONV.selinCan,
+      message: msg({ conversationId: CONV.selinCan }),
+    });
+    await expect.poll(() => audio?.played.length).toBe(1);
+  });
+
+  it("plays the desktop app's notification chime, never for a muted chat", async () => {
+    const { qc } = await setup();
+    let listener:
+      ((s: { tone: 'mention' | 'message'; conversationId: string | null }) => void) | null = null;
+    let listening = false;
+    Object.assign(window, {
+      crewhallDesktop: {
+        isDesktop: true,
+        onNotificationSound: (l: typeof listener) => {
+          listener = l;
+          listening = true;
+          return () => {
+            listening = false;
+          };
+        },
+      },
+    });
+    const off = armNotificationSound(qc, USER.bugra);
+    expect(listening).toBe(true);
+    interact();
+    listener!({ tone: 'mention', conversationId: CONV.milvaion });
+    await expect.poll(() => audio?.played.length).toBe(1);
+
+    const later = new Date(Date.now() + 3600_000).toISOString();
+    patchConversation(qc, CONV.milvaion, (c) => ({ ...c, my: { ...c.my, mutedUntil: later } }));
+    expect(
+      soundForNotification(qc, { tone: 'message', conversationId: CONV.milvaion }, USER.bugra),
+    ).toBe(false);
+    setMessageSoundOn(false);
+    expect(soundForNotification(qc, { tone: 'message', conversationId: null }, USER.bugra)).toBe(
+      false,
+    );
+    setMessageSoundOn(true);
+    off();
+    expect(listening).toBe(false);
   });
 
   it('can be turned off in this browser, and a burst chimes once', async () => {

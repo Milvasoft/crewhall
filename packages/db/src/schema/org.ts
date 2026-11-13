@@ -43,6 +43,8 @@ export interface OrgSettingsData {
   modules?: Partial<Record<string, boolean>>;
   /** OrgSettings.chatDeleteForEveryone; missing = allowed. */
   chatDeleteForEveryone?: boolean;
+  /** OrgSettings.chatLinkPreviews (link preview cards in chat); missing = on. */
+  chatLinkPreviews?: boolean;
   /** OrgSettings.meetRemoteControl (remote control of shared screens); missing = allowed. */
   meetRemoteControl?: boolean;
   /** OrgSettings.federationEnabled; missing = off (roadmap 26). */

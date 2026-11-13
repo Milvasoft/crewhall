@@ -43,7 +43,8 @@
     "meeting": "Meeting chat · {count, plural, one {# participant} other {# participants}}",
     "localTime": "local time {time}",
     "menu": "Chat menu",
-    "archived": "Archived"
+    "archived": "Archived",
+    "private": "Private channel"
   },
   "tabs": {
     "label": "Chat tabs",
@@ -73,7 +74,9 @@
     "archiveMine": "Archive",
     "unarchiveMine": "Unarchive",
     "clear": "Delete for me",
-    "deleteAll": "Delete for everyone"
+    "deleteAll": "Delete for everyone",
+    "makePrivate": "Make private",
+    "makeOpen": "Open to everyone in the space"
   },
   "notify": {
     "all": "All",
@@ -164,7 +167,9 @@
     "call_busy": "Declined voice call · {actor} · Busy",
     "call_busyVideo": "Declined video call · {actor} · Busy",
     "call_ended": "Voice call · {duration} · {people}",
-    "call_endedVideo": "Video call · {duration} · {people}"
+    "call_endedVideo": "Video call · {duration} · {people}",
+    "made_private": "{actor} made the channel private",
+    "made_open": "{actor} opened the channel to everyone in the space"
   },
   "severity": {
     "critical": "Critical",
@@ -231,7 +236,8 @@
     "space": "Everyone in the {space} space sees this chat. Attachments go to the space's Attachments folder.",
     "group": "People added to the group see the history chosen when they were added.",
     "hello": "Hello",
-    "welcome": "Welcome {name}!"
+    "welcome": "Welcome {name}!",
+    "private": "Private channel: only the people added see it. Owners can add and remove members of the {space} space."
   },
   "files": {
     "filter": {
@@ -280,7 +286,16 @@
     "openExisting": "Go to the existing chat",
     "firstMessageHint": "The chat is created with the first message and shows up in everyone's list.",
     "firstMessage": "Write the first message",
-    "open": "Open chat"
+    "open": "Open chat",
+    "visibility": "Who can see it",
+    "visibilityPrivate": "Only people I add",
+    "visibilityPrivateHint": "Private channel. You and the space members you pick see it; you can add and remove people later.",
+    "visibilityOpen": "Everyone in the space",
+    "visibilityOpenHint": "All space members see it, including people who join later.",
+    "privateSummary": "Private channel · you and {count, plural, one {# person} other {# people}}",
+    "privateAlone": "Private channel · just you for now. Add people from the space.",
+    "privateTo": "Add:",
+    "notInSpace": "Not in this space"
   },
   "dialogs": {
     "rename": {
@@ -316,7 +331,10 @@
     "members": {
       "title": "Members · {count}",
       "you": "(you)",
-      "remove": "Remove"
+      "remove": "Remove",
+      "owner": "Channel owner",
+      "makeOwner": "Make owner",
+      "makeMember": "Remove as owner"
     },
     "link": {
       "title": "Link to a space",
@@ -349,6 +367,14 @@
       "body": "All messages and attachments are deleted for everyone; attachments go to the Drive trash and are removed for good when it expires. This cannot be undone and is written to the audit log.",
       "confirm": "Type the chat name to confirm",
       "submit": "Delete for everyone"
+    },
+    "privacy": {
+      "privateTitle": "Make {name} private?",
+      "privateBody": "Everyone in the space right now is added as a member; you can then remove people. People who join the space later won't see it until someone adds them. Sharing with other organizations ends.",
+      "privateSubmit": "Make private",
+      "openTitle": "Open {name} to everyone in the space?",
+      "openBody": "All space members will see the channel and its history, including people who join later.",
+      "openSubmit": "Open to everyone"
     }
   },
   "hooks": {
@@ -795,7 +821,9 @@
   },
   "admin": {
     "deleteForEveryone": "Delete chats for everyone",
-    "deleteForEveryoneHint": "When on, group owners and org admins can delete a chat with its messages and attachments for everyone. Direct and space chats are never deleted for everyone."
+    "deleteForEveryoneHint": "When on, group owners and org admins can delete a chat with its messages and attachments for everyone. Direct and space chats are never deleted for everyone.",
+    "linkPreviews": "Link previews",
+    "linkPreviewsHint": "When on, the title, description and image of a message's first external link show as a card. The server reads the page; internal network addresses are never read."
   },
   "commands": {
     "title": "Commands",
@@ -1018,5 +1046,9 @@
       "drawing": "Drawing",
       "card": "Card"
     }
+  },
+  "linkPreview": {
+    "label": "Link preview of {name}",
+    "remove": "Remove preview"
   }
 }

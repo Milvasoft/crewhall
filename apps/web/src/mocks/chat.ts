@@ -78,6 +78,7 @@ type ChatEndpoint = Extract<
   | 'listConversationMembers'
   | 'addConversationMembers'
   | 'removeConversationMember'
+  | 'updateConversationMember'
   | 'listReadReceipts'
   | 'markConversationRead'
   | 'markConversationUnread'
@@ -93,6 +94,7 @@ type ChatEndpoint = Extract<
   | 'searchChatRefs'
   | 'claimMessage'
   | 'unclaimMessage'
+  | 'removeChatLinkPreview'
   | 'listPinnedMessages'
   | 'searchMessages'
   | 'getChatAttachmentFolder'
@@ -198,6 +200,23 @@ function permissions(s: MockState, conv: MockConversation, userId: string) {
   const role = spaceRoleOf(s, conv, userId);
   const spaced = conv.type === 'space' || (conv.type === 'alert' && conv.spaceId !== null);
   const archived = conv.archivedAt !== null;
+  if (spaced && conv.private) {
+    const owner = rowOf(chatState(s), conv.id, userId)?.role === 'owner';
+    const lead = owner || atLeast(role, 'admin');
+    return {
+      write: !archived && atLeast(role, 'viewer'),
+      manage: !archived && lead,
+      pin: !archived && atLeast(role, 'viewer'),
+      moderate: atLeast(role, 'admin'),
+      manageWebhooks: !archived && lead,
+      archive: lead,
+      changePrivacy: !archived && lead,
+      clearForMe: false,
+      deleteForEveryone:
+        s.org?.settings.chatDeleteForEveryone !== false &&
+        (isOrgAdmin(s, userId) || owner || conv.createdBy === userId),
+    };
+  }
   return {
     write: !archived && (!spaced || atLeast(role, 'viewer')),
     manage:
@@ -210,6 +229,10 @@ function permissions(s: MockState, conv: MockConversation, userId: string) {
     manageWebhooks:
       !archived && conv.type !== 'direct' && (spaced ? atLeast(role, 'editor') : true),
     archive: spaced && atLeast(role, 'admin'),
+    changePrivacy:
+      spaced &&
+      !archived &&
+      (atLeast(role, 'admin') || (conv.createdBy === userId && atLeast(role, 'editor'))),
     clearForMe: conv.type !== 'space',
     deleteForEveryone:
       conv.type !== 'direct' &&
@@ -319,6 +342,9 @@ function toConversation(s: MockState, conv: MockConversation, userId: string): C
     meetingId: conv.meetingId,
     name: conv.name,
     emoji: conv.emoji ?? null,
+    ...(conv.spaceId && (conv.type === 'space' || conv.type === 'alert')
+      ? { private: conv.private ?? false }
+      : {}),
     title: titleOf(s, c, conv, userId),
     avatarUrl: null,
     peer: peerId ? summaryOf(s, peerId) : null,
@@ -416,6 +442,7 @@ function toMessage(s: MockState, m: MockMessage, userId: string): Message {
     poll: !deleted && m.poll ? pollView(m.poll) : null,
     gif: !deleted ? (m.gif ?? null) : null,
     refs: !deleted ? (m.refs ?? []) : [],
+    linkPreview: !deleted ? (m.linkPreview ?? null) : null,
     claim:
       !deleted && m.claim && summaryOf(s, m.claim.userId)
         ? { user: summaryOf(s, m.claim.userId)!, at: m.claim.at }
@@ -1006,7 +1033,12 @@ function newConversation(
   s: MockState,
   u: MockUser,
   type: MockConversation['type'],
-  opts: { name?: string | null; spaceId?: string | null; members: string[] },
+  opts: {
+    name?: string | null;
+    spaceId?: string | null;
+    members: string[];
+    private?: boolean;
+  },
 ): MockConversation {
   const c = chatState(s);
   const conv: MockConversation = {
@@ -1020,22 +1052,20 @@ function newConversation(
     lastSeq: 0,
     archivedAt: null,
     attachmentsNodeId: null,
+    ...(opts.private ? { private: true } : {}),
   };
   c.conversations.push(conv);
   for (const uid of new Set([u.id, ...opts.members])) {
     c.members.push({
       conversationId: conv.id,
       userId: uid,
+      ...(opts.private ? { role: uid === u.id ? ('owner' as const) : ('member' as const) } : {}),
       joinedAt: now(),
       historyFromSeq: null,
       pinnedAt: null,
       pinPosition: null,
       notify:
-        type === 'direct' || type === 'group'
-          ? 'all'
-          : type === 'alert'
-            ? 'critical'
-            : 'mentions',
+        type === 'direct' || type === 'group' ? 'all' : type === 'alert' ? 'critical' : 'mentions',
       mutedUntil: null,
       lastReadSeq: 0,
       readAt: now(),
@@ -1234,7 +1264,13 @@ function addMembers(
 ) {
   const c = chatState(s);
   const fresh = userIds.filter((id) => !rowOf(c, conv.id, id) && userById(s, id));
-  if (rowsOf(c, conv.id).length + fresh.length > CHAT_LIMITS.groupMembers) {
+  if (conv.private && conv.spaceId) {
+    if (fresh.some((id) => !myRole(s, conv.spaceId!, id))) {
+      throw new MockApiError('chat_not_in_space');
+    }
+  }
+  const limit = conv.private ? CHAT_LIMITS.privateChannelMembers : CHAT_LIMITS.groupMembers;
+  if (rowsOf(c, conv.id).length + fresh.length > limit) {
     throw new MockApiError('chat_group_full');
   }
   const since =
@@ -1257,6 +1293,7 @@ function addMembers(
       userId: id,
       joinedAt: now(),
       historyFromSeq: fromSeq,
+      ...(conv.private ? { role: 'member' as const } : {}),
       pinnedAt: null,
       pinPosition: null,
       notify: conv.type === 'group' ? 'all' : 'mentions',
@@ -1283,6 +1320,7 @@ function membersOf(s: MockState, conv: MockConversation): ChatMember[] {
         isGuest: om?.role === 'guest',
         spaceRole: conv.type === 'space' ? spaceRoleOf(s, conv, r.userId) : null,
         joinedAt: r.joinedAt,
+        ...(conv.private ? { role: r.role ?? 'member' } : {}),
       };
     })
     .filter((x): x is ChatMember => x !== null);
@@ -1373,12 +1411,17 @@ export const chatResolvers = {
       conv = newConversation(s, u, 'group', { name: body.name, members: body.userIds });
       systemLine(s, conv, { type: 'created', actorId: u.id, userIds: body.userIds });
     } else if (body.type === 'space') {
-      if (!atLeast(myRole(s, body.spaceId, u.id), 'admin')) throw new MockApiError('forbidden');
-      const ids = s.spaceMembers.filter((m) => m.spaceId === body.spaceId).map((m) => m.userId);
+      if (!atLeast(myRole(s, body.spaceId, u.id), 'editor')) throw new MockApiError('forbidden');
+      const all = s.spaceMembers.filter((m) => m.spaceId === body.spaceId).map((m) => m.userId);
+      const picked = body.userIds ?? [];
+      if (body.private && picked.some((id) => !all.includes(id))) {
+        throw new MockApiError('chat_not_in_space');
+      }
       conv = newConversation(s, u, 'space', {
         name: body.name,
         spaceId: body.spaceId,
-        members: ids,
+        members: body.private ? picked : all,
+        private: body.private === true,
       });
     } else {
       const ids = body.spaceId
@@ -1425,6 +1468,20 @@ export const chatResolvers = {
       if (!p.archive) throw new MockApiError('forbidden');
       conv.archivedAt = body.archived ? now() : null;
       systemLine(s, conv, { type: body.archived ? 'archived' : 'unarchived', actorId: u.id });
+    }
+    if (body.private !== undefined && body.private !== (conv.private ?? false)) {
+      if (!p.changePrivacy || !conv.spaceId) throw new MockApiError('forbidden');
+      const c = chatState(s);
+      const inSpace = s.spaceMembers.filter((m) => m.spaceId === conv.spaceId).map((m) => m.userId);
+      if (body.private) {
+        // Everyone in the space now is a member; the caller owns it.
+        addMembers(s, u, conv, inSpace, 'all');
+        for (const r of rowsOf(c, conv.id)) r.role = r.userId === u.id ? 'owner' : 'member';
+      } else {
+        addMembers(s, u, conv, inSpace, 'all');
+      }
+      conv.private = body.private;
+      systemLine(s, conv, { type: body.private ? 'made_private' : 'made_open', actorId: u.id });
     }
     emitConvUpdated(s, conv);
     return toConversation(s, conv, u.id);
@@ -1525,7 +1582,9 @@ export const chatResolvers = {
   leaveConversation: ({ s, params }) => {
     const u = requireUser(s);
     const { conv, c } = access(s, u, params.conversationId!);
-    if (conv.type === 'space' || conv.type === 'direct') throw new MockApiError('forbidden');
+    if ((conv.type === 'space' && !conv.private) || conv.type === 'direct') {
+      throw new MockApiError('forbidden');
+    }
     systemLine(s, conv, { type: 'member_left', actorId: u.id });
     c.members = c.members.filter((m) => !(m.conversationId === conv.id && m.userId === u.id));
     emitTo([u.id], () => ({ type: 'conversation.removed', conversationId: conv.id }));
@@ -1552,16 +1611,34 @@ export const chatResolvers = {
   addConversationMembers: ({ s, params, body }) => {
     const u = requireUser(s);
     const { conv } = access(s, u, params.conversationId!);
-    if (conv.type !== 'group' && conv.type !== 'alert') throw new MockApiError('forbidden');
+    if (conv.type !== 'group' && conv.type !== 'alert' && !conv.private) {
+      throw new MockApiError('forbidden');
+    }
     if (!permissions(s, conv, u.id).manage) throw new MockApiError('forbidden');
     addMembers(s, u, conv, body.userIds, body.history);
+    return { items: membersOf(s, conv) };
+  },
+
+  updateConversationMember: ({ s, params, body }) => {
+    const u = requireUser(s);
+    const { conv, c } = access(s, u, params.conversationId!);
+    if (!conv.private) throw new MockApiError('bad_request');
+    if (!permissions(s, conv, u.id).manage) throw new MockApiError('forbidden');
+    const row = rowOf(c, conv.id, params.userId!);
+    if (!row) throw new MockApiError('member_not_found');
+    const owners = rowsOf(c, conv.id).filter((r) => r.role === 'owner');
+    if (body.role === 'member' && owners.every((o) => o.userId === row.userId)) {
+      throw new MockApiError('bad_request');
+    }
+    row.role = body.role;
+    emitConvUpdated(s, conv);
     return { items: membersOf(s, conv) };
   },
 
   removeConversationMember: ({ s, params }) => {
     const u = requireUser(s);
     const { conv, c } = access(s, u, params.conversationId!);
-    if (!permissions(s, conv, u.id).manage || conv.type === 'space') {
+    if (!permissions(s, conv, u.id).manage || (conv.type === 'space' && !conv.private)) {
       throw new MockApiError('forbidden');
     }
     const target = params.userId!;
@@ -1804,6 +1881,18 @@ ${node.name}: ${url}`
       throw new MockApiError('forbidden');
     }
     m.claim = null;
+    m.updatedAt = now();
+    emitMessage(s, m, 'message.updated');
+    return toMessage(s, m, u.id);
+  },
+
+  removeChatLinkPreview: ({ s, params }) => {
+    const u = requireUser(s);
+    const { m } = messageOf(s, u, params.messageId!);
+    if (m.authorId !== u.id || m.kind !== 'user' || m.deletedAt) {
+      throw new MockApiError('chat_message_not_editable');
+    }
+    m.linkPreview = null;
     m.updatedAt = now();
     emitMessage(s, m, 'message.updated');
     return toMessage(s, m, u.id);

@@ -20,6 +20,7 @@ describe('bridge features', () => {
       'systemLock',
       'openFile',
       'openWindow',
+      'notifySound',
     ]);
   });
 

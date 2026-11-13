@@ -15,6 +15,7 @@ import {
   type UserStatus,
   type GifRating,
   type MessageGif,
+  type MessageLinkPreview,
   type WebhookProvider,
 } from '@crewhall/shared';
 import { mimeFor } from '@/features/drive/fileKinds';
@@ -38,6 +39,8 @@ export interface MockConversation {
   emoji?: string | null;
   /** Roadmap 26: shared with another installation. */
   federation?: ConversationFederation;
+  /** Private space channel: members are the rows (people added), not the whole space. */
+  private?: boolean;
 }
 
 export interface MockChatMember {
@@ -56,6 +59,8 @@ export interface MockChatMember {
   /** H19: personal archive and "Benim için sil" (history up to this seq hidden). */
   archivedAt?: string | null;
   clearedAtSeq?: number | null;
+  /** Private channels: owners manage people. */
+  role?: 'owner' | 'member';
 }
 
 export interface MockMessage {
@@ -94,6 +99,8 @@ export interface MockMessage {
   claim?: { userId: string; at: string } | null;
   /** A webhook's text without a card: the severity its webhook gives it. */
   severity?: AlertSeverity | null;
+  /** Preview card of the first external link (Message.linkPreview). */
+  linkPreview?: MessageLinkPreview | null;
 }
 
 export interface MockPoll {

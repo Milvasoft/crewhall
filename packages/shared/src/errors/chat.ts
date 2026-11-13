@@ -20,6 +20,7 @@ export const CHAT_ERROR_CODES = [
   'gif_disabled',
   'gif_provider_error',
   'gif_busy',
+  'chat_not_in_space',
 ] as const;
 
 export const CHAT_ERROR_STATUS: Record<(typeof CHAT_ERROR_CODES)[number], number> = {
@@ -43,4 +44,5 @@ export const CHAT_ERROR_STATUS: Record<(typeof CHAT_ERROR_CODES)[number], number
   gif_disabled: 409,
   gif_provider_error: 502,
   gif_busy: 429,
+  chat_not_in_space: 409,
 };

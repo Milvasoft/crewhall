@@ -213,6 +213,17 @@ function GeneralPage() {
                 />
               </SettingsRow>
               <SettingsRow
+                label={t('chat.admin.linkPreviews')}
+                description={t('chat.admin.linkPreviewsHint')}
+              >
+                <Switch
+                  aria-label={t('chat.admin.linkPreviews')}
+                  checked={draft.settings.chatLinkPreviews !== false}
+                  onCheckedChange={(v) => set('chatLinkPreviews', v)}
+                  disabled={!editable}
+                />
+              </SettingsRow>
+              <SettingsRow
                 label={t('meet.admin.remoteControl')}
                 description={t('meet.admin.remoteControlHint')}
               >

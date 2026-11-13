@@ -7,9 +7,11 @@ import {
   SETTINGS_EVENT,
   SYSTEM_LOCK,
   FILES,
+  NOTIFY_SOUND,
   VAULT_DEVICE,
   type DesktopApi,
   type DesktopWebBridge,
+  type NotificationSound,
   type SendState,
   type SettingsView,
 } from '../common/ipc';
@@ -65,6 +67,15 @@ if (location.protocol === 'file:') {
       const handler = () => listener();
       ipcRenderer.on(SYSTEM_LOCK, handler);
       return () => ipcRenderer.removeListener(SYSTEM_LOCK, handler);
+    },
+    onNotificationSound: (listener) => {
+      const handler = (_e: unknown, sound: NotificationSound) => listener(sound);
+      ipcRenderer.on(NOTIFY_SOUND.play, handler);
+      ipcRenderer.send(NOTIFY_SOUND.listen, true);
+      return () => {
+        ipcRenderer.removeListener(NOTIFY_SOUND.play, handler);
+        ipcRenderer.send(NOTIFY_SOUND.listen, false);
+      };
     },
     vaultDevice: {
       status: (userId, stamp) => ipcRenderer.invoke(VAULT_DEVICE.status, userId, stamp),

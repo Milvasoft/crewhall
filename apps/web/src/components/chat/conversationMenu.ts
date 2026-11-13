@@ -156,7 +156,7 @@ export function useConversationEntries(conv: Conversation | undefined): ActionEn
       onSelect: () => openChatDialog({ kind: 'members', conv }),
     });
   }
-  if ((conv.type === 'group' || conv.type === 'alert') && p.manage) {
+  if ((conv.type === 'group' || conv.type === 'alert' || conv.private) && p.manage) {
     manage.push({
       kind: 'item',
       key: 'add',
@@ -168,6 +168,7 @@ export function useConversationEntries(conv: Conversation | undefined): ActionEn
   // Remote people join groups and space channels homed here (roadmap 26).
   if (
     p.manage &&
+    !conv.private &&
     (conv.type === 'group' || conv.type === 'space') &&
     fed.data?.address &&
     (!conv.federation || conv.federation.homeDomain === domainOf(fed.data.address))
@@ -184,6 +185,7 @@ export function useConversationEntries(conv: Conversation | undefined): ActionEn
   if (
     p.manage &&
     conv.type === 'space' &&
+    !conv.private &&
     !conv.archivedAt &&
     fed.data?.address &&
     (!conv.federation || conv.federation.homeDomain === domainOf(fed.data.address))
@@ -238,6 +240,16 @@ export function useConversationEntries(conv: Conversation | undefined): ActionEn
       onSelect: () => openChatDialog({ kind: 'linkSpace', conv }),
     });
   }
+  // Private (Teams-like) or open to the whole space: space admins and channel owners.
+  if (conv.private !== undefined && (p.changePrivacy ?? p.archive) && !conv.archivedAt) {
+    manage.push({
+      kind: 'item',
+      key: 'privacy',
+      icon: 'lock',
+      label: t(conv.private ? 'chat.menu.makeOpen' : 'chat.menu.makePrivate'),
+      onSelect: () => openChatDialog({ kind: 'privacy', conv }),
+    });
+  }
   if (p.archive) {
     manage.push({
       kind: 'item',
@@ -285,7 +297,7 @@ export function useConversationEntries(conv: Conversation | undefined): ActionEn
       onSelect: () => openChatDialog({ kind: 'deleteAll', conv }),
     });
   }
-  if (conv.type === 'group' || conv.type === 'alert') {
+  if (conv.type === 'group' || conv.type === 'alert' || conv.private) {
     manage.push({
       kind: 'item',
       key: 'leave',

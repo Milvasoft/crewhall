@@ -34,6 +34,8 @@ export interface JobPayloads {
   /** A scheduled message at its send time (startAfter); the sweep catches lost ones. */
   'chat.scheduled': { id: string };
   'chat.scheduled_sweep': Record<string, never>;
+  /** The preview card of a message's first external link (after sending, never blocking it). */
+  'chat.link_preview': { messageId: string };
   /** Roadmap 19: a published announcement's e-mails (once, not in the digest). */
   'announcement.email': { announcementId: string };
   /** Hourly: the morning birthday and work anniversary posts (each org's own time zone). */
@@ -141,6 +143,7 @@ export const JOB_NAMES: JobName[] = [
   'chat.reminders',
   'chat.scheduled',
   'chat.scheduled_sweep',
+  'chat.link_preview',
   'announcement.email',
   'celebrations.tick',
   'vault.purge',

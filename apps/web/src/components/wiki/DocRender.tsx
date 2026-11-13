@@ -1,4 +1,4 @@
-import { imageWidth, isImageAlign, webUrl } from '@crewhall/editor';
+import { columnWidth, imageWidth, isImageAlign, webUrl } from '@crewhall/editor';
 import { cn } from '@crewhall/ui';
 import { Fragment, type CSSProperties, type ReactNode } from 'react';
 import { diffBlocks, type BlockOp, type PMNode } from '@/lib/wiki/diff';
@@ -160,13 +160,24 @@ export function Block({ n, className }: { n: PMNode; className?: string }): Reac
       );
     case 'columns':
       return <div className={cn('wk-render-columns', className)}>{kids}</div>;
+    case 'column': {
+      // A resized column keeps its share (the editor stores all widths of a set or none).
+      const width = columnWidth(n.attrs?.width);
+      return (
+        <div className={className} style={width ? { flexGrow: width } : undefined}>
+          {kids}
+        </div>
+      );
+    }
     case 'bookmark':
     case 'video': {
       const target = String((n.type === 'video' ? n.attrs?.src : n.attrs?.url) ?? '');
       const href = target.startsWith('node:') ? resolveNodeSrc(target) : webUrl(target);
+      const description = n.type === 'bookmark' ? String(n.attrs?.description ?? '') : '';
       return (
         <p className={className}>
           {href ? <a href={href}>{String(n.attrs?.title ?? '') || target}</a> : target}
+          {description ? <span className="wk-render-desc"> — {description}</span> : null}
         </p>
       );
     }

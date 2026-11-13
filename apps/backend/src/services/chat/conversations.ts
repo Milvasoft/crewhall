@@ -7,6 +7,8 @@ import {
   inArray,
   isNotNull,
   isNull,
+  lte,
+  notInArray,
   or,
   sql,
   type SQL,
@@ -47,6 +49,7 @@ import {
   memberIds,
   mySpaceRoles,
   requireMember,
+  privateChannel,
   requirePermission,
   spaceBound,
   type ChatActor,
@@ -68,7 +71,18 @@ export function visibleTo(orgId: string, userId: string, spaceIds: string[]): SQ
     ? sql`(${conversations.spaceId} in (${sql.join(
         spaceIds.map((id) => sql`${id}::uuid`),
         sql`, `,
-      )}) and ${conversations.type} in ('space', 'alert'))`
+      )}) and ${conversations.type} in ('space', 'alert') and not ${conversations.private})`
+    : sql`false`;
+  // A private channel: the person's row, written while they were already in the (live) space
+  // (access.ts › inSpaceSinceAdded).
+  const privateRule = spaceIds.length
+    ? sql`(${conversations.spaceId} in (${sql.join(
+        spaceIds.map((id) => sql`${id}::uuid`),
+        sql`, `,
+      )}) and exists (select 1 from ${conversationMembers} cp
+        join ${spaceMembers} sp on sp.space_id = ${conversations.spaceId} and sp.user_id = cp.user_id
+        where cp.conversation_id = ${conversations.id} and cp.user_id = ${userId}::uuid
+          and sp.created_at <= cp.created_at))`
     : sql`false`;
   // A space's permanent room shows to the whole space. A planned meeting or a quick call stays
   // with the people invited and the people who joined (access.ts › spaceRoomChats).
@@ -84,7 +98,9 @@ export function visibleTo(orgId: string, userId: string, spaceIds: string[]): SQ
     or(
       spaceRule,
       spaceRoomRule,
-      sql`(not (${conversations.spaceId} is not null and ${conversations.type} in ('space', 'alert'))
+      sql`(not (${conversations.spaceId} is not null and ${conversations.type} in ('space', 'alert')
+          and not ${conversations.private})
+        and (not ${conversations.private} or ${privateRule})
         and exists (select 1 from ${conversationMembers} cm
           where cm.conversation_id = ${conversations.id} and cm.user_id = ${userId}::uuid))`,
     ),
@@ -245,6 +261,7 @@ async function insertMembers(
   userIds: string[],
   addedBy: string,
   historyFromSeq: number | null,
+  owners: readonly string[] = [],
 ) {
   if (userIds.length === 0) return;
   await db
@@ -257,9 +274,56 @@ async function insertMembers(
         notify: defaultNotify(conv.type),
         addedBy,
         historyFromSeq: userId === addedBy ? null : historyFromSeq,
+        role: owners.includes(userId) ? ('owner' as const) : ('member' as const),
       })),
     )
     .onConflictDoNothing();
+}
+
+/** Space members among `userIds` (who may join a private channel of that space). */
+async function spaceMemberIds(db: DbOrTx, spaceId: string, userIds: string[]) {
+  if (userIds.length === 0) return new Set<string>();
+  const rows = await db
+    .select({ userId: spaceMembers.userId })
+    .from(spaceMembers)
+    .where(and(eq(spaceMembers.spaceId, spaceId), inArray(spaceMembers.userId, userIds)));
+  return new Set(rows.map((r) => r.userId));
+}
+
+/** People added to a private channel: active org members who are in its space. */
+async function requireChannelPeople(db: DbOrTx, orgId: string, spaceId: string, ids: string[]) {
+  const active = await activeOrgUserIds(db, orgId, ids);
+  if (active.size !== ids.length) throw new AppError('member_not_found');
+  const inSpace = await spaceMemberIds(db, spaceId, ids);
+  if (inSpace.size !== ids.length) {
+    throw new AppError('chat_not_in_space', { userIds: ids.filter((u) => !inSpace.has(u)) });
+  }
+}
+
+/**
+ * A private channel keeps at least one owner: when the last one leaves (or is removed or made
+ * a member), the longest-standing member still in the space takes over.
+ */
+async function ensureOwner(db: DbOrTx, conv: ConversationRow) {
+  if (!privateChannel(conv)) return;
+  const current = new Set(await memberIds(db, conv));
+  if (current.size === 0) return;
+  const rows = await db
+    .select({ userId: conversationMembers.userId, role: conversationMembers.role })
+    .from(conversationMembers)
+    .where(eq(conversationMembers.conversationId, conv.id))
+    .orderBy(asc(conversationMembers.createdAt));
+  const live = rows.filter((r) => current.has(r.userId));
+  if (live.length === 0 || live.some((r) => r.role === 'owner')) return;
+  await db
+    .update(conversationMembers)
+    .set({ role: 'owner' })
+    .where(
+      and(
+        eq(conversationMembers.conversationId, conv.id),
+        eq(conversationMembers.userId, live[0]!.userId),
+      ),
+    );
 }
 
 function requireSpaceAction(a: ChatActor, role: SpaceRole | null, action: 'space.chat_create') {
@@ -347,14 +411,25 @@ export async function createConversation(
     } else if (guest) {
       throw new AppError('forbidden');
     }
+    const isPrivate = input.type === 'space' && input.private === true;
     const extra =
       input.type === 'alert' && !spaceId
         ? [...new Set(input.userIds)].filter((id) => id !== a.userId)
-        : [];
-    if (extra.length + 1 > CHAT_LIMITS.groupMembers) throw new AppError('chat_group_full');
-    if (extra.length) {
-      const active = await activeOrgUserIds(db, a.org.id, extra);
-      if (active.size !== extra.length) throw new AppError('member_not_found');
+        : input.type === 'space' && isPrivate
+          ? [...new Set(input.userIds ?? [])].filter((id) => id !== a.userId)
+          : [];
+    if (isPrivate) {
+      if (guest) throw new AppError('forbidden');
+      if (extra.length + 1 > CHAT_LIMITS.privateChannelMembers) {
+        throw new AppError('chat_group_full');
+      }
+      await requireChannelPeople(db, a.org.id, spaceId!, extra);
+    } else {
+      if (extra.length + 1 > CHAT_LIMITS.groupMembers) throw new AppError('chat_group_full');
+      if (extra.length) {
+        const active = await activeOrgUserIds(db, a.org.id, extra);
+        if (active.size !== extra.length) throw new AppError('member_not_found');
+      }
     }
     const created = await db.transaction(async (tx) => {
       const [row] = await tx
@@ -365,10 +440,13 @@ export async function createConversation(
           spaceId,
           name: input.name,
           emoji,
+          private: isPrivate,
           createdBy: a.userId,
         })
         .returning();
-      if (!spaceId) await insertMembers(tx, row!, [a.userId, ...extra], a.userId, null);
+      if (!spaceId || isPrivate) {
+        await insertMembers(tx, row!, [a.userId, ...extra], a.userId, null, [a.userId]);
+      }
       const line = await appendSystem(tx, row!, {
         type: 'created',
         actorId: a.userId,
@@ -397,12 +475,16 @@ export async function updateConversation(
     name?: string | null | undefined;
     archived?: boolean | undefined;
     emoji?: string | null | undefined;
+    private?: boolean | undefined;
   },
 ) {
   const { db } = deps;
   const m = await requireMember(db, a, id);
   if (m.conv.type === 'direct') throw new AppError('forbidden');
   const lines = [];
+  if (input.private !== undefined && input.private !== m.conv.private) {
+    lines.push(await setPrivate(deps, a, m, input.private));
+  }
   if (input.archived !== undefined && input.archived !== (m.conv.archivedAt !== null)) {
     requirePermission(a, m, 'archive');
     await db
@@ -447,6 +529,122 @@ export async function updateConversation(
   for (const line of lines) await publishMessage(deps, conv, 'message.created', line);
   if (lines.length || emojiChanged) await publishConversation(deps, a, conv);
   return conversationView(db, a, conv);
+}
+
+/**
+ * Open ↔ private for a space channel (its owners and the space's admins). Going private adds
+ * everyone in the space now (the caller as owner) so nobody loses it silently; people are then
+ * removed by hand. Going open hands it back to the whole space; the rows stay as settings.
+ */
+async function setPrivate(
+  deps: Deps,
+  a: ChatActor,
+  m: Awaited<ReturnType<typeof requireMember>>,
+  makePrivate: boolean,
+) {
+  const { db } = deps;
+  const conv = m.conv;
+  if (!conv.spaceId || (conv.type !== 'space' && conv.type !== 'alert')) {
+    throw new AppError('bad_request', { reason: 'not_a_space_channel' });
+  }
+  if (a.actor.orgRole === 'guest') throw new AppError('forbidden');
+  const spaceAdmin = can(a.actor, 'space.update_settings', {
+    type: 'space',
+    org: orgContext(a.org),
+    myRole: m.spaceRole,
+  });
+  // An open channel's owner is whoever opened it (still an editor of the space); a private
+  // one's are its owner rows.
+  const owner = privateChannel(conv)
+    ? m.row?.role === 'owner'
+    : conv.createdBy === a.userId &&
+      can(a.actor, 'space.chat_create', {
+        type: 'space',
+        org: orgContext(a.org),
+        myRole: m.spaceRole,
+      });
+  if (!spaceAdmin && !owner) {
+    throw new AppError('forbidden');
+  }
+  if (makePrivate) {
+    const everyone = await memberIds(db, conv);
+    if (everyone.length > CHAT_LIMITS.privateChannelMembers) throw new AppError('chat_group_full');
+    await db.transaction(async (tx) => {
+      // Old settings rows were not memberships: people no longer in the space lose theirs, and
+      // everyone in the space now becomes a member from now on (settings kept).
+      if (everyone.length) {
+        await tx
+          .delete(conversationMembers)
+          .where(
+            and(
+              eq(conversationMembers.conversationId, conv.id),
+              notInArray(conversationMembers.userId, everyone),
+            ),
+          );
+      } else {
+        await tx.delete(conversationMembers).where(eq(conversationMembers.conversationId, conv.id));
+      }
+      await tx
+        .update(conversationMembers)
+        .set({ role: 'member', createdAt: sql`now()` })
+        .where(eq(conversationMembers.conversationId, conv.id));
+      await insertMembers(tx, conv, everyone, a.userId, null);
+      await tx
+        .update(conversationMembers)
+        .set({ role: 'owner' })
+        .where(
+          and(
+            eq(conversationMembers.conversationId, conv.id),
+            eq(conversationMembers.userId, a.userId),
+          ),
+        );
+      await tx.update(conversations).set({ private: true }).where(eq(conversations.id, conv.id));
+    });
+    // A private channel is not shared with other orgs (federation: channel.share.end).
+    await endSharesOf(deps, a.org.id, conv.id);
+  } else {
+    await db.update(conversations).set({ private: false }).where(eq(conversations.id, conv.id));
+  }
+  const fresh = await reloadConversation(db, conv.id);
+  return appendSystem(db, fresh, {
+    type: makePrivate ? 'made_private' : 'made_open',
+    actorId: a.userId,
+  });
+}
+
+/** Private channels: make a member an owner or back (owners and the space's admins). */
+export async function updateMemberRole(
+  deps: Deps,
+  a: ChatActor,
+  id: string,
+  userId: string,
+  role: 'owner' | 'member',
+) {
+  const { db } = deps;
+  const m = await requireMember(db, a, id);
+  if (!privateChannel(m.conv)) throw new AppError('bad_request', { reason: 'not_private' });
+  requirePermission(a, m, 'manage');
+  const current = new Set(await memberIds(db, m.conv));
+  if (!current.has(userId)) throw new AppError('member_not_found');
+  if (role === 'member') {
+    const owners = await db
+      .select({ userId: conversationMembers.userId })
+      .from(conversationMembers)
+      .where(
+        and(eq(conversationMembers.conversationId, id), eq(conversationMembers.role, 'owner')),
+      );
+    // Never an ownerless channel: make someone else an owner first.
+    if (owners.every((o) => o.userId === userId || !current.has(o.userId))) {
+      throw new AppError('bad_request', { reason: 'last_owner' });
+    }
+  }
+  await db
+    .update(conversationMembers)
+    .set({ role })
+    .where(and(eq(conversationMembers.conversationId, id), eq(conversationMembers.userId, userId)));
+  const conv = await reloadConversation(db, id);
+  await publishConversation(deps, a, conv);
+  return listMembers(db, a, id);
 }
 
 /** "Space'e bağla" (4.6): history and attachments stay; members now come from the space. */
@@ -570,6 +768,7 @@ export async function leaveConversation(deps: Deps, a: ChatActor, id: string) {
     .where(
       and(eq(conversationMembers.conversationId, id), eq(conversationMembers.userId, a.userId)),
     );
+  await ensureOwner(db, m.conv);
   const line = await appendSystem(db, m.conv, { type: 'member_left', actorId: a.userId });
   const conv = await reloadConversation(db, id);
   await publishMessage(deps, conv, 'message.created', line);
@@ -605,6 +804,44 @@ export async function listMembers(db: DbOrTx, a: ChatActor, id: string): Promise
       isGuest: roleOf(r.orgRole),
       spaceRole: r.spaceRole,
       joinedAt: r.joinedAt.toISOString(),
+    }));
+  }
+  if (privateChannel(m.conv)) {
+    // The channel's rows, still in the space; their space role and channel role show too.
+    const rows = await db
+      .select({
+        user: { id: users.id, name: users.name, email: users.email, image: users.image },
+        orgRole: orgMembers.role,
+        spaceRole: spaceMembers.role,
+        role: conversationMembers.role,
+        joinedAt: conversationMembers.createdAt,
+      })
+      .from(conversationMembers)
+      .innerJoin(users, eq(users.id, conversationMembers.userId))
+      .innerJoin(
+        orgMembers,
+        and(
+          eq(orgMembers.userId, conversationMembers.userId),
+          eq(orgMembers.organizationId, a.org.id),
+          eq(orgMembers.status, 'active'),
+        ),
+      )
+      .innerJoin(
+        spaceMembers,
+        and(
+          eq(spaceMembers.userId, conversationMembers.userId),
+          eq(spaceMembers.spaceId, m.conv.spaceId!),
+          lte(spaceMembers.createdAt, conversationMembers.createdAt),
+        ),
+      )
+      .where(eq(conversationMembers.conversationId, id))
+      .orderBy(asc(users.name));
+    return rows.map((r) => ({
+      user: { id: r.user.id, name: r.user.name, email: r.user.email, imageUrl: r.user.image },
+      isGuest: roleOf(r.orgRole),
+      spaceRole: r.spaceRole,
+      joinedAt: r.joinedAt.toISOString(),
+      role: r.role,
     }));
   }
   const rows = await db
@@ -664,13 +901,30 @@ export async function addMembers(
     throw new AppError('bad_request', { reason: 'members_follow_space' });
   }
   requirePermission(a, m, 'manage');
+  const isPrivate = privateChannel(m.conv);
   const current = new Set(await memberIds(db, m.conv));
   const fresh = [...new Set(input.userIds)].filter((u) => !current.has(u));
-  const active = await activeOrgUserIds(db, a.org.id, fresh);
-  if (active.size !== fresh.length) throw new AppError('member_not_found');
-  if (current.size + fresh.length > CHAT_LIMITS.groupMembers) throw new AppError('chat_group_full');
+  if (isPrivate) {
+    await requireChannelPeople(db, a.org.id, m.conv.spaceId!, fresh);
+  } else {
+    const active = await activeOrgUserIds(db, a.org.id, fresh);
+    if (active.size !== fresh.length) throw new AppError('member_not_found');
+  }
+  const limit = isPrivate ? CHAT_LIMITS.privateChannelMembers : CHAT_LIMITS.groupMembers;
+  if (current.size + fresh.length > limit) throw new AppError('chat_group_full');
   if (fresh.length) {
     const from = await historyStart(db, m.conv, input.history);
+    if (isPrivate) {
+      // A row left over (someone who left the space and came back) starts again as new.
+      await db
+        .delete(conversationMembers)
+        .where(
+          and(
+            eq(conversationMembers.conversationId, id),
+            inArray(conversationMembers.userId, fresh),
+          ),
+        );
+    }
     await insertMembers(db, m.conv, fresh, a.userId, from);
     const line = await appendSystem(db, m.conv, {
       type: 'members_added',
@@ -697,6 +951,7 @@ export async function removeMember(deps: Deps, a: ChatActor, id: string, userId:
     .where(and(eq(conversationMembers.conversationId, id), eq(conversationMembers.userId, userId)))
     .returning();
   if (del.length === 0) throw new AppError('member_not_found');
+  await ensureOwner(db, m.conv);
   const line = await appendSystem(db, m.conv, {
     type: 'member_removed',
     actorId: a.userId,
@@ -733,7 +988,9 @@ export async function unreadSummary(db: DbOrTx, a: ChatActor) {
 export async function clearConversation(deps: Deps, a: ChatActor, id: string) {
   const { db } = deps;
   const m = await requireMember(db, a, id);
-  if (spaceBound(m.conv)) throw new AppError('chat_delete_not_allowed', { reason: 'space' });
+  if (spaceBound(m.conv) || privateChannel(m.conv)) {
+    throw new AppError('chat_delete_not_allowed', { reason: 'space' });
+  }
   await ownRow(db, m.conv, a.userId);
   const seq = m.conv.lastSeq;
   await db.transaction(async (tx) => {
@@ -792,7 +1049,7 @@ export async function deleteConversation(deps: Deps, a: ChatActor, id: string, r
     orgAdmin ||
     (conv.type === 'meeting'
       ? await meetingModerator(db, conv, a.userId)
-      : conv.createdBy === a.userId);
+      : conv.createdBy === a.userId || (privateChannel(conv) && m.row?.role === 'owner'));
   if (!allowed) throw new AppError('chat_delete_not_allowed', { reason: 'role' });
 
   const members = await memberIds(db, conv);

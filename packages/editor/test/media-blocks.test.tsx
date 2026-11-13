@@ -80,7 +80,13 @@ describe('in Markdown', () => {
     expect(warnings).toEqual([]);
     expect(doc.content?.[0]).toEqual({
       type: 'bookmark',
-      attrs: { url: 'https://example.com/a', title: 'Örnek "sayfa"', favicon: null },
+      attrs: {
+        url: 'https://example.com/a',
+        title: 'Örnek "sayfa"',
+        favicon: null,
+        description: null,
+        image: null,
+      },
     });
     expect(doc.content?.[1]).toEqual({
       type: 'video',
@@ -88,6 +94,21 @@ describe('in Markdown', () => {
     });
     expect(markdownToDoc(docToMarkdown(doc)).doc).toEqual(doc);
     expect(plainText(doc)).toContain('Örnek "sayfa"');
+  });
+
+  it("keeps a bookmark's summary and image, and drops an image that is no web address", () => {
+    const source =
+      '::bookmark{url="https://example.com/a" title="Örnek" description="Kısa özet" image="https://example.com/og.png"}';
+    const { doc } = markdownToDoc(source);
+    expect(doc.content?.[0]?.attrs).toMatchObject({
+      description: 'Kısa özet',
+      image: 'https://example.com/og.png',
+    });
+    expect(docToMarkdown(doc).trimEnd()).toBe(source);
+    const unsafe = markdownToDoc(
+      '::bookmark{url="https://example.com/a" image="javascript:alert(1)"}',
+    ).doc;
+    expect(unsafe.content?.[0]?.attrs?.image).toBeNull();
   });
 
   it('keeps an unsafe address as text instead of making a block of it', () => {
@@ -115,6 +136,8 @@ describe('bookmarks in the editor', () => {
     const previewLink = vi.fn(async () => ({
       title: 'Örnek',
       faviconUrl: 'https://example.com/i.png',
+      description: 'Sayfanın özeti',
+      imageUrl: 'https://example.com/og.png',
     }));
     const { editor, container } = mount(one('bookmark', { url: '' }), { previewLink });
     const input = screen.getByRole('textbox', { name: 'L:bookmarkPlaceholder' });
@@ -130,6 +153,8 @@ describe('bookmarks in the editor', () => {
         url: 'https://example.com/a',
         title: 'Örnek',
         favicon: 'https://example.com/i.png',
+        description: 'Sayfanın özeti',
+        image: 'https://example.com/og.png',
       }),
     );
     const card = await waitFor(() => {
@@ -140,6 +165,38 @@ describe('bookmarks in the editor', () => {
     expect(card).toHaveAttribute('href', 'https://example.com/a');
     expect(card).toHaveAttribute('rel', 'noopener noreferrer');
     await waitFor(() => expect(card).toHaveTextContent('Örnek'));
+    expect(card).toHaveTextContent('Sayfanın özeti');
+    expect(card.querySelector('img.ch-bookmark-image')).toHaveAttribute(
+      'src',
+      'https://example.com/og.png',
+    );
+  });
+
+  it('takes no summary or image from a host that does not send them', async () => {
+    const previewLink = vi.fn(async () => ({ title: 'Eski', faviconUrl: null }));
+    const { editor } = mount(one('bookmark', { url: '' }), { previewLink });
+    const input = screen.getByRole('textbox', { name: 'L:bookmarkPlaceholder' });
+    act(() => {
+      fireEvent.change(input, { target: { value: 'example.com' } });
+    });
+    act(() => {
+      fireEvent.keyDown(input, { key: 'Enter' });
+    });
+    await waitFor(() =>
+      expect(editor.getJSON().content?.[0]?.attrs).toMatchObject({
+        title: 'Eski',
+        description: null,
+        image: null,
+      }),
+    );
+  });
+
+  it('shows no image whose address is not a web address', () => {
+    const { container } = mount(
+      one('bookmark', { url: 'https://example.com', image: 'javascript:alert(1)' }),
+      { editable: false },
+    );
+    expect(container.querySelector('img.ch-bookmark-image')).toBeNull();
   });
 
   it('refuses an unsafe address, and an abandoned prompt removes the block', () => {

@@ -242,6 +242,18 @@ export const FILES = { open: 'files:open', listen: 'files:listen' } as const;
 /** Main → pages: Windows locked or the computer went to sleep (the vault locks). */
 export const SYSTEM_LOCK = 'system:lock';
 
+/**
+ * The chat chime of a native notification (main/notify-sound): a page says it plays it
+ * (`listen`), main then sends `play` as the notification shows and keeps the toast silent.
+ */
+export const NOTIFY_SOUND = { listen: 'notify:sound-listen', play: 'notify:sound' } as const;
+
+/** Which chime and for which conversation (the page skips a muted one). */
+export interface NotificationSound {
+  tone: 'mention' | 'message';
+  conversationId: string | null;
+}
+
 /** IPC channels of the Windows Hello vault unlock (main/vault-device, common/vault-device). */
 export const VAULT_DEVICE = {
   status: 'vault-device:status',
@@ -310,6 +322,11 @@ export interface DesktopWebBridge {
   onOpenFile(listener: (file: { url: string; name: string }) => void): () => void;
   /** Windows locked, screen saver or sleep (feature `systemLock`): the vault locks at once. */
   onSystemLock(listener: () => void): () => void;
+  /**
+   * A native notification just showed (feature `notifySound`): play the chat chime. Registering
+   * tells the app this page has one, so the toast itself stays silent (main/notify-sound).
+   */
+  onNotificationSound(listener: (sound: NotificationSound) => void): () => void;
   /**
    * Vault unlock with Windows Hello (feature `vaultDevice`): the app keeps the device secret
    * encrypted and releases it after a Hello assertion it verifies. `userId` scopes it per person;

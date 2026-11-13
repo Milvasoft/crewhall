@@ -51,6 +51,7 @@
   },
   "integrations": {
     "open": "Aç",
+    "openPost": "Paylaşımı aç",
     "push": "{actor} {count} commit gönderdi",
     "prOpened": "PR açıldı: #{number} {title}",
     "prMerged": "PR birleştirildi: #{number} {title}",

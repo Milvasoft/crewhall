@@ -18,7 +18,7 @@ import type {
 import type { ContainerDirective, LeafDirective } from 'mdast-util-directive';
 import { gfmToMarkdown } from 'mdast-util-gfm';
 import { defaultHandlers, toMarkdown, type Handle } from 'mdast-util-to-markdown';
-import type { EditorDoc, JSONMark, JSONNode } from '../model';
+import { columnWidth, type EditorDoc, type JSONMark, type JSONNode } from '../model';
 import { joinFrontMatter } from './frontmatter';
 
 export interface SerializeOptions {
@@ -119,6 +119,9 @@ const containerDirectiveHandler: Handle = (node, _parent, state, info) => {
     const summary = str(directive.attributes?.summary ?? null);
     const level = str(directive.attributes?.level ?? null);
     label = `${summary ? `[${escapeLabel(summary)}]` : ''}${level ? `{level=${level}}` : ''}`;
+  } else if (directive.name === 'column') {
+    const width = str(directive.attributes?.width ?? null);
+    label = width ? `{width="${width}"}` : '';
   } else {
     const title = str(directive.attributes?.title ?? null);
     label = title ? `[${title.replace(/[[\]]/g, '')}]` : '';
@@ -227,12 +230,13 @@ function block(node: JSONNode): RootContent[] {
     case 'bookmark':
     case 'video': {
       const attributes = Object.fromEntries(
-        (node.type === 'bookmark' ? ['url', 'title', 'favicon'] : ['src', 'title']).flatMap(
-          (key) => {
-            const value = str(a[key]);
-            return value ? [[key, value]] : [];
-          },
-        ),
+        (node.type === 'bookmark'
+          ? ['url', 'title', 'favicon', 'description', 'image']
+          : ['src', 'title']
+        ).flatMap((key) => {
+          const value = str(a[key]);
+          return value ? [[key, value]] : [];
+        }),
       );
       if (!Object.keys(attributes).length) return [];
       const d: LeafDirective = { type: 'leafDirective', name: node.type, attributes, children: [] };
@@ -244,10 +248,11 @@ function block(node: JSONNode): RootContent[] {
     }
     case 'columns':
     case 'column': {
+      const width = node.type === 'column' ? columnWidth(a.width) : null;
       const d: ContainerDirective = {
         type: 'containerDirective',
         name: node.type,
-        attributes: {},
+        attributes: width === null ? {} : { width: String(width) },
         children: blocks(node.content ?? []) as BlockContent[],
       };
       return [d as unknown as RootContent];

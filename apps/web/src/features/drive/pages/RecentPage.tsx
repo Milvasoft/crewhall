@@ -26,7 +26,7 @@ import { useNodeActions } from '@/features/drive/actions';
 import { favoritesQuery, invalidateDrive, recentQuery } from '@/features/drive/api';
 import { DriveSidebar } from '@/features/drive/DriveSidebar';
 import { NodeSelectionBar } from '@/features/drive/NodeSelectionBar';
-import { useNodeMenu } from '@/features/drive/nodeMenu';
+import { useNodeMenu, useNodeMenuKeys } from '@/features/drive/nodeMenu';
 import { NodeIconBox, when } from '@/features/drive/NodeViews';
 
 const DAY = 86_400_000;
@@ -61,6 +61,7 @@ export function RecentPage() {
   const selection = useSelection((recentItems ?? []).map((n) => n.id));
   useSelectionKeys(selection);
   const chosen = (recentItems ?? []).filter((n) => selection.has(n.id));
+  useNodeMenuKeys(menu, chosen);
   const space = preferred();
   const spaceOf = (n: DriveNode) => spaces.find((s) => s.id === n.spaceId);
 

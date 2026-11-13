@@ -36,6 +36,7 @@ import {
   callContent,
   notificationContent,
   NoteGuard,
+  notificationTone,
   wantsNativeNotification,
 } from '../common/notify';
 import {
@@ -64,6 +65,7 @@ import { SendTo } from './send-to';
 import { MeetingWindows } from './meeting-windows';
 import { SystemWatch } from './system';
 import { ViewerWindow } from './viewer';
+import { NotifySound } from './notify-sound';
 import { VaultDevice } from './vault-device';
 import { RemoteControlHost } from './remote-control';
 import { Updater } from './updater';
@@ -104,6 +106,7 @@ export class DesktopApp {
   readonly sendTo: SendTo;
   readonly system: SystemWatch;
   readonly viewer: ViewerWindow;
+  readonly notifySound: NotifySound;
   readonly vaultDevice: VaultDevice;
   private readonly shortcut = new GlobalShortcut(
     globalShortcut,
@@ -138,6 +141,7 @@ export class DesktopApp {
     this.sendTo = new SendTo(this);
     this.system = new SystemWatch(this);
     this.viewer = new ViewerWindow(this);
+    this.notifySound = new NotifySound(this);
     this.vaultDevice = new VaultDevice(this);
     this.sync = new SyncEngine({
       createDrive: () =>
@@ -598,11 +602,14 @@ export class DesktopApp {
     const content = notificationContent(n, this.t, origin);
     if (!this.noteGuard.first(n, content)) return;
     const buttons = notificationButtons(n);
+    // The main window's page plays the app's chime (main/notify-sound); without one, Windows'.
+    const page = this.main && !this.main.isDestroyed() ? this.main.webContents : null;
+    const chime = this.notifySound.listens(page);
     const note = new Notification({
       title: content.title,
       body: content.body,
       icon: this.icon,
-      silent: false,
+      silent: chime,
       hasReply: buttons.reply,
       replyPlaceholder: this.t('desktop.notify.replyPlaceholder'),
       actions: buttons.actions.map((a) => ({
@@ -630,6 +637,7 @@ export class DesktopApp {
     });
     this.keepNote(note);
     note.show();
+    if (chime) this.notifySound.play(page, notificationTone(n));
   }
 
   private async replyFromNote(

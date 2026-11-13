@@ -7,6 +7,8 @@ import {
   Icon,
   IconButton,
   Input,
+  Radio,
+  RadioGroup,
   Select,
   SelectContent,
   SelectItem,
@@ -28,14 +30,18 @@ import { domainOf, isFederatedAddress, myFederationAddressQuery } from '@/lib/fe
 import { BarClose } from '@/components/shell/BarClose';
 import { useTitleBarProps } from '@/lib/desktop-titlebar';
 import { useI18n } from '@/lib/i18n/I18nContext';
-import { membersQuery } from '@/lib/queries';
+import { membersQuery, spaceMembersQuery } from '@/lib/queries';
 import { useSpaces } from '@/lib/useSpaces';
 import { newId } from '@/lib/ids';
 import { PersonAvatar, useMyId } from './common';
 import { PhoneBack } from '@/components/shell/ModuleSidebar';
 import { EmojiField } from './EmojiField';
 
-/** 4.7 "Yeni sohbet": one person → direct (or the existing one), 2+ → group; exists on the first message. */
+/**
+ * 4.7 "Yeni sohbet": one person → direct (or the existing one), 2+ → group; exists on the first
+ * message. With a space chosen it is a channel: private (only the people picked from the space,
+ * Teams-like; the default) or open to the whole space.
+ */
 export function NewChat() {
   const { t, locale } = useI18n();
   // In the desktop app this bar is the window's title bar (lib/desktop-titlebar).
@@ -51,10 +57,21 @@ export function NewChat() {
   const [name, setName] = useState('');
   const [emoji, setEmoji] = useState<string | null>(null);
   const [spaceId, setSpaceId] = useState<string>('none');
+  const [visibility, setVisibility] = useState<'private' | 'open'>('private');
   const [text, setText] = useState('');
   const [busy, setBusy] = useState(false);
   const [active, setActive] = useState(0);
-  const { data } = useQuery(membersQuery({ q: q.trim() || undefined, status: 'active' }));
+  const spaceMode = spaceId !== 'none';
+  const isPrivate = spaceMode && visibility === 'private';
+  const { data } = useQuery({
+    ...membersQuery({ q: q.trim() || undefined, status: 'active' }),
+    enabled: !spaceMode,
+  });
+  const spaceMembers = useQuery({ ...spaceMembersQuery(spaceId), enabled: spaceMode });
+  const inSpace = useMemo(
+    () => new Set((spaceMembers.data?.items ?? []).map((m) => m.user.id)),
+    [spaceMembers.data],
+  );
   const fed = useQuery(myFederationAddressQuery);
   // `handle@domain` of another installation (roadmap 26): offered next to local people.
   const typed = q.trim().toLowerCase();
@@ -62,28 +79,39 @@ export function NewChat() {
     fed.data?.enabled &&
     isFederatedAddress(typed) &&
     domainOf(typed) !== domainOf(fed.data.address) &&
-    picked.length === 0
+    picked.length === 0 &&
+    !spaceMode
       ? typed
       : null;
 
-  const people = (data?.items ?? [])
-    .map((m) => m.user)
-    .filter((u) => !picked.some((p) => p.id === u.id))
-    .slice(0, 8);
   const needle = q.trim().toLocaleLowerCase(locale);
+  const pool = spaceMode
+    ? (spaceMembers.data?.items ?? [])
+        .map((m) => m.user)
+        .filter(
+          (u) =>
+            u.id !== me &&
+            (u.name.toLocaleLowerCase(locale).includes(needle) ||
+              u.email.toLocaleLowerCase(locale).includes(needle)),
+        )
+    : (data?.items ?? []).map((m) => m.user);
+  const people = pool.filter((u) => !picked.some((p) => p.id === u.id)).slice(0, 8);
+  const strangers = spaceMode && spaceMembers.data ? picked.filter((p) => !inSpace.has(p.id)) : [];
   const spaceChats = useMemo(
     () =>
-      needle
+      needle && !spaceMode
         ? (convs ?? [])
             .filter((c) => c.type === 'space' && c.title.toLocaleLowerCase(locale).includes(needle))
             .slice(0, 4)
         : [],
-    [convs, needle, locale],
+    [convs, needle, locale, spaceMode],
   );
+  // Space editors and up open channels (space.chat_create).
   const adminSpaces = spaces.filter(
-    (s) => s.kind === 'shared' && (s.myRole === 'owner' || s.myRole === 'admin'),
+    (s) =>
+      s.kind === 'shared' &&
+      (s.myRole === 'owner' || s.myRole === 'admin' || s.myRole === 'editor'),
   );
-  const spaceMode = spaceId !== 'none';
   const group = picked.length >= 2;
   const existing =
     picked.length === 1
@@ -144,6 +172,7 @@ export function NewChat() {
               name: name.trim(),
               message,
               ...(emoji ? { emoji } : {}),
+              ...(isPrivate ? { private: true, userIds: picked.map((p) => p.id) } : {}),
             },
           })
         : picked.length === 1 && picked[0]
@@ -169,15 +198,19 @@ export function NewChat() {
   };
 
   const ready = spaceMode
-    ? name.trim().length > 0
+    ? name.trim().length > 0 && strangers.length === 0
     : picked.length > 0 && (group ? Boolean(text.trim()) : true);
-  const summary = spaceMode
-    ? t('chat.new.spaceSummary')
-    : picked.length === 0
-      ? t('chat.new.pickHint')
-      : group
-        ? t('chat.new.groupSummary', { count: picked.length })
-        : t('chat.new.directSummary');
+  const summary = isPrivate
+    ? picked.length
+      ? t('chat.new.privateSummary', { count: picked.length })
+      : t('chat.new.privateAlone')
+    : spaceMode
+      ? t('chat.new.spaceSummary')
+      : picked.length === 0
+        ? t('chat.new.pickHint')
+        : group
+          ? t('chat.new.groupSummary', { count: picked.length })
+          : t('chat.new.directSummary');
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">
@@ -190,17 +223,23 @@ export function NewChat() {
         <BarClose className="ml-auto" onClick={() => void navigate({ to: '/chat' })} />
       </header>
       <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-6 py-5">
-        {!spaceMode ? (
+        {!spaceMode || isPrivate ? (
           <SuggestionPanel
             open={Boolean(q.trim()) && dismissed !== q}
             onDismiss={() => setDismissed(q)}
             anchor={
               <label className="flex min-h-11 flex-wrap items-center gap-1.5 rounded-lg px-3 py-1.5 shadow-line2 focus-within:shadow-[inset_0_0_0_1.5px_var(--fg)]">
-                <span className="text-cap font-semibold text-fg2">{t('chat.new.to')}</span>
+                <span className="text-cap font-semibold text-fg2">
+                  {t(isPrivate ? 'chat.new.privateTo' : 'chat.new.to')}
+                </span>
                 {picked.map((p) => (
                   <span
                     key={p.id}
-                    className="flex h-7 items-center gap-1.5 rounded-full bg-bg2 pr-1 pl-1"
+                    title={strangers.includes(p) ? t('chat.new.notInSpace') : undefined}
+                    className={cn(
+                      'flex h-7 items-center gap-1.5 rounded-full bg-bg2 pr-1 pl-1',
+                      strangers.includes(p) && 'text-fg3 line-through',
+                    )}
                   >
                     <Avatar name={p.name} src={p.imageUrl} size="sm" />
                     <span className="text-xs font-semibold">{p.name}</span>
@@ -337,7 +376,7 @@ export function NewChat() {
               <EmojiField value={emoji} onChange={setEmoji} />
             </Field>
           ) : null}
-          {adminSpaces.length && picked.length !== 1 ? (
+          {adminSpaces.length && (spaceMode || picked.length !== 1) ? (
             <Field label={t('chat.new.linkSpace')} className="w-[240px]">
               <Select value={spaceId} onValueChange={setSpaceId}>
                 <SelectTrigger>
@@ -355,6 +394,49 @@ export function NewChat() {
             </Field>
           ) : null}
         </div>
+        {spaceMode ? (
+          <div className="flex flex-col gap-2">
+            <span className="text-cap font-semibold">{t('chat.new.visibility')}</span>
+            <RadioGroup
+              value={visibility}
+              onValueChange={(v) => setVisibility(v as 'private' | 'open')}
+              className="flex flex-col gap-1.5 sm:flex-row"
+            >
+              {(['private', 'open'] as const).map((v) => (
+                <label
+                  key={v}
+                  className={cn(
+                    'flex flex-1 cursor-pointer items-start gap-3 rounded-lg px-3 py-2.5 shadow-line',
+                    visibility === v && 'shadow-[inset_0_0_0_1.5px_var(--fg)]',
+                  )}
+                >
+                  <Radio
+                    value={v}
+                    aria-label={t(
+                      v === 'private' ? 'chat.new.visibilityPrivate' : 'chat.new.visibilityOpen',
+                    )}
+                    className="mt-0.5"
+                  />
+                  <span className="flex flex-col">
+                    <span className="flex items-center gap-1.5 text-cap font-semibold">
+                      {v === 'private' ? <Icon name="lock" size={13} /> : null}
+                      {t(
+                        v === 'private' ? 'chat.new.visibilityPrivate' : 'chat.new.visibilityOpen',
+                      )}
+                    </span>
+                    <span className="text-xs text-fg2">
+                      {t(
+                        v === 'private'
+                          ? 'chat.new.visibilityPrivateHint'
+                          : 'chat.new.visibilityOpenHint',
+                      )}
+                    </span>
+                  </span>
+                </label>
+              ))}
+            </RadioGroup>
+          </div>
+        ) : null}
         <p className="m-0 text-cap text-fg2">{summary}</p>
         {existing ? (
           <Button

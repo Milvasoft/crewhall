@@ -2,6 +2,7 @@ import {
   CHAT_LIMITS,
   MESSAGE_REF_LIMITS,
   parseSlashCommand,
+  toggleChatMark,
   type ChatCommand,
   type GifResult,
   type ResolvedRef,
@@ -76,6 +77,26 @@ const drafts = new Map<string, Draft>();
 /** References waiting in each chat's box, like its draft. */
 const refDrafts = new Map<string, ResolvedRef[]>();
 const folders = new Map<string, Promise<{ spaceId: string; folderId: string }>>();
+
+/** The format marker of a composer shortcut: Ctrl/Cmd+B, Ctrl/Cmd+I, Ctrl/Cmd+Shift+X. */
+function formatMark(e: {
+  code?: string;
+  key: string;
+  ctrlKey: boolean;
+  metaKey: boolean;
+  shiftKey: boolean;
+  altKey: boolean;
+}): '*' | '_' | '~' | null {
+  if (!(e.ctrlKey || e.metaKey) || e.altKey) return null;
+  // The letter, or the key's place for layouts without it (Turkish ı, Cyrillic, …).
+  const key = e.key.toLowerCase();
+  const is = (letter: string) =>
+    key === letter || (!/^[a-z]$/.test(key) && e.code === `Key${letter.toUpperCase()}`);
+  if (!e.shiftKey && is('b')) return '*';
+  if (!e.shiftKey && (is('i') || key === 'ı')) return '_';
+  if (e.shiftKey && is('x')) return '~';
+  return null;
+}
 
 function toTokens(text: string, mentions: Mention[]): string {
   let out = text;
@@ -604,6 +625,17 @@ export const Composer = forwardRef<
         if (c) pick(c);
         return;
       }
+    }
+    // Ctrl/Cmd+B, I and Shift+X wrap the selection in *bold*, _italic_ or ~strike~.
+    const mark = formatMark(e);
+    if (mark) {
+      e.preventDefault();
+      const el = e.currentTarget;
+      const r = toggleChatMark(text, el.selectionStart, el.selectionEnd, mark);
+      setText(r.text);
+      save(r.text, mentions);
+      requestAnimationFrame(() => el.setSelectionRange(r.start, r.end));
+      return;
     }
     if (e.key === 'Escape') {
       if (popup) setPopup(null);

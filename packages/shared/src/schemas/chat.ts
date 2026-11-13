@@ -29,6 +29,8 @@ export const CHAT_LIMITS = {
   attachmentsPerMessage: 10,
   /** Group conversations: 3-50 people (design 4.6). */
   groupMembers: 50,
+  /** Private space channels (Teams-like): people added by hand, each also in the space. */
+  privateChannelMembers: 250,
   pinnedMessages: 50,
   pinnedConversations: 15,
   /** @all asks for confirmation from this many members on (design 4.4). */
@@ -108,6 +110,11 @@ export const ConversationPermissions = z.object({
    * while the org allows it; never in direct or space conversations.
    */
   deleteForEveryone: z.boolean().optional(),
+  /**
+   * Space channels: make it private or open it to the whole space (private channels: their
+   * owners; open ones: whoever opened it; both: the space's admins). Absent from older servers.
+   */
+  changePrivacy: z.boolean().optional(),
 });
 
 export const Conversation = z.object({
@@ -122,6 +129,12 @@ export const Conversation = z.object({
   name: z.string().nullable(),
   /** Channel emoji (group, space, alert chats); null shows the letter or icon placeholder. */
   emoji: z.string().nullable().optional(),
+  /**
+   * Space channels (and space-bound alert ones): true when only the people added see it
+   * (members are listed and managed like a group's, each must be in the space); false when
+   * the whole space sees it. Absent for other conversations and from older servers.
+   */
+  private: z.boolean().optional(),
   /** Display title: the name, the other person (direct) or members' first names ("Selin, Can"). */
   title: z.string(),
   avatarUrl: z.url().nullable(),
@@ -162,8 +175,16 @@ export const ChatMember = z.object({
   /** Space conversations: the space role; elsewhere null (every member is equal). */
   spaceRole: SpaceRole.nullable(),
   joinedAt: Timestamp,
+  /** Private channels: owners add and remove people; absent elsewhere. */
+  role: z.enum(['owner', 'member']).optional(),
 });
 export type ChatMember = z.infer<typeof ChatMember>;
+
+export const ChatMemberRole = z.enum(['owner', 'member']);
+export type ChatMemberRole = z.infer<typeof ChatMemberRole>;
+
+/** Private channels: make someone an owner or a plain member (owners and space admins). */
+export const UpdateConversationMember = z.object({ role: ChatMemberRole });
 
 /** How much history a person added to a group sees (design 4.8, default 7 days). */
 export const HistoryShare = z.enum(['none', 'days7', 'days30', 'all']);
@@ -223,6 +244,9 @@ export const SystemEvent = z.object({
     // Calls (H7): nobody answered (missed, declined, cancelled) / a call that took place.
     'call_missed',
     'call_ended',
+    // A space channel made private (people added by hand) or opened to the whole space.
+    'made_private',
+    'made_open',
   ]),
   actorId: Id.nullable(),
   userIds: z.array(Id).optional(),
@@ -495,6 +519,20 @@ export const SearchChatRefsQuery = z.object({
   limit: z.coerce.number().int().min(1).max(MESSAGE_REF_LIMITS.searchResults).default(8),
 });
 
+/**
+ * Preview card of the first external address in a message (kararlar.md 2026-11-13): read by
+ * the worker after sending, never blocking it. `imageUrl` is https only; clients load it
+ * without a referrer.
+ */
+export const MessageLinkPreview = z.object({
+  url: z.string().max(2000),
+  title: z.string().max(200).nullable(),
+  description: z.string().max(400).nullable(),
+  siteName: z.string().max(100).nullable(),
+  imageUrl: z.string().max(2000).nullable(),
+});
+export type MessageLinkPreview = z.infer<typeof MessageLinkPreview>;
+
 export const Message = z.object({
   id: Id,
   conversationId: Id,
@@ -535,6 +573,11 @@ export const Message = z.object({
   gif: MessageGif.nullable().optional(),
   /** Internal references, ids only: cards come from `resolveChatRefs`; `text` may be empty. */
   refs: z.array(MessageRef).optional(),
+  /**
+   * Preview card of the first external link; null or absent while there is none, while it is
+   * being read, or after the author removed it (removeChatLinkPreview).
+   */
+  linkPreview: MessageLinkPreview.nullable().optional(),
   /** "Ben bakıyorum" on a webhook card: who took it and when. */
   claim: z.object({ user: UserSummary, at: Timestamp }).nullable().optional(),
   /**
@@ -795,6 +838,15 @@ export const CreateConversation = z.discriminatedUnion('type', [
     name: z.string().min(1).max(80),
     emoji: z.string().max(32).optional(),
     message: SendMessage.optional(),
+    /**
+     * Private channel: only the creator (owner) and `userIds` see it, each a space member
+     * (else 409 chat_not_in_space). Off or absent: the whole space sees it.
+     */
+    private: z.boolean().optional(),
+    userIds: z
+      .array(Id)
+      .max(CHAT_LIMITS.privateChannelMembers - 1)
+      .optional(),
   }),
   /** Alert conversation: space-bound (membership from the space) or with listed people. */
   z.object({
@@ -816,6 +868,11 @@ export const UpdateConversation = z.object({
   archived: z.boolean().optional(),
   /** One emoji (the reaction rule, else 400 chat_invalid_emoji); null removes it. */
   emoji: z.string().max(32).nullable().optional(),
+  /**
+   * Space channels: true makes it private (everyone in the space now is added, then people can
+   * be removed), false opens it to the whole space. Channel owners and space admins.
+   */
+  private: z.boolean().optional(),
 });
 
 /** "Space'e bağla": a group becomes a space conversation; history and attachments stay. */

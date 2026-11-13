@@ -35,7 +35,7 @@ import { nodeQuery, nodesQuery, quotaQuery, type NodeSort } from '@/features/dri
 import { DetailPanel } from '@/features/drive/DetailPanel';
 import { DriveSidebar } from '@/features/drive/DriveSidebar';
 import { NodeSelectionBar } from '@/features/drive/NodeSelectionBar';
-import { useNodeMenu } from '@/features/drive/nodeMenu';
+import { useNodeMenu, useNodeMenuKeys } from '@/features/drive/nodeMenu';
 import { canMoveInto } from '@/features/drive/dnd';
 import { NodeGrid, NodeTable, type NodeDnd } from '@/features/drive/NodeViews';
 import { folderLocation, type DriveSearch } from '@/features/drive/paths';
@@ -45,6 +45,8 @@ import { SpaceMounts } from '@/components/microsoft/MountBrowser';
 import { addUploads, type UploadTarget } from '@/features/drive/uploads';
 
 type Filter = 'all' | NodeType;
+/** Menu shortcuts this page leaves to useNodeMenuKeys (it handles Del, F2 and I itself). */
+const FOLDER_MENU_KEYS = ['M', 'Ctrl Shift C'] as const;
 const FILTERS: Filter[] = ['all', 'folder', 'file', 'page', 'board', 'drawing'];
 
 function readViews(): Record<string, 'list' | 'grid'> {
@@ -264,6 +266,8 @@ export function FolderPage({
     return () => document.removeEventListener('paste', onPaste);
   }, [canWrite, target, t]);
 
+  // The menu's M (move) and Ctrl Shift C (copy link) on the selection; the rest below.
+  useNodeMenuKeys(menu, chosen, FOLDER_MENU_KEYS);
   // Keyboard: Space preview, Del trash, F2 rename, I details, Ctrl A all, Esc clear (3.12).
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

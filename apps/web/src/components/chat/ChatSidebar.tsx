@@ -298,6 +298,14 @@ function Row({ conv, active, fresh }: { conv: Conversation; active: boolean; fre
               >
                 {conv.title}
               </span>
+              {conv.private ? (
+                <Icon
+                  name="lock"
+                  size={12}
+                  className="shrink-0 text-fg3"
+                  aria-label={t('chat.header.private')}
+                />
+              ) : null}
               {muted ? <Icon name="speaker" size={12} className="shrink-0 text-fg3" /> : null}
               {conv.lastMessageAt ? (
                 <span

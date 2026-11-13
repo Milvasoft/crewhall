@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useChatEnabled } from '@/lib/chat/enabled';
 import { setGroupMentionLabels } from '@/lib/chat/names';
 import { startChatRuntime } from '@/lib/chat/runtime';
-import { armMessageSound } from '@/lib/chat/sound';
+import { armMessageSound, armNotificationSound } from '@/lib/chat/sound';
 import { noteActivity } from '@/lib/chat/stores';
 import { useI18n } from '@/lib/i18n/I18nContext';
 import { useMe } from '@/lib/session';
@@ -30,6 +30,9 @@ export function ChatRuntime() {
 
   // Browsers allow sound only after an interaction: the first click or key unlocks it.
   useEffect(() => armMessageSound(), []);
+
+  // Desktop app: its native chat notifications are silent and chime here (lib/chat/sound).
+  useEffect(() => (userId ? armNotificationSound(qc, userId) : undefined), [qc, userId]);
 
   useEffect(() => {
     const events = ['pointerdown', 'pointermove', 'keydown', 'wheel'] as const;

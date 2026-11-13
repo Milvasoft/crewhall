@@ -7,7 +7,7 @@ import { Router } from '../src/http/route';
 import type { AppEnv } from '../src/http/types';
 import { inviteMail, fill } from '../src/mail/templates';
 import { PRODUCT_BRANDING } from '../src/services/brand';
-import { cleanTitle } from '../src/services/quick/links';
+import { cleanTitle, readPageExtras } from '../src/services/quick/links';
 import { slugify } from '../src/services/spaces';
 import { loadEnv } from '../src/env';
 
@@ -165,5 +165,30 @@ describe('cleanTitle', () => {
     expect(cleanTitle('  Docs   ')).toBe('Docs');
     expect(cleanTitle('Milvaion - Job Scheduler')).toBe('Milvaion - Job Scheduler');
     expect(cleanTitle('')).toBeNull();
+  });
+});
+
+describe('readPageExtras', () => {
+  it('reads a page summary and preview image for a bookmark', () => {
+    const html = `<html><head>
+      <meta name="description" content="Plain summary">
+      <meta content="Open &amp; Graph   summary" property="og:description" />
+      <meta property='og:image' content='/img/og.png'>
+      </head><body><meta property="og:image" content="https://late.example/x.png"></body></html>`;
+    expect(readPageExtras(html, 'https://example.com/a/b')).toEqual({
+      description: 'Open & Graph summary',
+      imageUrl: 'https://example.com/img/og.png',
+    });
+  });
+
+  it('gives nulls for missing data and refuses non-web images', () => {
+    expect(readPageExtras('<title>x</title>', 'https://example.com')).toEqual({
+      description: null,
+      imageUrl: null,
+    });
+    const html = '<head><meta property="og:image" content="javascript:alert(1)"></head>';
+    expect(readPageExtras(html, 'https://example.com').imageUrl).toBeNull();
+    const long = `<head><meta name="description" content="${'a'.repeat(400)}"></head>`;
+    expect(readPageExtras(long, 'https://example.com').description).toHaveLength(300);
   });
 });
