@@ -62,6 +62,7 @@ import { Route as AppAdminMailRouteImport } from './routes/_app.admin.mail'
 import { Route as AppAdminMcpRouteImport } from './routes/_app.admin.mcp'
 import { Route as AppAdminMembersRouteImport } from './routes/_app.admin.members'
 import { Route as AppAdminPluginsRouteImport } from './routes/_app.admin.plugins'
+import { Route as AppAdminReportsRouteImport } from './routes/_app.admin.reports'
 import { Route as AppAdminSecurityRouteImport } from './routes/_app.admin.security'
 import { Route as AppAdminSpacesRouteImport } from './routes/_app.admin.spaces'
 import { Route as AppAdminSsoRouteImport } from './routes/_app.admin.sso'
@@ -423,6 +424,11 @@ const AppAdminMembersRoute = AppAdminMembersRouteImport.update({
 const AppAdminPluginsRoute = AppAdminPluginsRouteImport.update({
   id: '/plugins',
   path: '/plugins',
+  getParentRoute: () => AppAdminRoute,
+} as any)
+const AppAdminReportsRoute = AppAdminReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
   getParentRoute: () => AppAdminRoute,
 } as any)
 const AppAdminSecurityRoute = AppAdminSecurityRouteImport.update({
@@ -995,6 +1001,7 @@ export interface FileRoutesByFullPath {
   '/admin/mcp': typeof AppAdminMcpRoute
   '/admin/members': typeof AppAdminMembersRouteWithChildren
   '/admin/plugins': typeof AppAdminPluginsRoute
+  '/admin/reports': typeof AppAdminReportsRoute
   '/admin/security': typeof AppAdminSecurityRoute
   '/admin/spaces': typeof AppAdminSpacesRoute
   '/admin/sso': typeof AppAdminSsoRoute
@@ -1143,6 +1150,7 @@ export interface FileRoutesByTo {
   '/admin/mcp': typeof AppAdminMcpRoute
   '/admin/members': typeof AppAdminMembersRouteWithChildren
   '/admin/plugins': typeof AppAdminPluginsRoute
+  '/admin/reports': typeof AppAdminReportsRoute
   '/admin/security': typeof AppAdminSecurityRoute
   '/admin/spaces': typeof AppAdminSpacesRoute
   '/admin/sso': typeof AppAdminSsoRoute
@@ -1293,6 +1301,7 @@ export interface FileRoutesById {
   '/_app/admin/mcp': typeof AppAdminMcpRoute
   '/_app/admin/members': typeof AppAdminMembersRouteWithChildren
   '/_app/admin/plugins': typeof AppAdminPluginsRoute
+  '/_app/admin/reports': typeof AppAdminReportsRoute
   '/_app/admin/security': typeof AppAdminSecurityRoute
   '/_app/admin/spaces': typeof AppAdminSpacesRoute
   '/_app/admin/sso': typeof AppAdminSsoRoute
@@ -1447,6 +1456,7 @@ export interface FileRouteTypes {
     | '/admin/mcp'
     | '/admin/members'
     | '/admin/plugins'
+    | '/admin/reports'
     | '/admin/security'
     | '/admin/spaces'
     | '/admin/sso'
@@ -1595,6 +1605,7 @@ export interface FileRouteTypes {
     | '/admin/mcp'
     | '/admin/members'
     | '/admin/plugins'
+    | '/admin/reports'
     | '/admin/security'
     | '/admin/spaces'
     | '/admin/sso'
@@ -1744,6 +1755,7 @@ export interface FileRouteTypes {
     | '/_app/admin/mcp'
     | '/_app/admin/members'
     | '/_app/admin/plugins'
+    | '/_app/admin/reports'
     | '/_app/admin/security'
     | '/_app/admin/spaces'
     | '/_app/admin/sso'
@@ -2244,6 +2256,13 @@ declare module '@tanstack/react-router' {
       path: '/plugins'
       fullPath: '/admin/plugins'
       preLoaderRoute: typeof AppAdminPluginsRouteImport
+      parentRoute: typeof AppAdminRoute
+    }
+    '/_app/admin/reports': {
+      id: '/_app/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AppAdminReportsRouteImport
       parentRoute: typeof AppAdminRoute
     }
     '/_app/admin/security': {
@@ -3009,6 +3028,7 @@ interface AppAdminRouteChildren {
   AppAdminMcpRoute: typeof AppAdminMcpRoute
   AppAdminMembersRoute: typeof AppAdminMembersRouteWithChildren
   AppAdminPluginsRoute: typeof AppAdminPluginsRoute
+  AppAdminReportsRoute: typeof AppAdminReportsRoute
   AppAdminSecurityRoute: typeof AppAdminSecurityRoute
   AppAdminSpacesRoute: typeof AppAdminSpacesRoute
   AppAdminSsoRoute: typeof AppAdminSsoRoute
@@ -3035,6 +3055,7 @@ const AppAdminRouteChildren: AppAdminRouteChildren = {
   AppAdminMcpRoute: AppAdminMcpRoute,
   AppAdminMembersRoute: AppAdminMembersRouteWithChildren,
   AppAdminPluginsRoute: AppAdminPluginsRoute,
+  AppAdminReportsRoute: AppAdminReportsRoute,
   AppAdminSecurityRoute: AppAdminSecurityRoute,
   AppAdminSpacesRoute: AppAdminSpacesRoute,
   AppAdminSsoRoute: AppAdminSsoRoute,

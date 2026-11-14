@@ -19,5 +19,6 @@
   "gif_provider_error": "GIF servisine şu an ulaşılamıyor.",
   "gif_busy": "Şu an GIF araması yoğun, biraz sonra tekrar dene.",
   "chat_ref_no_access": "Bu öğeye erişimin yok ya da bu sohbete gönderilemiyor.",
-  "chat_not_in_space": "Özel kanala yalnız bu space'in üyeleri eklenebilir."
+  "chat_not_in_space": "Özel kanala yalnız bu space'in üyeleri eklenebilir.",
+  "chat_report_self": "Kendini ya da kendi mesajını bildiremezsin."
 }

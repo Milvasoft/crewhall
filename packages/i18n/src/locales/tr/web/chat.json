@@ -102,7 +102,8 @@
     "timeDiff": "{hours} saat fark",
     "sharedSpaces": "Ortak space'ler",
     "message": "Mesaj",
-    "profile": "Profil"
+    "profile": "Profil",
+    "report": "Yöneticiye bildir"
   },
   "pane": {
     "messages": "Mesajlar",
@@ -141,7 +142,8 @@
     "pinnedHint": "Sabitlenmiş mesaj",
     "pinnedToast": "Mesaj sabitlendi",
     "unpinnedToast": "Sabitleme kaldırıldı",
-    "info": "Mesaj bilgisi"
+    "info": "Mesaj bilgisi",
+    "report": "Yöneticiye bildir"
   },
   "system": {
     "created": "{actor} sohbeti oluşturdu, {people} eklendi",
@@ -517,7 +519,9 @@
       "alert": "{webhookName} · {conversationTitle}",
       "webhook_failing": "{webhookName} webhook'u hata veriyor · {conversationTitle}",
       "reminder": "Hatırlatma",
-      "scheduled_failed": "Zamanlanmış mesajın gönderilemedi · {conversationTitle}"
+      "scheduled_failed": "Zamanlanmış mesajın gönderilemedi · {conversationTitle}",
+      "report": "{actor} bir mesajı yöneticilere bildirdi",
+      "report_user": "{actor}, {name} kişisini yöneticilere bildirdi"
     },
     "drive": {
       "shared": "{actor} {nodeName} öğesini seninle paylaştı"
@@ -707,6 +711,10 @@
       "chat_reminders": {
         "title": "Hatırlatıcılar",
         "hint": "Kendine kurduğun hatırlatıcılar ve gönderilemeyen planlı mesajlar"
+      },
+      "chat_reports": {
+        "title": "Bildirilen içerik",
+        "hint": "Üyeler bir mesajı ya da kişiyi yöneticilere bildirdiğinde"
       },
       "calls": {
         "title": "Aramalar",
@@ -1050,5 +1058,56 @@
   "linkPreview": {
     "label": "{name} bağlantı önizlemesi",
     "remove": "Önizlemeyi kaldır"
+  },
+  "reports": {
+    "nav": "Bildirilen içerik",
+    "title": "Bildirilen içerik",
+    "subtitle": "Üyelerin yöneticilere bildirdiği mesajlar ve kişiler. Bildirimler yalnız bu kurumun sahip ve yöneticilerine gider.",
+    "dialog": {
+      "titleMessage": "Mesajı yöneticiye bildir",
+      "titleUser": "{name} kişisini yöneticiye bildir",
+      "body": "Bildirimin yalnız bu kurumun yöneticilerine gider. Bildirdiğin kişiye söylenmez.",
+      "reason": "Neden",
+      "note": "Not (isteğe bağlı)",
+      "notePlaceholder": "Yöneticilerin bilmesi gereken bir şey varsa yaz",
+      "submit": "Bildir",
+      "sent": "Yöneticilere bildirildi"
+    },
+    "reason": {
+      "harassment": "Taciz ya da zorbalık",
+      "hate": "Nefret söylemi",
+      "spam": "Spam ya da istenmeyen içerik",
+      "inappropriate": "Uygunsuz içerik",
+      "violence": "Şiddet ya da tehdit",
+      "self_harm": "Kendine zarar verme",
+      "other": "Diğer"
+    },
+    "status": {
+      "open": "Açık",
+      "resolved": "Çözüldü",
+      "dismissed": "Yok sayıldı"
+    },
+    "filter": {
+      "all": "Tümü"
+    },
+    "kind": {
+      "message": "Mesaj",
+      "user": "Kişi"
+    },
+    "reportedBy": "{name} bildirdi · {time}",
+    "reportedUser": "Bildirilen kişi: {name}",
+    "author": "Yazan: {name}",
+    "inConversation": "{name} sohbetinde",
+    "inDirect": "Direkt mesajda",
+    "openMessage": "Mesaja git",
+    "deleted": "Mesaj o zamandan beri silindi",
+    "closedBy": "{status} · {name}, {time}",
+    "resolve": "Çözüldü",
+    "dismiss": "Yok say",
+    "reopen": "Yeniden aç",
+    "empty": "Bildirilen içerik yok.",
+    "emptyOpen": "Açık bildirim yok.",
+    "unknownUser": "Silinmiş hesap",
+    "loadMore": "Daha fazla göster"
   }
 }

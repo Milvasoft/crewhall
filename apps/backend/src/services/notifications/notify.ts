@@ -46,7 +46,8 @@ export interface NotificationInput {
       | 'announcement'
       | 'event'
       | 'approval'
-      | 'plugin';
+      | 'plugin'
+      | 'report';
     id: string;
     conversationId?: string | null;
     seq?: number | null;
@@ -73,6 +74,12 @@ export interface NotificationInput {
    */
   desktop?: boolean;
 }
+
+/**
+ * Rows written for `everyDevice` inputs (incoming calls): their live event is never `attended`.
+ * Not a column: delivery runs right after the write, in the same process, with these objects.
+ */
+const everyDeviceRows = new WeakSet<NotificationRow>();
 
 /** Writes the rows (respecting preferences); call inside the event's transaction. */
 export async function createNotifications(
@@ -133,8 +140,9 @@ export async function createNotifications(
       groupKey: input.groupKey ?? null,
       wantsPush: pref.push && !quiet && input.silent !== true,
       pushSkip,
-      // The OS notification comes from the bell's live event, so it needs a bell row; it may show
-      // while the app is open elsewhere, quiet hours and Do not disturb still apply.
+      // The OS notification comes from the bell's live event, so it needs a bell row. Quiet hours
+      // and Do not disturb apply here; whether the person is at another session right now is
+      // told on the live event (`attended`), where the receiving session decides.
       wantsDesktop:
         pref.desktop &&
         pref.inApp &&
@@ -173,9 +181,22 @@ export async function createNotifications(
           })
           .returning()
       : await db.insert(notifications).values(values).returning();
-    if (row) out.push(row);
+    if (row) {
+      if (input.everyDevice) everyDeviceRows.add(row);
+      out.push(row);
+    }
   }
   return out;
+}
+
+/**
+ * Whether the live event says the person is at a session now (API 55): then only that session
+ * makes noise, the other desktop and web sessions stay quiet. Urgent rows and incoming calls ring
+ * everywhere. Without a presence reader (the worker) nobody is known to be there.
+ */
+function attendedNow(deps: NotifyDeps, row: NotificationRow): boolean {
+  if (row.urgent || everyDeviceRows.has(row)) return false;
+  return deps.presence?.hasFocusedSession(row.userId) === true;
 }
 
 /**
@@ -262,6 +283,7 @@ export async function deliverNotifications(deps: NotifyDeps, rows: NotificationR
           type: 'notification',
           notification: views[i]!,
           unreadCount: unread,
+          attended: attendedNow(deps, row),
         });
       }
       if (row.wantsPush && row.pushSkip === 'attending') {

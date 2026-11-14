@@ -11,6 +11,7 @@ const TITLES: Record<string, MessageKey> = {
   'chat.webhook_failing': 'chat.notifications.chat.webhook_failing',
   'chat.scheduled_failed': 'chat.notifications.chat.scheduled_failed',
   'chat.reminder': 'chat.notifications.chat.reminder',
+  'chat.report': 'chat.notifications.chat.report',
   'drive.shared': 'chat.notifications.drive.shared',
   'space.added': 'chat.notifications.space.added',
   'link.down': 'chat.notifications.link.down',
@@ -79,6 +80,10 @@ export function notificationTitle(
   const author = typeof n.data.authorName === 'string' ? n.data.authorName : '';
   if (!values.actor) values.actor = author;
   if (!values.webhookName) values.webhookName = author;
+  // A reported person names them; a reported message keeps its words off the bell.
+  if (n.type === 'chat.report' && n.data.kind === 'user') {
+    return t('chat.notifications.chat.report_user', values);
+  }
   return t(TITLES[n.type] ?? 'chat.notifications.generic', values);
 }
 

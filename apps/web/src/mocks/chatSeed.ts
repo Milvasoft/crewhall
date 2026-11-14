@@ -1,6 +1,8 @@
 import {
   type AlertCard,
   type AlertSeverity,
+  type ChatReportReason,
+  type ChatReportStatus,
   type ConversationFederation,
   type ConversationType,
   type MessageAttachment,
@@ -199,7 +201,27 @@ export interface MockPresence {
   lastSeenAt: string | null;
 }
 
+/** "Yöneticiye bildir" (API 54); the message words are kept as they were. */
+export interface MockReport {
+  id: string;
+  kind: 'message' | 'user';
+  reporterId: string;
+  reportedUserId: string | null;
+  messageId: string | null;
+  conversationId: string | null;
+  seq: number | null;
+  excerpt: string | null;
+  reason: ChatReportReason;
+  note: string | null;
+  status: ChatReportStatus;
+  resolvedBy: string | null;
+  resolvedAt: string | null;
+  createdAt: string;
+}
+
 export interface ChatState {
+  /** Chat reports; missing in states saved before them. */
+  reports?: MockReport[];
   /** `/remind` (roadmap 23); missing in states saved before it. */
   reminders?: MockReminder[];
   /** Scheduled messages; missing in states saved before them. */

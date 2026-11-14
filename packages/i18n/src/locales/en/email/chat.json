@@ -23,6 +23,8 @@
     "callVideo": "{actor} is video calling",
     "callMissed": "Missed call from {actor}",
     "approvalRequested": "{client} is waiting for your approval",
+    "chatReportMessage": "{actor} reported a message to the admins",
+    "chatReportUser": "{actor} reported {name} to the admins",
     "meetUpdated": "{actor} changed the meeting: {title}",
     "meetCancelled": "Meeting cancelled: {title}",
     "meetRing": "{actor} is calling you into a meeting",

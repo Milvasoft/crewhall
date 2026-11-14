@@ -8,6 +8,7 @@ import { orgContext } from '../services/membership';
 import type { ChatActor } from '../services/chat/access';
 import { attachmentFolder, attachmentUrl, listChatFiles } from '../services/chat/attachments';
 import { removeLinkPreview } from '../services/chat/link-preview';
+import { listReports, reportMessage, reportUser, resolveReport } from '../services/chat/reports';
 import {
   addMembers,
   createConversation,
@@ -223,6 +224,15 @@ export function registerChat(r: Router): void {
     react(ctx.deps, chatActor(ctx), ctx.params.messageId, ctx.body.emoji, false),
   );
   r.org('getMessageInfo', (ctx) => messageInfo(ctx.deps.db, chatActor(ctx), ctx.params.messageId));
+  // ---- Reports to the org's admins ----
+  r.org('reportChatMessage', (ctx) =>
+    reportMessage(ctx.deps, chatActor(ctx), ctx.params.messageId, ctx.body),
+  );
+  r.org('reportUser', (ctx) => reportUser(ctx.deps, chatActor(ctx), ctx.params.userId, ctx.body));
+  r.org('listChatReports', (ctx) => listReports(ctx.deps.db, chatActor(ctx), ctx.query));
+  r.org('resolveChatReport', (ctx) =>
+    resolveReport(ctx.deps.db, chatActor(ctx), ctx.params.reportId, ctx.body.status),
+  );
   r.org('pinMessage', (ctx) => setPinned(ctx.deps, chatActor(ctx), ctx.params.messageId, true));
   r.org('unpinMessage', (ctx) => setPinned(ctx.deps, chatActor(ctx), ctx.params.messageId, false));
   r.org('resolveChatRefs', async (ctx) => ({

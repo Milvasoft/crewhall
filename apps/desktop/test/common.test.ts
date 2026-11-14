@@ -5,7 +5,9 @@ import { badgeBitmap, badgeCount, badgeLabel, withDot } from '../src/common/badg
 import { deepLinkTarget, findDeepLinkArg, parseDeepLink } from '../src/common/deeplink';
 import { createTranslator, pickLocale, type Dictionary } from '../src/common/i18n';
 import {
+  attendedElsewhere,
   callContent,
+  LEFT_FRONT_GRACE_MS,
   notificationContent,
   NoteGuard,
   notificationTone,
@@ -213,6 +215,21 @@ describe('native notification texts', () => {
     expect(wantsNativeNotification(notification({ readAt: '2026-10-22T10:01:00.000Z' }))).toBe(
       false,
     );
+  });
+
+  it('stays quiet while the person is at another session (API 55)', () => {
+    const now = 1_000_000;
+    const away = { inFront: false, leftFrontAt: 0, now };
+    // On the phone, another PC or tab: no popup, no chime here.
+    expect(attendedElsewhere(true, away)).toBe(true);
+    // At no session, or an older server: as before.
+    expect(attendedElsewhere(false, away)).toBe(false);
+    expect(attendedElsewhere(undefined, away)).toBe(false);
+    // A window of this app in front: the session they are at may be this one.
+    expect(attendedElsewhere(true, { ...away, inFront: true })).toBe(false);
+    // Just left a window: the server may not have heard yet, so it may mean this app.
+    expect(attendedElsewhere(true, { ...away, leftFrontAt: now - 1_000 })).toBe(false);
+    expect(attendedElsewhere(true, { ...away, leftFrontAt: now - LEFT_FRONT_GRACE_MS })).toBe(true);
   });
 
   it('picks the chime: the bright one for mentions, replies and direct messages', () => {

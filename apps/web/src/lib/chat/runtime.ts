@@ -33,6 +33,7 @@ import {
   idleSeconds,
   isActive,
   isLooking,
+  noteLookedAway,
   noteTyping,
   setPresence,
   subscribeVisibleConversation,
@@ -102,13 +103,21 @@ export function startChatRuntime(
     if (s.getState().status !== 'open') setOutboxOnline(false);
   });
   const onOnline = () => s.retryNow();
-  const onVisibility = () => s.sendHeartbeat();
+  const onVisibility = () => {
+    // Events published before the server hears this may still count this page as attended.
+    if (document.visibilityState !== 'visible') noteLookedAway();
+    s.sendHeartbeat();
+  };
+  const onBlur = () => {
+    noteLookedAway();
+    s.sendHeartbeat();
+  };
   window.addEventListener('online', onOnline);
   document.addEventListener('visibilitychange', onVisibility);
   // Switching to another window tells the server at once: notifications from the open chat
   // come again (H8) and a push is no longer held for this session.
   window.addEventListener('focus', onVisibility);
-  window.addEventListener('blur', onVisibility);
+  window.addEventListener('blur', onBlur);
   // Opening or leaving a chat tells the server at once, not at the next 25 s beat.
   const unsubVisible = subscribeVisibleConversation(() => s.sendHeartbeat());
   s.start();
@@ -121,7 +130,7 @@ export function startChatRuntime(
     window.removeEventListener('online', onOnline);
     document.removeEventListener('visibilitychange', onVisibility);
     window.removeEventListener('focus', onVisibility);
-    window.removeEventListener('blur', onVisibility);
+    window.removeEventListener('blur', onBlur);
     unsubVisible();
     unsub();
     if (socket === s) stopChatRuntime();
@@ -211,7 +220,7 @@ export function handleEvent(raw: WsServerEvent): void {
         void fillAfter(e.conversationId, before);
       }
       if (m.author) clearTyping(e.conversationId, m.author.id);
-      soundForMessage(client, m, meId);
+      soundForMessage(client, m, meId, e.attended);
       const known = noteMessage(client, m);
       if (!known) void client.invalidateQueries({ queryKey: chatKeys.conversations });
       if (m.attachments.length) {

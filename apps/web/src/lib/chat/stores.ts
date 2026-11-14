@@ -124,6 +124,28 @@ export function isLooking(): boolean {
   return typeof document.hasFocus !== 'function' || document.hasFocus();
 }
 
+/**
+ * The server learns that this page stopped being looked at from the heartbeat sent on blur or
+ * hide; an event it published just before may still count this page as the one the person is
+ * at (`attended`). For this long after leaving, `attended` is not taken to mean "elsewhere".
+ */
+export const LOOK_GRACE_MS = 5_000;
+let lookedAwayAt = 0;
+/** The window lost focus or the page was hidden (runtime: blur, visibilitychange). */
+export function noteLookedAway(): void {
+  lookedAwayAt = Date.now();
+}
+
+/**
+ * An event says the person is at a session right now (`attended`, API 55) and it cannot be this
+ * page: nobody is looking at it, nor was a moment ago. Then this page makes no sound; the
+ * session they are at does. False when the server did not say (older servers).
+ */
+export function attendedElsewhere(attended: boolean | undefined): boolean {
+  if (attended !== true || isLooking()) return false;
+  return Date.now() - lookedAwayAt >= LOOK_GRACE_MS;
+}
+
 // ---- activity (presence away after 15 minutes) ----
 
 export const AWAY_AFTER_MS = PRESENCE_LIMITS.idleMinutes * 60_000;
@@ -147,4 +169,5 @@ export function resetChatStores(): void {
   typingCache.clear();
   visible.set(null);
   lastActivity = Date.now();
+  lookedAwayAt = 0;
 }

@@ -36,6 +36,25 @@ export function wantsNativeNotification(
 }
 
 /**
+ * After a window of the app lost focus, the server may still count its page as the session the
+ * person is at for a moment (the page's heartbeat on blur is on its way).
+ */
+export const LEFT_FRONT_GRACE_MS = 5_000;
+
+/**
+ * The live event says the person is at a session right now (`attended`, API 55) and it is not
+ * this app: none of its windows is in front, nor was one a moment ago. Then no popup and no
+ * chime here; the session they are at makes the sound. Older servers send no `attended`.
+ */
+export function attendedElsewhere(
+  attended: boolean | undefined,
+  s: { inFront: boolean; leftFrontAt: number; now: number },
+): boolean {
+  if (attended !== true || s.inFront) return false;
+  return s.now - s.leftFrontAt >= LEFT_FRONT_GRACE_MS;
+}
+
+/**
  * One notification is one popup: the same row arriving again with nothing new stays quiet. A row
  * that grew (another message of the conversation) has a new count, so it still shows.
  */

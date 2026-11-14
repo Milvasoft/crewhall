@@ -97,6 +97,8 @@ export interface MockSession {
 
 export interface MockState {
   needsSetup: boolean;
+  /** Tests: an older server that lists only these capabilities (bootstrap.server). */
+  serverCapabilities?: string[];
   /** Setup token the wizard must send; null when the server does not require one. */
   setupToken?: string | null;
   /** SMTP configured: reset and invitation e-mails are sent (bootstrap.auth.emailEnabled). */

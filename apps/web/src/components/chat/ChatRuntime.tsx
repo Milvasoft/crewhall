@@ -7,6 +7,7 @@ import { armMessageSound, armNotificationSound } from '@/lib/chat/sound';
 import { noteActivity } from '@/lib/chat/stores';
 import { useI18n } from '@/lib/i18n/I18nContext';
 import { useMe } from '@/lib/session';
+import { ReportDialog } from './report';
 import { StatusDialog } from './StatusDialog';
 
 /**
@@ -40,5 +41,10 @@ export function ChatRuntime() {
     return () => events.forEach((e) => window.removeEventListener(e, noteActivity));
   }, []);
 
-  return <StatusDialog />;
+  return (
+    <>
+      <StatusDialog />
+      <ReportDialog />
+    </>
+  );
 }

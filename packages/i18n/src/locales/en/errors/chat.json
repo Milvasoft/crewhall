@@ -19,5 +19,6 @@
   "gif_provider_error": "The GIF service can't be reached right now.",
   "gif_busy": "GIF search is busy right now, try again in a little while.",
   "chat_ref_no_access": "You don't have access to this item, or it can't be sent to this chat.",
-  "chat_not_in_space": "Only members of this space can be added to a private channel."
+  "chat_not_in_space": "Only members of this space can be added to a private channel.",
+  "chat_report_self": "You can't report yourself or your own message."
 }

@@ -5,7 +5,7 @@ import { isMeetingWindow } from '@/lib/meet/window';
 import { readStorage, StorageKey, writeStorage } from '@/lib/storage';
 import { findConversation } from './cache';
 import { chatKeys, conversationQuery } from './queries';
-import { getPresence, getVisibleConversation, isLooking } from './stores';
+import { attendedElsewhere, getPresence, getVisibleConversation, isLooking } from './stores';
 import { type ChatSettings, type Message } from './types';
 import { messageSeverity, type NotificationPrefs } from '@crewhall/shared';
 import { renderRingtone, RINGTONES, type RingtoneName } from '@crewhall/sounds';
@@ -216,10 +216,19 @@ export function playTone(tone: Tone, { force = false }: { force?: boolean } = {}
 /** How late a chime may still play after its context woke up. */
 const RESUME_WAIT_MS = 1000;
 
-/** Runtime hook: a new message reached the cache. */
-export function soundForMessage(qc: QueryClient, m: Message, meId: string): void {
+/**
+ * Runtime hook: a new message reached the cache. `attended` (API 55, on the event): the person
+ * is at a session right now; when that is not this page, only that session chimes.
+ */
+export function soundForMessage(
+  qc: QueryClient,
+  m: Message,
+  meId: string,
+  attended?: boolean,
+): void {
   // The main tab chimes; a meeting's own tab stays quiet (lib/meet/window).
   if (isMeetingWindow()) return;
+  if (attendedElsewhere(attended)) return;
   if (!findConversation(qc, m.conversationId) && m.author?.id !== meId && m.kind !== 'system') {
     // The first message of a chat new to me (a direct or group chat exists for others from its
     // first message): load the chat, then decide. Without it the chime never came.
@@ -241,7 +250,8 @@ export function soundForMessage(qc: QueryClient, m: Message, meId: string): void
  * `onNotificationSound`): the chime comes from here, the same wooden tone as in the page. A burst
  * with the message's own chime sounds once (GAP_MS); sound off, a muted chat, do not disturb and a
  * meeting window stay quiet. The server already left out my own messages, quiet hours and the
- * chat open in front of me.
+ * chat open in front of me; the app leaves out the notification (and so this chime) while the
+ * person is at another session (`attended`, API 55).
  */
 export function soundForNotification(
   qc: QueryClient,

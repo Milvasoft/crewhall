@@ -24,6 +24,8 @@ export type OrgAction =
   | 'portal.publish'
   | 'announcements.publish'
   | 'forms.respond'
+  /** Yönetim › Bildirilen içerik: see and close chat reports (and get their notifications). */
+  | 'chat.review_reports'
   /**
    * Yönetim › Masaüstü sürümleri, install-wide like backups: the owner of the org the setup
    * wizard created (Me.installAdmin). The server also checks that it is that org.
@@ -129,6 +131,7 @@ function canOrg(actor: Actor, action: OrgAction, org: OrgContext): boolean {
     case 'org.view_audit':
     case 'org.view_stats':
     case 'org.manage_spaces':
+    case 'chat.review_reports':
       return orgAtLeast(actor, 'admin');
     case 'org.create_space':
       return (

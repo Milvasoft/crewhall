@@ -5,6 +5,7 @@ import { AiAdminNav } from '@/components/ai/AiAdminNav';
 import { IdentityAdminNav } from '@/components/identity/IdentityAdminNav';
 import { MailAdminNav } from '@/components/mail/MailAdminNav';
 import { CalendarAdminNav } from '@/components/calendar/CalendarAdminNav';
+import { ChatReportsAdminNav } from '@/components/chat/ChatReportsPage';
 import { NavItem } from '@/components/spaces/SpaceSidebar';
 import { useI18n } from '@/lib/i18n/I18nContext';
 import { membersQuery, meQuery, spacesQuery } from '@/lib/queries';
@@ -73,6 +74,7 @@ function AdminSidebar() {
       {canOrg('org.update_settings') ? (
         <NavItem icon="bell" to="/admin/delivery" label={t('admin.nav.delivery')} />
       ) : null}
+      <ChatReportsAdminNav />
       <Group label={t('admin.groups.brand')} />
       <NavItem icon="tag" to="/admin/brand" label={t('admin.nav.brand')} />
       <NavItem icon="sliders" to="/admin/theme" label={t('admin.nav.theme')} />

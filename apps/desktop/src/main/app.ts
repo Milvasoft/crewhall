@@ -33,6 +33,7 @@ import {
   type ShortcutProblem,
 } from '../common/global-shortcut';
 import {
+  attendedElsewhere,
   callContent,
   notificationContent,
   NoteGuard,
@@ -217,6 +218,9 @@ export class DesktopApp {
 
   async start(): Promise<void> {
     buildAppMenu(this);
+    app.on('browser-window-blur', () => {
+      this.leftFrontAt = Date.now();
+    });
     if (this.origin) this.brandIcon = loadCachedIcon();
     this.tray.create();
     this.updater.start();
@@ -257,7 +261,7 @@ export class DesktopApp {
             this.virtualDrive.notifyChange();
           }
           if (effect === 'notify' && event.type === 'notification') {
-            this.showNotification(event.notification);
+            this.showNotification(event.notification, event.attended);
           }
           if (effect === 'ring' && event.type === 'call.ringing') this.incomingCall(event.call);
           if (effect === 'ring-over' && event.type === 'call.updated' && ringIsOver(event.call)) {
@@ -587,6 +591,8 @@ export class DesktopApp {
   // ---- notifications and badge --------------------------------------------------------------
 
   private readonly noteGuard = new NoteGuard();
+  /** When a window of the app last lost focus (attendedElsewhere's grace). */
+  private leftFrontAt = 0;
 
   private windowInFront(): boolean {
     const main =
@@ -594,9 +600,12 @@ export class DesktopApp {
     return main || this.extras.anyFocused();
   }
 
-  private showNotification(n: Parameters<typeof notificationContent>[0]): void {
+  private showNotification(n: Parameters<typeof notificationContent>[0], attended?: boolean): void {
     if (!this.settings.get().notifications || !Notification.isSupported()) return;
     if (this.windowInFront() || !wantsNativeNotification(n)) return;
+    // The person is at another session (phone, another PC or tab): only that one makes noise.
+    const front = { inFront: false, leftFrontAt: this.leftFrontAt, now: Date.now() };
+    if (attendedElsewhere(attended, front)) return;
     const origin = this.origin;
     if (!origin) return;
     const content = notificationContent(n, this.t, origin);

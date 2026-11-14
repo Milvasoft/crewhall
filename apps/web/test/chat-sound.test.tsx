@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { patchConversation } from '@/lib/chat/cache';
 import { chatKeys, conversationsQuery, messagesQuery } from '@/lib/chat/queries';
 import { bindRuntimeForTests, handleEvent } from '@/lib/chat/runtime';
@@ -15,7 +15,12 @@ import {
   toneFor,
 } from '@/lib/chat/sound';
 import { type Conversation } from '@/lib/chat/types';
-import { setPresence, setVisibleConversation } from '@/lib/chat/stores';
+import {
+  LOOK_GRACE_MS,
+  noteLookedAway,
+  setPresence,
+  setVisibleConversation,
+} from '@/lib/chat/stores';
 import { type Message } from '@/lib/chat/types';
 import { createQueryClient } from '@/lib/queryClient';
 import { CONV } from '@/mocks/chatSeed';
@@ -313,6 +318,68 @@ describe('message sound (H6)', () => {
     expect(playTone('message')).toBe(true);
     expect(playTone('message')).toBe(false);
     expect(playTone('message', { force: true })).toBe(true);
+  });
+});
+
+describe('only the session the person is at makes noise (API 55)', () => {
+  /** A message to another chat than the open one, `attended` as the server said. */
+  async function arrive(attended: boolean | undefined) {
+    const { msg } = await setup();
+    setVisibleConversation(CONV.elif);
+    interact();
+    handleEvent({
+      type: 'message.created',
+      conversationId: CONV.milvaion,
+      message: msg(),
+      ...(attended === undefined ? {} : { attended }),
+    });
+    return audio?.played.length ?? 0;
+  }
+
+  it('is silent where nobody looks while the person is at another session', async () => {
+    setFocus(false);
+    expect(await arrive(true)).toBe(0);
+  });
+
+  it('is silent in a hidden tab too', async () => {
+    setVisibility('hidden');
+    expect(await arrive(true)).toBe(0);
+  });
+
+  it('still chimes in the session being looked at (another chat open there)', async () => {
+    expect(await arrive(true)).toBe(1);
+  });
+
+  it('chimes everywhere when the person is at no session', async () => {
+    setFocus(false);
+    expect(await arrive(false)).toBe(1);
+  });
+
+  it('keeps the old rules when the server does not say (older servers)', async () => {
+    setFocus(false);
+    expect(await arrive(undefined)).toBe(1);
+  });
+
+  it('may be this very page for a moment after it was left', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    try {
+      vi.setSystemTime(new Date('2026-11-14T10:00:00Z'));
+      setFocus(false);
+      noteLookedAway();
+      // The server has not heard the blur heartbeat yet: "attended" may mean this page.
+      expect(await arrive(true)).toBe(1);
+      vi.setSystemTime(Date.now() + LOOK_GRACE_MS);
+      const { msg } = await setup();
+      handleEvent({
+        type: 'message.created',
+        conversationId: CONV.milvaion,
+        message: msg(),
+        attended: true,
+      });
+      expect(audio?.played).toHaveLength(1);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });
 

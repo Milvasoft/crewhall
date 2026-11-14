@@ -51,7 +51,7 @@ const SECTIONS: {
   },
   { key: 'meet', rows: ['calls', 'meetings', 'calendar'] },
   { key: 'work', rows: ['mail', 'boards', 'pages', 'drive', 'approvals', 'forms', 'automations'] },
-  { key: 'org', rows: ['announcements', 'integrations', 'portal', 'plugins'] },
+  { key: 'org', rows: ['announcements', 'integrations', 'portal', 'plugins', 'chat_reports'] },
   { key: 'security', rows: ['vault', 'security'] },
 ];
 

@@ -1,6 +1,13 @@
 import { and, eq, inArray } from 'drizzle-orm';
-import { chatUserSettings, notificationPrefs, type DbOrTx } from '@crewhall/db';
 import {
+  chatUserSettings,
+  notificationPrefs,
+  orgMembers,
+  organizations,
+  type DbOrTx,
+} from '@crewhall/db';
+import {
+  can,
   NOTIFICATION_GROUPS,
   notificationGroupOf,
   type NotificationCategory,
@@ -10,6 +17,7 @@ import {
   type OrgSettings,
 } from '@crewhall/shared';
 import { moduleEnabledIn } from '../identity/modules';
+import { orgContext, toActor } from '../membership';
 
 /**
  * Preference matrix (doc 17 §10). Rows of two kinds share notification_prefs:
@@ -175,6 +183,19 @@ export function prefForType(
   return key ? groupPref(saved, key, category) : prefFor(saved, category);
 }
 
+/** Owners and admins see the chat reports row (NOTIFICATION_GROUPS `reviewers`). */
+async function reviewsReports(db: DbOrTx, orgId: string, userId: string) {
+  const [row] = await db
+    .select({ member: orgMembers, org: organizations })
+    .from(orgMembers)
+    .innerJoin(organizations, eq(organizations.id, orgMembers.organizationId))
+    .where(and(eq(orgMembers.organizationId, orgId), eq(orgMembers.userId, userId)));
+  return (
+    !!row &&
+    can(toActor(row.member), 'chat.review_reports', { type: 'org', org: orgContext(row.org) })
+  );
+}
+
 export async function getNotificationPrefs(
   db: DbOrTx,
   orgId: string,
@@ -183,6 +204,7 @@ export async function getNotificationPrefs(
 ): Promise<NotificationPrefs> {
   const saved = (await loadPrefs(db, orgId, [userId])).get(userId);
   const settings = (await loadSettings(db, orgId, [userId])).get(userId)!;
+  const reviewer = await reviewsReports(db, orgId, userId);
   return {
     categories: CATEGORIES.map((category) => {
       const { inApp, push, email } = prefFor(saved, category);
@@ -190,7 +212,9 @@ export async function getNotificationPrefs(
     }),
     // Rows of modules the org turned off are not shown.
     groups: NOTIFICATION_GROUPS.filter(
-      (g) => !('module' in g) || moduleEnabledIn(orgSettings, g.module),
+      (g) =>
+        (!('module' in g) || moduleEnabledIn(orgSettings, g.module)) &&
+        (!('reviewers' in g) || reviewer),
     ).map((g) => ({ group: g.key, ...groupPref(saved, g.key), ...groupChannels(g.key) })),
     digest: settings.digest,
     quietHours:

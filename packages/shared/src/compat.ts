@@ -12,7 +12,7 @@ import type { ModuleKey } from './schemas/org';
  * `pnpm --filter @crewhall/shared contract:check` fails when the contract grew past the
  * release snapshot (contract-snapshot.json) without raising it.
  */
-export const API_LEVEL = 53;
+export const API_LEVEL = 55;
 
 /**
  * Features a client may look for before showing them. A capability of a module is listed only
@@ -175,6 +175,12 @@ export const CAPABILITIES = [
   { key: 'chat.linkPreviews', since: 52, module: 'chat' },
   // Private space channels: only the people added see them (Conversation.private, member roles).
   { key: 'chat.privateChannels', since: 53, module: 'chat' },
+  // "Yöneticiye bildir" on messages and people, Yönetim › Bildirilen içerik (reportChatMessage,
+  // reportUser, listChatReports, resolveChatReport; chat.report notifications).
+  { key: 'chat.reports', since: 54, module: 'chat' },
+  // Only the session the person is at makes noise: `attended` on the live `notification` and
+  // `message.created` events; other desktop and web sessions show no OS notification or chime.
+  { key: 'notifications.attended', since: 55 },
 ] as const satisfies readonly { key: string; since: number; module?: ModuleKey }[];
 
 export type Capability = (typeof CAPABILITIES)[number]['key'];

@@ -16,6 +16,7 @@ import { usePermissions } from '@/lib/session';
 import { useOpenDirect } from './actions';
 import { presenceDot } from './common';
 import { useLocalTime, usePresenceLabel } from './PersonCard';
+import { openReportDialog, useReportsEnabled } from './report';
 
 /**
  * Person profile (19.14): a global screen (no space sidebar). Only what the viewer can see:
@@ -38,6 +39,7 @@ export function PersonProfile({ userId }: { userId: string }) {
   const { data: person } = useQuery({ ...personQuery(userId), retry: false });
   const [thanking, setThanking] = useState(false);
   const canThank = !!card && !card.isGuest && !guestViewer && me?.user.id !== userId;
+  const canReport = useReportsEnabled() && me?.user.id !== userId;
 
   return (
     <Workspace
@@ -102,6 +104,17 @@ export function PersonProfile({ userId }: { userId: string }) {
                   {t('chat.profile.email')}
                 </a>
               </Button>
+              {canReport ? (
+                <Button
+                  variant="gh"
+                  onClick={() =>
+                    openReportDialog({ type: 'user', userId: card.user.id, name: card.user.name })
+                  }
+                >
+                  <Icon name="flag" size={16} />
+                  {t('chat.person.report')}
+                </Button>
+              ) : null}
             </div>
           </section>
           <div className="grid gap-6 md:grid-cols-[1fr_1fr]">

@@ -19,6 +19,11 @@ import {
   GifTrendingQuery,
   CreateScheduledMessage,
   ChatUserCard,
+  ChatReport,
+  ChatReportReceipt,
+  CreateChatReport,
+  ListChatReportsQuery,
+  ResolveChatReport,
   Conversation,
   CreateConversation,
   CreateIncomingWebhook,
@@ -517,6 +522,43 @@ export const chatEndpoints = {
     path: '/api/v1/chat/users/:userId',
     auth: 'session',
     response: ChatUserCard,
+  }),
+
+  // ---- Reports to the org's admins (API 54) --------------------------------------------
+  /**
+   * "Yöneticiye bildir" on a message the caller can read (404 otherwise); the org's owners and
+   * admins get a chat.report notification. Not the caller's own message (chat_report_self).
+   */
+  reportChatMessage: def({
+    method: 'POST',
+    path: '/api/v1/chat/messages/:messageId/report',
+    auth: 'session',
+    body: CreateChatReport,
+    response: ChatReportReceipt,
+  }),
+  /** "Yöneticiye bildir" on a person's card; not oneself (chat_report_self). */
+  reportUser: def({
+    method: 'POST',
+    path: '/api/v1/chat/users/:userId/report',
+    auth: 'session',
+    body: CreateChatReport,
+    response: ChatReportReceipt,
+  }),
+  /** Yönetim › Bildirilen içerik: owners and admins (`chat.review_reports`), newest first. */
+  listChatReports: def({
+    method: 'GET',
+    path: '/api/v1/admin/chat/reports',
+    auth: 'session',
+    query: ListChatReportsQuery,
+    response: page(ChatReport),
+  }),
+  /** Resolve, dismiss or reopen a report; owners and admins. */
+  resolveChatReport: def({
+    method: 'POST',
+    path: '/api/v1/admin/chat/reports/:reportId/resolve',
+    auth: 'session',
+    body: ResolveChatReport,
+    response: ChatReport,
   }),
   /** Snapshot; changes then arrive as `presence` events for watched people. */
   getPresence: def({

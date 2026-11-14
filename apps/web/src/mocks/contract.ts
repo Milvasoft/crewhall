@@ -6,6 +6,7 @@ import {
   SPACE_DELETE_RETENTION_DAYS,
   type OrgSpace,
   can,
+  CAPABILITIES,
   canGrantSpaceRole,
   endpoints,
   HTTP_STATUS_BY_CODE,
@@ -332,8 +333,12 @@ const phase0: Resolvers<Phase0Name> = {
     server: {
       version: '0.0.0-mock',
       minMobileVersion: null,
-      // Listed only with GIFs on, as the server does; otherwise left out like before.
-      ...(gifActiveMock(s) ? { capabilities: ['chat.gif' as const] } : {}),
+      // Every capability, as the server lists them; GIFs only while they are on.
+      capabilities: CAPABILITIES.map((c) => c.key).filter(
+        (k) =>
+          (k !== 'chat.gif' || gifActiveMock(s)) &&
+          (!s.serverCapabilities || s.serverCapabilities.includes(k)),
+      ),
     },
     ...(s.needsSetup
       ? {

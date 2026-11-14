@@ -23,6 +23,8 @@
     "callVideo": "{actor} görüntülü arıyor",
     "callMissed": "Cevapsız arama: {actor}",
     "approvalRequested": "{client} onayını bekliyor",
+    "chatReportMessage": "{actor} bir mesajı yöneticilere bildirdi",
+    "chatReportUser": "{actor}, {name} kişisini yöneticilere bildirdi",
     "meetUpdated": "{actor} toplantıyı değiştirdi: {title}",
     "meetCancelled": "Toplantı iptal edildi: {title}",
     "meetRing": "{actor} seni toplantıya çağırıyor",

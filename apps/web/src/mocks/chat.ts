@@ -1,5 +1,7 @@
 import {
+  can,
   NOTIFICATION_GROUPS,
+  type ChatReport,
   type ChatMember,
   type Conversation,
   type IncomingWebhook,
@@ -33,7 +35,16 @@ import {
 } from '@crewhall/shared';
 import { http, HttpResponse, ws } from 'msw';
 import { type z } from 'zod';
-import { MockApiError, myRole, randomToken, requireUser, summary, type Resolvers } from './core';
+import {
+  actorOf,
+  MockApiError,
+  myRole,
+  orgCtx,
+  randomToken,
+  requireUser,
+  summary,
+  type Resolvers,
+} from './core';
 import { db, newId, save } from './db';
 import { driveState, nodeForUser } from './drive';
 import { MOCK_FEDERATION_DOMAIN, remoteLookup } from './federation';
@@ -44,6 +55,7 @@ import {
   type MockChatMember,
   type MockConversation,
   type MockMessage,
+  type MockReport,
   type MockNotification,
   type MockPoll,
   type MockReminder,
@@ -133,6 +145,10 @@ type ChatEndpoint = Extract<
   | 'sendScheduledMessageNow'
   | 'trendingGifs'
   | 'getMessageInfo'
+  | 'reportChatMessage'
+  | 'reportUser'
+  | 'listChatReports'
+  | 'resolveChatReport'
   | 'searchGifs'
   | 'getGifSettings'
   | 'updateGifSettings'
@@ -489,6 +505,82 @@ function messageOf(s: MockState, u: MockUser, messageId: string) {
   const a = access(s, u, m.conversationId);
   if (!visibleTo(a.row, m)) throw new MockApiError('not_found');
   return { ...a, m };
+}
+
+// ---- reports (API 54) ----
+
+function reportsOf(s: MockState): MockReport[] {
+  const c = chatState(s);
+  c.reports ??= [];
+  return c.reports;
+}
+
+function requireReviewer(s: MockState, u: MockUser) {
+  if (!can(actorOf(s, u), 'chat.review_reports', { type: 'org', org: orgCtx(s) })) {
+    throw new MockApiError('forbidden');
+  }
+}
+
+function toReport(s: MockState, r: MockReport): ChatReport {
+  const c = chatState(s);
+  const conv = r.conversationId ? c.conversations.find((x) => x.id === r.conversationId) : undefined;
+  const msg = r.messageId ? c.messages.find((x) => x.id === r.messageId) : undefined;
+  const deleted = !conv || !msg || msg.deletedAt !== null;
+  return {
+    id: r.id,
+    kind: r.kind,
+    status: r.status,
+    reason: r.reason,
+    note: r.note,
+    reporter: summaryOf(s, r.reporterId),
+    reportedUser: summaryOf(s, r.reportedUserId),
+    message:
+      r.kind === 'message'
+        ? {
+            id: r.messageId,
+            conversationId: conv?.id ?? null,
+            conversationType: conv?.type ?? null,
+            conversationTitle: conv && conv.type !== 'direct' ? (conv.name ?? null) : null,
+            seq: r.seq,
+            excerpt: r.excerpt ?? '',
+            deleted,
+            url:
+              conv && r.seq !== null && !deleted
+                ? withQuery(paths.chatConversation(conv.id), { seq: r.seq })
+                : null,
+          }
+        : null,
+    resolvedBy: summaryOf(s, r.resolvedBy),
+    resolvedAt: r.resolvedAt,
+    createdAt: r.createdAt,
+  };
+}
+
+function addReport(
+  s: MockState,
+  u: MockUser,
+  input: Omit<MockReport, 'id' | 'status' | 'resolvedBy' | 'resolvedAt' | 'createdAt'>,
+) {
+  const list = reportsOf(s);
+  const open = list.find(
+    (r) =>
+      r.reporterId === u.id &&
+      r.status === 'open' &&
+      (input.kind === 'message'
+        ? r.messageId === input.messageId
+        : r.kind === 'user' && r.reportedUserId === input.reportedUserId),
+  );
+  if (open) return { id: open.id, status: open.status };
+  const row: MockReport = {
+    ...input,
+    id: newId(),
+    status: 'open',
+    resolvedBy: null,
+    resolvedAt: null,
+    createdAt: new Date().toISOString(),
+  };
+  list.unshift(row);
+  return { id: row.id, status: row.status };
 }
 
 // ---- realtime fan-out ----
@@ -2441,6 +2533,68 @@ ${node.name}: ${url}`
     x.status = 'sent';
     x.messageId = m.id;
     return toMessage(s, m, u.id);
+  },
+
+  reportChatMessage: ({ s, params, body }) => {
+    const u = requireUser(s);
+    const { m } = messageOf(s, u, params.messageId!);
+    if (m.deletedAt || m.kind === 'system') throw new MockApiError('not_found');
+    if (m.authorId === u.id) throw new MockApiError('chat_report_self');
+    return addReport(s, u, {
+      kind: 'message',
+      reporterId: u.id,
+      reportedUserId: m.authorId,
+      messageId: m.id,
+      conversationId: m.conversationId,
+      seq: m.seq,
+      excerpt: m.text,
+      reason: body.reason,
+      note: body.note || null,
+    });
+  },
+
+  reportUser: ({ s, params, body }) => {
+    const u = requireUser(s);
+    if (params.userId === u.id) throw new MockApiError('chat_report_self');
+    if (!s.members.some((m) => m.userId === params.userId)) {
+      throw new MockApiError('member_not_found');
+    }
+    return addReport(s, u, {
+      kind: 'user',
+      reporterId: u.id,
+      reportedUserId: params.userId!,
+      messageId: null,
+      conversationId: null,
+      seq: null,
+      excerpt: null,
+      reason: body.reason,
+      note: body.note || null,
+    });
+  },
+
+  listChatReports: ({ s, query }) => {
+    const u = requireUser(s);
+    requireReviewer(s, u);
+    const rows = reportsOf(s).filter((r) => !query.status || r.status === query.status);
+    const start = query.cursor ? Number(query.cursor) : 0;
+    const page = rows.slice(start, start + query.limit);
+    const next = start + query.limit;
+    return {
+      items: page.map((r) => toReport(s, r)),
+      nextCursor: next < rows.length ? String(next) : null,
+    };
+  },
+
+  resolveChatReport: ({ s, params, body }) => {
+    const u = requireUser(s);
+    requireReviewer(s, u);
+    const r = reportsOf(s).find((x) => x.id === params.reportId);
+    if (!r) throw new MockApiError('not_found');
+    const closing = body.status !== 'open';
+    r.status = body.status;
+    r.resolvedBy = closing ? u.id : null;
+    r.resolvedAt = closing ? new Date().toISOString() : null;
+    return toReport(s, r);
   },
 
   getMessageInfo: ({ s, params }) => {

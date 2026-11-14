@@ -41,6 +41,8 @@ export type AuditAction =
   | 'share.link.password_failed'
   | 'share.link.locked'
   | 'chat.conversation.delete'
+  | 'chat.report.create'
+  | 'chat.report.resolve'
   | 'plugin.install'
   | 'plugin.upgrade'
   | 'plugin.enable'

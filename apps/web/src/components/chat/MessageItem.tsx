@@ -38,6 +38,7 @@ import { CardActions } from './CardActions';
 import { LinkPreviewCard } from './LinkPreview';
 import { RefCards } from './RefCards';
 import { PersonAvatar } from './common';
+import { openReportDialog, useReportsEnabled } from './report';
 import { openChatDialog } from './dialogs';
 import { EmojiPicker } from './EmojiPicker';
 import { AlertCardView, Attachments, MessageText, Quote, Reactions } from './MessageParts';
@@ -119,6 +120,7 @@ export const MessageItem = memo(function MessageItem({
   const reactionsBar = useRef<HTMLDivElement>(null);
   const [burst, setBurst] = useState<Burst | null>(null);
   const endBurst = useCallback(() => setBurst(null), []);
+  const reportsOn = useReportsEnabled();
   if (m.kind === 'system' && m.system) {
     return <SystemLine e={m.system} at={m.createdAt} enter={enter} />;
   }
@@ -127,6 +129,8 @@ export const MessageItem = memo(function MessageItem({
   const run = startsRun(prev, m);
   const deleted = m.deletedAt !== null;
   const canEdit = mine && !deleted && m.kind === 'user' && !m.poll;
+  // "Yöneticiye bildir": someone else's message, on a server that takes reports.
+  const canReport = reportsOn && !mine && m.kind !== 'system';
   const canDelete = !deleted && (mine || conv.permissions.moderate);
   // Emoji-only messages (1-3) are shown large, without a bubble when nothing else is in it.
   const jumbo = !deleted && !m.poll && !m.emote && m.text ? jumboEmojis(m.text) : null;
@@ -226,6 +230,17 @@ export const MessageItem = memo(function MessageItem({
           shortcut: 'U',
           onSelect: () => void act.markUnread(m),
         },
+        ...(canReport
+          ? [
+              {
+                kind: 'item' as const,
+                key: 'report',
+                icon: 'flag' as const,
+                label: t('chat.message.report'),
+                onSelect: () => openReportDialog({ type: 'message', messageId: m.id }),
+              },
+            ]
+          : []),
         ...(canEdit || canDelete ? [{ kind: 'sep' as const, key: 's2' }] : []),
         ...(canEdit
           ? [

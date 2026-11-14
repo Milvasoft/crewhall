@@ -743,3 +743,43 @@ export const chatGifSettings = pgTable('chat_gif_settings', {
   updatedBy: uuid('updated_by').references(() => users.id, { onDelete: 'set null' }),
   ...timestamps(),
 });
+
+/**
+ * "Yöneticiye bildir" (Play user-generated content policy): a message or a person reported to
+ * the org's own owners and admins (Yönetim › Bildirilen içerik). A message report keeps the text
+ * as it was, so admins can judge it without joining the conversation and after it is deleted.
+ */
+export const chatReports = pgTable(
+  'chat_reports',
+  {
+    id: id(),
+    orgId: uuid('org_id')
+      .notNull()
+      .references(() => organizations.id, { onDelete: 'cascade' }),
+    kind: text('kind', { enum: ['message', 'user'] }).notNull(),
+    reporterId: uuid('reporter_id').references(() => users.id, { onDelete: 'set null' }),
+    /** The reported person, or the message's author. */
+    reportedUserId: uuid('reported_user_id').references(() => users.id, { onDelete: 'set null' }),
+    messageId: uuid('message_id').references(() => messages.id, { onDelete: 'set null' }),
+    conversationId: uuid('conversation_id').references(() => conversations.id, {
+      onDelete: 'set null',
+    }),
+    messageSeq: bigint('message_seq', { mode: 'number' }),
+    /** The message's text when it was reported. */
+    excerpt: text('excerpt'),
+    reason: text('reason', {
+      enum: ['harassment', 'hate', 'spam', 'inappropriate', 'violence', 'self_harm', 'other'],
+    }).notNull(),
+    note: text('note'),
+    status: text('status', { enum: ['open', 'resolved', 'dismissed'] })
+      .notNull()
+      .default('open'),
+    resolvedBy: uuid('resolved_by').references(() => users.id, { onDelete: 'set null' }),
+    resolvedAt: tz('resolved_at'),
+    ...timestamps(),
+  },
+  (t) => [
+    index('chat_reports_org_created_idx').on(t.orgId, t.createdAt),
+    index('chat_reports_org_status_idx').on(t.orgId, t.status, t.createdAt),
+  ],
+);

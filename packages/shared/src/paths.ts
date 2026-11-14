@@ -88,6 +88,8 @@ export const ADMIN_SECTIONS = [
   'compliance',
   'backups',
   'desktop',
+  /** Bildirilen içerik: chat reports (API 54). */
+  'reports',
 ] as const;
 export type AdminSection = (typeof ADMIN_SECTIONS)[number];
 

@@ -261,6 +261,9 @@ export function pushText(row: NotificationRow, locale: AppLocale) {
     case 'approval.requested':
       title = fill(t.approvalRequested, { client: s('client') });
       break;
+    case 'chat.report':
+      title = fill(d.kind === 'user' ? t.chatReportUser : t.chatReportMessage, values);
+      break;
     case 'plugin.notification':
       // "WhatsApp · Ayşe": the plugin is the source, its title follows.
       title = [s('plugin'), s('title')].filter(Boolean).join(' · ') || t.fallback;

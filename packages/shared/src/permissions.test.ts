@@ -39,6 +39,13 @@ describe('can: org', () => {
     expect(can(actor('guest'), 'org.view_stats', { type: 'org', org })).toBe(false);
   });
 
+  it('chat reports are seen and closed by owners and admins only', () => {
+    expect(can(actor('owner'), 'chat.review_reports', { type: 'org', org })).toBe(true);
+    expect(can(actor('admin'), 'chat.review_reports', { type: 'org', org })).toBe(true);
+    expect(can(actor('member'), 'chat.review_reports', { type: 'org', org })).toBe(false);
+    expect(can(actor('guest'), 'chat.review_reports', { type: 'org', org })).toBe(false);
+  });
+
   it('portal rights come from role or explicit permission', () => {
     expect(can(actor('member'), 'portal.edit', { type: 'org', org })).toBe(false);
     expect(can(actor('member', ['portal.edit']), 'portal.edit', { type: 'org', org })).toBe(true);

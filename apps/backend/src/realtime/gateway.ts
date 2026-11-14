@@ -1,7 +1,13 @@
 import type { IncomingMessage, Server } from 'node:http';
 import type { Duplex } from 'node:stream';
 import { WebSocketServer, type RawData, type WebSocket } from 'ws';
-import { CHAT_LIMITS, WS_CLOSE, WsClientEvent, type WsServerEvent } from '@crewhall/shared';
+import {
+  CHAT_LIMITS,
+  messageSeverity,
+  WS_CLOSE,
+  WsClientEvent,
+  type WsServerEvent,
+} from '@crewhall/shared';
 import type { Db } from '@crewhall/db';
 import { newId } from '@crewhall/db';
 import type { Logger } from '../logger';
@@ -107,7 +113,7 @@ export class Gateway {
         dropped = false;
         ws.send(JSON.stringify({ type: 'resync' }));
       }
-      ws.send(JSON.stringify(event));
+      ws.send(JSON.stringify(withAttended(presence, userId, event)));
     };
 
     const subs: (() => void)[] = [bus.subscribe(userTopic(userId), send)];
@@ -207,4 +213,21 @@ export class Gateway {
     onMessage = handle;
     for (const raw of early.splice(0)) handle(raw);
   }
+}
+
+/**
+ * API 55: a message from someone else says whether its recipient is at a session right now, so
+ * only that session chimes (the others are not being looked at). Decided here, per recipient,
+ * because the event itself is shared by everyone in the conversation. Critical alerts ring
+ * everywhere.
+ */
+export function withAttended(
+  presence: Pick<PresenceTracker, 'hasFocusedSession'>,
+  userId: string,
+  event: WsServerEvent,
+): WsServerEvent {
+  if (event.type !== 'message.created' || event.message.author?.id === userId) return event;
+  const attended =
+    messageSeverity(event.message) !== 'critical' && presence.hasFocusedSession(userId);
+  return { ...event, attended };
 }

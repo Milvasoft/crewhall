@@ -102,7 +102,8 @@
     "timeDiff": "{hours} hours apart",
     "sharedSpaces": "Shared spaces",
     "message": "Message",
-    "profile": "Profile"
+    "profile": "Profile",
+    "report": "Report to admins"
   },
   "pane": {
     "messages": "Messages",
@@ -141,7 +142,8 @@
     "pinnedHint": "Pinned message",
     "pinnedToast": "Message pinned",
     "unpinnedToast": "Message unpinned",
-    "info": "Message info"
+    "info": "Message info",
+    "report": "Report to admins"
   },
   "system": {
     "created": "{actor} created the chat and added {people}",
@@ -517,7 +519,9 @@
       "alert": "{webhookName} · {conversationTitle}",
       "webhook_failing": "Webhook {webhookName} is failing · {conversationTitle}",
       "reminder": "Reminder",
-      "scheduled_failed": "Your scheduled message couldn't be sent · {conversationTitle}"
+      "scheduled_failed": "Your scheduled message couldn't be sent · {conversationTitle}",
+      "report": "{actor} reported a message to the admins",
+      "report_user": "{actor} reported {name} to the admins"
     },
     "drive": {
       "shared": "{actor} shared {nodeName} with you"
@@ -707,6 +711,10 @@
       "chat_reminders": {
         "title": "Reminders",
         "hint": "Reminders you set and scheduled messages that could not be sent"
+      },
+      "chat_reports": {
+        "title": "Reported content",
+        "hint": "When members report a message or a person to the admins"
       },
       "calls": {
         "title": "Calls",
@@ -1050,5 +1058,56 @@
   "linkPreview": {
     "label": "Link preview of {name}",
     "remove": "Remove preview"
+  },
+  "reports": {
+    "nav": "Reported content",
+    "title": "Reported content",
+    "subtitle": "Messages and people your members reported to the admins. Reports go only to this organization's owners and admins.",
+    "dialog": {
+      "titleMessage": "Report message to admins",
+      "titleUser": "Report {name} to admins",
+      "body": "Your report goes only to this organization's admins. The person you report isn't told.",
+      "reason": "Reason",
+      "note": "Note (optional)",
+      "notePlaceholder": "Anything the admins should know",
+      "submit": "Report",
+      "sent": "Reported to the admins"
+    },
+    "reason": {
+      "harassment": "Harassment or bullying",
+      "hate": "Hate speech",
+      "spam": "Spam or unwanted content",
+      "inappropriate": "Inappropriate content",
+      "violence": "Violence or threats",
+      "self_harm": "Self-harm",
+      "other": "Other"
+    },
+    "status": {
+      "open": "Open",
+      "resolved": "Resolved",
+      "dismissed": "Dismissed"
+    },
+    "filter": {
+      "all": "All"
+    },
+    "kind": {
+      "message": "Message",
+      "user": "Person"
+    },
+    "reportedBy": "Reported by {name} · {time}",
+    "reportedUser": "Reported person: {name}",
+    "author": "Written by {name}",
+    "inConversation": "In {name}",
+    "inDirect": "In a direct message",
+    "openMessage": "Go to message",
+    "deleted": "The message has been deleted since",
+    "closedBy": "{status} · {name}, {time}",
+    "resolve": "Resolved",
+    "dismiss": "Dismiss",
+    "reopen": "Reopen",
+    "empty": "No reported content.",
+    "emptyOpen": "No open reports.",
+    "unknownUser": "Deleted account",
+    "loadMore": "Show more"
   }
 }

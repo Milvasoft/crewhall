@@ -7,6 +7,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
   Icon,
+  IconButton,
   Skeleton,
   SpaceDot,
 } from '@crewhall/ui';
@@ -21,6 +22,8 @@ import { formatRelative, formatTime } from '@/lib/i18n/format';
 import { useI18n } from '@/lib/i18n/I18nContext';
 import { useNow } from '@/lib/useNow';
 import { useOpenDirect } from './actions';
+import { useMyId } from './common';
+import { openReportDialog, useReportsEnabled } from './report';
 
 /**
  * Person card (19.13): 400 ms on an avatar or name (a tap on touch). Same card in chat,
@@ -111,6 +114,8 @@ export function PersonCardBody({ userId }: { userId: string }) {
   const local = useLocalTime(card?.timezone ?? null);
   const openDirect = useOpenDirect();
   const chatOn = useChatEnabled();
+  const myId = useMyId();
+  const reportsOn = useReportsEnabled();
 
   if (!card) {
     return (
@@ -206,6 +211,20 @@ export function PersonCardBody({ userId }: { userId: string }) {
             {t('chat.person.profile')}
           </Link>
         </Button>
+        {reportsOn && card.user.id !== myId ? (
+          <IconButton
+            size="sm"
+            shape="sq"
+            tone="plain"
+            aria-label={t('chat.person.report')}
+            title={t('chat.person.report')}
+            onClick={() =>
+              openReportDialog({ type: 'user', userId: card.user.id, name: card.user.name })
+            }
+          >
+            <Icon name="flag" size={15} />
+          </IconButton>
+        ) : null}
       </div>
     </div>
   );

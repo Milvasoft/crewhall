@@ -1025,6 +1025,82 @@ export const ChatUserCard = z.object({
 });
 export type ChatUserCard = z.infer<typeof ChatUserCard>;
 
+// ---- Reports to the org's admins (API 54, capability chat.reports) ----------------------
+
+/** Why a message or a person was reported ("Yöneticiye bildir"). */
+export const ChatReportReason = z.enum([
+  'harassment',
+  'hate',
+  'spam',
+  'inappropriate',
+  'violence',
+  'self_harm',
+  'other',
+]);
+export type ChatReportReason = z.infer<typeof ChatReportReason>;
+
+export const ChatReportStatus = z.enum(['open', 'resolved', 'dismissed']);
+export type ChatReportStatus = z.infer<typeof ChatReportStatus>;
+
+/** Body of reportChatMessage and reportUser. */
+export const CreateChatReport = z.object({
+  reason: ChatReportReason,
+  note: z.string().trim().max(1000).optional(),
+});
+export type CreateChatReport = z.infer<typeof CreateChatReport>;
+
+/**
+ * What the reporter gets back. Reporting the same message or person again while the earlier
+ * report is still open returns that report (no second notification).
+ */
+export const ChatReportReceipt = z.object({ id: Id, status: ChatReportStatus });
+export type ChatReportReceipt = z.infer<typeof ChatReportReceipt>;
+
+/** Yönetim › Bildirilen içerik: one report as the org's admins see it. */
+export const ChatReport = z.object({
+  id: Id,
+  kind: z.enum(['message', 'user']),
+  status: ChatReportStatus,
+  reason: ChatReportReason,
+  note: z.string().nullable(),
+  /** Null once the account is gone. */
+  reporter: UserSummary.nullable(),
+  /** The reported person, or the message's author. */
+  reportedUser: UserSummary.nullable(),
+  /** Message reports: the text as it was when reported, so admins see it without joining. */
+  message: z
+    .object({
+      id: Id.nullable(),
+      conversationId: Id.nullable(),
+      conversationType: ConversationType.nullable(),
+      /** Channel or group name; null for direct messages and removed conversations. */
+      conversationTitle: z.string().nullable(),
+      seq: z.number().int().nullable(),
+      excerpt: z.string(),
+      /** Deleted since the report (or the conversation is gone). */
+      deleted: z.boolean(),
+      /** Web path that opens the message for those who can read it. */
+      url: z.string().nullable(),
+    })
+    .nullable(),
+  resolvedBy: UserSummary.nullable(),
+  resolvedAt: Timestamp.nullable(),
+  createdAt: Timestamp,
+});
+export type ChatReport = z.infer<typeof ChatReport>;
+
+export const ListChatReportsQuery = z.object({
+  /** Missing: every status, newest first. */
+  status: ChatReportStatus.optional(),
+  cursor: z.string().optional(),
+  limit: z.coerce.number().int().min(1).max(100).default(50),
+});
+export type ListChatReportsQuery = z.infer<typeof ListChatReportsQuery>;
+
+/** Close a report: handled (resolved) or nothing to do (dismissed); `open` reopens it. */
+export const ResolveChatReport = z.object({ status: ChatReportStatus });
+export type ResolveChatReport = z.infer<typeof ResolveChatReport>;
+
 export const ChatSettings = z.object({
   /**
    * @deprecated Always true: reads are never hidden (user decision, 2026-10-29). Kept so older
@@ -1100,6 +1176,8 @@ export const NOTIFICATION_TYPES = [
    * the url opens the approval. Read once it is approved, rejected or expired.
    */
   'approval.requested',
+  /** API 54: someone reported a message or a person; sent to the org's owners and admins. */
+  'chat.report',
 ] as const;
 
 export const NotificationTarget = z.object({
@@ -1117,6 +1195,8 @@ export const NotificationTarget = z.object({
     'approval',
     /** API 31: a plugin's notification (`plugin.notification`); `id` is the installation. */
     'plugin',
+    /** API 54: a chat report for the org's admins (`chat.report`); `id` is the report. */
+    'report',
   ]),
   id: Id,
   conversationId: Id.nullable(),
@@ -1218,6 +1298,14 @@ export const NOTIFICATION_GROUPS = [
     category: 'mention',
     module: 'chat',
   },
+  /** API 54: chat reports; a row only for those who review them (chat.review_reports). */
+  {
+    key: 'chat_reports',
+    types: ['chat.report'],
+    category: 'alert',
+    module: 'chat',
+    reviewers: true,
+  },
   /** Incoming and missed calls; no e-mail. */
   {
     key: 'calls',
@@ -1261,6 +1349,8 @@ export const NOTIFICATION_GROUPS = [
   module?: string;
   channels?: readonly NotificationChannel[];
   locked?: readonly NotificationChannel[];
+  /** Shown only to the people who review chat reports (org owners and admins). */
+  reviewers?: boolean;
 }[];
 
 export type NotificationGroupKey = (typeof NOTIFICATION_GROUPS)[number]['key'];
@@ -1750,7 +1840,19 @@ export const WsServerEvent = z.discriminatedUnion('type', [
     serverTime: Timestamp,
     heartbeatSeconds: z.number().int(),
   }),
-  z.object({ type: z.literal('message.created'), conversationId: Id, message: Message }),
+  z.object({
+    type: z.literal('message.created'),
+    conversationId: Id,
+    message: Message,
+    /**
+     * API 55: the receiving person is at a session right now (a focused desktop or web session
+     * with fresh input, or the mobile app in the foreground; presence `attending`). Only that
+     * session makes a sound: one that is not being looked at plays no chime. Set per recipient on
+     * others' messages; false for critical alerts, which ring everywhere. Missing (older
+     * servers, own messages): the usual rules.
+     */
+    attended: z.boolean().optional(),
+  }),
   /** Edit, attachment removed, pin change. */
   z.object({ type: z.literal('message.updated'), conversationId: Id, message: Message }),
   /** The row stays as a tombstone; quotes of it read "Bu mesaj silindi". */
@@ -1801,6 +1903,14 @@ export const WsServerEvent = z.discriminatedUnion('type', [
     type: z.literal('notification'),
     notification: Notification,
     unreadCount: z.number().int(),
+    /**
+     * API 55: the person was at a session when it was sent (a focused desktop or web session
+     * with fresh input, or the mobile app in the foreground). Only the session being looked at
+     * makes noise: the others show no OS notification and play no chime. False for urgent ones
+     * and incoming calls (`everyDevice`), which ring everywhere. Missing (older servers): the
+     * usual rules.
+     */
+    attended: z.boolean().optional(),
   }),
   /** Read, dismissed or snoozed elsewhere: refresh the bell. */
   z.object({ type: z.literal('notifications.changed'), unreadCount: z.number().int() }),
